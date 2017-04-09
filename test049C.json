@@ -1,0 +1,94 @@
+{ "DjvuData":
+    { "ID": "FORM:DJVM", "Size": 1609488, "Children": [
+            { "ID": "DIRM", "Size": 171, "Description": "Document directory", "DocumentType": "bundled", "FileCount": 8, "PageCount": 7 },
+            { "ID": "FORM:DJVI", "Size": 10045, "Children": [
+                    { "ID": "Djbz", "Size": 10033, "Description": "JB2 shared dictionary" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 540300, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5196, "Height": 7322, "Version": 25, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 54, "Description": "Indirection chunk", "Name": "{grodnenskiy gusar polk_2 tom_????????_010.djbz}" },
+                    { "ID": "Sjbz", "Size": 58844, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 25454, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 433, "Height": 611 },
+                    { "ID": "BG44", "Size": 74475, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1732, "Height": 2441 },
+                    { "ID": "BG44", "Size": 88572, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 87440, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 205353, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 170892, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5196, "Height": 7322, "Version": 25, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 54, "Description": "Indirection chunk", "Name": "{grodnenskiy gusar polk_2 tom_????????_010.djbz}" },
+                    { "ID": "Sjbz", "Size": 27708, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 12372, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 433, "Height": 611 },
+                    { "ID": "BG44", "Size": 29090, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1732, "Height": 2441 },
+                    { "ID": "BG44", "Size": 32171, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 22446, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 46943, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 151148, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5196, "Height": 7322, "Version": 25, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 54, "Description": "Indirection chunk", "Name": "{grodnenskiy gusar polk_2 tom_????????_010.djbz}" },
+                    { "ID": "Sjbz", "Size": 17413, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 9749, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 433, "Height": 611 },
+                    { "ID": "BG44", "Size": 28109, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1732, "Height": 2441 },
+                    { "ID": "BG44", "Size": 30526, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 21434, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 43753, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 153184, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5196, "Height": 7322, "Version": 25, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 54, "Description": "Indirection chunk", "Name": "{grodnenskiy gusar polk_2 tom_????????_010.djbz}" },
+                    { "ID": "Sjbz", "Size": 21487, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 9722, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 433, "Height": 611 },
+                    { "ID": "BG44", "Size": 27594, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1732, "Height": 2441 },
+                    { "ID": "BG44", "Size": 30068, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 21068, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 43084, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 185414, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5196, "Height": 7322, "Version": 25, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 54, "Description": "Indirection chunk", "Name": "{grodnenskiy gusar polk_2 tom_????????_010.djbz}" },
+                    { "ID": "Sjbz", "Size": 45675, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 11390, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 433, "Height": 611 },
+                    { "ID": "BG44", "Size": 28408, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1732, "Height": 2441 },
+                    { "ID": "BG44", "Size": 31526, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 21987, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 46266, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 204830, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5196, "Height": 7322, "Version": 25, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 54, "Description": "Indirection chunk", "Name": "{grodnenskiy gusar polk_2 tom_????????_010.djbz}" },
+                    { "ID": "Sjbz", "Size": 56700, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 13515, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 433, "Height": 611 },
+                    { "ID": "BG44", "Size": 28933, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1732, "Height": 2441 },
+                    { "ID": "BG44", "Size": 32836, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 22911, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 49772, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 193426, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5196, "Height": 7322, "Version": 25, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 54, "Description": "Indirection chunk", "Name": "{grodnenskiy gusar polk_2 tom_????????_010.djbz}" },
+                    { "ID": "Sjbz", "Size": 51336, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 12206, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 433, "Height": 611 },
+                    { "ID": "BG44", "Size": 28221, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1732, "Height": 2441 },
+                    { "ID": "BG44", "Size": 31681, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 22074, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 47745, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            }
+        ]
+    }
+}

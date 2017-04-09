@@ -1,0 +1,31 @@
+{ "DjvuData":
+    { "ID": "FORM:DJVM", "Size": 2374840, "Children": [
+            { "ID": "DIRM", "Size": 267, "Description": "Document directory", "DocumentType": "bundled", "FileCount": 28, "PageCount": 27 },
+            { "ID": "NAVM", "Size": 95 },
+            { "ID": "FORM:DJVI", "Size": 109, "Children": [
+                    { "ID": "ANTz", "Size": 97, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26186, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 787, "Height": 1176, "Version": 23, "Dpi": 100, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "BG44", "Size": 4613, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 787, "Height": 1176 },
+                    { "ID": "BG44", "Size": 5183, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 3039, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 13221, "Description": "IW4 data #4", "Slices": 9 }
+                ]
+            },
+            { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{anno0001.iff}" }
+        ]
+    },
+    { "ID": "FORM:DJVU", "Size": 18886, "Children": [
+            { "ID": "INFO", "Size": 10, "Width": 787, "Height": 1174, "Version": 23, "Dpi": 100, "Gamma": 2.2 },
+            { "ID": "CIDa", "Size": 36 },
+            { "ID": "BG44", "Size": 6011, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 787, "Height": 1174 },
+            { "ID": "BG44", "Size": 4688, "Description": "IW4 data #2", "Slices": 10 },
+            { "ID": "BG44", "Size": 3300, "Description": "IW4 data #3", "Slices": 4 },
+            { "ID": "BG44", "Size": 4760, "Description": "IW4 data #4", "Slices": 9 }
+        ]
+    },
+    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{anno0001.iff}" }
+}

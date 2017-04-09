@@ -1,0 +1,383 @@
+{ "DjvuData":
+    { "ID": "FORM:DJVM", "Size": 1671172, "Children": [
+            { "ID": "DIRM", "Size": 368, "Description": "Document directory", "DocumentType": "bundled", "FileCount": 31, "PageCount": 26 },
+            { "ID": "NAVM", "Size": 236 },
+            { "ID": "FORM:THUM", "Size": 507, "Children": [
+                    { "ID": "TH44", "Size": 495, "Description": "Thumbnail icon for page", "PageNumber": 1 }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 43734, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2511, "Height": 4290, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 1284, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 781, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 210, "Height": 358 },
+                    { "ID": "BG44", "Size": 7083, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 837, "Height": 1430 },
+                    { "ID": "BG44", "Size": 9142, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 2492, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 22808, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:THUM", "Size": 5636, "Children": [
+                    { "ID": "TH44", "Size": 933, "Description": "Thumbnail icon for page", "PageNumber": 2 },
+                    { "ID": "TH44", "Size": 784, "Description": "Thumbnail icon for page", "PageNumber": 3 },
+                    { "ID": "TH44", "Size": 656, "Description": "Thumbnail icon for page", "PageNumber": 4 },
+                    { "ID": "TH44", "Size": 403, "Description": "Thumbnail icon for page", "PageNumber": 5 },
+                    { "ID": "TH44", "Size": 644, "Description": "Thumbnail icon for page", "PageNumber": 6 },
+                    { "ID": "TH44", "Size": 699, "Description": "Thumbnail icon for page", "PageNumber": 7 },
+                    { "ID": "TH44", "Size": 859, "Description": "Thumbnail icon for page", "PageNumber": 8 },
+                    { "ID": "TH44", "Size": 586, "Description": "Thumbnail icon for page", "PageNumber": 9 }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 73630, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4281, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 18919, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 4471, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 357 },
+                    { "ID": "BG44", "Size": 9289, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1427 },
+                    { "ID": "BG44", "Size": 9442, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 6369, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 23855, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 1129, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 25190, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 14200, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 2872, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1380, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1200, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 283, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 4521, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 581, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 32464, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 16470, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 4441, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1727, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1555, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 716, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 5597, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 1804, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 29398, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 14970, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 3236, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1992, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1622, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 763, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 5142, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 1521, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 53412, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 8252, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 2208, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 7266, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 7230, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 6138, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 21934, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 233, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 40822, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 24472, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 5654, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1512, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1397, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 639, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 4633, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 2362, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 72644, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 14712, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 3154, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 9801, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 9616, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 7289, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 27610, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 310, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 54346, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 32685, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 7418, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1627, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1806, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 987, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 6171, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 3497, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:THUM", "Size": 6946, "Children": [
+                    { "ID": "TH44", "Size": 904, "Description": "Thumbnail icon for page", "PageNumber": 10 },
+                    { "ID": "TH44", "Size": 685, "Description": "Thumbnail icon for page", "PageNumber": 11 },
+                    { "ID": "TH44", "Size": 923, "Description": "Thumbnail icon for page", "PageNumber": 12 },
+                    { "ID": "TH44", "Size": 946, "Description": "Thumbnail icon for page", "PageNumber": 13 },
+                    { "ID": "TH44", "Size": 1120, "Description": "Thumbnail icon for page", "PageNumber": 14 },
+                    { "ID": "TH44", "Size": 658, "Description": "Thumbnail icon for page", "PageNumber": 15 },
+                    { "ID": "TH44", "Size": 878, "Description": "Thumbnail icon for page", "PageNumber": 16 },
+                    { "ID": "TH44", "Size": 762, "Description": "Thumbnail icon for page", "PageNumber": 17 }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 70952, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 8250, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 2263, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 10663, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 10563, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 9777, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 29056, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 225, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 53700, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 31508, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 7744, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1567, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1855, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 827, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 6692, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 3353, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 76932, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2487, "Height": 4221, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 9760, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 3167, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 208, "Height": 352 },
+                    { "ID": "BG44", "Size": 10555, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 829, "Height": 1407 },
+                    { "ID": "BG44", "Size": 10807, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 7281, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 35216, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 52292, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 32808, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 7302, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1424, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1360, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 532, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 5083, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 3632, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 93040, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2464, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 13601, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 4290, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 206, "Height": 355 },
+                    { "ID": "BG44", "Size": 12786, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 822, "Height": 1417 },
+                    { "ID": "BG44", "Size": 13309, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 10405, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 38504, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 57440, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 37034, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 7421, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1313, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1390, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 572, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 4847, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 4709, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 124140, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2464, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 39261, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 5590, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 206, "Height": 355 },
+                    { "ID": "BG44", "Size": 10498, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 822, "Height": 1417 },
+                    { "ID": "BG44", "Size": 14316, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 10460, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 43700, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 163, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 56776, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 36465, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 8038, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1336, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1315, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 597, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 4722, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 4149, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:THUM", "Size": 6274, "Children": [
+                    { "ID": "TH44", "Size": 724, "Description": "Thumbnail icon for page", "PageNumber": 18 },
+                    { "ID": "TH44", "Size": 769, "Description": "Thumbnail icon for page", "PageNumber": 19 },
+                    { "ID": "TH44", "Size": 1130, "Description": "Thumbnail icon for page", "PageNumber": 20 },
+                    { "ID": "TH44", "Size": 845, "Description": "Thumbnail icon for page", "PageNumber": 21 },
+                    { "ID": "TH44", "Size": 968, "Description": "Thumbnail icon for page", "PageNumber": 22 },
+                    { "ID": "TH44", "Size": 589, "Description": "Thumbnail icon for page", "PageNumber": 23 },
+                    { "ID": "TH44", "Size": 605, "Description": "Thumbnail icon for page", "PageNumber": 24 },
+                    { "ID": "TH44", "Size": 572, "Description": "Thumbnail icon for page", "PageNumber": 25 }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 81416, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2494, "Height": 4228, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 12837, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 3413, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 208, "Height": 353 },
+                    { "ID": "BG44", "Size": 9433, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 832, "Height": 1410 },
+                    { "ID": "BG44", "Size": 11956, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 7824, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 35667, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 132, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 57296, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 36011, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 7394, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1329, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1601, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 574, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 5949, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 4284, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 103618, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2464, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 14572, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 4081, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 206, "Height": 355 },
+                    { "ID": "BG44", "Size": 12662, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 822, "Height": 1417 },
+                    { "ID": "BG44", "Size": 14346, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 9838, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 47809, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 158, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 48580, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 28886, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 6850, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1538, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1478, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 527, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 6017, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 3131, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 146620, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2464, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 39852, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 6155, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 206, "Height": 355 },
+                    { "ID": "BG44", "Size": 14080, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 822, "Height": 1417 },
+                    { "ID": "BG44", "Size": 18122, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 13838, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 54301, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 120, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 58674, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 37875, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 7550, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1362, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1614, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 935, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 5600, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 3586, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 69308, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2464, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 8943, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 1825, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 206, "Height": 355 },
+                    { "ID": "BG44", "Size": 8095, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 822, "Height": 1417 },
+                    { "ID": "BG44", "Size": 10467, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 8627, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 31056, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 140, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 48412, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2364, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 30384, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 6215, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 197, "Height": 355 },
+                    { "ID": "BG44", "Size": 1452, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 788, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1531, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 634, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 5043, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 2999, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            },
+            { "ID": "FORM:THUM", "Size": 301, "Children": [
+                    { "ID": "TH44", "Size": 289, "Description": "Thumbnail icon for page", "PageNumber": 26 }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 25798, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2464, "Height": 4251, "Version": 25, "Dpi": 650, "Gamma": 2.2 },
+                    { "ID": "CIDa", "Size": 36 },
+                    { "ID": "Sjbz", "Size": 13150, "Description": "JB2 bilevel data" },
+                    { "ID": "FG44", "Size": 3129, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 206, "Height": 355 },
+                    { "ID": "BG44", "Size": 1751, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 822, "Height": 1417 },
+                    { "ID": "BG44", "Size": 1391, "Description": "IW4 data #2", "Slices": 10 },
+                    { "ID": "BG44", "Size": 545, "Description": "IW4 data #3", "Slices": 4 },
+                    { "ID": "BG44", "Size": 4373, "Description": "IW4 data #4", "Slices": 9 },
+                    { "ID": "TXTz", "Size": 1304, "Description": "Hidden text (text, etc.)" },
+                    { "ID": "ANTz", "Size": 19, "Description": "Page annotation (hyperlinks, etc.)" }
+                ]
+            }
+        ]
+    }
+}

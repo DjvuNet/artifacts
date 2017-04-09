@@ -1,0 +1,377 @@
+{ "DjvuData":
+    { "ID": "FORM:DJVM", "Size": 2217878, "Children": [
+            { "ID": "DIRM", "Size": 348, "Description": "Document directory", "DocumentType": "bundled", "FileCount": 35, "PageCount": 33 },
+            { "ID": "FORM:DJVI", "Size": 12511, "Children": [
+                    { "ID": "Djbz", "Size": 12499, "Description": "JB2 shared dictionary" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 43535, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 29260, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 2013, "Description": "JB2 colors data", "Version": 0, "Colors": 256 },
+                    { "ID": "BG44", "Size": 3264, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 983, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 1345, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 1787, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 161, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4611, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 31328, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19232, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1907, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 3229, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "False", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 708, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 811, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 682, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 320, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4330, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 188579, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19225, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1873, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 35097, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 32409, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 40554, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 55043, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 186, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4081, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 97541, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 18569, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1909, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 17223, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 14367, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 16781, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 25069, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 245, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 3265, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 145326, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 18193, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1869, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 28937, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 24588, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 29002, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 38915, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 127, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 3584, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 312308, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 14659, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1841, "Description": "JB2 colors data", "Version": 0, "Colors": 254 },
+                    { "ID": "BG44", "Size": 62126, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 57933, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 72835, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 101880, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 46, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 878, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 260114, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 17813, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1858, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 46219, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 46843, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 59197, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 84888, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 93, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 3092, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 181933, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 17586, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1875, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 35619, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 30704, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 38397, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 54660, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 124, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 2859, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 279181, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 14602, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1841, "Description": "JB2 colors data", "Version": 0, "Colors": 254 },
+                    { "ID": "BG44", "Size": 55057, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 52783, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 63934, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 89871, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 46, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 937, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 33892, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 21748, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1917, "Description": "JB2 colors data", "Version": 0, "Colors": 256 },
+                    { "ID": "BG44", "Size": 3254, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "False", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 646, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 869, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 788, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 164, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4398, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26090, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19478, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1864, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 132, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4246, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 27073, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19911, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1897, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 194, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4699, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 37208, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 25159, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1925, "Description": "JB2 colors data", "Version": 0, "Colors": 256 },
+                    { "ID": "BG44", "Size": 3178, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "False", "Width": 1700, "Height": 2200 },
+                    { "ID": "BG44", "Size": 761, "Description": "IW4 data #2", "Slices": 11 },
+                    { "ID": "BG44", "Size": 1052, "Description": "IW4 data #3", "Slices": 10 },
+                    { "ID": "BG44", "Size": 921, "Description": "IW4 data #4", "Slices": 10 },
+                    { "ID": "ANTz", "Size": 135, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 3966, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26918, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19854, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1888, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 189, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4616, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26506, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19508, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1883, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 168, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4576, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 27134, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 20385, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1868, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 110, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4400, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 27104, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 20135, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1877, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 162, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4558, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26845, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19854, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1884, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 178, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4559, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 27361, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19997, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1919, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 294, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4779, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26629, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0020.iff}" },
+                    { "ID": "Sjbz", "Size": 19628, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1871, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 103, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4655, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVI", "Size": 11737, "Children": [
+                    { "ID": "Djbz", "Size": 11725, "Description": "JB2 shared dictionary" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26225, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19799, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1889, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 172, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 3993, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 24716, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19005, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1856, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 83, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 3400, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26538, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19960, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1881, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 171, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4154, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26396, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19651, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1878, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 143, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4352, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 25727, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19191, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1884, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 149, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4131, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 25862, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19180, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1858, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 88, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4366, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 26112, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19150, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1883, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 156, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4552, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 25556, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 19044, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1867, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 230, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4044, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 25121, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 18957, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1872, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 383, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 3537, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 28827, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 20985, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1897, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 742, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4831, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 27654, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 20238, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1886, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 584, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 4576, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 29378, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 21197, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1905, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 794, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 5110, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 22258, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0033.iff}" },
+                    { "ID": "Sjbz", "Size": 16865, "Description": "JB2 bilevel data" },
+                    { "ID": "FGbz", "Size": 1875, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "ID": "ANTz", "Size": 389, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "ID": "TXTz", "Size": 2756, "Description": "Hidden text (text, etc.)" }
+                ]
+            }
+        ]
+    }
+}

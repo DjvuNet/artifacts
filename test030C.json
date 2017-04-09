@@ -1,0 +1,13 @@
+{ "DjvuData":
+    { "ID": "FORM:DJVU", "Size": 146736, "Children": [
+            { "ID": "INFO", "Size": 10, "Width": 6518, "Height": 9399, "Version": 25, "Dpi": 400, "Gamma": 2.2 },
+            { "ID": "CIDa", "Size": 36 },
+            { "ID": "Sjbz", "Size": 84753, "Description": "JB2 bilevel data" },
+            { "ID": "FG44", "Size": 31845, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 544, "Height": 784 },
+            { "ID": "BG44", "Size": 7015, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1630, "Height": 2350 },
+            { "ID": "BG44", "Size": 6576, "Description": "IW4 data #2", "Slices": 10 },
+            { "ID": "BG44", "Size": 1245, "Description": "IW4 data #3", "Slices": 4 },
+            { "ID": "BG44", "Size": 15184, "Description": "IW4 data #4", "Slices": 9 }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{ "DjvuData":
+    { "ID": "FORM:DJVM", "Size": 62513, "Children": [
+            { "ID": "DIRM", "Size": 62, "Description": "Document directory", "DocumentType": "bundled", "FileCount": 4, "PageCount": 4 },
+            { "ID": "FORM:DJVU", "Size": 20086, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 1900, "Height": 2600, "Version": 24, "Dpi": 400, "Gamma": 2.2 },
+                    { "ID": "Sjbz", "Size": 20056, "Description": "JB2 bilevel data" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 4670, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 1900, "Height": 600, "Version": 24, "Dpi": 400, "Gamma": 2.2 },
+                    { "ID": "Sjbz", "Size": 4640, "Description": "JB2 bilevel data" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 21202, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 2000, "Height": 2700, "Version": 24, "Dpi": 400, "Gamma": 2.2 },
+                    { "ID": "Sjbz", "Size": 21172, "Description": "JB2 bilevel data" }
+                ]
+            },
+            { "ID": "FORM:DJVU", "Size": 16449, "Children": [
+                    { "ID": "INFO", "Size": 10, "Width": 1900, "Height": 2600, "Version": 24, "Dpi": 400, "Gamma": 2.2 },
+                    { "ID": "Sjbz", "Size": 16419, "Description": "JB2 bilevel data" }
+                ]
+            }
+        ]
+    }
+}
