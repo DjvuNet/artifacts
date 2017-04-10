@@ -17,15 +17,5 @@
             },
             { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{anno0001.iff}" }
         ]
-    },
-    { "ID": "FORM:DJVU", "Size": 18886, "Children": [
-            { "ID": "INFO", "Size": 10, "Width": 787, "Height": 1174, "Version": 23, "Dpi": 100, "Gamma": 2.2 },
-            { "ID": "CIDa", "Size": 36 },
-            { "ID": "BG44", "Size": 6011, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 787, "Height": 1174 },
-            { "ID": "BG44", "Size": 4688, "Description": "IW4 data #2", "Slices": 10 },
-            { "ID": "BG44", "Size": 3300, "Description": "IW4 data #3", "Slices": 4 },
-            { "ID": "BG44", "Size": 4760, "Description": "IW4 data #4", "Slices": 9 }
-        ]
-    },
-    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{anno0001.iff}" }
+    }
 }
