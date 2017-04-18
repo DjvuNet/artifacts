@@ -12,7 +12,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 1352184, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 4062, "Height": 5304, "Version": 21, "Dpi": 300, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "{2008-12-11 11-50-20_0001.djbz}" },
+                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "2008-12-11 11-50-20_0001.djbz" },
                     { "ID": "Sjbz", "Size": 1237445, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 2902, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
                     { "ID": "BG44", "Size": 15817, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1354, "Height": 1768 },
@@ -32,7 +32,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 818332, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5304, "Height": 4062, "Version": 21, "Dpi": 300, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "{2008-12-11 11-50-20_0001.djbz}" },
+                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "2008-12-11 11-50-20_0001.djbz" },
                     { "ID": "Sjbz", "Size": 677072, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 2418, "Description": "JB2 colors data", "Version": 0, "Colors": 252 },
                     { "ID": "BG44", "Size": 24126, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1768, "Height": 1354 },
@@ -44,7 +44,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 29400, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 4062, "Height": 5304, "Version": 21, "Dpi": 300, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "{2008-12-11 11-50-20_0001.djbz}" },
+                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "2008-12-11 11-50-20_0001.djbz" },
                     { "ID": "Sjbz", "Size": 22102, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 242, "Description": "JB2 colors data", "Version": 0, "Colors": 10 },
                     { "ID": "BG44", "Size": 1933, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1354, "Height": 1768 },
@@ -56,7 +56,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 258138, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5304, "Height": 4062, "Version": 21, "Dpi": 300, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "{2008-12-11 11-50-20_0001.djbz}" },
+                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "2008-12-11 11-50-20_0001.djbz" },
                     { "ID": "Sjbz", "Size": 76445, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 2068, "Description": "JB2 colors data", "Version": 0, "Colors": 13 },
                     { "ID": "BG44", "Size": 27043, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1768, "Height": 1354 },
@@ -68,7 +68,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 180162, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 4062, "Height": 5304, "Version": 21, "Dpi": 300, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "{2008-12-11 11-50-20_0001.djbz}" },
+                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "2008-12-11 11-50-20_0001.djbz" },
                     { "ID": "Sjbz", "Size": 140440, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 341, "Description": "JB2 colors data", "Version": 0, "Colors": 9 },
                     { "ID": "BG44", "Size": 6730, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1354, "Height": 1768 },
@@ -80,7 +80,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 262820, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5304, "Height": 4062, "Version": 21, "Dpi": 300, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "{2008-12-11 11-50-20_0001.djbz}" },
+                    { "ID": "INCL", "Size": 29, "Description": "Indirection chunk", "Name": "2008-12-11 11-50-20_0001.djbz" },
                     { "ID": "Sjbz", "Size": 110501, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 1982, "Description": "JB2 colors data", "Version": 0, "Colors": 10 },
                     { "ID": "BG44", "Size": 26362, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1768, "Height": 1354 },

@@ -7,7 +7,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 12130, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 7566, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 58, "Description": "JB2 colors data", "Version": 0, "Colors": 2 },
                     { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
@@ -16,21 +16,21 @@
             },
             { "ID": "FORM:DJVU", "Size": 10144, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 5458, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 4628, "Description": "Hidden text (text, etc.)" }
                 ]
             },
             { "ID": "FORM:DJVU", "Size": 11321, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 6338, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 4925, "Description": "Hidden text (text, etc.)" }
                 ]
             },
             { "ID": "FORM:DJVU", "Size": 13274, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 9479, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 89, "Description": "JB2 colors data", "Version": 0, "Colors": 4 },
                     { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
@@ -39,7 +39,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 19714, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 19164, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 195, "Description": "JB2 colors data", "Version": 0, "Colors": 8 },
                     { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 }
@@ -47,21 +47,21 @@
             },
             { "ID": "FORM:DJVU", "Size": 12255, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 6611, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 5585, "Description": "Hidden text (text, etc.)" }
                 ]
             },
             { "ID": "FORM:DJVU", "Size": 11153, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 6372, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 4723, "Description": "Hidden text (text, etc.)" }
                 ]
             },
             { "ID": "FORM:DJVU", "Size": 10144, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 9697, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 91, "Description": "JB2 colors data", "Version": 0, "Colors": 4 },
                     { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 }
@@ -69,14 +69,14 @@
             },
             { "ID": "FORM:DJVU", "Size": 10607, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 7111, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 3437, "Description": "Hidden text (text, etc.)" }
                 ]
             },
             { "ID": "FORM:DJVU", "Size": 10709, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 6018, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 60, "Description": "JB2 colors data", "Version": 0, "Colors": 2 },
                     { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
@@ -85,7 +85,7 @@
             },
             { "ID": "FORM:DJVU", "Size": 8050, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 7643, "Description": "JB2 bilevel data" },
                     { "ID": "FGbz", "Size": 52, "Description": "JB2 colors data", "Version": 0, "Colors": 2 },
                     { "ID": "BG44", "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 }
@@ -93,21 +93,21 @@
             },
             { "ID": "FORM:DJVU", "Size": 8608, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 5307, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 3242, "Description": "Hidden text (text, etc.)" }
                 ]
             },
             { "ID": "FORM:DJVU", "Size": 5641, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 3554, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 2029, "Description": "Hidden text (text, etc.)" }
                 ]
             },
             { "ID": "FORM:DJVU", "Size": 4748, "Children": [
                     { "ID": "INFO", "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2 },
-                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "{dict0014.iff}" },
+                    { "ID": "INCL", "Size": 12, "Description": "Indirection chunk", "Name": "dict0014.iff" },
                     { "ID": "Sjbz", "Size": 2898, "Description": "JB2 bilevel data" },
                     { "ID": "TXTz", "Size": 1792, "Description": "Hidden text (text, etc.)" }
                 ]
