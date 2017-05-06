@@ -1,0 +1,377 @@
+{ "$type":"DjvuNet.Serialization.DjvuDoc", "File": "test023C.djvu", "DjvuData":
+    { "$type": "DjvuNet.Serialization.DjvmForm", "ID": "FORM:DJVM", "NodeOffset": 0, "Size": 2217878, "Children": [
+            { "$type": "DjvuNet.Serialization.Dirm", "ID": "DIRM", "NodeOffset": 16, "Size": 348, "Description": "Document directory", "DocumentType": "bundled", "FileCount": 35, "PageCount": 33 },
+            { "$type": "DjvuNet.Serialization.DjviForm", "ID": "FORM:DJVI", "NodeOffset": 372, "Size": 12511, "Children": [
+                    { "$type": "DjvuNet.Serialization.Djbz", "ID": "Djbz", "NodeOffset": 384, "Size": 12499, "Description": "JB2 shared dictionary" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 12892, "Size": 43535, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 12904, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 12922, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 12942, "Size": 29260, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 42210, "Size": 2013, "Description": "JB2 colors data", "Version": 0, "Colors": 256 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 44232, "Size": 3264, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 47504, "Size": 983, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 48496, "Size": 1345, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 49850, "Size": 1787, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 51646, "Size": 161, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 51816, "Size": 4611, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 56436, "Size": 31328, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 56448, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 56466, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 56486, "Size": 19232, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 75726, "Size": 1907, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 77642, "Size": 3229, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "False", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 80880, "Size": 708, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 81596, "Size": 811, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 82416, "Size": 682, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 83106, "Size": 320, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 83434, "Size": 4330, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 87772, "Size": 188579, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 87784, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 87802, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 87822, "Size": 19225, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 107056, "Size": 1873, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 108938, "Size": 35097, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 144044, "Size": 32409, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 176462, "Size": 40554, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 217024, "Size": 55043, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 272076, "Size": 186, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 272270, "Size": 4081, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 276360, "Size": 97541, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 276372, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 276390, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 276410, "Size": 18569, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 294988, "Size": 1909, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 296906, "Size": 17223, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 314138, "Size": 14367, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 328514, "Size": 16781, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 345304, "Size": 25069, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 370382, "Size": 245, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 370636, "Size": 3265, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 373910, "Size": 145326, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 373922, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 373940, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 373960, "Size": 18193, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 392162, "Size": 1869, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 394040, "Size": 28937, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 422986, "Size": 24588, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 447582, "Size": 29002, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 476592, "Size": 38915, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 515516, "Size": 127, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 515652, "Size": 3584, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 519244, "Size": 312308, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 519256, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 519274, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 519294, "Size": 14659, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 533962, "Size": 1841, "Description": "JB2 colors data", "Version": 0, "Colors": 254 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 535812, "Size": 62126, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 597946, "Size": 57933, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 655888, "Size": 72835, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 728732, "Size": 101880, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 830620, "Size": 46, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 830674, "Size": 878, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 831560, "Size": 260114, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 831572, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 831590, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 831610, "Size": 17813, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 849432, "Size": 1858, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 851298, "Size": 46219, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 897526, "Size": 46843, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 944378, "Size": 59197, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1003584, "Size": 84888, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1088480, "Size": 93, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1088582, "Size": 3092, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1091682, "Size": 181933, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1091694, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1091712, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1091732, "Size": 17586, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1109326, "Size": 1875, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1111210, "Size": 35619, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1146838, "Size": 30704, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1177550, "Size": 38397, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1215956, "Size": 54660, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1270624, "Size": 124, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1270756, "Size": 2859, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1273624, "Size": 279181, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1273636, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1273654, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1273674, "Size": 14602, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1288284, "Size": 1841, "Description": "JB2 colors data", "Version": 0, "Colors": 254 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1290134, "Size": 55057, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "True", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1345200, "Size": 52783, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1397992, "Size": 63934, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1461934, "Size": 89871, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1551814, "Size": 46, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1551868, "Size": 937, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1552814, "Size": 33892, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1552826, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1552844, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1552864, "Size": 21748, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1574620, "Size": 1917, "Description": "JB2 colors data", "Version": 0, "Colors": 256 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1576546, "Size": 3254, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "False", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1579808, "Size": 646, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1580462, "Size": 869, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1581340, "Size": 788, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1582136, "Size": 164, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1582308, "Size": 4398, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1586714, "Size": 26090, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1586726, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1586744, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1586764, "Size": 19478, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1606250, "Size": 1864, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1608122, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1608418, "Size": 132, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1608558, "Size": 4246, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1612812, "Size": 27073, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1612824, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1612842, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1612862, "Size": 19911, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1632782, "Size": 1897, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1634688, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1634984, "Size": 194, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1635186, "Size": 4699, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1639894, "Size": 37208, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1639906, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1639924, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1639944, "Size": 25159, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1665112, "Size": 1925, "Description": "JB2 colors data", "Version": 0, "Colors": 256 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1667046, "Size": 3178, "Description": "IW4 data #1", "Slices": 72, "Version": 1.2, "Color": "False", "Width": 1700, "Height": 2200 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1670232, "Size": 761, "Description": "IW4 data #2", "Slices": 11 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1671002, "Size": 1052, "Description": "IW4 data #3", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1672062, "Size": 921, "Description": "IW4 data #4", "Slices": 10 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1672992, "Size": 135, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1673136, "Size": 3966, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1677110, "Size": 26918, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1677122, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1677140, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1677160, "Size": 19854, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1697022, "Size": 1888, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1698918, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1699214, "Size": 189, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1699412, "Size": 4616, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1704036, "Size": 26506, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1704048, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1704066, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1704086, "Size": 19508, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1723602, "Size": 1883, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1725494, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1725790, "Size": 168, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1725966, "Size": 4576, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1730550, "Size": 27134, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1730562, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1730580, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1730600, "Size": 20385, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1750994, "Size": 1868, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1752870, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1753166, "Size": 110, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1753284, "Size": 4400, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1757692, "Size": 27104, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1757704, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1757722, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1757742, "Size": 20135, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1777886, "Size": 1877, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1779772, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1780068, "Size": 162, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1780238, "Size": 4558, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1784804, "Size": 26845, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1784816, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1784834, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1784854, "Size": 19854, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1804716, "Size": 1884, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1806608, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1806904, "Size": 178, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1807090, "Size": 4559, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1811658, "Size": 27361, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1811670, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1811688, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1811708, "Size": 19997, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1831714, "Size": 1919, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1833642, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1833938, "Size": 294, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1834240, "Size": 4779, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1839028, "Size": 26629, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1839040, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1839058, "Size": 12, "Description": "Indirection chunk", "Name": "dict0020.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1839078, "Size": 19628, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1858714, "Size": 1871, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1860594, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1860890, "Size": 103, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1861002, "Size": 4655, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjviForm", "ID": "FORM:DJVI", "NodeOffset": 1865666, "Size": 11737, "Children": [
+                    { "$type": "DjvuNet.Serialization.Djbz", "ID": "Djbz", "NodeOffset": 1865678, "Size": 11725, "Description": "JB2 shared dictionary" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1877412, "Size": 26225, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1877424, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1877442, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1877462, "Size": 19799, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1897270, "Size": 1889, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1899168, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1899464, "Size": 172, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1899644, "Size": 3993, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1903646, "Size": 24716, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1903658, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1903676, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1903696, "Size": 19005, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1922710, "Size": 1856, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1924574, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1924870, "Size": 83, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1924962, "Size": 3400, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1928370, "Size": 26538, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1928382, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1928400, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1928420, "Size": 19960, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1948388, "Size": 1881, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1950278, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1950574, "Size": 171, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1950754, "Size": 4154, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1954916, "Size": 26396, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1954928, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1954946, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1954966, "Size": 19651, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 1974626, "Size": 1878, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 1976512, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 1976808, "Size": 143, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 1976960, "Size": 4352, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 1981320, "Size": 25727, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 1981332, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 1981350, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 1981370, "Size": 19191, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2000570, "Size": 1884, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2002462, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2002758, "Size": 149, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2002916, "Size": 4131, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2007056, "Size": 25862, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2007068, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2007086, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2007106, "Size": 19180, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2026294, "Size": 1858, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2028160, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2028456, "Size": 88, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2028552, "Size": 4366, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2032926, "Size": 26112, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2032938, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2032956, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2032976, "Size": 19150, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2052134, "Size": 1883, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2054026, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2054322, "Size": 156, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2054486, "Size": 4552, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2059046, "Size": 25556, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2059058, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2059076, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2059096, "Size": 19044, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2078148, "Size": 1867, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2080024, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2080320, "Size": 230, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2080558, "Size": 4044, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2084610, "Size": 25121, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2084622, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2084640, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2084660, "Size": 18957, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2103626, "Size": 1872, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2105506, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2105802, "Size": 383, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2106194, "Size": 3537, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2109740, "Size": 28827, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2109752, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2109770, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2109790, "Size": 20985, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2130784, "Size": 1897, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2132690, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2132986, "Size": 742, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2133736, "Size": 4831, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2138576, "Size": 27654, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2138588, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2138606, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2138626, "Size": 20238, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2158872, "Size": 1886, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2160766, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2161062, "Size": 584, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2161654, "Size": 4576, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2166238, "Size": 29378, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2166250, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2166268, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2166288, "Size": 21197, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2187494, "Size": 1905, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2189408, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2189704, "Size": 794, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2190506, "Size": 5110, "Description": "Hidden text (text, etc.)" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 2195624, "Size": 22258, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 2195636, "Size": 10, "Width": 5100, "Height": 6600, "Version": 21, "Dpi": 600, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Incl", "ID": "INCL", "NodeOffset": 2195654, "Size": 12, "Description": "Indirection chunk", "Name": "dict0033.iff" },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 2195674, "Size": 16865, "Description": "JB2 bilevel data" },
+                    { "$type": "DjvuNet.Serialization.FGbz", "ID": "FGbz", "NodeOffset": 2212548, "Size": 1875, "Description": "JB2 colors data", "Version": 0, "Colors": 255 },
+                    { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 2214432, "Size": 288, "Description": "IW4 data #1", "Slices": 97, "Version": 1.2, "Color": "False", "Width": 425, "Height": 550 },
+                    { "$type": "DjvuNet.Serialization.Antz", "ID": "ANTz", "NodeOffset": 2214728, "Size": 389, "Description": "Page annotation (hyperlinks, etc.)" },
+                    { "$type": "DjvuNet.Serialization.Txtz", "ID": "TXTz", "NodeOffset": 2215126, "Size": 2756, "Description": "Hidden text (text, etc.)" }
+                ]
+            }
+        ]
+    }
+}

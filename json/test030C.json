@@ -1,0 +1,13 @@
+{ "$type":"DjvuNet.Serialization.DjvuDoc", "File": "test030C.djvu", "DjvuData":
+    { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 0, "Size": 146736, "Children": [
+            { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 16, "Size": 10, "Width": 6518, "Height": 9399, "Version": 25, "Dpi": 400, "Gamma": 2.2, "Orientation": 0 },
+            { "$type": "DjvuNet.Serialization.Cida", "ID": "CIDa", "NodeOffset": 34, "Size": 36 },
+            { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 78, "Size": 84753, "Description": "JB2 bilevel data" },
+            { "$type": "DjvuNet.Serialization.FG44", "ID": "FG44", "NodeOffset": 84840, "Size": 31845, "Description": "IW4 data #1", "Slices": 100, "Version": 1.2, "Color": "True", "Width": 544, "Height": 784 },
+            { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 116694, "Size": 7015, "Description": "IW4 data #1", "Slices": 74, "Version": 1.2, "Color": "True", "Width": 1630, "Height": 2350 },
+            { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 123718, "Size": 6576, "Description": "IW4 data #2", "Slices": 10 },
+            { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 130302, "Size": 1245, "Description": "IW4 data #3", "Slices": 4 },
+            { "$type": "DjvuNet.Serialization.BG44", "ID": "BG44", "NodeOffset": 131556, "Size": 15184, "Description": "IW4 data #4", "Slices": 9 }
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{ "$type":"DjvuNet.Serialization.DjvuDoc", "File": "test034C.djvu", "DjvuData":
+    { "$type": "DjvuNet.Serialization.DjvmForm", "ID": "FORM:DJVM", "NodeOffset": 0, "Size": 62513, "Children": [
+            { "$type": "DjvuNet.Serialization.Dirm", "ID": "DIRM", "NodeOffset": 16, "Size": 62, "Description": "Document directory", "DocumentType": "bundled", "FileCount": 4, "PageCount": 4 },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 86, "Size": 20086, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 98, "Size": 10, "Width": 1900, "Height": 2600, "Version": 24, "Dpi": 400, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 116, "Size": 20056, "Description": "JB2 bilevel data" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 20180, "Size": 4670, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 20192, "Size": 10, "Width": 1900, "Height": 600, "Version": 24, "Dpi": 400, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 20210, "Size": 4640, "Description": "JB2 bilevel data" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 24858, "Size": 21202, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 24870, "Size": 10, "Width": 2000, "Height": 2700, "Version": 24, "Dpi": 400, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 24888, "Size": 21172, "Description": "JB2 bilevel data" }
+                ]
+            },
+            { "$type": "DjvuNet.Serialization.DjvuForm", "ID": "FORM:DJVU", "NodeOffset": 46068, "Size": 16449, "Children": [
+                    { "$type": "DjvuNet.Serialization.Info", "ID": "INFO", "NodeOffset": 46080, "Size": 10, "Width": 1900, "Height": 2600, "Version": 24, "Dpi": 400, "Gamma": 2.2, "Orientation": 0 },
+                    { "$type": "DjvuNet.Serialization.Sjbz", "ID": "Sjbz", "NodeOffset": 46098, "Size": 16419, "Description": "JB2 bilevel data" }
+                ]
+            }
+        ]
+    }
+}
