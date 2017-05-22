@@ -1,4 +1,6 @@
 # gitignore
 
-data/dumps/ 
+data/dumps/
+data/dumps/*
+data/dumps/**/*
 artifacts.zip
