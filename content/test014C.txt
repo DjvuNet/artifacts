@@ -1,0 +1,838 @@
+/*** Page =0= ***/
+1 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+ ơ   ơ 
+  Ǧ  
+  
+Ǧ ͷ,*ǡ  Ǥ ͷ,͸,*ǡ   ͷ,*ǡ  Ǥ ͹,ͺ, 
+ Ǥ ͷǡ  Ǥ ͹,ͻ,ͼ Ƭ 
+ͷ,ͽ 
+Ǧ   ȋǦȌ          
+   Ǥ ǡ       Ǧ     
+Ǥ            
+Ǧ 	 ͷ Ǥ   ǡ    ͷ      
+   ȋȌ Ǥ     Ƥ ȋȌ   ǡ  
+  Ƥ Ǥ              
+   ǡ          Ǥ 
+                 
+  ǡ             
+Ǥ    ǡ      ơ Ǧ Ǥ 
+Single-cell genomic technologies can be used to study the regulation of gene expression at unprecedented resolution1,2. 
+Using single-cell gene expression data, we can begin to e ectively characterize and classify individual cell types 
+and cell states, develop a better understanding of gene regulatory threshold e ects in response to treatments or 
+stress, and address a large number of outstanding questions that pertain to the regulation of noise and robustness 
+of gene expression programs. Indeed, single cell gene expression data have already been used to study and provide 
+unique insight into a wide range of research topics, including di erentiation and tissue development3–5, the innate 
+immune response6,7, and pharmacogenomics8,9. 
+Yet, there are a number of outstanding challenges that arose in parallel with the application of single cell 
+technology10. A fundamental di culty, for instance, is the presence of inevitable technical variability introduced 
+during sample processing steps, including but not limited to the conditions of mRNA capture from a single cell, 
+ampli cation bias, sequencing depth, and variation in pipetting accuracy. ese (and other sources of error) may 
+not be unique to single cell technologies, but in the context of studies where each sample corresponds to a single 
+cell, and is thus processed as a single unrepeatable batch, these technical considerations make the analysis of bio- 
+logical variability across single cells particularly challenging. 
+To better account for technical variability in scRNA-seq experiments, it has become common to add spike-in 
+RNA standards of known abundance to the endogenous samples11,12. e most commonly used spike-in was 
+developed by the External RNA Controls Consortium (ERCC)13; comprising of a set of 96 RNA controls of var- 
+ying length and GC content. A number of single cell studies focusing on analyzing technical variability based on 
+ERCC spike-in controls have been reported11,12,14,15. However, one principle problem with spike-ins is that they 
+do not ‘experience’ all processing steps that the endogenous sample is subjected to. For that reason, it is unknown 
+to what extent the spike-ins can faithfully re ect the error that is being accumulated during the entire sample 
+processing procedure, either within or across batches. In particular, ampli cation bias, which is assumed to be 
+gene-speci c, cannot be addressed by spike-in normalization approaches. 
+To address challenges related to the efficiency and uniformity with which mRNA molecules are ampli- 
+ed and sequenced in single cells, unique molecule identi ers (UMIs) were introduced to single cell sample 
+ͷDepartment of Human Genetics, University of Chicago, Chicago, Illinois, USA. ͸Committee on Genetics, Genomics, 
+and Systems Biology, University of Chicago, Chicago, Illinois, USA. ͹Department of Genetics, Stanford University, 
+Stanford, CA, USA. ͺDepartment of Radiology, Stanford University, Stanford, CA, USA. ͻDepartment of Biology, 
+Stanford University, Stanford, CA, USA. ͼHoward Hughes Medical Institute, Stanford University, CA, USA. 
+ͽDepartment of Medicine, University of Chicago, Chicago, Illinois, USA. *These authors contributed equally to this 
+work. Correspondence and requests for materials should be addressed toY.G. (email: gilad@uchicago.edu) 
+Rǣ Ͷͽ  ͸Ͷͷͼ 
+Aǣ ͸Ϳ  ͸Ͷͷͼ 
+Pǣ Ͷ͹  ͸Ͷͷͽ 
+ 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+2 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+processing16–19. e rationale is that by counting molecules rather than the number of ampli ed sequencing 
+reads, one can account for biases related to ampli cation, and obtain more accurate estimates of gene expression 
+levels7,12,20. It is assumed that most sources of variation in single cell gene expression studies can be accounted 
+for by using the combination of UMIs and a spike-in based standardization15,20. Nevertheless, though molecule 
+counts, as opposed to sequencing read counts, are associated with substantially reduced levels of technical varia- 
+bility, a non-negligible proportion of experimental error remains unexplained. 
+ere are a few common platforms in use for scRNA-seq. e automated C1 micro uidic platform (Fluidigm), 
+while more expensive per sample, has been shown to confer several advantages over platforms that make use of 
+droplets to capture single cells3,21. In particular, smaller samples can be processed using the C1 (when cell num- 
+bers are limiting), and the C1 capture e ciency of genes (and RNA molecules) is markedly higher. Notably, in the 
+context of this study, the C1 system also allows for direct con rmation of single cell capture events, in contrast to 
+most other micro uidic-based approaches3,22. One of the biggest limitations of using the C1 system, however, is 
+that single cell capture and preparation from di erent conditions are fully independent23. Consequently, multiple 
+replicates of C1 collections from the same biological condition are necessary to facilitate estimation of technical 
+variability even with the presence of ERCC spike-in controls10. To our knowledge, to date, no study has been pur- 
+posely conducted to assess the technical variability across batches on the C1 platform. 
+To address this gap, we collected scRNA-seq data from induced pluripotent stem cell (iPSC) lines of three 
+Yoruba individuals (abbreviation: YRI) using C1 micro uidic plates. Speci cally, we performed three independ- 
+ent C1 collections per each individual to disentangle batch e ects from the biological covariate of interest, which, 
+in this case, is the di erence between individuals. Both ERCC spike-in controls and UMIs were included in 
+our sample processing. With these data, we were able to elucidate technical variability both within and between 
+C1 batches and thus provide a deep characterization of cell-to-cell variation in gene expression levels across 
+individuals. 
+ 
+    Ǥ We collected single cell RNA-seq (scRNA-seq) data from three YRI 
+iPSC lines using the Fluidigm C1 micro uidic system followed by sequencing. We added ERCC spike-in con- 
+trols to each sample, and used 5-bp random sequence UMIs to allow for the direct quanti cation of mRNA 
+molecule numbers. For each of the YRI lines, we performed three independent C1 collections; each replicate was 
+accompanied by processing of a matching bulk sample using the same reagents. is study design (Fig. 1a and 
+Supplementary Table S1) allows us to estimate error and variability associated with the technical processing of 
+the samples, independently from the biological variation across single cells of di erent individuals. We were also 
+able to estimate how well scRNA-seq data can recapitulate the RNA-seq results from population bulk samples. 
+In what follows, we describe data as originating from di erent samples when we refer to data from distinct 
+wells of each C1 collection. Generally, each sample corresponds to a single cell. In turn, we describe data as 
+originating from di erent replicates when we refer to all samples from a given C1 collection, and from di erent 
+individuals when we refer to data from all samples and replicates of a given genetically distinct iPSC line. 
+We obtained an average of 6.3 +/− 2.1 million sequencing reads per sample (range 0.4–11.2 million reads). 
+We processed the sequencing reads using a standard alignment approach (see Methods) and performed mul- 
+tiple quality control analyses. As a rst step, we estimated the proportion of ERCC spike-in reads from each 
+sample. We found that, across samples, sequencing reads from practically all samples of the second replicate 
+of individual NA19098 included unusually high ERCC content compared to all other samples and replicates 
+(Supplementary Fig. S1). We concluded that a pipetting error led to excess ERCC content in this replicate and we 
+excluded the data from all samples of this replicate in subsequent analyses. With the exception of the excluded 
+samples, data from all other replicates seem to have similar global properties (using general metrics; Fig. 1c–e and 
+Supplementary Fig. S1). 
+We next examined the assumption that data from each sample correspond to data from a single cell. A er 
+the cell sorting was complete, but before the processing of the samples, we performed visual inspection of the C1 
+micro uidic plates. Based on that visual inspection, we agged 21 samples that did not contain any cell, and 54 
+samples that contained more than one cell (across all batches). Visual inspection of the C1 micro uidic plate is an 
+important quality control step, but it is not infallible. We therefore ltered data from the remaining samples based 
+on the number of total mapped reads, the percentage of unmapped reads, the percentage of ERCC spike-in reads, 
+and the number of genes detected (Fig. 1b–e). We chose data-driven inclusion cuto s for each metric, based on 
+the 95th percentile of the respective distributions for the 21 libraries that were ampli ed from samples that did not 
+include a cell based on visual inspection (Supplementary Fig. S1). Using this approach, we identi ed and removed 
+data from 15 additional samples that were classi ed as originating from a single cell based on visual inspection, 
+but whose data were more consistent with a multiple-cell origin based on the number of total molecules, the con- 
+centration of cDNA amplicons, and the read-to-molecule conversion e ciency (de ned as the number of total 
+molecules divided by the number of total reads; Supplementary Fig. S2). At the conclusion of these quality control 
+analyses and exclusion steps, we retained data from 564 high quality samples, which correspond, with reasonable 
+con dence, to 564 single cells, across eight replicates from three individuals (Supplementary Table S2). 
+Our nal quality check focused on the di erent properties of sequencing read and molecule count data. We 
+considered data from the 564 high quality samples and compared gene speci c counts of sequencing read and 
+molecules. We found that while gene-speci c reads and molecule counts are exceptionally highly correlated when 
+we considered the ERCC spike-in data (r = 0.99; Fig. 1f), these counts are somewhat less correlated when data 
+from the endogenous genes are considered (r = 0.92). Moreover, the gene-speci c read and molecule counts 
+correlation is noticeably lower for genes that are expressed at lower levels (Fig. 1f). ese observations concur 
+with previous studies12,20 as they underscore the importance of using UMIs in single cell gene expression studies. 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+www.nature.com/scientificreports/ 
+3 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+Figure 1. Experimental design and quality control of scRNA-seq. (a) ree C1 96 well-integrated uidic 
+circuit (IFC) replicates were collected from each of the three Yoruba individuals. A bulk sample was included 
+in each batch. (b) Summary of the cuto s used to remove data from low quality cells that might be ruptured 
+or dead (See Supplementary Fig. S1 for details). (c–e) To assess the quality of the scRNA-seq data, the capture 
+e ciency of cells and the faithfulness of mRNA fraction ampli cation were determined based on the proportion 
+of unmapped reads, the number of detected genes, the numbers of total mapped reads, and the proportion of 
+ERCC spike-in reads across cells. e dash lines indicate the cuto s summarized in panel (b). e three colors 
+represent the three individuals (NA19098 in red, NA19101 in green, and NA19239 in blue), and the numbers 
+indicate the cell numbers observed in each capture site on C1 plate. (f) Scatterplots in log scale showing the 
+mean read counts and the mean molecule counts of each endogenous gene (grey) and ERCC spike-ins (blue) 
+from the 564 high quality single cell samples before removal of genes with low expression. (g) mRNA capture 
+e ciency shown as observed molecule count versus number of molecules added to each sample, only including 
+the 48 ERCC spike-in controls remaining a er removal of genes with low abundance. Each red dot represents 
+the mean +/− SEM of an ERCC spike-in across the 564 high quality single cell samples. 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+4 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+We proceeded by investigating the e ect of sequencing depth and the number of single cells collected on 
+multiple properties of the data. To this end, we repeatedly subsampled single cells and sequencing reads to assess 
+the correlation of the single cell gene expression estimates to the bulk samples, the number of genes detected, and 
+the correlation of the cell-to-cell gene expression variance estimates between the reduced subsampled data and 
+the full single cell gene expression data set (Fig. 2). We observed quickly diminishing improvement in all three 
+properties with increasing sequencing depth and the number of sampled cells, especially for highly expressed 
+genes. For example, a per cell sequencing depth of 1.5 million reads (which corresponds to ~50,000 molecules) 
+from each of 75 single cells was su cient for e ectively quantifying even the lower 50% of expressed genes. To be 
+precise, at this level of subsampling for individual NA19239, we were able to detect a mean of 6068 genes out of 
+6097 genes expressed in the bulk samples (the bottom 50%; Fig. 2b); the estimated single cell expression levels of 
+these genes (summed across all cells) correlated with the bulk sample gene expression levels with a mean Pearson 
+coe cient of 0.8 (Fig. 2a), and the estimated cell-to-cell variation in gene expression levels was correlated with the 
+variation estimated from the full data set with a mean Pearson coe cient of 0.95 (Fig. 2c). We observed similar 
+results when examining each batch separately (Supplementary Fig. S3). 
+ ơ   Ǧ   Ǥ In the context of the C1 platform, typical 
+study designs make use of a single C1 plate (batch/replicate) per biological condition. In that case, it is impossible 
+to distinguish between biological and technical e ects associated with the independent capturing and sequencing 
+of each C1 replicate. We designed our study with multiple technical replicates per biological condition (indi- 
+vidual) in order to directly and explicitly estimate the batch e ect associated with independent C1 preparations 
+(Fig. 1a). 
+As a rst step in exploring batch e ects, we examined the gene expression pro les across all single cells that 
+passed our quality checks (as reported above) using raw molecule counts (without standardization). Using prin- 
+cipal component analysis (PCA) for visualization, we observed – as expected - that the major source of variation 
+in data from single cells is the individual origin of the sample. Speci cally, we found that the proportion of vari- 
+ance due to individual was larger (median: 8%) than variance due to C1 batch (median: 4%; Kruskal-Wallis test; 
+P < 0.001, Supplementary Fig. S4; see Methods for details of the variance component analysis). Yet, variation due 
+to C1 batch is also substantial - data from single cell samples within a batch are more correlated than that from 
+single cells from the same individual but di erent batches (Kruskal-Wallis test; P < 0.001). 
+Could we account for the observed batch e ects using the ERCC spike-in controls? In theory, if the total 
+ERCC molecule-counts are a ected only by technical variability, the spike-ins could be used to correct for batch 
+e ects even in a study design that entirely confounds biological samples with C1 preparations. To examine this, 
+we rst considered the relationship between total ERCC molecule-counts and total endogenous molecule-counts 
+per sample. If only technical variability a ects ERCC molecule-counts, we expect the technical variation in 
+the spike-ins (namely, variation between C1 batches) to be consistent, regardless of the individual assignment. 
+Indeed, we observed that total ERCC molecule-counts are signi cantly di erent between C1 batches (F-test; 
+P < 0.001). However, total ERCC molecule-counts are also quite di erent across individuals, when variation 
+between batches is taken into account (LRT; P = 0.08; Fig. 3a). is observation suggests that both technical and 
+biological variation a ect total ERCC molecule-counts. In addition, while we observed a positive relationship 
+between total ERCC molecule-counts and total endogenous molecule-counts per sample, this correlation pattern 
+di ered across C1 batches and across individuals (F-test; P < 0.001; Fig. 3b). 
+To more carefully examine the technical and biological variation of ERCC spike-in controls, we assessed the 
+ERCC per-gene expression pro le. We observed that the ERCC gene expression data from samples of the same 
+batch were more correlated than data from samples across batches (Kruskal-Wallis test; Chi-squared P < 0.001). 
+However, the proportion of variance explained by the individual was signi cantly larger than the variance due 
+to C1 batch (median: 9% vs. 5%, Chi-squared test; P < 0.001, Supplementary Fig. S4), lending further support to 
+the notion that biological variation a ects the ERCC spike in data. Based on these analyses, we concluded that 
+ERCC spike-in controls cannot be used to e ectively account for the batch e ect associated with independent C1 
+preparations. 
+We explored additional properties in the data that may be associated with a batch effect. To do so, we 
+focused on the read-to-molecule conversion rates, i.e. the rates at which sequencing reads are converted to 
+molecule counts based on the UMI sequences. We de ned read-to-molecule conversion e ciency as the total 
+molecule-counts divided by the total reads-counts in each sample, considering separately the reads/molecules 
+that correspond to endogenous genes or ERCC spike-ins (Fig. 3c and d). We observed a signi cant batch e ect 
+in the read-to-molecule conversion e ciency of both ERCC (F-test; P < 0.05) and endogenous genes (F-test; 
+P < 0.001) across C1 replicates from the same individual. Moreover, the di erence in read-to-molecule conver- 
+sion e ciency across the three individuals was signi cant not only for endogenous genes (LRT; P < 0.01, Fig. 3c) 
+but also in the ERCC spike-ins (LRT; P < 0.01, Fig. 3d). 
+    Ǧ   Ǥ Our analysis indicated that there is 
+a considerable batch e ect in the single cell gene expression data collected from the C1 platform. We thus sought 
+an approach that would account for the batch e ect and allow us to study biological properties of the single-cell 
+molecule count-based estimates of gene expression levels, albeit in a small sample of just three individuals. As a 
+rst step, we adjusted the raw molecule counts by using a Poisson approximation to account for the random use 
+of identical UMI sequences in molecules from highly expressed genes (this was previously termed a correction 
+for the UMI ‘collision probability’17). We then excluded data from genes whose inferred molecule count exceeded 
+1,024 (the theoretical number of UMI sequences) – this step resulted in the exclusion of data from 6 mitochon- 
+drial genes. 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+www.nature.com/scientificreports/ 
+5 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+Figure 2. e e ect of sequencing depth and cell number on single cell UMI estimates. Sequencing reads 
+from all the high quality single cells collected for NA19239 were subsampled to the indicated sequencing 
+depth and cell number, and subsequently converted to molecules using the UMIs. Each point represents 
+the mean +/− SEM of 10 random draws of the indicated cell number. e le  panel displays the results for 
+6,097 (50% of detected) genes with lower expression levels and the right panel the results for 6,097 genes with 
+higher expression levels. (a) Pearson correlation of aggregated gene expression level estimates from single cells 
+compared to the bulk sequencing samples. (b) Total number of genes detected with at least one molecule in 
+at least one of the single cells. (c) Pearson correlation of cell-to-cell gene expression variance estimates from 
+subsets of single cells compared to the full single cell data set. 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+www.nature.com/scientificreports/ 
+6 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+We next incorporated a standardization step by computing log transformed counts-per-million (cpm) to 
+remove the e ect of di erent sequencing depths, as is the common practice for the analysis of bulk RNA-seq 
+data (Fig. 4a and b). We used a Poisson generalized linear model to normalize the endogenous molecule log2 cpm 
+Figure 3. Batch e ect of scRNA-seq data using the C1 platform. (a) Violin plots of the number of total ERCC 
+spike-in molecule-counts in single cell samples per C1 replicate. (b) Scatterplot of the total ERCC molecule- 
+counts and total gene molecule-counts. e colors represent the three individuals (NA19098 is in red, NA19101 
+in green, and NA19239 in blue). Data from di erent C1 replicates is plotted in di erent shapes. (c and d) Violin 
+plots of the reads to molecule conversion e ciency (total molecule-counts divided by total read-counts per 
+single cells) by C1 replicate. e endogenous genes and the ERCC spike-ins are shown separately in (c) and 
+(d), respectively. ere is signi cant di erence across individuals of both endogenous genes (P < 0.001) and 
+ERCC spike-ins (P < 0.05). e di erences across C1 replicates per individual of endogenous genes and ERCC 
+spike-ins were also evaluated (both P < 0.01). 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+www.nature.com/scientificreports/ 
+7 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+values by the observed molecule counts of ERCC spike-ins across samples. While we do not expect this step to 
+account for the batch e ect (as discussed above), we reasoned that the spike-ins allow us to account for a subset 
+of technical di erences between samples, for example, those that arise from di erences in RNA concentration 
+(Fig. 4c). 
+Finally, to account for the technical batch e ect, we modeled between-sample correlations in gene expression 
+within C1 replicates (see Methods). Our approach is similar in principle to limma, which was initially developed 
+for adjusting within-replicate correlations in microarray data24. We assume that samples within each C1 replicate 
+share a component of technical variation, which is independent of biological variation across individuals. We t a 
+linear mixed model for each gene, which includes a xed e ect for individual and a random e ect for batch. e 
+batch e ect is speci c to each C1 replicate, and is independent of biological variation across individuals. We use 
+this approach to estimate and remove the batch e ect associated with di erent C1 preparations (Fig. 4d). 
+Once we removed the unwanted technical variability, we focused on analyzing biological variation in gene 
+expression between single cells. Our goal was to identify inter-individual di erences in the amount of variation 
+in gene expression levels across single cells, or in other words, to identify di erences between individuals in the 
+amount of regulatory noise25. In this context, regulatory noise is generally de ned as the coe cient of varia- 
+tion (CV) of the gene expression levels of single cells26. In the following, we used the standardized, normalized, 
+batch-corrected molecule count gene expression data to estimate regulatory noise (Fig. 4d). To account for het- 
+eroscedasticity from Poisson sampling, we adjusted the CV values by the average gene-speci c expression level 
+across cells of the same individual. e adjusted CV is robust both to di erences in gene expression levels, as well 
+as to the proportion of gene dropouts in single cells. 
+Figure 4. Normalization and removal of technical variability. Principal component (PC) 1 versus PC2 
+of the (a) raw molecule counts, (b) log2 counts per million (cpm), (c) Poisson transformed expression levels 
+(accounting for technical variability modeled by the ERCC spike-ins), and (d) batch-corrected expression levels. 
+e colors represent the three individuals (NA19098 in red, NA19101 in green, and NA19239 in blue). Data 
+from di erent C1 replicates is plotted in di erent shapes. 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+8 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+To investigate the e ects of gene dropouts (the lack of molecule representation of an expressed gene6,11) on 
+our estimates of gene expression noise, we considered the association between the proportion of cells in which a 
+given gene is undetected (namely, the gene-speci c dropout rate), the average gene expression level, and estimates 
+of gene expression noise. Across all genes, the median gene-speci c dropout was 22 percent. We found signi - 
+cant individual di erences (LRT; P < 10−5) in gene-speci c dropout rates between individuals in more than 10% 
+(1,214 of 13,058) of expressed endogenous genes. As expected, the expression levels, and the estimated variation 
+in expression levels across cells, are both associated with gene-speci c dropout rates (Supplementary Fig. S5). 
+However, importantly, adjusted CVs are not associated with dropout rates (Spearman’s correlation = 0.04; 
+Supplementary Fig. S5), indicating that adjusted CV measurements are not confounded by the dynamic range of 
+single-cell gene expression levels. 
+We thus estimated mean expression levels and regulatory noise (using adjusted CV) for each gene, by either 
+including (Fig. 5a) or excluding (Fig. 5b) samples in which the gene was not detected/expressed. We rst focused 
+on general trends in the data. We ranked genes in each individual by their mean expression level as well as by their 
+estimated level of variation across single cells. When we considered samples in which a gene was expressed, we 
+found that 887 of the 1,000 most highly expressed genes in each individual are common to all three individuals 
+(Fig. 5c). In contrast, only 95 of the 1,000 most highly variable (noisy) genes in each individual were common to 
+all three individuals (Fig. 5d). We found similar results when we considered data from all single cells, regardless 
+of whether the gene was detected as expressed (Fig. 5e and f). In particular, the set of 887 highly expressed genes 
+was also detected as common to all three individuals, while 80% of the 95 most highly variable genes (76 genes) 
+were detected as common to all three individuals when including samples in which the gene was not detected as 
+expressed. 
+Next, we identi ed genes whose estimated regulatory noise (based on the adjusted CV) is signi cantly di er- 
+ent between individuals. For the purpose of this analysis, we only included data from cells in which the gene was 
+detected as expressed. Based on permutations (Supplementary Fig. S6), we classi ed the estimates of regulatory 
+noise of 560 genes as signi cantly di erent across individuals (empirical P < 0.0001, Supplementary Fig. S7 for 
+examples; Supplementary Table S3 for gene list). ese 560 genes are enriched for genes involved in protein trans- 
+lation, protein disassembly, and various biosynthetic processes (Supplementary Table S4). Interestingly, among 
+the genes whose regulatory noise estimates di er between individuals, we found two pluripotency genes, KLF4 
+and DPPA2 (Supplementary Fig. S8). 
+ 
+      ǦǤ Our nested study design allowed us to explicitly estimate 
+technical batch e ects associated with single cell sample processing on the C1 platform. We found previously 
+unreported technical sources of variation associated with the C1 sample processing and the use of UMIs, includ- 
+ing the property of batch-speci c read-to-molecule conversion e ciency. As we used a well-replicated nested 
+study design, we were able to model, estimate, and account for the batch while maintaining individual di erences 
+in gene expression levels. We believe that our observations indicate that future studies should avoid confounding 
+C1 batch and individual source of single cell samples. Instead, we recommend a balanced study design consisting 
+of multiple individuals within a C1 plate and multiple C1 replicates (for example, Supplementary Fig. S9). e 
+origin of each cell can then be identi ed using the RNA sequencing data. Indeed, using a method originally devel- 
+oped for detecting sample swaps in DNA sequencing experiments27, we were able to correctly identify the correct 
+YRI individual of origin for all the single cells from the current experiment by comparing the polymorphisms 
+identi ed using the RNA-seq reads to the known genotypes for all 120 YRI individuals of the International 
+HapMap Project28 (Supplementary Fig. S9). e mixed-individual-plate is an attractive study design because 
+it allows one to account for the batch e ect without the requirement to explicitly spend additional resources on 
+purely technical replication (because the total number of cells assayed from each individual can be equal to a 
+design in which one individual is being processed in using a single C1 plate). 
+We also addressed additional study design properties with respect to the desired number of single cells and the 
+desired depth of sequencing (Fig. 2). Similar assessments have been previously performed for single cell sequenc- 
+ing with the C1 platform without the use of UMIs21,29, but no previous study has investigated the e ects of these 
+parameters for single cells studies using UMIs. We focused on recapitulating the gene expression levels observed 
+in bulk sequencing experiments, detecting as many genes as possible, and accurately measuring the cell-to-cell 
+variation in gene expression levels. We recommend sequencing at least 75 high quality cells per biological con- 
+dition with a minimum of 1.5 million raw reads per cell to obtain optimal performance of these three metrics. 
+     Ǧ Ǥ 
+e ERCC spike-in controls have been used in previous 
+scRNA-seq studies to identify low quality single cell samples, infer the absolute total number of molecules per cell, 
+and model the technical variability across cells11,12,14,15. In our experience, the ERCC controls are not particularly 
+well-suited for any one of these tasks, much less all three. With respect to identifying low quality samples, we 
+indeed observed that samples with no visible cell had a higher percentage of reads mapping to the ERCC controls, 
+as expected. However, there was no clear di erence between low and high quality samples in the percentage of 
+ERCC reads or molecules, and thus any arbitrarily chosen cuto  would be associated with considerable error 
+(Fig. 1e). With respect to inferring the absolute total number of molecules per cell, we observed that the biological 
+covariate of interest (di erence between the three YRI individuals), rather than batch, explained a large propor- 
+tion of the variance in the ERCC counts (Supplementary Fig. S4), and furthermore that the ERCC controls were 
+also a ected by the individual-speci c e ect on the read-to-molecule conversion rate (Fig. 3d). us ERCC-based 
+corrected estimates of total number of molecules per cell, across technical or biological replicates, are expected 
+to be biased. Because the batch e ects associated with the ERCC controls are driven by the biological covariate 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+www.nature.com/scientificreports/ 
+9 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+of interest, they will also impede the modeling of the technical variation in single cell experiments that confound 
+batch and the biological source of the single cells. 
+Figure 5. Cell-to-cell variation in gene expression. Adjusted CV plotted against average molecule counts 
+across all cells in (a) and across only the cells in which the gene is expressed (b), including data from all three 
+individuals. Each dot represents a gene, and the color indicates the corresponding gene-speci c dropout rate 
+(the proportion of cells in which the gene is undetected). (c and d) Venn diagrams showing the overlaps of 
+top 1000 genes across individuals based on mean expression level in (c) and based on adjusted CV values in 
+(d), considering only the cells in which the gene is expressed. (e and f ) Similarly, Venn diagrams showing the 
+overlaps of top 1000 genes across individuals based on mean expression level in (e) and based on adjusted CV 
+values in (f ), across all cells. 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+10 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+More generally, it is inherently di cult to model unknown sources of technical variation using so few genes30 
+(only approximately half of the 92 ERCC controls are detected in typical single cell experiments), and the ERCC 
+controls are also strongly impacted by technical sources of variation even in bulk RNA-seq experiments31. Lastly, 
+from a theoretical perspective, the ERCC controls have shorter polyA tails and are overall shorter than mam- 
+malian mRNAs. For these reasons, we caution against the reliance of ERCC controls in scRNA-seq studies and 
+highlight that an alternative set of controls that more faithfully mimics mammalian mRNAs and provides more 
+detectable spike-in genes is desired. Our recommendation is to include total RNA from a distant species, for 
+example using RNA from Drosophila melanogaster in studies of single cells from humans. 
+Ǥ Single cell experiments are ideally suited to study gene regulatory noise and robustness32,33. Yet, in 
+order to study the biological noise in gene expression levels, it is imperative that one should be able to e ectively 
+estimate and account for the technical noise in single cell gene expression data. Our results indicate that previous 
+single cells gene expression studies may not have been able to distinguish between the technical and the biological 
+components of variation, because single cell samples from each biological condition were processed on a single 
+C1 batch. When technical noise is properly accounted for, even in this small pilot study, our ndings indicate 
+pervasive inter-individual di erences in gene regulatory noise, independently of the overall gene expression level. 
+ 
+ Ǥ 
+e YRI cell lines were purchased from CCR. e original samples were collected by 
+the HapMap project between 2001–2005. All of the samples were collected with extensive community engage- 
+ment, including discussions with members of the donor communities about the ethical and social implications of 
+human genetic variation research. Donors gave broad consent to future uses of the samples, including their use 
+for extensive genotyping and sequencing, gene expression and proteomics studies, and all other types of genetic 
+variation research, with the data publicly released. 
+   Ǥ Undi erentiated feeder-free iPSCs reprogrammed from LCLs of Yoruba individuals in 
+Ibadan, Nigeria (abbreviation: YRI)28 were grown in E8 medium (Life Technologies)34 on Matrigel-coated tissue 
+culture plates with daily media feeding at 37 °C with 5% (vol/vol) CO2. For standard maintenance, cells were split 
+every 3–4 days using cell release solution (0.5 mM EDTA and NaCl in PBS) at the con uence of roughly 80%. For 
+the single cell suspension, iPSCs were individualized by Accutase Cell Detachment Solution (BD) for 5–7 minutes 
+at 37 °C and washed twice with E8 media immediately before each experiment. Cell viability and cell counts were 
+then measured by the Automated Cell Counter (Bio-Rad) to generate resuspension densities of 2.5 × 105 cells/ 
+mL in E8 medium for C1 cell capture. 
+     Ǥ Single cell loading and capture were performed following 
+the Fluidigm protocol (PN 100-7168). Brie y, 30 µl of C1 Suspension Reagent was added to a 70-µl aliquot of 
+~17,500 cells. Five µl of this cell mix were loaded onto 10–17 µm C1 Single-Cell Auto Prep IFC micro uidic chip 
+(Fluidigm), and the chip was then processed on a C1 instrument using the cell-loading script according to the 
+manufacturer’s instructions. Using the standard staining script, the iPSCs were stained with StainAlive TRA-1-60 
+Antibody (Stemgent, PN 09-0068). e capture e ciency and TRA-1-60 staining were then inspected using the 
+EVOS FL Cell Imaging System ( ermo Fisher) (Supplementary Table S1). 
+Immediately a er imaging, reverse transcription and cDNA ampli cation were performed in the C1 system 
+using the SMARTer PCR cDNA Synthesis kit (Clontech) and the Advantage 2 PCR kit (Clontech) according to 
+the instructions in the Fluidigm user manual with minor changes to incorporate UMI labeling20. Speci cally, the 
+reverse transcription primer and the 1:50,000 Ambion® ERCC Spike-In Mix1 (Life Technologies) were added to 
+the lysis bu er, and the template-switching RNA oligos which contain the UMI (5-bp random sequence) were 
+included in the reverse transcription mix20,35,36. When the run nished, full-length, ampli ed, single-cell cDNA 
+libraries were harvested in a total of approximately 13 µl C1 Harvesting Reagent and quanti ed using the DNA 
+High Sensitivity LabChip (Caliper). e average yield of samples per C1 plate ranged from 1.26–1.88 ng per 
+microliter (Supplementary Table S1). A bulk sample, a 40 µl aliquot of ~10,000 cells, was collected in parallel with 
+each C1 chip using the same reaction mixes following the C1 protocol (PN 100-7168, Appendix A). 
+For sequencing library preparation, tagmentation and isolation of 5′ fragments were performed according 
+to the UMI protocol20. Instead of using commercially available Tn5 transposase, Tn5 protein stock was freshly 
+puri ed in house using the IMPACT system (pTXB1, NEB) following the protocol previously described37. e 
+activity of Tn5 was tested and shown to be comparable with the EZ-Tn5-Transposase (Epicentre). Importantly, 
+all the libraries in this study were generated using the same batch of Tn5 protein puri cation. For each of the bulk 
+samples, two libraries were generated using two di erent indices in order to get su cient material for sequencing. 
+All 18 bulk libraries were then pooled and labeled as the “bulk” for sequencing. 
+ Ǧ Ǥ 
+e scRNA-seq libraries generated from the 96 single cell sam- 
+ples of each C1 chip were pooled and then sequenced in three lanes on an Illumina HiSeq 2500 instrument 
+using the PCR primer (C1-P1-PCR-2: Bio-GAATGATACGGCGACCACCGAT) as the read 1 primer and the 
+Tn5 adapter (C1-Tn5-U: PHO-CTGTCTCTTATACACATCTGACGC) as the index read primer following the 
+UMI protocol20. 
+e master mixes, one mix with all the bulk samples and nine mixes corresponding to the three replicates for 
+the three individuals, were sequenced across four owcells using a design aimed to minimize the introduction 
+of technical batch e ects (Supplementary Table S1). Single-end 100 bp reads were generated along with 8-bp 
+index reads corresponding to the cell-speci c barcodes. We did not observe any obvious technical e ects due to 
+sequencing lane or ow cell that confounded the inter-individual and inter-replicate comparisons. 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+11 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+ Ǥ To assess read quality, we ran FastQC (http://www.bioinformatics.babraham.ac.uk/projects/ 
+fastqc) and observed a decrease in base quality at the 3′ end of the reads. us we removed low quality bases from 
+the 3′ end using sickle with default settings38. To handle the UMI sequences at the 5′ end of each read, we used 
+umitools39 to nd all reads with a UMI of the pattern NNNNNGGG (reads without UMIs were discarded). We then 
+mapped reads to human genome hg19 (only including chromosomes 1–22, X, and Y, plus the ERCC sequences) 
+with Subjunc40, discarding non-uniquely mapped reads (option -u). To obtain gene-level counts, we assigned 
+reads to protein-coding genes (Ensembl GRCh37 release 82) and the ERCC spike-in genes using featureCounts41. 
+Because the UMI protocol maintains strand information, we required that reads map to a gene in the correct 
+orientation (featureCounts ag -s 1). 
+In addition to read counts, we utilized the UMI information to obtain molecule counts for the single cell 
+samples. We did not count molecules for the bulk samples because this would violate the assumptions of the UMI 
+protocol, as bulk samples contain far too many unique molecules for the 1,024 UMIs to properly tag them all. 
+First, we combined all reads for a given single cell using samtools42. Next, we converted read counts to molecule 
+counts using UMI-tools43. UMI-tools counts the number of UMIs at each read start position. Furthermore, it 
+accounts for sequencing errors in the UMIs introduced during the PCR ampli cation or sequencing steps using a 
+“directional adjacency” method. Brie y, all UMIs at a given read start position are connected in a network using 
+an edit distance of one base pair. However, edges between nodes (the UMIs) are only formed if the nodes have 
+less than a 2x di erence in reads. e node with the highest number of reads is counted as a unique molecule, and 
+then it and all connected nodes are removed from the network. is is repeated until all nodes have been counted 
+or removed. 
+	   Ǥ We performed multiple quality control analyses to detect and remove data from 
+low quality cells. In an initial analysis investigating the percentage of reads mapping to the ERCC spike-in con- 
+trols, we observed that replicate 2 of individual NA19098 was a clear outlier (Supplementary Fig. S1). It appeared 
+that too much ERCC spike-in mix was added to this batch, which violated the assumption that the same amount 
+of ERCC molecules was added to each cell. us, we removed this batch from all of our analyses. 
+Next, we kept data from high quality single cells that passed the following criteria: 
+t Only one cell observed per well. 
+t At least 1,556,255 mapped reads. 
+t Less than 36.4% unmapped reads. 
+t Less than 3.2% ERCC reads. 
+t More than 6,788 genes with at least one read. 
+We chose the above criteria based on the distribution of these metrics in the empty wells (the cuto  is the 95th 
+percentile, Supplementary Fig. S1). In addition, we observed that some wells classi ed as containing only one cell 
+were clustered with multi-cell wells when plotting 1) the number of gene molecules versus the concentration of the 
+samples, and 2) the read to molecule conversion e ciency (total molecule number divided by total read number) 
+of endogenous genes versus that of ERCC. We therefore established ltering criteria for these misidenti ed 
+single-cell wells using linear discriminant analysis (LDA). Speci cally, LDA was performed to classify wells into 
+empty, one-cell, and two-cell using the discriminant functions of 1) sample concentration and the number of gene 
+molecules, and 2) endogenous and ERCC gene read to molecule conversion e ciency (Supplementary Fig. S2). 
+A er ltering, we maintained 564 high quality single cells (NA19098: 142, NA19101: 201, NA19239: 221). 
+e quality control analyses were performed using all protein-coding genes (Ensembl GRCh37 release 82) 
+with at least one observed read. Using the high quality single cells, we further removed genes with low expression 
+levels for downstream analyses. We removed all genes with a mean log2 cpm less than 2, which did not a ect the 
+relative di erences in the proportion of genes detected across batches (Supplementary Fig. S10). We also removed 
+genes with molecule counts larger than 1,024 for the correction of collision probability. In the end we kept 13,058 
+endogenous genes and 48 ERCC spike-in genes. 
+       ǦǤ According to the information provided 
+by Fluidigm, each of the 96 capture chamber received 13.5 nl of lysis bu er, which contain 1:50,000 Ambion® 
+ERCC Spike-In Mix1 (Life Technologies) in our setup. erefore, our estimation of the total spiked-in molecule 
+number was 16,831 per sample. Since the relative concentrations of the ERCC genes were provided by the manu- 
+facturer, we were able to calculate the molecule number of each ERCC gene added to each sample. We observed 
+that the levels of ERCC spike-ins strongly correlated with the input quantities (r = 0.9914, Fig. 1g). e capture 
+e ciency, de ned as the fraction of total input molecules being successfully detected in each high quality cell, 
+had an average of 6.1%. 
+Ǥ We simulated di erent sequencing depths by randomly subsampling reads and processing 
+the subsampled data through the same pipeline described above to obtain the number of molecules per gene for 
+each single cell. To assess the impact of sequencing depth and number of single cells, we calculated the following 
+three statistics: 
+1. e Pearson correlation of the gene expression level estimates from the single cells compared to the bulk 
+samples. For the single cells, we summed the gene counts across all the samples and then calculated the log2 
+cpm of this pseudo-bulk. For the bulk samples, we calculated the log2 cpm separately for each of the three 
+replicates and then calculated the mean per gene. 
+2. e number of genes detected with at least one molecule in at least one cell. 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+12 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+3. e Pearson correlation of the cell-to-cell gene expression variance estimates from the subsampled single 
+cells compared to the variance estimates using the full single cell data set. 
+Each data point in Fig. 2 represents the mean +/− the standard error of the mean (SEM) of 10 random sub- 
+samples of cells. We split the genes by expression level into two groups (6,097 genes each) to highlight that most of 
+the improvement with increased sequencing depth and number of cells was driven by the estimates of the lower 
+half of expressed genes. e data shown is for individual NA19239, but the results were consistent for individuals 
+NA19098 and NA19101. Only high quality single cells (Supplementary Table S2) were included in this analysis. 
+       ơǤ Individual e ect and batch e ect between the 
+single cell samples were evaluated in a series of analyses that examine the potential sources of technical varia- 
+tion on gene expression measurements. ese analyses took into consideration that in our study design, sources 
+of variation between single cell samples naturally fall into a hierarchy of individuals and C1 batches. In these 
+sample-level analyses, the variation introduced at both the individual-level and the batch-level was modeled 
+in a nested framework that allows random noise between C1 batches within individuals. Speci cally, for each 
+cell sample in individual i, replicate j and well k, we used yijk to denote some sample measurement (e.g. total 
+molecule-counts) and t a linear mixed model with the xed e ect of individual αi and the random e ect of batch 
+bij: 
+αε 
+=++ 
+yb 
+(1) 
+ijk 
+ii 
+ji 
+jk 
+where the random e ect bij of batch follows a normal distribution with mean zero and variance σb2, and εijk 
+describes residual variation in the sample measurement. To test the statistical signi cance of individual e ect (i.e., 
+null hypothesis α1 = α2 = α3), we performed a likelihood ratio test (LRT) to compare the above full model and the 
+reduced model that excludes α1. To test if there was a batch e ect (i.e., null hypothesis σ = 0 
+b2 ), we performed an 
+F-test to compare the variance that is explained by the above full model and the variance due to the reduced 
+model that excludes bij. 
+e nested framework was applied to test the individual and batch e ects between samples in the following 
+cases. e data includes samples a er quality control and ltering. 
+1. Total molecule count (on the log2 scale) was modeled as a function of individual e ect and batch e ect, 
+separately for the ERCC spike-ins and for the endogenous genes. 
+2. Read-to-molecule conversion e ciency was modeled as a function of individual e ect and batch e ect, 
+separately for the ERCC spike-ins and for the endogenous genes. 
+    Ǧ  Ǥ To assess the relative contribu- 
+tions of individual and technical variation, we analyzed per-gene expression pro les and computed variance 
+component estimates for the e ects of individual and C1 batch (Supplementary Fig. S4). e goal here was to 
+quantify the proportion of cell-to-cell variance due to individual (biological) e ect and to C1 batch (technical) 
+at the per-gene level. Note that the goal here was di erent from that of the previous section, where we simply 
+tested for the existence of individual and batch e ects at the sample level by rejecting the null hypothesis of no 
+such e ects. In contrast, here we t a linear mixed model per gene where the dependent variable was the gene 
+expression level (log2 counts per million) and the independent variables were individual and batch, both modeled 
+as random e ects. 
+e variance parameters of individual e ect and batch e ect were estimated using a maximum penalized 
+likelihood approach44, which can e ectively avoid the common issue of zero variance estimates due to small 
+sample sizes (there were three individuals and eight batches). We used the blmer function in the R package blme 
+and set the penalty function to be the logarithm of a gamma density with shape parameter = 2 and rate parameter 
+tending to zero. 
+e estimated variance components were used to compute the sum of squared deviations for individual and 
+batch e ects. e proportion of variance due to each e ect is equal to the relative contribution of the sum of 
+squared deviations for each e ect compared to the total sum of squared deviations per gene. Finally, we com- 
+pared the estimated proportions of variance due to the individual e ect and the batch e ect, across genes, using a 
+non-parametric one-way analysis of variance (Kruskal-Wallis rank sum test). 
+Ǥ We transformed the single cell molecule counts in multiple steps (Fig. 4). First, we corrected 
+for the collision probability using a method similar to that developed by Grün et al.12. Essentially we corrected for 
+the fact that we did not observe all the molecules originally in the cell. e main di erence between our approach 
+and that of Grün et al.12 was that we applied the correction at the level of gene counts and not individual molecule 
+counts. Second, we standardized the molecule counts to log2 counts per million (cpm). is standardization was 
+performed using only the endogenous gene molecules and not the ERCC molecules. ird, we corrected for 
+cell-to-cell technical noise using the ERCC spike-in controls. For each single cell, we t a Poisson generalized 
+linear model (GLM) with the log2 expected ERCC molecule counts as the independent variable, and the observed 
+ERCC molecule counts as the dependent variable, using the standard log link function. Next we used the slope 
+and intercept of the Poisson GLM regression line to transform the log2 cpm for the endogenous genes in that 
+cell. is is analogous to the standard curves used for qPCR measurements, but taking into account that lower 
+concentration ERCC genes will have higher variance from Poisson sampling. Fourth, we removed technical noise 
+between the eight batches (three replicates each for NA19101 and NA19239 and two replicates for NA19098). We 
+
+/*** End Page =11= ***/
+/*** Page =12= ***/
+13 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+t a linear mixed model with a xed e ect for individual and a random e ect for the eight batches and removed 
+the variation captured by the random e ect (see the next section for a detailed explanation). 
+For the bulk samples, we used read counts even though the reads contained UMIs. Because these samples con- 
+tained RNA molecules from ~10,000 cells, we could not assume that the 1,024 UMIs were su cient for tagging 
+such a large number of molecules. We standardized the read counts to log2 cpm. 
+    ơǤ Our last normalization step adjusted the transformed log2 gene 
+expression levels for cell-to-cell correlation within each C1 plate. e algorithm mimics a method that was ini- 
+tially developed for adjusting within-replicate correlation in microarray data24. We assumed that for each gene g, 
+cells that belong to the same batch j are correlated, for batches j = 1, …, 8. We also assume that the cell-to-cell gene 
+expression variation due to C1 batch e ect is independent of biological variation between individuals. 
+We t a linear mixed model for each gene g that includes a xed e ect of individual and a random e ect for 
+within-batch variation attributed to cell-to-cell correlation in each C1 plate: 
+µα 
+ε 
+=+ ++ 
+yb 
+, 
+(2) 
+gijk 
+g 
+gi gijg 
+ijk 
+, 
+,,, 
+where yg,ijk denotes log2 counts-per-million (cpm) of gene g in individual i, replicate j, and cell k; i = NA19098, 
+NA19101, NA19239, j = 1, …, ni with ni the number of replicates in individual i, k = 1, …, nij with nij the number 
+of cells in individual i replicate j. µg denotes the mean gene expression level across cells, αg,i quanti es the individ- 
+ual e ect on mean gene expression, bg,ij models the replicate e ect on mean expression level (assumed to be sto- 
+chastic, independent, and identically distributed with mean 0 and variance σgb 
+, 
+2 ). Finally, εg,ijk describes the 
+residual variation in gene expression. 
+Batch-corrected expression levels were computed as 
+=− 
+ˆ 
+ˆ 
+yyb 
+, 
+(3) 
+gijk gijk gij 
+,,, 
+where ˆbgij 
+, are the least-squares estimates. e computations in this step were done with the gls.series function of 
+the limma package45. We note that the batch correction method described here relies on the assumption that the 
+technical e ect due to batch is identical across individuals (no interaction). is assumption may be violated, yet 
+due to the small number of individuals in our study, we are unable to explicitly test for a rst order interaction 
+between batch and individual. In the future, the issue of confounding e ect between individual and batch may be 
+more e ectively addressed in the design of the study, instead of increasing the sample size. Indeed, in the main 
+text we describe a study design that can e ectively address the issue of confounding e ect by processing samples 
+from multiple individuals in a single C1 plate. 
+    Ǥ While examining gene expression noise (using the coe cient 
+of variation or CV) as a function of mean RNA abundance across C1 replicates, we found that the CV of molecule 
+counts among endogenous genes and ERCC spike-in controls suggested similar expression variability patterns. 
+Both endogenous and ERCC spike-in control CV patterns approximately followed an over-dispersed Poisson 
+distribution (Supplementary Fig. S11), which is consistent with previous studies11,20. We computed a measure 
+of gene expression noise that is independent of RNA abundance across individuals46,47. First, squared coe - 
+cients of variation (CVs) for each gene were computed for each individual and also across individuals, using the 
+batch-corrected molecule data. en we computed the distance of individual-speci c CVs to the rolling median 
+of global CVs among genes that have similar RNA abundance levels. ese transformed individual CV values 
+were used as our measure of gene expression noise. Speci cally, we computed the adjusted CV values as follows: 
+1. Compute squared CVs of molecule counts in each individual and across individuals. 
+2. Order genes by the global average molecule counts. 
+3. Starting from the genes with the lowest global average gene expression level, for every sliding window of 50 
+genes, subtract log10 median squared CVs from log10 squared CVs of each cell line, and set 25 overlapping 
+genes between windows. e computation was performed with the rollapply function of the R zoo package48. 
+A er this transformation step, CV no longer had a polynomial relationship with mean gene molecule count 
+(Supplementary Fig. S11). 
+Ƥ     Ǧ ơ   Ǥ To 
+identify di erential noise genes across individuals, we computed median absolute deviation (MAD) - a robust 
+and distribution-free dissimilarity measure for gene g: 
+=| 
+−| 
+. 
+== 
+MADM 
+edianM 
+edian 
+adjCV( 
+adjCV) 
+(4) 
+gi gi 
+i 
+gi 
+1,2,3 
+, 
+1,2,3 
+, 
+Large values of MADg suggest a large deviation from the median of the adjusted CV values. We identi ed 
+genes with signi cant inter-individual di erences using a permutation-based approach. Speci cally, for each 
+gene, we computed empirical P-values based on 300,000 permutations. In each permutation, the sample of origin 
+labels were shu ed between cells. Because the number of permutations in our analysis was smaller than the max- 
+imum possible number of permutations, we computed the empirical P-values as + 
++ 
+b 
+m 
+1 
+1, wherebisthenumberof 
+permuted MAD values greater than the observed MAD value, and m is the number of permutations. Adding 1 to 
+b avoided an empirical P-value of zero49. 
+
+/*** End Page =12= ***/
+/*** Page =13= ***/
+14 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+
+  Ǥ We used ConsensusPATHDB50 to identify GO terms that are over-represented 
+for genes whose variation in single cell expression levels were signi cantly di erence between individuals. 
+    Ǧ Ǥ We were able to successfully determine the correct 
+identity of each single cell sample by examining the SNPs present in their RNA sequencing reads. Speci cally, we 
+used the method verifyBamID (https://github.com/statgen/verifyBamID) developed by Jun et al.27, which detects 
+sample contamination and/or mislabeling by comparing the polymorphisms observed in the sequencing reads for 
+a sample to the genotypes of all individuals in a study. For our test, we included the genotypes for all 120 Yoruba 
+individuals that are included in the International HapMap Project28. e genotypes included the HapMap SNPs 
+with the 1000 Genomes Project SNPs51 imputed, as previously described52. We subset to include only the 528,289 
+SNPs that overlap Ensembl protein-coding genes. verifyBamID used only 311,848 SNPs which passed its default 
+thresholds (greater than 1% minor allele frequency and greater than 50% call rate). Using the option –best to 
+return the best matching individual, we obtained 100% accuracy identifying the single cells of all three individuals 
+(Supplementary Fig. S9). 
+   Ǥ 
+e data have been deposited in NCBI’s Gene Expression Omnibus53 and 
+are accessible through GEO Series accession number GSE77288 (http://www.ncbi.nlm.nih.gov/geo/query/acc. 
+cgi?acc=GSE77288). e code and processed data are available at https://github.com/jdblischak/singleCellSeq. 
+e results of our analyses are viewable at https://jdblischak.github.io/singleCellSeq/analysis. 
+ 
+1. Macaulay, I. C. & Voet, T. et al. Single cell genomics: advances and future perspectives. PLoS Genet 10, e1004126 (2014). 
+2. Saliba, A. E., Westermann, A. J., Gors i, S. A. & Vogel, J.et al. Single-cell NA-seq: advances and future challenges. Nucleic Acids es 
+42, 8845–60 (2014). 
+3. Macos o, E. Z. et al. Highly parallel genome-wide expression pro ling of individual cells using nanoliter droplets. Cell 161, 1202–14 
+(2015). 
+4. Handel, A. E. et al. Assessing similarity to primary tissue and cortical layer identity in induced pluripotent stem cell-derived cortical 
+neurons through single-cell transcriptomics. Hum Mol Genet 25, 989–1000 (2016). 
+5. Drissen, . et al. Distinct myeloid progenitor-di erentiation pathways identi ed through single-cell NA sequencing. Nat Immunol 
+doi: 10.1038/ni.3412 (2016). 
+6. Shale , A. . et al. Single-cell transcriptomics reveals bimodality in expression and splicing in immune cells. Nature 498, 236–40 
+(2013). 
+7. Jaitin, D. A. et al. Massively parallel single-cell NA-seq for mar er-free decomposition of tissues into cell types. Science 343, 776–9 
+(2014). 
+8. Miyamoto, D. T. et al. NA-seq of single prostate cTCs implicates noncanonical wnt signaling in antiandrogen resistance. Science 
+349, 1351–6 (2015). 
+9. im, 
+. T. et al. Single-cell m NA sequencing identifies subclonal heterogeneity in anti-cancer drug responses of lung 
+adenocarcinoma cells. Genome Biol 16, 127 (2015). 
+10. Stegle, O., Teichmann, S. A. & Marioni, J. C. et al. Computational and analytical challenges in single-cell transcriptomics. Nat ev 
+Genet 16, 133–45 (2015). 
+11. Brennec e, P. et al. Accounting for technical noise in single-cell NA-seq experiments. Nat Methods 10, 1093–5 (2013). 
+12. Grün, D., ester, L. & Oudenaarden, A. van et al. Validation of noise models for single-cell transcriptomics. Nat Methods 11, 637–40 
+(2014). 
+13. Jiang, L. et al. Synthetic spi e-in standards for NA-seq experiments. Genome es 21, 1543–51 (2011). 
+14. Ding, B. et al. Normalization and noise reduction for single cell NA-seq experiments. Bioinformatics 31, 2225–7 (2015). 
+15. Vallejos, C. A., Marioni, J. C. & ichardson, S. et al. BASiCS: Bayesian analysis of single-cell sequencing data. PLoS Comput Biol 11, 
+e1004333 (2015). 
+16. ivioja, T. et al. Counting absolute numbers of molecules using unique molecular identi ers. Nat Methods 9, 72–4 (2012). 
+17. Fu, G. ., Hu, J., Wang, P. H. & Fodor, S. P. et al. Counting individual dNA molecules by the stochastic attachment of diverse labels. 
+Proc Natl Acad Sci USA 108, 9026–31 (2011). 
+18. Casbon, J. A., Osborne, . J., Brenner, S. & Lichtenstein, C. P. et al. A method for counting PC  template molecules with application 
+to next-generation sequencing. Nucleic Acids es 39, e81 (2011). 
+19. Shiroguchi, ., Jia, T. Z., Sims, P. A. & Xie, X. S. et al. Digital NA sequencing minimizes sequence-dependent bias and ampli cation 
+noise with optimized single-molecule barcodes. Proc Natl Acad Sci USA 109, 1347–52 (2012). 
+20. Islam, S. et al. Quantitative single-cell NA-seq with unique molecular identi ers. Nature methods 11, 163–6 (2014). 
+21. Wu, A. 
+. et al. Quantitative assessment of single-cell NA-sequencing methods. Nat Methods 11, 41–6 (2014). 
+22. lein, A. M. et al. Droplet barcoding for single-cell transcriptomics applied to embryonic stem cells. Cell 161, 1187–201 (2015). 
+23. Hic s, S. C., Teng, M. & Irizarry, . A. et al. On the widespread and critical impact of systematic bias and batch e ects in single-cell 
+NA-seq data. bio xiv doi: 10.1101/025528 (2015). 
+24. Smyth, M., G. 
+. & Scott, H. S. et al. User of within-array replicate spots for assessing differential expression in microarray 
+experiments. Bioinformatics 21, 2067–75 (2005). 
+25. aser, J. M. & O’Shea, E. . et al. Noise in gene expression: origins, consequences, and control. Science 309, 2010–3 (2005). 
+26. Fehrmann, S. et al. Natural sequence variants of yeast environmental sensors confer cell-to-cell expression variability. Mol Syst Biol 
+9, 695 (2013). 
+27. Jun, G. et al. Detecting and estimating contamination of human dNA samples in sequencing and array-based genotype data. 
+American journal of human genetics 91, 839–48 (2012). 
+28. e International Hapmap Consortium et al. A haplotype map of the human genome. Nature 437, 1299–320 (2005). 
+29. Pollen, A. A. et al. Low-coverage single-cell m NA sequencing reveals cellular heterogeneity and activated signaling pathways in 
+developing cerebral cortex. Nat Biotechnol 32, 1053–8 (2014). 
+30. isso, D., Ngai, J., Speed, T. P. & Dudoit, S. et al. Normalization of NA-seq data using factor analysis of control genes or samples. 
+Nat Biotechnol 32, 896–902 (2014). 
+31. SEQC/MAQC-III Consortium et al. A comprehensive assessment of NA-seq accuracy, reproducibility and information content by 
+the sequencing quality control consortium. Nature biotechnology 32, 903–14 (2014). 
+32. Borel, C. et al. Biased allelic expression in human primary broblast single cells. American Journal of Human Genetics 96, 70–80 
+(2015). 
+33. Fina , G. et al. MAST: a exible statistical framewor  for assessing transcriptional changes and characterizing heterogeneity in 
+single-cell rNA sequencing data. Genome Biology 16, 1–13 (2015). 
+34. Chen, G. et al. Chemically de ned conditions for human iPSC derivation and culture. Nature methods 8, 424–9 (2011). 
+
+/*** End Page =13= ***/
+/*** Page =14= ***/
+www.nature.com/scientificreports/ 
+15 
+SCIENTIFIC REPORTS ȁ ͽǣ͹ͿͿ͸ͷ ȁ ǣ ͷͶǤͷͶ͹;Ȁ͹ͿͿ͸ͷ 
+35. Islam, S. et al. Characterization of the single-cell transcriptional landscape by highly multiplex NA-seq. Genome es 21, 1160–7 
+(2011). 
+36. Islam, S. et al. Highly multiplexed and strand-speci c single-cell NA 5′ end sequencing. Nat Protoc 7, 813–28 (2012). 
+37. Picelli, S. et al. Tn5 transposase and tagmentation procedures for massively scaled sequencing projects. Genome research 24, 2033–40 
+(2014). 
+38. Joshi, N. & Fass, J. et al. Sic le: A sliding-window, adaptive, quality-based trimming tool for fastQ les (version 1.33) [so ware]. 
+Available at https://github.com/najoshi/sic le (2011). 
+39. Brown, J., Hesselberth, J. & Blischa , J. et al. umitools v2.1.1., doi: 10.5281/zenodo.34933 (2015). 
+40. Liao, Y., Smyth, G. . & Shi, W. et al. e subread aligner: fast, accurate and scalable read mapping by seed-and-vote. Nucleic acids 
+research 41, e108 (2013). 
+41. Liao, Y., Smyth, G. . & Shi, W. et al. featureCounts: an e cient general purpose program for assigning sequence reads to genomic 
+features. Bioinformatics (Oxford, England ) 30, 923–30 (2014). 
+42. Li, H. et al. e sequence alignment/map format and sAMtools. Bioinformatics (Oxford, England ) 25, 2078–9 (2009). 
+43. Smith, T. S., Heger, A. & Sudbery, I. et al. UMI-tools: Modelling sequencing errors in Unique Molecular Identi ers to improve 
+quanti cation. bio xiv, doi: http://dx.doi.org/10.1101/051755 (2016). 
+44. Chung, Y., abe-Hes eth, S., Dorie, V., Gelman, A. & Liu, J. et al. A non-degenerate estimator for hierarchical variance parameters 
+via penalized li elihood estimation. Psychometri a 78, 685–709 (2013). 
+45. itchie, P., M. E. & Smyth, G. . et al. limma powers di erential expression analysis for NA-sequencing and microarray studies. 
+Nucleic Acids esearch 43, e47 (2015). 
+46. olodziejczy , ., A. A. & Marioni, J. C. et al. Single cell NA-sequencing of pluripotent states unloc s modular transcriptional 
+variation. Cell Stem Cell 17, 471–485 (2015). 
+47. Newman, G., J. 
+. S. & Weissman, J. S. et al. Single-cell proteomic analysis of s. cerevisiae reveals the architecture of biological noise. 
+Nature 441, 840–846 (2006). 
+48. Zeileis, A. & Grothendiec , G. et al. zoo: S3 infrastructure for regular and irregular time series. Journal of Statistical So ware 14, 
+1–27 (2005). 
+49. Phipson, B. & Smyth, G. . et al. Permutation p-values should never be zero: calculating exact p-values when permutations are 
+randomly drawn. Statistical applications in genetics and molecular biology 9, Article 39 (2010). 
+50. amburov, P. A. et al. ConsensusPathDB: toward a more complete picture of cell biology. Nucleic Acids esearch 39, D712–717 
+(2011). 
+51. e 1000 Genomes Project Consortium et al. An integrated map of genetic variation from 1,092 human genomes. Nature 491, 56–65 
+(2012). 
+52. McVic er, G. et al. Identi cation of genetic variants that a ect histone modi cations in human cells. Science (N e w Yo r , N.Y.) 342, 
+747–9 (2013). 
+53. Edgar, ., Domrachev, M. & Lash, A. E. et al. Gene expression omnibus: NCBI gene expression and hybridization array data 
+repository. Nucleic acids research 30, 207–210 (2002). 
+ 
+We thank Xin He and members of the Pritchard, Gilad, and Stephens laboratories for valuable discussions during 
+the preparation of this manuscript. is work was funded by NIH grant HL092206 to Y.G. and HHMI funds 
+to J.K.P. P.Y.T. is supported by NIH T32HL007381. J.D.B. was supported by NIH T32GM007197. e content 
+is solely the responsibility of the authors and does not necessarily represent the o cial views of the National 
+Institutes of Health. 
+  
+Y.G. and J.K.P. conceived of the study, designed the experiments, and supervised the project. P.T. and J.E.B. 
+performed the experiments. P.Y.T., J.D.B., C.J.H., and D.A.K. analyzed the results. P.Y.T., J.D.B., C.J.H., and Y.G. 
+wrote the original dra . All authors reviewed the nal manuscript. 
+  
+Supplementary information accompanies this paper at http://www.nature.com/srep 
+Competing nancial interests: e authors declare no competing nancial interests. 
+How to cite this article: Tung, P.-Y. et al. Batch e ects and the e ective design of single-cell gene expression 
+studies. Sci. Rep. 7, 39921; doi: 10.1038/srep39921 (2017). 
+Publisher's note: Springer Nature remains neutral with regard to jurisdictional claims in published maps and 
+institutional a liations. 
+is work is licensed under a Creative Commons Attribution 4.0 International License. e images 
+or other third party material in this article are included in the article’s Creative Commons license, 
+unless indicated otherwise in the credit line; if the material is not included under the Creative Commons license, 
+users will need to obtain permission from the license holder to reproduce the material. To view a copy of this 
+license, visit http://creativecommons.org/licenses/by/4.0/ 
+© e Author(s) 2017 
+
+/*** End Page =14= ***/

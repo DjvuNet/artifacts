@@ -1,0 +1,1507 @@
+/*** Page =0= ***/
+ARTICLE 
+Received 16 Oct 2015 | Accepted 8 Mar 2016 | Published 14 Apr 2016 
+A geometrical approach to control and 
+controllability of nonlinear dynamical networks 
+Le-Zhi Wang1, Ri-Qi Su1, Zi-Gang Huang1,2, Xiao Wang3, Wen-Xu Wang1,4, Celso Grebogi5 & Ying-Cheng Lai1,6,7 
+In spite of the recent interest and advances in linear controllability of complex networks, 
+controlling nonlinear network dynamics remains an outstanding problem. Here we develop an 
+experimentally feasible control framework for nonlinear dynamical networks that exhibit 
+multistability. The control objective is to apply parameter perturbation to drive the system 
+from one attractor to another, assuming that the former is undesired and the latter is desired. 
+To make our framework practically meaningful, we consider restricted parameter perturbation 
+by imposing two constraints: it must be experimentally realizable and applied only 
+temporarily. We introduce the concept of attractor network, which allows us to formulate a 
+quantiﬁable controllability framework for nonlinear dynamical networks: a network is more 
+controllable if the attractor network is more strongly connected. We test our control 
+framework using examples from various models of experimental gene regulatory networks 
+and demonstrate the beneﬁcial role of noise in facilitating control. 
+DOI: 10.1038/ncomms11323 OPEN 
+1 School of Electrical, Computer and Energy Engineering, Arizona State University, 650 E. Tyler Mall, Tempe, Arizona 85287-5706, USA. 2 Institute of 
+Computational Physics and Complex Systems, Lanzhou University, 222 S. Tianshui Road, Lanzhou, Gansu 730000, China. 3 School of Biological and Health 
+Systems Engineering, Arizona State University, 621 E. Tyler Mall, Tempe, Arizona 85287-9709, USA. 4 School of Systems Science, Beijing Normal University, 
+19 Xinjiekou Outer Street, Beijing, 100875, China. 5 Institute for Complex Systems and Mathematical Biology, King s College, Meston Walk, University of 
+Aberdeen, Aberdeen AB24 3UE, UK. 6 Institute for Complex Systems and Mathematical Biology, King s College, University of Aberdeen, Meston Walk, 
+Aberdeen AB24 3UE, UK. 7 Department of Physics, Arizona State University, 550 E Tyler Drive, Tempe, Arizona 85287-1504, USA. Correspondence and 
+requests for materials should be addressed to Y.-C.L. (email: Ying-Cheng.Lai@asu.edu). 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+1 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+Nonlinear dynamical processes are ubiquitous in natural 
+and engineering systems. Signiﬁcant difﬁculties arise 
+when such processes are coupled with the complex 
+network topology, especially in terms of control. In spite of 
+progress in understanding, analysing and predicting the beha- 
+viours of large complex networks, to formulate an effective 
+framework to control nonlinear dynamical networks has 
+remained to be an outstanding problem in interdisciplinary 
+research. 
+In recent years, the traditional control and graph theories have 
+been exploited to determine the linear controllability of complex 
+networks1–9. The efforts have led to a quantitative understanding 
+of the interplay between controllability and network structure. In 
+particular, in the structural controllability framework1, the 
+concept of maximum matching was proposed to determine and 
+quantify whether a directed complex network can be driven from 
+an arbitrary initial state to any desired state in ﬁnite time. It was 
+found that the degree distribution of the network is critical to its 
+controllability1. Subsequently, an alternative framework, the exact 
+controllability framework2, was developed to extend the linear 
+controllability analysis to networks with arbitrary structures and 
+link weight distributions. In this framework, one uses the 
+principle of maximum geometrical multiplicity of the network 
+spectrum to determine the minimum set of driver nodes required 
+to fully control the network. The mathematical underpinning of 
+the structural and exact controllability frameworks is the classic 
+Kalman s rank condition10, whose applicability is limited to linear 
+dynamical networks. Nonlinear control theory based on the Lie 
+brackets11 and a recent work to extend the linear controllability 
+and observability theory to nonlinear networks with symmetry9 
+notwithstanding, to establish a general mathematical controllability 
+framework for complex and nonlinear dynamical networks appear 
+not realistic at the present. 
+Owing to the high dimensionality of nonlinear dynamical 
+networks and the rich variety of behaviours that they entail, it 
+may be prohibitively difﬁcult to develop a control framework that 
+is universally applicable to different kinds of network dynamics. 
+In particular, the classic deﬁnition of linear controllability, that is, 
+a network system is controllable if it can be driven from an 
+arbitrary initial state to an arbitrary ﬁnal state in ﬁnite time, is 
+generally not applicable to nonlinear dynamical networks. 
+Instead, controlling collective dynamical behaviours may be 
+feasible12,13. Our idea is that, for nonlinear dynamical networks, 
+control strategies may need to be speciﬁc and system dependent. 
+The purpose of this paper is to articulate control strategies and 
+develop a controllability framework for nonlinear networks that 
+exhibit multistability. A deﬁning characteristic of such systems is 
+that there are multiple coexisting attractors in the phase 
+space14–16. The goal is to drive the system from one attractor 
+to another using physically meaningful, temporary and ﬁnite 
+parameter perturbation, assuming that the system is likely to 
+evolve into an undesired state (attractor) or the system is already 
+in such a state and one wishes to implement control to bring the 
+system out of the undesired state and steer it into a desired one. 
+In biology, nonlinear dynamical networks with multiple 
+attractors have been employed to understand fundamental 
+phenomena such as cancer emergence17, cell fate 
+differentiation18–21 and cell cycle control22,23. For example, 
+Boolean network models were used to study gene evolution24, 
+attractor number variation with asynchronous stochastic 
+updating25 and gene expression in the state space19. Another 
+approach is to abstract key regulation genetic networks26,27 (or 
+motifs) from all associated interactions, and to employ synthetic 
+biology to modify, control and ﬁnally understand the biological 
+mechanisms within these complicated systems18,22. An earlier 
+application of this approach led to a good understanding of the 
+ubiquitous phenomenon of bistability in biological systems28, 
+where there are typically limit cycle attractors and, during cell 
+cycle control, noise can trigger a differentiation process by driving 
+the system from a limit circle to another steady-state attractor18. 
+Generally, there are two candidate mechanisms for transition or 
+switching between different attractors20: through signals 
+transmitted within cells and noise, which were demonstrated 
+recently using synthetic genetic circuits29. More recently, a 
+detailed numerical study revealed how signal-induced 
+bifurcations in a tri-stable genetic circuit can lead to transitions 
+among different cell types21. 
+In this paper, we develop a control and controllability 
+framework for nonlinear dynamical networks based on the 
+concept of attractor networks30. An attractor network is deﬁned 
+in the phase space of the underlying nonlinear system, in which 
+each node represents an attractor and a directed edge from one 
+node to another indicates that the system can be driven from the 
+former to the latter using experimentally feasible, temporary and 
+ﬁnite parameter changes. A well-connected attractor network 
+implies a strong feasibility that the system can be controlled to 
+reach a desired attractor. The connectivity of the attractor 
+network can then be used to characterize the controllability of the 
+original nonlinear dynamical network. More speciﬁcally, for a 
+given pair of attractors, the relative weight of the shortest path is 
+the number of accessible control parameters whose adjustments 
+can lead to the attractor transition as speciﬁed by the path. We 
+use gene regulatory networks (GRNs) to demonstrate the 
+practicality of our control framework, which includes low- 
+dimensional, experimentally realizable synthetic gene circuits 
+and a realistic T-cell cancer network of 60 nodes. A ﬁnding is that 
+noise can facilitate control by reducing the required amplitude of 
+the control signal. We emphasize that the development of our 
+nonlinear control framework is based entirely on physical 
+considerations, rendering feasible experimental validation. 
+Results 
+A complex, nonlinear dynamical network of N variables can be 
+described by a set of N-coupled differential equations: 
+.x Fx 
+;m; 
+1 
+where xARN denotes the N-dimensional state variable, F(x, m)is 
+the nonlinear vector ﬁeld and mARM represents the set of 
+coupling parameters. In a GRN, the nodal dynamics is typically 
+one-dimensional. For simplicity, we assume that this is the case to 
+be treated so that the size of the network represented by 
+equation (1) is N. From consideration of realistic GRNs, we 
+assume that the coupling parameters can be adjusted externally, 
+which are effectively the set of control parameters. Speciﬁcally, for 
+a GRN, we assume that the various coupling strengths among the 
+nodes (genes) can be experimentally and systematically varied 
+through application of speciﬁc targeted drugs. On a larger scale, 
+the fate of a cell can be controlled by adding drugs to the cell- 
+growth environment, which adjust the interaction parameters in 
+the underlying network28. Although dynamical variables 
+themselves can also be perturbed for the purpose of control, for 
+GRNs this is unrealistic. For this reason, the scenario of 
+perturbing dynamical variables will not be considered in this 
+paper. 
+We focus on nonlinear dynamical networks with multiple 
+coexisting attractors. For a given set of parameters m, the multiple 
+attractors (for example, stable steady states) and the correspond- 
+ing basins are ﬁxed. In the absence of stochasticity, for a given 
+initial condition, the system will approach one of the attractors. 
+Each attractor has speciﬁc biological signiﬁcance, which can be 
+regarded as either desired or undesired, depending on the 
+particular function of interest. Suppose, without any control, the 
+ARTICLE 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+2 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+system is in an undesired attractor or is in its basin of attraction. 
+The question is how to steer the system from the undesired state 
+to a desired state by means of temporary and small parameter 
+variations that are experimentally feasible. 
+Control principle based on bifurcation. To motivate the 
+development of a feasible control principle, we consider the 
+simple case where the system is near a bifurcation point and 
+control is to be applied to drive the system from one attractor to 
+another through temporal perturbation to a single parameter. 
+That is, the parameter variation is turned on and takes effect for a 
+ﬁnite (typically short) duration of time. After control perturba- 
+tion is withdrawn, the system is restored to its parameter setting 
+before control but its state has been changed: the system will have 
+moved to the basin of the desired attractor and will approach the 
+desired attractor spontaneously. Let m0 be the initial parameter 
+value and the system is in an undesired attractor denoted as xi , 
+and let xf be the desired attractor to which the system is driven. 
+Imposing control means that we change the parameter from m0 to 
+m1. The dynamical mechanism to drive the system out of the 
+initial attractor is bifurcations, for example, a saddle-node 
+bifurcation at which the original attractor disappears and its basin 
+is absorbed into that of an intermediate attractor23, denoted as xk . 
+Turning on control to change m from m0 to m1 thus makes the 
+system approach xk . This process continues until the system falls 
+into the original basin of xf , at which point the control parameter 
+is reset to its original value m0 so that the system will approach the 
+desired attractor xf . Success of control relies on the existence of a 
+path from the initial attractor to the ﬁnal one through a number 
+of intermediate attractors. If a single parameter is unable to 
+establish such a path, variations in multiple parameters can be 
+considered, provided that such parameter adjustments are 
+experimentally realizable. For a biological network, this can be 
+achieved through application of a combined set of drugs31,32. 
+However, even when potential complications induced by inter- 
+drug interactions are neglected, the search space for suitable 
+parameter perturbation can be prohibitively large if we allow all 
+available parameters to be adjusted simultaneously. We 
+demonstrate below that this challenge can be met by 
+constructing an attractor network for the underlying system. 
+We note that not only is it now feasible to perturb gene 
+expressions directly but also the technology for ﬁne-tuning 
+regulation strengths has become commonly available. For 
+example, in our previous synthetic biology studies29,33, we used 
+chemical inducers such as aTc, isopropyl-b-D-thiogalactoside and 
+Arabinose to ﬁne tune the strength of inhibition or activation. 
+These chemical inducers do not change the protein abundance 
+but rather chemically modify the protein structures upon binding 
+so as to change their functions including the binding afﬁnity. 
+Other techniques such as RNA interference can also be used to 
+ﬁne-tune the gene regulation strength. In general, there are many 
+different ways to tune gene regulation without chaining its 
+transcription and translation. 
+Attractor network for the T-cell signalling network. For a 
+complex, nonlinear dynamical network, an attractor network can 
+be constructed by deﬁning each of all possible attractors of the 
+system as a node. There exists a directed link from one node to 
+another if an experimentally accessible parameter of the system 
+can be adjusted to drive or control the system from the former to 
+the latter. There can be multiple edges from one node to another, 
+if there are multiple parameters, each enabling control. Starting 
+from an initial attractor, one can identify, using all accessible 
+parameters with variations in a physically reasonable range, a set 
+of attractors that the system can be driven into. Repeating this 
+procedure for all attractors in the system, we build up an attractor 
+network that provides a blueprint for driving the whole net- 
+worked system from any attractor to any other attractor in the 
+Inhibition 
+Identified inhibition 
+Identified activation 
+Activation 
+C1 
+C2 
+N 
+S1P 
+SPHK1 
+PDGF 
+PDGFR 
+SMAD 
+ERK 
+CREB NFAT 
+FasL 
+DISC 
+A20 
+TNF 
+TRADD 
+IAP 
+P27 
+Proliferation 
+RANTES 
+IL2RA 
+IFNGT 
+IL2 
+GZMB 
+NFKB 
+FLIP 
+MCL1 
+PLCG1 
+RAS 
+GAP 
+MEK 
+FYN 
+LCK 
+Stimuli 
+JAK 
+SOCS 
+STAT3 
+IL2RAT BID 
+Apoptosis 
+TAX 
+TPL2 
+FasT 
+sFas 
+GRB2 
+IL2RBT 
+TBET 
+ZAP70 
+IL2RB 
+IL15 
+IFNG 
+GPCR 
+Fas 
+Ceramide 
+PI3K 
+CTLA4 
+TCR 
+CD45 
+Stimuli2 
+P2 
+Caspase 
+BclxL 
+Cytoskeleton signalling 
+a 
+b 
+Figure 1 | T-cell survival signalling network and its attractor network. (a) Structure of T-cell survival network: each node is labelled with its generic name, 
+and the arrowhead and diamond-head edges represent activation and inhibition regulations, respectively. The inhibitory edges from Apoptosis to other 
+nodes are not shown (for clarity). (b) Attractor network of the T-cell network, which contains three nodes: two cancerous states denoted as C1 and C2 and a 
+normal state denoted as N. The two directed edges in the attractor network are multiple, each containing altogether 48 individual edges corresponding to 
+controlling the 48 edges in the original network, which are indicated by the dark dashed lines, whereas the remaining edges in the original network are 
+signiﬁed by the light solid lines. Our detailed computations reveal that parameter perturbation on any one of the 48 edges can drive the system from a 
+cancerous state to the normal state. That is, regardless of whether the initial state is C1 or C2, with a proper modiﬁcation to one of the 48 parameters, the 
+system can be driven to the normal state N. 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+ARTICLE 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+3 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+system, assuming at the time that the latter attractor would lead 
+to desired function of the system as a whole. As we demonstrate 
+below, all these can be done using relatively small parameter 
+perturbation in the sense that the modiﬁcations are small as 
+compared with the ranges over which the corresponding para- 
+meters can vary. 
+To demonstrate the construction of attractor networks, we take 
+as an example a realistic biological network, T cells in large 
+granular lymphocyte leukaemia associated with blood cancer. 
+Speciﬁcally, apoptosis signalling of the T cells can be described by 
+a network model: T-cell survival signalling network34,35, which 
+has 60 nodes and 195 regulatory edges, as shown in Fig. 1a. Nodes 
+in the network represent proteins and transcripts, and the edges 
+correspond to either activation or inhibitory regulations. 
+Experimentally, it was found that there are three attractors for 
+this biophysically detailed network34,35. Among the three 
+attractors, two correspond to two distinct cancerous states 
+(denoted as C1 and C2) and one is associated with the normal 
+state (denoted as N). The two cancerous states are biologically 
+equivalent, differing only on node P2 (either activated or 
+inactivated). As the T cells in large granular lymphocyte 
+leukemia disease originate from the failure of the programmed 
+T cells, the normal state corresponds to the situation where the 
+node Apoptosis is activated while all other nodes are inactivated. 
+By translating the Boolean rules into a continuous form using the 
+method described in refs 36,37 and setting the strength of each 
+edge to unity, one can obtain a set of nonlinear differential 
+equations for the entire network system. Direct simulation of the 
+model indicates that there are three stable ﬁxed point attractors, 
+in agreement with the experimental observation34,35. The 
+attractor network is thus quite simple: it has three nodes only, 
+as shown in Fig. 1b. Testing all the 195 experimentally adjustable 
+parameters, we ﬁnd 48 edges from each cancerous attractor to the 
+normal one (see Supplementary Table 1 for details). Our detailed 
+computations reveal that parameter perturbation on any one of 
+the 48 edges can drive the system from a cancerous state to the 
+normal state. That is, regardless of whether the initial state is C1 
+or C2, with a proper modiﬁcation to one of the 48 parameters, the 
+system can be driven to the normal state N. We note that 
+parameter perturbation does exist to drive the system from the 
+normal state to a cancerous state (see Supplementary Note 1 for 
+details). 
+Control implementation based on attractor network. Given a 
+nonlinear dynamical network in the real (physical) space, the 
+underlying phase space dimension may be quite high, rendering 
+analysis of the dynamical behaviours difﬁcult. The attractor 
+network is a coarse grained representation of the phase space, 
+retaining information that is most relevant to the control task of 
+driving the network system to a desired ﬁnal state. Once an 
+attractor network has been constructed, actual control can be 
+carried out through temporary changes in a set of experimentally 
+adjustable parameters. This should be contrasted to one existing 
+approach38 that requires accurate adjustments in the state 
+variables, which may not always be realistic. 
+We detail how actual control can be implemented based on the 
+attractor network for the T-cell system. To be concrete, we 
+assume that the control signal has the shape of a rectangular pulse 
+in the plot of a parameter versus time, as shown in Fig. 2a, where 
+the control parameter is m and the rectangular pulse has duration 
+t and amplitude Dm mn m0 
+jj 
+, with m0 denoting the nominal 
+t 
+n 
+0 
+c 
+∆c 
+∆e 
+∆n 
+a 
+30 
+25 
+20 
+15 
+10 
+5 
+00.6 0.5 0.4 0.3 0.2 0.1 0.0 
+0.6 0.5 0.4 0.3 0.2 0.1 0.0 
+30 
+25 
+20 
+15 
+10 
+5 
+0 
+n 
+n 
+c 
+c 
+∆e 
+m
+m
+m
+102 
+101 
+100 
+m
+102 
+101 
+100 
+10–3 10–2 10–1 100 
+∆e 
+10–2 10–1 100 
+bc 
+Figure 2 | Relationship between edge control strength and minimal control time. For the T-cell network, (a) an inverted rectangular control signal of 
+duration t and amplitude Dmn mn m0 
+jj 
+, where m0 is the original parameter value and mn is the control parameter value. A saddle-node bifurcation occurs 
+for m mc,soDe mc mn is the excessive amount of the parameter change over the critical value mc.(b,c) Minimal control time tm versus mn, where 
+parameter control is applied to the activation edge from node S1P to node PDGFR and to the inhibitory edge from DISC to MCL1 , respectively. These 
+four nodes are indicated with the solid black circles in Fig. 1a. The corresponding plots on a logarithmic scale in the insets of (b,c) suggest a power-law 
+scaling behaviour between tm and De (equation (2)). The ﬁtted power-law scaling exponents are bE 0.44 and 0.55, respectively, for (b,c). 
+ARTICLE 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+4 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+parameter value and mn being the value during the time interval 
+when control is on. For the T-cell network, we set m0 1.0. As m 
+is reduced, the system approaches a bifurcation point. (In other 
+examples, a bifurcation can be reached by increasing a control 
+parameter, as in the low-dimensional GRNs detailed in the 
+Methods.) Extensive numerical simulations show that, to control 
+the T-cell network from a cancerous state (C1 or C2) to the 
+normal state N, there are wide ranges of choices for Dm and t.In 
+fact, once mn is decreased through the bifurcation point mc at 
+which the initial attractor loses its stability, the goal of control can 
+be realized. The critical value mc for each parameter can be 
+identiﬁed from the bifurcation analysis. In addition, for mnomc, 
+there exists a required minimum control time tm , over which the 
+system will move into the original basin of the target attractor 
+before control is activated. Insofar as t4tm , one does not need 
+longer duration of control as the system will evolve into the target 
+attractor following its natural dynamical evolution with the 
+nominal parameter m0. The value of tm increases as mn is closer to 
+mc, where if mn mc, tm is inﬁnite due to the critical slowing down 
+at the bifurcation point mc. Figure 2b,c show, respectively, for the 
+T-cell network, the relationship between tm and mn when 
+controlling the strength of the activation edge from the node 
+S1P to the node PDGFR , and that of the inhibitory edge from 
+the node DISC to the node MCL1 (cf., Fig. 1a, the nodes 
+denoted as black circles and connected by bold coupling edges). 
+The critical value mc (indicated by the dotted line) can be 
+estimated accordingly. The insets in Fig. 2b and c show the 
+corresponding plots of the relationships on a double logarithmic 
+scale, with the horizontal axis to be De mc mn, the exceeded 
+value of mn over the critical point mc. We observe the following 
+power-law scaling behaviour: 
+tm amn mc 
+jj 
+b aDe 
+jj 
+b; 
+2 
+where b is the scaling exponent. The upper right region in the 
+plane of the control parameters over the curve of tm De , that is, 
+the region with larger De value or longer duration t, corresponds 
+to the case where control is successful in the sense that the system 
+can deﬁnitely be driven to the desired ﬁnal state. 
+The power-law scaling relation for tm demonstrated in 
+Fig. 2b,c for the T-cell network is quite general, as it also holds 
+for two-node and three-node GRNs (see the Methods). For the 
+T-cell system, the critical values of parameters for all the possible 
+controllable edges from C1 or C2 to N, and the corresponding 
+values of a and b in equation (2) are provided in Supplementary 
+Table 1 and Supplementary Note 1. The control magnitude and 
+time for some parameters are identical, for the reason that the 
+logic relationship from the corresponding edges to the same node 
+can be described as AND (c.f. Fig. 1) so that in the continuous- 
+time differential equation model, all these in-edges are equivalent. 
+(The control results for the two-node and three-node GRNs 
+between any pair of nearest-neighbour attractors are listed in 
+Supplementary Tables 2 and 3, respectively.) 
+Owing to the ﬂexibility in choosing the control signal, our 
+control scheme based on the attractor network is amenable to 
+experimental implementation. We can also assign weights to the 
+shortest paths in the attractor network. For example, if we assume 
+all the links are equally implementable (Supplementary Table 1), 
+the path from the C state to the N state involving any one of 
+IL2RB, STAT3, NF-kB, PI3K or apoptosis to MCL1 has a 
+relatively larger weight, representing the relatively more efﬁcient 
+control protocol as the required parameter change De can be 
+minimized. 
+Beneﬁcial role of noise in control. More than three decades of 
+intense research in nonlinear dynamical systems has led to great 
+knowledge about the role of noise, in terms of phenomena such as 
+stochastic resonance39,40, coherence resonance41,42, noise-induced 
+chaos16 and noise-induced state transitions43. Common to all these 
+phenomena is that a proper amount of noise can in fact be 
+beneﬁcial, for example, for optimizing the signal-to-noise ratio, for 
+enhancing the signal regularity or temporal coherence, or for 
+facilitating the transitions among the attractors. As our control 
+mechanism is to make the system leave an undesired attractor and 
+approach a desired one, noise in combination with parameter 
+adjustments can facilitate the process of escaping from an attractor. 
+To demonstrate this, we assume that the T-cell network is subject 
+to Gaussian noise, which can be modelled by adding independent 
+normal distribution terms N(0, s2) to the system equations, where 
+s is the noise amplitude. We ﬁnd that, with noise, the required 
+magnitude of parameter change can be reduced. In fact, even when 
+the controlled parameter mn has not yet reached the bifurcation 
+point mc, noise can lead to a ﬁnite probability for the system to 
+escape the basin of the undesired attractor. We note that, in a 
+recent work on stochastic control43, a method was presented to 
+switch the dynamical states. In a real experimental setting, there 
+can be different sources of noise such as temperature and metabolic 
+burden. In our parametric control method, the control signals are 
+ﬂexible with adjustable duration and amplitude, and noise can 
+enhance the ﬂexibility. 
+Suppose the control parameter is set to the value mn, which is 
+insufﬁcient to induce escape from the undesired attractor in the 
+absence of noise. When noise is present, the system dynamics is 
+stochastic. To characterize the control performance, we carry out 
+independent simulations starting from one cancerous state, for 
+10−4 10−3 10−2 10−1 
+10−5 
+10−4 
+10−3 
+10−2 
+10−1 
+10−1 
+10−3 
+10−1 
+10−2 
+10−4 
+10−5 
+10−4 
+10−3 
+10−2 
+0 
+0.5 
+1 
+∆d 
+Probability of reaching normal state
+0.1 
+0.2 
+0.3 
+0.4 
+0.5 
+0.6 
+0.7 
+0.8 
+Probability of reaching
+normal state
+∆d
+b 
+a 
+Figure 3 | The beneﬁt of noise in controlling the T-cell network. (a) Success rate to control the T-cell network from the cancerous state C1 to the normal 
+state N using a combination of parameter perturbation and external noise (of amplitude) s, where Dd mn mc is the parameter deﬁciency. Warm colours 
+indicate higher probability values of successful control. The perturbation duration is t 200. The results are averaged over 1,000 realizations. (b) A three- 
+dimensional plot: success rate versus Dd and s. 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+ARTICLE 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+5 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+example, C1, but with insufﬁcient control strength as character- 
+ized by the deﬁciency parameter Dd mn mc, and calculate the 
+probability P of control success through the number of trials that 
+the system can be successfully driven to the normal state N. 
+Figure 3a shows, on a double logarithmic scale, the values of P in 
+the parameter plane of s and Dd, where the control parameter is 
+the strength of the activation edge from node S1P to node 
+PDGFR in the T-cell network. A three-dimensional plot of P 
+versus s and Dd is shown in Fig. 3b. We see that, for ﬁxed s, P 
+decreases with Dd but, for any ﬁxed value of Dd, the probability P 
+increases with s, indicating the beneﬁcial role of noise in 
+facilitating control. In the parameter plane, there exists a well- 
+deﬁned boundary, below which the control probability assumes 
+large values but above which the probability is near zero. Testing 
+alternative control parameters yields essentially the same results, 
+because of the simplicity of the attractor network for the T-cell 
+system and the multiple directed edges from each cancerous state 
+to the normal state. 
+Discussions 
+In nonlinear dynamics, controlling chaos has been studied for 
+more than two decades44–46. Success, however, has been limited 
+to low-dimensional dynamical systems with a very few positive 
+Lyapunov exponents. Complex, nonlinear dynamical networks 
+are generally high dimensional. Although mathematical 
+controllability frameworks for such high-dimensional systems1,2 
+have been developed and extensively studied recently, the 
+limitation is that the nodal dynamical processes must be 
+assumed to be linear. 
+Controllability and actual control are two key issues associated 
+with controlling nonlinear dynamics on complex networks. To 
+assess the controllability, drastically different approaches than the 
+linear controllability frameworks are needed. Although there were 
+previous works on methods such as pinning control12,47 through 
+alteration of the state variables, in realistic situations such 
+strategies may be difﬁcult to implement. Owing to the extremely 
+diverse nonlinear dynamical behaviours that a network can 
+generate, at the present there is no universal framework for actual 
+control of complex networks with nonlinear dynamics through 
+realistic perturbation. The mathematical control theory for linear 
+dynamical systems aims to control the detailed states of all of the 
+variables, which is in fact an overkill for most systems. For 
+nonlinear dynamical networks, a physically meaningful approach 
+may not require detailed control of all state variables. With this 
+relaxation of the control requirement, it may be possible to 
+develop a framework of controllability and devise actual control 
+strategies for nonlinear dynamical networks based on physical/ 
+experimental considerations. In particular, a common feature of 
+nonlinear dynamical systems is the emergence of distinct, 
+coexisting attractors16,48. Often the performance and functions 
+of the system are determined by the particular attractor that the 
+system has settled into, to which the detailed states of the 
+dynamical variables are not relevant. The key is thus to develop 
+control principles whereby we nudge a complex, nonlinear system 
+from attractor to attractor through small perturbation to a set of 
+physically or experimentally feasible parameters. The main 
+message of this paper is that a controllability framework can be 
+developed for nonlinear dynamical networks based on controlling 
+attractors. 
+Assuming that the networked system will evolve into an 
+undesired attractor, the control goal is to apply perturbation to 
+steer the system into a desired attractor. This can be 
+accomplished by identifying a ﬁnal attractor leading to the 
+desired performance and choosing a set of experimentally adjus- 
+table parameters. If the perturbation can drive the system from 
+the undesired state to the desired attractor, there exists a control 
+path between the former and the latter, regardless of whether 
+there are intermediate attractors on the path. Suppose we have 
+found all the attractors of the system (see Supplementary Note 2 
+for a systematic method). In terms of some speciﬁc performance 
+criteria, we can classify the attractors as undesired, desired or 
+intermediate. If there is a control path from any undesired 
+attractor to the desired attractor, the networked system is deemed 
+controllable. An attractor network can then be constructed, with 
+nodes and edges being the attractors and control paths, 
+respectively. The topology and properties of the attractor 
+network, such as the network diameter and the total amount of 
+the parameter perturbation, effectively quantify the controllability 
+of the original network. We demonstrate our idea of control and 
+construction of attractor networks using realistic networks from 
+systems and synthetic biology. We also ﬁnd that noise can 
+facilitate control of nonlinear dynamical networks, and we 
+provide a physical understanding of this phenomenon (Methods). 
+Our framework can be adopted to controlling nonlinear 
+dynamical networks other than the GRNs. For example, for the 
+Northern European power grid network recently studied49,a 
+rewiring method was proposed and demonstrated to be able to 
+enhance the system stability through the addition of extra 
+transmission lines. For a power grid network, the synchronous 
+states are desired, whereas other states, for example, limit cycles, 
+are detrimental. Treating the link density (or number) as a 
+tunable parameter, the minimum transfer capacity required for 
+extra lines to realize the control can be estimated by our method. 
+Another example is Boolean networks with discrete dynamics, for 
+which a perturbation method was proposed based on 
+modiﬁcation of the update rules to rescue the system from the 
+undesired states50. In terms of our method, an attractor network 
+can be constructed based on perturbation to multiple parameters 
+to drive the system out of the undesired, damaged states towards 
+a normal (desired) state. For biological systems, an epigenetic 
+state network (ESN) approach was proposed51 to analyse the 
+transitions among different phenotypic processes. In an ESN, 
+nodes represent attractors and edges represent pathways between 
+a pair of attractors. By construction, different parameter values 
+would result in a different ESN. (See Supplementary Note 3 and 
+Supplementary Fig. 2 for an example of using the principle of 
+attractor network to control a stochastic, biochemical reaction 
+network.) In our attractor network, nodes are attractors but edges 
+are directed and represent controllable paths (through parameter 
+perturbation) to drive the system from one attractor to another. 
+At the present, it is difﬁcult to formulate a rigorous 
+mathematical controllability framework for nonlinear dynamical 
+networks. A challenge is that different parameter perturbation 
+will typically lead to a different attractor network. Moreover, as 
+the attractor network is directed and typically does not have an 
+all-to-all coupling conﬁguration, multiple parameter perturbation 
+may be needed to realize control (for example, as demonstrated 
+using a three-node GRN system - see the Methods), rendering the 
+amount of computation prohibitive for relatively large dynamical 
+networks. Successfully addressing these issues will ultimately 
+enable us to achieve the grand goal of controlling nonlinear 
+dynamical networks. 
+Methods 
+Construction of attractor networks. For a system with known attractor basins 
+and given initial and ﬁnal states, the attractor network can be constructed through 
+the following steps. 
+(1) Find all the parameters that can be adjusted externally and determine the 
+possible range of variation of each tunable parameter based on experimental 
+considerations and computational efﬁciency. For example, the T-cell network 
+has 195 tunable parameters. Using the differential equation model one can test 
+ARTICLE 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+6 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+each parameter separately to determine its range of variation that can drive the 
+system from one attractor to another. (Testing different parameter combina- 
+tions is computationally prohibitive.) 
+(2) For a tunable parameter, choose a small set of values in its variable range, 
+which include its original or nominal value. 
+(3) Simulate the system dynamics for each parameter value, starting from the 
+initial attractor and determine the ﬁnal attractor. Record the parameter values 
+that can drive the system into the basin of the desired attractor. For example, 
+for the T-cell network, parameter variations lead to saddle-node bifurcations, 
+rendering applicable a straightforward bisecting algorithm to reduce the 
+computational complexity in searching for the set of parameter values that 
+result in a desired attractor. 
+(4) An attractor network can be constructed after all tunable parameters have been 
+tested, from which distinct control paths can be identiﬁed for any given pair of 
+initial and ﬁnal attractors. (For the systems treated in this paper, the 
+computational time required to construct the attractor network is listed in 
+Supplementary Table 4.) 
+For systems whose attractors are unknown a priori, it is necessary to execute an 
+attractor ﬁnding algorithm before an attractor network can be reconstructed. An 
+example of such an algorithm is presented in Supplementary Note 2. The issues of 
+multiple parameter-based control and computational cost are discussed in 
+Supplementary Notes 4 and 5, respectively. 
+Bifurcation diagram. Bifurcation diagram represents a visualization method to 
+characterize a system s steady-state behaviour with respect to parameter variation. 
+In this paper, we used the MATCONT package in MATLAB to draw the bifur- 
+cation diagrams52. The bifurcation curves in MATCONT are computed based on 
+the numerical continuation algorithm with a predictor-corrector procedure to 
+enhance the stability and reduce the computational time. For the two-node GRN 
+example below, we calculate the bifurcation diagrams with respect to all four 
+tunable parameters, based on which the attractor network can be constructed. 
+A two-node GRN. In spite of the simplicity of its attractor network, the original 
+T-cell network itself is still quite complicated from the point of view of nonlinear 
+dynamical analysis. To have a better understanding of our control mechanism, we 
+study GRNs of relatively low dimensions and carry out a detailed analysis of the 
+associated attractor networks. 
+We use a two-node GRN to understand the dynamical underpinning of the 
+attractor network. As shown in Fig. 4a, the network contains two auto-activation 
+nodes (genes) and together they form a mutual inhibitory circuit. Such a topology 
+was shown to be responsible for the regulation of blood stem cell differentiation53. 
+In addition, it is conceivable that such topologies can be constructed with tunable 
+inputs using synthetic biology approaches29. 
+In a typical experimental setting, four coupling parameters can be adjusted 
+externally through the application of repressive or inductive drugs. To demonstrate 
+attractor network and control implementation, we consider the parameter regime 
+in which the system has four stable steady states (attractors) that correspond to 
+four different cell states during cell development and differentiation. In particular, 
+the dynamical network can be mathematically described as, 
+_x1 a1 xn 
+1 
+sn xn 
+1b1 sn 
+sn xn 
+2kx1; 
+_x2 a2 xn 
+2 
+sn xn 
+2b2 sn 
+sn xn 
+1kx2; 
+3 
+where the dynamical variables (x1, x2) characterize the protein abundances of the 
+gene products, k denotes the degradation rate of each gene, and the tunable 
+parameters a1, a2, b1 and b2 represent the strengths of auto or mutual regulations. 
+In a GRN, the dynamical behaviours of inhibition and activation are captured by 
+the Hill function: f(x) xn/(xn sn) for activation and f(x) sn/(xn sn) for 
+inhibition, where the parameter s characterizes half activation (or inhibition) 
+concentration (for x s, the output is 0.5), and n quantiﬁes the correlation between 
+the input and output concentrations, with a larger value of n corresponding to a 
+stronger inhibition or activation effect. For any speciﬁc GRN, the values of both s 
+and n can be determined experimentally. For simplicity, we assume the system to 
+00.511.5 
+0 
+0.5 
+1 
+1.5 
+a1 
+a1 
+b1 
+b2 
+a2 
+t0 
+t2 
+t1 
+00.511.5 
+0 
+0.5 
+1 
+1.5 
+a1=a10 
+a1=a10 
+a1=a1n 
+a1=a1n 
+a1=a10 
+a1=a10 
+00.511.5 
+0 
+0.5 
+1 
+1.5 
+0 
+1 
+2 
+0.5 
+1 
+1.5 
+2 
+0 
+0.5 
+1 
+B 
+B 
+B’ 
+A 
+t0 
+t1~t2 
+t0~t1 
+A 
+X1 
+X1 
+X1 
+X2
+X2
+X2
+X2
+X1 
+a 
+c 
+def 
+b 
+(d,f) (e) 
+t 
+Figure 4 | Control of a GRN of two nodes. (a) Simpliﬁed model of the two-node GRN, where the arrowhead and bar-head edges represent activation and 
+inhibition regulations, respectively, and the sawtooth lines denote the strength of the tunable edge. (b) Bifurcation diagram with respect to the control 
+parameter a1, where the red and grey solid lines denote the stable and unstable steady states, respectively. In the two parallel cross-sections (with dashed 
+line boundaries) for a1 a0 
+1 and a1 an1 , the yellow and brown dots represent the corresponding stable attractors, respectively. (c) Control signals required to 
+drive the system from attractor A to attractor B.Ind–f, grey dashed lines represent the basin boundaries; black solid circles and green crosses denote 
+attractors and unstable steady states, respectively. (d) For the initial parameter setting, a1 a0 
+1 , the system is at a low concentration state A, and the target 
+state is B.(e) By changing a1 from a0 
+1 to an1 , attractor A is destabilized and its original basin is absorbed into that of the intermediate attractor B0 , so the 
+system approaches B0 .(f) When control perturbation upon a1 is released, the landscape recovers to that in d. Once the system has entered the basin of the 
+target state B during the process in e it will evolve spontaneously towards B. Parameters in simulation are a0 
+1 1:0,an1 1:4,t0 0,t1 23andt2 40. 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+ARTICLE 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+7 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+be symmetric in that inhibition and activation share the same Hill function (that is, 
+with the same parameters s and n). To have four attractors, we set the auto 
+activation strengths, a1 and a2, to 1.0, and mutual inhibition strengths, b1 and b2,to 
+0.2. The value of the degradation rate k is set to 1.1, taking into account the effects 
+of protein degradation and cell volume expansion. 
+Figure 4b–f shows a particular process of controlling the system from an initial 
+state, denoted as A, in which both x1 and x2 have low abundance, to a ﬁnal state B 
+where x1 and x2 have high and low abundance, respectively. From the bifurcation 
+diagram (Fig. 4b) with respect to the control parameter a1, we see that, as a1 is 
+increased from 1.0 to 1.4, in the lower branch the initial attractor A is destabilized 
+through a saddle-node bifurcation. The control signal is shown in Fig. 4c, where the 
+original and perturbed parameter values are denoted as a01 and an 
+1 , respectively. The 
+bifurcation-based control process is shown in Fig. 4d–f, where Fig 4d exhibits the 
+phase space of the system before control (a1 1.0). When control is activated so 
+that a1 is set to a1 1.4, the original basin of attractor A merges into the basin of an 
+intermediate attractor B0 , and the system originally in A starts to migrate towards 
+the intermediate attractor B0 , as indicated by the arrowed trajectory in Fig. 4e. 
+Control perturbation upon a1 can be withdrawn once the system enters the region 
+belonging to the original basin of the target attractor B, after which the system 
+spontaneously evolves into B for a1 1.0, as shown in Fig. 4f. 
+To obtain a global picture of all possible control outcomes, we construct the 
+attractor network for the two-node GRN system, assuming that three parameters: 
+a1, a2 and b2, are available for control. The corresponding bifurcation diagrams are 
+shown in Fig. 5a–c, from which all saddle-node bifurcations can be identiﬁed for 
+control design. When all the attractors are connected with directed and weighted 
+edges through the control processes, that is, when none of the attractor is isolated, 
+we obtain an attractor network, as shown in Fig. 5d. Speciﬁcally, the edge weight 
+can be assigned by taking into account the key characteristics of control such as the 
+critical parameter strength mc and the power-law scaling behaviour of the required 
+minimum control time tm (see Supplementary Table 2 for details). From the 
+attractor network, we can ﬁnd all possible control paths for any given pair of 
+original and desired states. 
+From Fig. 5d, we see that the two-node GRN system is fully controllable as any of 
+the coexisting attractors is reachable through proper sequential controls to the available 
+parameters. The concept of attractor network is appealing because it provides a clear 
+control scenario to drive the system from any initial attractor to any desired attractor. In 
+fact, the attractor network provides a blueprint that can be used to design a proper 
+combination of parameter changes to induce the so-called synergistic or antagonistic 
+effects54.Forexample,A is not directly connected with C, neither is B directly 
+connected to D. However, the system can be steered from A to B through perturbation 
+on a1,andthenfromB to C through a change in b2,asshowninFig.5e.Another 
+example to demonstrate the need of multiple parameter perturbation is to control the 
+system from B to D.AviablecontrolpathisB-C-D, which can be realized through 
+perturbation on parameters (b2, a1). We also see that the two B-A-D paths can be 
+realized through parameter changes in (a1, a2)and(a1, b2), respectively. A phase 
+diagram illustrating how different choices of the parameters affect the ﬁnal attractor is 
+provided in Supplementary Note 6 and Supplementary Fig. 1. 
+When multiple control paths exist from an initial attractor to a ﬁnal one, a 
+practical issue is to identify the optimal path that is cost effective and robust. The 
+concept of weighted-shortest path can be used to address this issue. Particularly, 
+the weights of edges can be determined from experimental considerations such as 
+the cost, limitation in drug dose, the control duration time and so on. 
+Beneﬁcial role of noise in nonlinear control. The role of noise in facilitating 
+control of a nonlinear dynamical network can be understood using the concept 
+of potential landscape55–57 or Waddington landscape58 in systems biology, which 
+essentially determines the biological paths for cell development and differentiation59,60. 
+The potential landscape was used to manipulate time scales to control stochastic and 
+induced switching in biophysical networks43,60. Intuitively, the power of the landscape 
+concept can be understood by resorting to the elementary physical picture of a ball 
+moving in a valley under gravity. The valley corresponds to one stable attractor. To the 
+right of the valley there is a hill, or a potential barrier in the language of classical 
+mechanics. The downhill side to the right of the barrier corresponds to a different 
+attractor. Suppose the conﬁnement of ball s motion within the valley is undesired and 
+one wishes to push the ball over the barrier to the right attractor (desired). If the barrier 
+is high, there will be little probability for the ball to move across the top of the barrier 
+towards the desired attractor. In this case, a small amount of noise is unable to enhance 
+the crossover probability. However, if the barrier height is small, a small amount of 
+noise can push the ball over to desired attractor on the right side of the barrier. Thus, 
+the beneﬁcial role of noise is more pronounced for small height of the potential barrier, 
+a behaviour that we observe when controlling the T-cell network (Fig. 3). In 
+mechanics, the system can be formulated using a potential function so that, 
+mathematically, the motion of the ball can be described by the Langevin equation, 
+which has been a paradigmatic model to understand nonlinear phenomena such as 
+stochastic resonance39,61,62. In the past few years, a quantitative approach has been 
+developed to map out the potential landscape for gene circuits or GRNs55,63,64.In 
+nonlinear dynamical systems, a similar concept exists—quasipotential65–67,which 
+plays an important role in understanding phenomena such as noise-induced chaos. 
+For an attractor network, in the presence of noise, each node corresponds to a 
+potential valley of certain depth that characterizes the stability of the attractor. For 
+a ﬁxed depth, noise of larger amplitude s leads a higher escaping probability or 
+shorter escaping time. When the amplitude of the control signal is not sufﬁcient to 
+drive the system across the local potential barrier, noise can facilitate control by 
+pushing the system out of the undesired valley (attractor). 
+The potential landscape for a GRN under Gaussian noise can be constructed 
+from the dynamical equations of the system using the concept of pseudo energy57. 
+For the two-node GRN system (equation (3)) subject to stochastic disturbance 
+00.511.5 
+0 
+0.5 
+1 
+1.5 
+e 
+d 
+A 
+D 
+C 
+B 
+AtoB 
+BtoC 
+00 
+a1 =a10 b2 =b20 
+b2 =b2n 
+b2 =b20 
+a1 =a1n 
+a1 =a10 
+t 
+t 
+a1 
+a2 
+b2 
+a 
+b 
+01 
+23 
+0 
+1 
+2 
+3 
+a 
+D 
+C 
+A 
+B 
+a1 
+x1
+x1 
+x2
+012345 
+0 
+0.5 
+1 
+c 
+B 
+C 
+D 
+A 
+b2 
+x1
+01 
+23 
+0 
+0.5 
+1 
+b 
+B 
+A 
+D 
+C 
+a2 
+x1
+Figure 5 | Attractor network construction for a GRN of two nodes. (a–c) Bifurcation diagrams with respect to the coupling parameters a1, a2 and b2, 
+respectively, where each bifurcation point can be exploited to design control. (d) The corresponding attractor network, in which a directed edge 
+corresponds to an elementary control that is designed to steer the system from the original attractor to the directed one. The solid and dashed edges, 
+respectively, denote the positive and negative changes in the corresponding control parameters. (e) Sequential control signals required to drive the system 
+from attractor A to attractor C through the path A-B-C. In simulation, the original parameter values are a0 
+1 1:0andb0 
+2 0:2. We set an1 1:4, followed by 
+setting bn2 4:2, and the respective durations of the parameter perturbation are ta 23 and tb 32. 
+ARTICLE 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+8 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+N(0, s2), we can compute the potential landscape for any combination of some 
+system parameter (say a1) and the noise amplitude s. Figure 6a,b shows two 
+examples of the landscape (in three-dimensional representation) for a1 1.0 and 
+a1 1.3, where the noise amplitude is s 0.05. We see that, for example, for 
+a1 1.0, there are four valleys (attractors). Figure 6c shows, for s 0.02, a two- 
+dimensional representation of the pseudo-energy for a number of values of a1.We 
+observe that, for a same noise amplitude, as a1 is increased, the transition rate from 
+A to B becomes higher (the colour becomes warmer). 
+What if the system is at an attractor that is deep in its basin and not close to the 
+boundary? As our approach is based on parameter adjustment, such a case can still 
+be effectively controlled in the sense that the system can be brought out of the 
+attractor. For example, consider the attractor C for a1 1.5 in the two-node GRN 
+system, which is deep inside its own basin, as shown in Fig. 6c. When parameter 
+perturbation is applied to the system, its energy landscape and basin structure are 
+changed (from top to bottom). Under control, the attractor moves towards the 
+basin boundary and is destroyed when it reaches the boundary, thereby bringing 
+the system out of this attractor. Another example is attractor A in Fig. 6c, where it 
+can be seen that, when the control parameter a1 increases its value from 0.9 to 1.5, 
+its basin changes and the attractor moves towards the boundary as well. Similar 
+plots but for ﬁxed a1 1.3 and different values of s are shown in Fig. 6d. For 
+a1 1.3, the pseudo energy for A (the original valley at the lower-left corner) 
+becomes higher, and the path for the transition from A to B becomes more 
+pronounced. Further increasing a1 towards the critical value (about 1.35) raises the 
+energy of A to the level of the potential barrier, effectively eliminating the 
+corresponding valley and the attractor itself. Note that, for a ﬁxed value of a1, 
+increasing noise amplitude can lead to a mixture of cold colours, meaning that the 
+valley range becomes wider and the ridge between two adjacent valleys becomes 
+shallower, resulting in a higher transition probability for each attractor. 
+A three-node GRN. We also study a three-node GRN system, as shown in Fig. 7a. 
+Similar to the two-node GRN system, there exist both auto and mutual regulations 
+among the nodes. All the interactions are assumed to be characterized by the same 
+parameters, s and n, in the Hill function. The nonlinear dynamical equations of the 
+system are26,68: 
+_ 
+x1a1xn 
+1 
+sn xn 
+1b1sn 
+sn xn 
+2 
+c1 sn 
+sn xn 
+3kx1; 
+_ 
+x2a2sn 
+sn xn 
+1b2xn 
+2 
+sn xn 
+2 
+c2 sn 
+sn xn 
+3kx2; 
+_ 
+x3a3sn 
+sn xn 
+1b3sn 
+sn xn 
+2 
+c3 xn 
+3 
+sn xn 
+3kx3; 
+4 
+where the state variables (x1, x2 and x3) represent the abundances of the three gene 
+products, the auto-activation parameters a1, b2, c3 and the mutual-inhibition 
+parameters a2, a3, b1, b3, c1, c2 are all experimentally accessible. To be concrete, 
+initially all the auto activation and mutual inhibition parameters are set to be 1.0 
+and 0.1, respectively, and k (the degradation rate) can be conveniently set to unity. 
+The parameters in the Hill function are n 4 and s 0.5. There are altogether eight 
+attractors in this system, as shown in Fig. 7b, which are distributed symmetrically 
+in the three-dimensional state space. For example, attractor H has relatively high 
+values for all three dynamical variables, and attractor B exhibits the opposite case 
+with low abundances. For attractors A, C and F, one of the three state variables is 
+high and the other two are low. For attractors D, E and G, one of the three state 
+variables is low but the other two are high. 
+From numerical simulations, we ﬁnd that the features of control are essentially 
+the same as those for the two-node GRN system, in terms of characteristics such as 
+the existence of critical control strength and the power-law scaling behaviour of the 
+minimum control time (see Supplementary Table 3 and Supplementary Notes 7 and 
+8 for details). We construct the attractor network in Fig. 7c through combinations of 
+all eight attractors (as nodes) and directed elementary controls (as weighted directed 
+edges). Information in Supplementary Table 3 can also be used to estimate the 
+respective weights of the edges. From the attractor network, for any given pair of 
+initial and ﬁnal states, we can identify all the viable control paths. Furthermore, the 
+weighted-shortest path can be calculated once the edge weights are determined. 
+10 
+20 
+30 
+40 
+50 
+60 
+70 
+80 
+90 
+100 
+110 
+>=120 
+0.2 0.4 0.6 0.8 1.0 1.2 
+1.61.2 
+0.8 
+0.4 
+0.2 0.4 0.6 0.8 1.0 1.2 1.6 
+1.20.80.4 
+a1= 1.3 
+cd 
+ab 
+80 
+60 
+40 
+20 
+0 
+80 
+60 
+40 
+20 
+00 
+00.510 
+0.5 
+1 
+0.510 
+0.5 
+1 
+x1 
+x2 
+x1 
+x2 
+A’ 
+B’ 
+A 
+C 
+B 
+E~ 
+E~ 
+E~ 
+a1=1.5 
+a1=1.3 
+a1=1.1 
+a1=0.9 
+ = 0.02 
+ = 0.1 
+ = 0.02 
+ = 0.03 
+ = 0.05 
+x2 
+x1 
+x2 
+x1 
+Figure 6 | Illustration of pseudo potential landscape. Pseudo potential ~E of the two-node GRN system (a) for a1 1.0 (DdE0.3549), s 0.05 and (b) 
+for a1 1.3 (DdE0.0549), s 0.05. Regions of warm and cold colours indicate the states with large and small pseudo energies, respectively. (c) For ﬁxed 
+s 0.02, two-dimensional representation of ~E for a number of values of a1.(d) For ﬁxed a1 1.3, two-dimensional representation of ~E for a number of 
+values of s. 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+ARTICLE 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+9 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+We note that, typically, the attractor network based on elementary control is not 
+an all-to-all directed network so that certain control paths are absent, for example, 
+from attractor H to B. Therefore, we need to extend the control method to a 
+combination of multiple parameters. From Fig. 7c, we note that attractor H has 
+incoming links only, whereas B has outgoing links only. The structure of the 
+attractor network thus indicates that full control can be achieved (that is, to drive 
+the system from any initial attractor to any ﬁnal attractor) if we can build a directed 
+path from H to B. Since attractors B and H have low and high abundance, 
+respectively, in the phase space, we modify the three auto-activation parameters 
+simultaneously to steel the system from H to B. We ﬁnd that the relationship 
+between control strength and minimal control time also follows the power law 
+scaling with the scaling parameters mcE0.7973, aE1.26 and bE 0.77. In fact, 
+when all the auto-activation strengths are smaller than mc, the system has one 
+attractor only: B, meaning that perturbation based on parameter combinations can 
+be used to realize the control from other attractors as well, that is, from one of the 
+attractors A, C, D, E, F and G to attractor B. 
+Pseudo potential landscape. For a dissipative, nonlinear dynamical system 
+subject to noise, we can construct a pseudo potential landscape based on the state 
+probability distribution. Assume that, asymptotically, the system approaches a 
+stationary distribution. For a canonical dynamical system, the potential can be 
+deﬁned as E(x) logP(x), where P(x) is the probability density function. For a 
+conservative dynamical system, the direction of system evolution is nothing but the 
+direction of the gradient of the potential function. However, this does not hold for 
+dissipative dynamical systems. The potential function thus does not have the same 
+physical meaning as that for a conservative system, henceforth, the term pseudo 
+potential. This approach can be adopted to GRNs. 
+To obtain the stationary distribution, we use the modiﬁed weighted-ensemble 
+algorithm57, which offers faster convergence than, for example, the traditional 
+random walk method. To be illustrative, we take the two-node GRN system 
+(equation (3)) as an example to demonstrate how the pseudo potential landscape 
+can be numerically constructed. The state space of the two-dimensional dynamical 
+system is partitioned into an M M lattice with reﬂective boundaries conditions. 
+Initially, the probability Pm,n(t) of all gird points are set to be uniform. The 
+simulation time is divided into T steps, where each step has the duration Dt. At the 
+beginning of each step t, there are N walkers randomly distributed at the grid point 
+(m, n), which carry equal weight Pm,n(t)/N and perform random walk under the 
+system dynamics and noise. The locations of these walkers in the grid are recorded 
+at the end of each time step, and the probability at the next time step, Pm,n(t 1), is 
+the summation of the probabilities carried by all the walkers at time t. At time 
+(t 1), N new walkers carrying the updated probability at each grid point perform 
+random walk again on the grid. This procedure repeats until the probability 
+distribution becomes stationary, say Pm,n, which gives the pseudo potential 
+landscape as ~ 
+Em 
+; n log Pm;n . Numerically, the time evolution of all walkers 
+can be simulated using the second-order Heun method for integrating stochastic 
+differential equations. For Fig. 6, the state space is divided into a 500 500 grid. At 
+each grid point, there are N 20 walkers, each evolving T 2,000 time steps with 
+Dt104. 
+Instead of calculating the stationary probability distribution density, an 
+alternative approach to constructing the potential landscape is the Freidlin and 
+Wentzel s large deviation theory69. According to this theory, ﬁrst, one maps the 
+stochastic dissipative system of interest to a Hamiltonian system70. One then 
+estimates the transition rate from an attractor to a saddle point as rBexp( S0/s), 
+where s is the noise amplitude and S0( ) characterizes the action functional 
+associated with the optimal energy path, which can be numerically solved through 
+an unconstrained nonlinear optimization method51,55. As this theory relies on 
+solving a nonlinear optimization problem, in order to visualize the energy 
+landscape, it is necessary to use a large number of state values x and solve the 
+optimization problem for each, which is computationally exhaustive. We ﬁnd that, 
+to capture the essential features of the energy landscape, it sufﬁces to use the 
+stationary distribution method. 
+In the weak noise limit s-0, according to the theory, to the leading order, 
+the transition rate r from one ﬁxed point to a nearby saddle point xsp can be 
+approximated as rBexp[( S0/(xsp)]. The minimum control time satisﬁes 
+tm r 1, so we have tm exp S0 xsp . From equation (2), we obtain 
+De expS0 xsp=b; 
+indicating that the exceeded value De of the control parameter m is exponentially 
+related to the optimal energy S0 associated with the path between the initial state 
+and the nearby saddle point in the potential landscape. 
+References 
+1. Liu, Y.-Y., Slotine, J.-J. & Baraba 
+´si, A.-L. Controllability of complex networks. 
+Nature 473, 167–173 (2011). 
+2. Yuan, Z.-Z., Zhao, C., Di, Z.-R., Wang, W.-X. & Lai, Y.-C. Exact controllability 
+of complex networks. Nat. Commun 4, 2447 (2013). 
+3. Wang, W.-X., Ni, X., Lai, Y.-C. & Grebogi, C. Optimizing controllability of 
+complex networks by small structural perturbations. Phys. Rev. E 85, 026115 
+(2011). 
+4. Yan, G., Ren, J., Lai, Y.-C., Lai, C.-H. & Li, B. Controlling complex networks: 
+How much energy is needed? Phys. Rev. Lett. 108, 218703 (2012). 
+5. Nepusz, T. & Vicsek, T. Controlling edge dynamics in complex networks. Nat. 
+Phys 8, 568–573 (2012). 
+6. Menichetti, G., DallAsta, L. & Bianconi, G. Network controllability is 
+determined by the density of low in-degree and out-degree nodes. Phys. Rev. 
+Lett. 113, 078701 (2014). 
+7. Ruths, J. & Ruths, D. Control proﬁles of complex networks. Science 343, 
+1373–1376 (2014). 
+8. Wuchty, S. Controllability in protein interaction networks. Proc. Natl Acad. Sci. 
+USA 111, 7156–7160 (2014). 
+9. Whalen, A. J., Brennan, S. N., Sauer, T. D. & Schiff, S. J. Observability and 
+controllability of nonlinear networks: the role of symmetry. Phys. Rev. X 5, 
+011005 (2015). 
+10. Kalman, R. E. Mathematical description of linear dynamical systems. J. Soc. 
+Indus. Appl. Math. Ser. A 1, 152–192 (1963). 
+11. Slotine, J.-J. E. & Li, W. Applied Nonlinear Control (Prentice-Hall, 1991). 
+12. Li, X., Wang, X. F. & Chen, G. Pinning a complex dynamical network to its 
+equilibrium. IEEE Trans. Circ. Syst. I 51, 2074–2087 (2004). 
+13. Chen, Y.-Z., Huang, Z.-G. & Lai, Y.-C. Controlling extreme events on complex 
+networks. Sci. Rep 4, 6121 (2014). 
+14. McDonald, S. W., Grebogi, C., Ott, E. & Yorke, J. A. Fractal basin boundaries. 
+Phys. D 17, 125–153 (1985). 
+15. Feudel, U. & Grebogi, C. Why are chaotic attractors rare in multistable 
+systems? Phys. Rev. Lett. 91, 134102 (2003). 
+16. Lai, Y.-C. & Te 
+´l, T. Transient Chaos - Complex Dynamics on Finite-Time Scales 
+1st edn (Springer, 2011). 
+17. Huang, S. Genetic and non-genetic instability in tumor progression: link 
+between the ﬁtness landscape and the epigenetic landscape of cancer cells. 
+Cancer Metastasis Rev. 32, 423–448 (2013). 
+abc 
+3 
+3 
+3 
+3 
+3 
+3 
+3 
+A 
+EF 
+HG 
+D 
+B 
+C 
+1.5 
+1 
+0.5 
+0 
+1.510.500 
+1.5 
+1 
+0.5 X1 
+X3 
+X2 
+Inhibition 
+Activation 
+Strength 
+c1 
+c3 
+c2 
+b1 
+b2 
+b3 
+a3 
+X2 
+X3 
+X1 
+a1 
+a2 
+Figure 7 | A GRN of three nodes and its attractor network. (a) Schematic illustration of a three-node GRN system. The arrowhead and bar-head edges 
+represent activation and inhibitory regulations, respectively. The sawtooth lines specify that the corresponding edge strength is experimentally adjustable. 
+(b) Coexisting attractors (A to H) in the phase space. (c) The underlying attractor network, where each node represents an attractor and each weighted 
+directed link indicates that its strength can be experimentally tuned to steer the system from the starting attractor to the pointed attractor. Each grey 
+directed link with a single arrow indicates that only one parameter is needed to achieve control, and each purple link with a double-arrow and the label 3 
+represent the case where three parameters are required to achieve control. 
+ARTICLE 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+10 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+18. Su 
+¨ el, G. M., Garcia-Ojalvo, J., Liberman, L. M. & Elowitz, M. B. An excitable 
+gene regulatory circuit induces transient cellular differentiation. Nature 440, 
+545–550 (2006). 
+19. Huang, S., Eichler, G., Bar-Yam, Y. & Ingber, D. E. Cell fates as high- 
+dimensional attractor states of a complex gene regulatory network. Phys. Rev. 
+Lett. 94, 128701 (2005). 
+20. Furusawa, C. & Kaneko, K. A dynamical-systems view of stem cell biology. 
+Science 338, 215–217 (2012). 
+21. Li, X., Zhang, K. & Wang, J. Exploring the mechanisms of differentiation, 
+dedifferentiation, reprogramming and transdifferentiation. PLoS ONE 9, 
+e105216 (2014). 
+22. Yao, G., Tan, C., West, M., Nevins, J. & You, L. Origin of bistability underlying 
+mammalian cell cycle entry. Mol. Syst. Biol. 7, 485 (2011). 
+23. Battogtokh, D. & Tyson, J. J. Bifurcation analysis of a model of the budding 
+yeast cell cycle. Chaos 14, 653–661 (2004). 
+24. Kauffman, S., Peterson, C., Samuelsson, B. & Troein, C. Genetic networks with 
+canalyzing Boolean rules are always stable. Proc. Natl Acad. Sci. USA 101, 
+17102–17107 (2004). 
+25. Greil, F. & Drossel, B. Dynamics of critical Kauffman networks under 
+asynchronous stochastic update. Phys. Rev. Lett. 95, 048701 (2005). 
+26. Ma, W., Trusina, A., El-Samad, H., Lim, W. A. & Tang, C. Deﬁning network 
+topologies that can achieve biochemical adaptation. Cell 138, 760–773 (2009). 
+27. Faucon, P. C. et al. Gene networks of fully connected triads with complete auto- 
+activation enable multistability and stepwise stochastic transitions. PLoS ONE 
+9, e102873 (2014). 
+28. Gardner, T. S., Cantor, C. R. & Collins, J. J. Construction of a genetic toggle 
+switch in Escherichia coli. Nature 403, 339–342 (2000). 
+29. Wu, M. et al. Engineering of regulated stochastic cell fate determination. Proc. 
+Natl Acad. Sci. USA 110, 10610–10615 (2013). 
+30. Lai, Y.-C. Controlling complex, nonlinear dynamical networks. Nat. Sci. Rev 1, 
+339–341 (2014). 
+31. Feala, J. D. et al. Systems approaches and algorithms for discovery of combinatorial 
+therapies. WileyInterdiscip.Rev.Syst.Biol.Med.2, 181–193 (2010). 
+32. Fitzgerald, J. B., Schoeberl, B., Nielsen, U. B. & Sorger, P. K. Systems biology 
+and combination therapy in the quest for clinical efﬁcacy. Nat. Chem. Biol. 2, 
+458–466 (2006). 
+33. Ellis, T., Wang, X. & Collins, J. J. Diversity-based, model-guided construction 
+of synthetic gene networks with predicted functions. Nature Biotechnol. 27, 
+465–471 (2009). 
+34. Zhang, R. et al. Network model of survival signaling in large granular 
+lymphocyte leukemia. Proc. Natl Acad. Sci. USA 105, 16308–16313 (2008). 
+35. Saadatpour, A. et al. Dynamical and structural analysis of a T-cell survival 
+network identiﬁes novel candidate therapeutic targets for large granular 
+lymphocyte leukemia. PloS Comp. Biol. 7, e1002267 (2011). 
+36. Wittmann, D. M. et al. Transforming Boolean models to continuous models: 
+methodology and application to T-cell receptor signaling. BMC Syst. Biol. 3, 98 
+(2009). 
+37. Krumsiek, J., Po 
+¨lsterl, S., Wittmann, D. M. & Theis, F. J. Odefy-from discrete to 
+continuous models. BMC Bioinformatcis 11, 233 (2010). 
+38. Cornelius, S. P., Kath, W. L. & Motter, A. E. Realistic control of network 
+dynamics. Nat. Commun 4, 1942 (2013). 
+39. Benzi, R., Sutera, A. & Vulpiani, A. The mechanism of stochastic resonance. J. 
+Phys. A 14, L453–L457 (1981). 
+40. Gailey, P. C., Neiman, A., Collins, J. J. & Moss, F. Stochastic resonance in 
+ensembles of nondynamical elements: The role of internal noise. Phys. Rev. Lett. 
+79, 4701–4704 (1997). 
+41. Pikovsky, A. S. & Kurths, J. Coherence resonance in a noise-driven excitable 
+system. Phys. Rev. Lett. 78, 775–778 (1997). 
+42. Liu, Z. & Lai, Y.-C. Coherence resonance in coupled chaotic oscillators. Phys. 
+Rev. Lett. 86, 4737–4740 (2001). 
+43. Wells, D. K., Kath, W. L. & Motter, A. E. Control of stochastic and induced 
+switching in biophysical networks. Phys. Rev. X 5, 031036 (2015). 
+44. Ott, E., Grebogi, C. & Yorke, J. A. Controlling chaos. Phys. Rev. Lett. 64, 
+1196–1199 (1990). 
+45. Grebogi, C. & Lai, Y.-C. Controlling chaotic dynamical systems. Syst. Control 
+Lett. 31, 307–312 (1997). 
+46. Boccaletti, S., Grebogi, C., Lai, Y.-C., Mancini, H. & Maza, D. Control of chaos: 
+theory and applications. Phys. Rep 329, 103–197 (2000). 
+47. Sorrentino, F., di Bernardo, M., Garofalo, F. & Chen, G. Controllability of 
+complex networks via pinning. Phys. Rev. E 75, 046103 (2007). 
+48. Ott, E. Chaos in Dynamical Systems 2nd edn (Cambridge Univ., 2002). 
+49. Menck, P. J., Heitzig, J., Kurths, J. & Schellnhuber, H. J. How dead ends 
+undermine power grid stability. Nat. Commun. 5, 3969 (2014). 
+50. Campbell, C. & Albert, R. Stabilization of perturbed Boolean network attractors 
+through compensatory interactions. BMC Syst. Biol. 8, 53 (2014). 
+51. Wang, P. et al. Epigenetic state network approach for describing cell phenotypic 
+transitions. Interface Focus 4, 20130068 (2014). 
+52. Dhooge, A., Govaerts, W. & Kuznetsov, Y. A. MATCONT: a MATLAB package 
+for numerical bifurcation analysis of ODEs. ACM Trans. Math. Software 29, 
+141–164 (2003). 
+53. Huang, S., Guo, Y.-P., May, G. & Enver, T. Bifurcation dynamics in lineage- 
+commitment in bipotent progenitor cells. Dev. Biol. 305, 695–713 (2007). 
+54. Yin, N. et al. Synergistic and antagonistic drug combinations depend on 
+network topology. PLoS ONE 9, e93960 (2014). 
+55. Wang, J., Zhang, K., Xu, L. & Wang, E. Quantifying the Waddington landscape 
+and biological paths for development and differentiation. Proc. Natl Acad. Sci. 
+USA 108, 8257–8262 (2011). 
+56. Bhattacharya, S., Zhang, Q. & Andersen, M. E. A deterministic map of 
+Waddington s epigenetic landscape for cell fate speciﬁcation. BMC Syst. Biol. 5, 
+85 (2011). 
+57. Kromer, J. A., Schimansky-Geier, L. & Toral, R. Weighted-ensemble Brownian 
+dynamics simulation: Sampling of rare events in nonequilibrium systems. Phys. 
+Rev. E 87, 063311 (2013). 
+58. Waddington, C. H. The Strategy of the Genes (Allen & Unwin, 1957). 
+59. MacArthur, B. D., Maayan, A. & Lemischka, I. R. Systems biology of stem cell 
+fate and cellular reprogramming. Nat. Rev. Mol. Cell Biol. 10, 672–681 (2009). 
+60. Corson, F. & Siggia, E. D. Geometry, epistasis, and developmental patterning. 
+Proc. Natl Acad. Sci. USA 109, 5568–5575 (2012). 
+61. McNamara, B. & Wiesenfeld, K. Theory of stochastic resonance. Phys. Rev. A 
+39, 4854–4869 (1989). 
+62. Gammaitoni, L., Ha 
+¨nggi, P., Jung, P. & Marchesoni, F. Stochastic resonance. 
+Rev. Mod. Phys. 70, 223–287 (1998). 
+63. Wang, J., Xu, L. & Wang, E. K. Potential landscape and ﬂux framework 
+of nonequilibrium networks: robustness, dissipation, and coherence of 
+biochemical oscillations. Proc. Natl Acad. Sci. USA 105, 12271–12276 (2008). 
+64. Zhang, F., Xu, L., Zhang, K., Wang, E. K. & Wang, J. The potential and ﬂux 
+landscape theory of evolution. J. Chem. Phys. 137, 065102 (2012). 
+65. Garham, R. & Te 
+´l, T. Existence of a potential for dissipative dynamical systems. 
+Phys. Rev. Lett. 52, 9–12 (1984). 
+66.Graham,R. 
+,Hamm,A.&Te 
+´l, T. Nonequilibrium potentials for dynamical systems 
+with fractal attractors and repellers. Phys.Rev.Lett.66, 3089–3092 (1991). 
+67. Te 
+´l, T. & Lai, Y.-C. Quasipotential approach to critical scaling in noise-induced 
+chaos. Phys. Rev. E 81, 056208 (2010). 
+68. Shu, J. et al. Induction of pluripotency in mouse somatic cells with lineage 
+speciﬁers. Cell 153, 963–975 (2013). 
+69. Freidlin, M. I., Szu 
+¨ cs, J. & Wentzell, A. D. Random Perturbations of Dynamical 
+Systems Vol. 260 (Springer Science & Business Media, 2012). 
+70. Xing, J. & Kim, K. S. Application of the projection operator formalism to non- 
+Hamiltonian dynamics. J. Chem. Phys. 134, 044132 (2011). 
+Acknowledgements 
+This work was supported by the ARO under Grant No. W911NF-14-1-0504. X.W. was 
+supported by the NIH under Grant No. GM106081. 
+Author contributions 
+Devised the research project: Y.-C.L., X.W. and C.G.; performed numerical simulations: 
+L.-Z.W. and R.-Q.S.; analysed the results: L.-Z.W., R.-Q.S., Z.-G.H., Y.-C.L. and W.-X.W.; 
+wrote the paper: Y.-C.L., Z.-G.H., L.-Z.W. and R.-Q.S. 
+Additional information 
+Supplementary Information accompanies this paper at http://www.nature.com/ 
+naturecommunications 
+Competing ﬁnancial interests: The authors declare no competing ﬁnancial interests. 
+Reprints and permission information is available online at http://npg.nature.com/ 
+reprintsandpermissions/ 
+How to cite this article: Wang, L.-Z. et al. A geometrical approach to control and 
+controllability of nonlinear dynamical networks. Nat. Commun. 7:11323 doi: 10.1038/ 
+ncomms11323 (2016). 
+This work is licensed under a Creative Commons Attribution 4.0 
+International License. The images or other third party material in this 
+article are included in the article s Creative Commons license, unless indicated otherwise 
+in the credit line; if the material is not included under the Creative Commons license, 
+users will need to obtain permission from the license holder to reproduce the material. 
+To view a copy of this license, visit http://creativecommons.org/licenses/by/4.0/ 
+NATURE COMMUNICATIONS | DOI: 10.1038/ncomms11323 
+ARTICLE 
+NATURE COMMUNICATIONS | 7:11323 | DOI: 10.1038/ncomms11323 | www.nature.com/naturecommunications 
+11 
+
+/*** End Page =10= ***/

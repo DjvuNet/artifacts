@@ -1,0 +1,1026 @@
+/*** Page =0= ***/
+ORIGINAL RESEARCH ARTICLE 
+published: 01 December 2014 
+doi: 10.3389/fncom.2014.00157 
+A spiking network model of cerebellar Purkinje cells and 
+molecular layer interneurons exhibiting irregular ﬁring 
+William Lennon 1*, Robert Hecht-Nielsen 1 and Tadashi Yamazaki 2 
+1 Department of Electrical and Computer Engineering, University of California, San Diego, La Jolla, CA, USA 
+2 Graduate School of Informatics and Engineering, The University of Electro-Communications, Chofu, Japan 
+Edited by: 
+David Hansel, University of Paris, 
+France 
+Reviewed by: 
+Gianluigi Mongillo, Paris Descartes 
+University, France 
+Fahad Sultan, University Tübingen, 
+Germany 
+*Correspondence: 
+William Lennon, Department of 
+Electrical and Computer 
+Engineering, University of California, 
+San Diego, 9500 Gilman Drive, 
+La Jolla, CA 92093, USA 
+e-mail: wlennon@ucsd.edu 
+While the anatomy of the cerebellar microcircuit is well-studied, how it implements 
+cerebellar function is not understood. A number of models have been proposed to 
+describe this mechanism but few emphasize the role of the vast network Purkinje cells 
+(PKJs) form with the molecular layer interneurons (MLIs)—the stellate and basket cells. 
+We propose a model of the MLI-PKJ network composed of simple spiking neurons 
+incorporating the major anatomical and physiological features. In computer simulations, 
+the model reproduces the irregular ﬁring patterns observed in PKJs and MLIs in vitro and 
+a shift toward faster, more regular ﬁring patterns when inhibitory synaptic currents are 
+blocked. In the model, the time between PKJ spikes is shown to be proportional to the 
+amount of feedfor ward inhibition from an MLI on average. The two key elements of the 
+model are: (1) spontaneously active PKJs and MLIs due to an endogenous depolarizing 
+current, and (2) adherence to known anatomical connectivity along a parasagittal strip of 
+cerebellar cortex. We propose this model to extend previous spiking network models of 
+the cerebellum and for further computational investigation into the role of irregular ﬁring 
+and MLIs in cerebellar learning and function. 
+Keywords: molecular layer interneurons, Purkinje cells, cerebellum, irregular ﬁring, inter-spike interval 
+INTRODUCTION 
+The cerebellum is thought to be involved in producing smooth 
+and coordinated movements which are both spatially and tempo- 
+rally precise. How the cerebellum achieves this is not understood. 
+One approach to elucidate this mechanism is to construct a 
+model from known anatomy and physiology to explain how 
+the constituent neurons compute the function implemented by 
+the cerebellum. Numerous theoretical and computational models 
+have been proposed (Grossberg, 1969; Marr, 1969; Albus, 1971; 
+Fujita, 1982; Medina et al., 2000; Dean et al., 2010; Yamazaki and 
+Nagao, 2012), however few of these models emphasize the func- 
+tional role of the molecular layer interneurons (MLIs). Typically, 
+these inhibitory interneurons are described as providing “global 
+inhibition” or “sculpting” the overall response of the Purkinje 
+cells (PKJs); however, recent experimental evidence questions this 
+hypothesis (Bower, 2010; Jorntell et al., 2010). We seek to under- 
+stand the role of the MLIs in concert with the PKJs which they 
+form a vast network with by means of computational modeling. 
+A key feature of the network of MLIs and PKJs is that these 
+neurons ﬁre spontaneously in absence of excitatory synaptic 
+input (Hausser and Clark, 1997; Raman and Bean, 1997). When 
+inhibitory synaptic currents are blocked in vitro, MLIs and PKJs 
+ﬁre regularly (Hausser and Clark, 1997). In the presence of 
+inhibitory synaptic currents, they exhibit relatively irregular ﬁr- 
+ing. Understanding how PKJ spontaneous activity is modiﬁed to 
+control their targets in the deep cerebellar nuclei and vestibular 
+nuclei (DCN/VN) is central to understanding the operation of 
+the cerebellar cortex. In conditioned eye blink response (CER) 
+learning, PKJs learn to make an appropriately timed pause in 
+ﬁring in response to a conditioned stimulus, which in turn dis- 
+inhibits their DCN targets and elicits an eye blink (Jirenhed 
+et al., 2007). Since PKJs are spontaneously active and blocking 
+excitatory synaptic inputs to PKJs only modestly decreases the 
+spontaneous PKJ activity in vivo (Cerminara and Rawson, 2004) 
+and in vitro (Hausser and Clark, 1997), a decrease in efﬁcacy at 
+parallel ﬁber (PF) to PKJ synapses is insufﬁcient to explain the 
+learned pause in PKJ activity. Feedforward inhibition provided by 
+MLIs may be one mechanism to produce this pause. Furthermore, 
+using an optogenetic technique to increase the ﬁring rates of a 
+target population of MLIs in awake mice, movements can be 
+elicited and kinematics controlled by varying the photostimula- 
+tion parameters (Heiney et al., 2014). Finally, in mutant mice 
+lacking PKJ gamma-aminobutyric acid A (GABAA)r 
+e 
+c 
+ept 
+o 
+r 
+s 
+, 
+effectively removing MLI feedforward inhibition, motor learning 
+deﬁcits are observed (Wulff et al., 2009). The accumulating evi- 
+dence points to a greater functional role for MLIs than previous 
+theories suggest. 
+In this study we construct a spiking network model of spon- 
+taneously active MLIs and PKJs composed of leaky integrate- 
+and-ﬁre neuron models connected according to known anatomy. 
+We show that despite using simple neuron models, this net- 
+work reproduces the irregular ISIs observed in PKJs and MLIs 
+in vitro. We further show that the relative contribution of MLI → 
+MLI feedback inhibition to produce irregular ﬁring in MLIs is 
+greater than the PKJ → MLI feedback inhibition contribution. 
+Finally, this model provides a substrate for additional experiments 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 1 
+COMPUTATIONAL NEUROSCIENCE 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+investigating the functional role of irregular ﬁring patterns and 
+MLIs in cerebellar learning and function. 
+MATERIALS AND METHODS 
+NETWORK MODEL 
+The network is composed of PKJs and MLIs and is modeled 
+after a 1 mm × 32 m microzone of the cerebellar cortex with 
+the long axis extending parasagittally. In cats, 330 PKJs are con- 
+tained within a 1 mm2 sheet of cerebellar cortex arranged in a 
+grid-like arrangement (Palkovits et al., 1971). We therefore mod- 
+eled 16 PKJs along a one dimensional grid with an even 64 m 
+spacing between cell body centers and assume PKJ cell bodies are 
+32 m in diameter. The network includes 160 MLIs in accordance 
+with the anatomical data of a 10:1 ratio of MLIs to PKJs (Ko rbo 
+et al., 1993). Thus, each PKJ has 10 nearest MLIs; three are des- 
+ignated as lower molecular layer interneurons and are eligible to 
+receive PKJ recurrent collaterals (described below). Figure 1 illus- 
+trates the network and basic connectivity. Synapse formation in 
+the network is probabilistic subject to the anatomical constraints 
+described next. 
+In vivo, PKJ recurrent collaterals extend parasagittally and can 
+span more than 200 m, appearing to contact both PKJs and 
+MLIs in the lower molecular layer (Chan-Palay, 1971; Hawkes and 
+Leclerc, 1989; O’donoghue et al., 1989; Apps and Hawkes, 2009). 
+Watt et al. (2009) showed PKJ recurrent collaterals extend asym- 
+metrically and predominantly terminate within 100 mofthe 
+parent cell soma but do not make functional synapses onto PKJs 
+after post-natal day 21. To model this, PKJs in our network model 
+extend their recurrent collaterals asymmetrically in the vicinity 
+of the two nearest PKJs and can form synapses onto MLIs in 
+the lower molecular layer, i.e., the ﬁrst three of 10 MLIs corre- 
+sponding to a particular PKJ. We chose a probability of forming 
+aPKJ→ MLI synapse such that, on average, each eligible MLI 
+receives one PKJ input and each PKJ forms synapses onto three 
+MLIs. Ta b l e 1 summarizes these convergence and divergence val- 
+ues. We assume the model network belongs to an adult animal 
+and do not allow PKJ to PKJ connections. 
+In vivo, MLI axons extend parasagittally and terminate up to 
+500 m away from the parent soma, contacting both PKJs and 
+other MLIs (It ¯ 
+o, 1984).Inthem 
+odel,w 
+ea 
+s 
+s 
+u 
+m 
+eMLIa 
+x 
+o 
+n 
+s 
+extend asymmetrically and span a distance of eight PKJs. Each 
+MLI axon branches in one direction or the other determined ran- 
+domly with equal probability; i.e., an MLI can form synapses with 
+MLIs and PKJs either to its left or to its right, but not both direc- 
+tions. We chose a probability of forming MLI → PKJ synapses 
+such that, on average, 20 MLIs formed synapses onto one PKJ, 
+consistent with the anatomical data (Eccles et al., 1967; Palay and 
+Chan-Palay, 1974). Synapse formation is determined by iterating 
+through the list of candidate target neurons for a source neuron 
+and randomly drawing a value from Unif(0,1);ifthedrawnvalue 
+is less than some chosen probability, then a synapse is formed. 
+Thus, all target neurons within the axon span had an equal prob- 
+ability of forming a synapse whereas those neurons outside this 
+distance had zero probability of forming synapses. We also chose 
+a probability of forming MLI → MLI synapses such that, on aver- 
+age, each MLI received inputs from four other MLIs, consistent 
+with physiological data (Hausser and Clark, 1997; Kondo and 
+Marty, 1998). While gap junctions between MLIs are known to 
+exist (Mann-Metzer and Yarom, 1999), we chose to model only 
+chemical synapses as a ﬁrst approximation to this network. 
+Peak inhibitory post synaptic conductances (IPSCs) for each 
+neuron type are summarized in Ta b l e 1 . These peak IPSCs are 
+multiplied by synaptic weights, speciﬁc to each synapse (Equation 
+2). Synaptic weights are drawn from a random distribution to 
+simulate the diversity of synaptic conductances up to the peak 
+conductance as observed in vitro (e.g., Kondo and Marty, 1998). 
+MLI → MLI synapse weights are drawn from a uniform dis- 
+tribution between 0 and 1, i.e., wMLI→MLI ∼ Unif (0, 1); also, 
+wMLI→PKJ ∼ Unif (0, 1.25) and wPKJ→MLI ∼ Unif (0, 1). 
+NEURON MODEL 
+Neurons are modeled as conductance-based leaky integrate-and- 
+ﬁre units (Gerstner and Kistler, 2002). The membrane potential, 
+V(t), is governed by Equation (1), where C is the mem- 
+brane capacitance, gleak is a constant leak conductance, gahp(t) 
+is an after-hyperpolarization (AHP) conductance (described by 
+Equation 4), gGABA(t) is the inhibitory GABA conductance and 
+Ispont (t) is a spontaneous depolarizing current (described below). 
+Eleak , Eahp, EGABA are the respective reversal potentials. Ta b l e 1 
+summarizes the physiological values used in the neuron models 
+FIGURE 1 | A schematic of the model network. 160 MLIs (red) and 16 PKJs 
+(blue) were simulated. Each PKJ has 10 corresponding MLIs that are closest 
+to it along the long axis. Of the 10 closest, three are eligible to receive PKJ 
+recurrent collaterals (shown in a lighter shade of red) and seven are ineligible 
+to receive PKJ recurrent collaterals (shown in a darker shade of red). 
+Examples of allowed connections are shown. All synapses are inhibitory. 
+Further details on the network connectivity are described in the Methods 
+Section. 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 2 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+Table 1 | A summary of the neuron model and network parameters. 
+Cell parameters 
+Neuron type 
+PKJ 
+MLI 
+Vthreshold (mV) 
+55.0 
+53.0 
+C (pF) 
+107.0 
+14.6 
+¯gleak (nS) 
+2.32 
+1.6 
+Eleak (mV) 
+68.0 
+68.0 
+¯gGABA (nS) 
+1.0 
+4.0 
+EGABA (mV) 
+75.0 
+82.0 
+τGABA (ms) 
+10.0 
+4.6 
+¯gAHP (nS) 
+100.0 
+50.0 
+EAHP (mV) 
+70.0 
+82.0 
+τAHP (ms) 
+2.5 
+2.5 
+κ 
+0.430303 
+3.966333 
+β 
+0.195962 
+0.006653 
+MLI convergence 
+20 
+4 
+PKJ convergence 
+– 
+0.3* 
+MLI divergence 
+2 
+4 
+PKJ divergence 
+– 
+3 
+PKJ, Purkinje cell (Puia et al., 1994; De Schutter and Bower, 1994a); MLI, molec- 
+ular layer interneuron (Midtgaard, 1992; Hausser and Clark, 1997; Kondo and 
+Marty, 1998; Lachamp et al., 2009). 
+–, Non-existent. Convergence and diver- 
+gence values are averages since the network is constructed randomly subject to 
+anatomical constraints. *Convergence was calculated on average for the entire 
+population of MLIs, despite PKJ → MLI synapses only being made on the lower 
+molecular layer interneurons. 
+derived from the literature. The model did not include any 
+excitatory synaptic conductances. 
+CdV 
+dt = gleak ((V(t) Eleak) gahp(t) V(t) Eahp 
+gGABA(t) (V(t) EGABA) + Ispont(t)( 
+1 
+) 
+The total synaptic conductance is described by Equation (2), 
+where ¯gGABA is the maximum synaptic conductance, wi is the 
+weight of the ith synapse, α(t) is the conductance kinetics func- 
+tion described by Equation(3), and δi(t)isaDiracdeltafunction 
+for the ith synapse onto a target neuron, indicating whether the 
+presynaptic neuron has spiked at time t. τGABA is the inhibitory 
+conductance time constant. 
+gGABA(t) = ¯gGABA 
+i 
+wi 
+t 
+∞ α(t s)δi(s)ds (2) 
+α(t) = exp ( t/τGABA) 
+(3) 
+When the membrane potential for the neuron model surpasses 
+Vthreshold , the neuron emits a spike and an AHP conductance is 
+triggered. The AHP is described by Equation (4), where tspiked is 
+the time the neuron last spiked and τahp is a time constant. 
+gahp t tspiked = exp (t tspiked) 
+τahp 
+(4) 
+The spontaneous ﬁring activity of MLIs and PKJs has been 
+shown to be an intrinsic neuron property and not driven by 
+the background activity of parallel ﬁbers (Hausser and Clark, 
+1997). In PKJs, the spontaneous ﬁring is primarily mediated by 
+tetrodotoxin (TTX) sensitive sodium channels which produce 
+a sub-threshold depolarizing current (Raman and Bean, 1999). 
+While the mechanism for this endogenous current in MLIs is 
+not well-studied, MLIs presumably share a similar mechanism 
+to PKJs since blocking TTX-sensitive sodium channels abolishes 
+this sub-threshold depolarizing response in MLIs (Midtgaard, 
+1992). To model this spontaneous activity of MLIs and PKJs, 
+we inject a random depolarizing current drawn from a gamma 
+distribution, Ispont(t) ∼ Ŵ(κ, β) (in units of nA), every time 
+step of the simulation. A gamma distribution was chosen since 
+its support is strictly non-negative and has ﬂexible shape and 
+scale (controlled by κ and β,r 
+e 
+spe 
+c 
+tiv 
+ely).W 
+epe 
+rfo 
+r 
+m 
+eda 
+grid search over κ and β for MLIs and PKJs separately to ﬁnd 
+the parameters which resulted in the neuron model reproduc- 
+ing the mean ﬁring rate and inter-spike interval coefﬁcient of 
+variation (CV) that was close to the example data reported in 
+Hausser and Clark (1997) in the presence of GABA blockers. 
+Ta b l e 1 summarizes gamma distribution parameters for each 
+neuron type. Figures 2, 3A–C show the resulting neuron model 
+activity when neurons are isolated, i.e., no synaptic inputs are 
+present. 
+We used the PKJ model parameters from Yamazaki and Nagao 
+(2012) but replaced the constant spontaneous current with one 
+drawn from a gamma distribution. A single neuron model for 
+basket and stellate cells was derived from physiological data 
+reported in the literature (Ta b l e 1 ). Anatomical and physiolog- 
+ical evidence suggests that basket and stellate cells belong to 
+one homogenous group of interneurons whose properties vary 
+smoothly by depth of the soma in the molecular layer (Sultan and 
+Bower, 1998; Ruigrok et al., 2011; Chu et al., 2012)andwhich 
+share common receptive ﬁeld properties (Jorntell and Ekerot, 
+2003). Since PKJs and MLIs are modeled as single compartment 
+neuron models, we combine the effects of stellate-type synapses 
+onto the PKJ dendrites with basket-type synapses onto the PKJ 
+somas (Eccles et al., 1967; Palay and Chan-Palay, 1974)bymod- 
+eling a single idealized MLI that makes synapses of one type onto 
+the model PKJ. 
+SOFTWARE AND DATA ANALYSIS 
+Simulations were performed using BRIAN Simulator, a Python 
+library for spiking neural network simulations (Goodman and 
+Brette, 2009). Simulations were carried out using Euler’s method 
+for temporal integration with a time step of 0.25 ms for numerical 
+stability. Data analysis and plotting were performed using BRIAN 
+Simulator, SciPy, Matplotlib, Plotly and custom software written 
+in Python. The source code is freely available online at: http://dx. 
+doi.org/10.5281/zenodo.12798. 
+Artiﬁcial action potential (AP) waveforms were drawn for 
+Figures 2A,D, 3A,D, 5A,B.ForFigures 2, 3,avalueof0mVwas 
+inserted when the spike occurred. For Figure 5, these waveforms 
+were a hand-crafted series of six values at 0.25 ms intervals for a 
+total AP waveform length of 1.5 ms. Exact values can be found in 
+the published code. Mean, variances and coefﬁcient of variations 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 3 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+FIGURE 2 | Spontaneously active MLI neuron models reproduce similar 
+ﬁring patterns as observed in vitro. (A) Trace of an isolated MLI membrane 
+potential with spikes artiﬁcially drawn. The neuron appears to ﬁre regularly in 
+absence of inhibitory synaptic currents. (B) Inter-spike interval (ISI) histogram 
+of the isolated MLI. The parameters for the gamma distribution governing the 
+random depolarizing current injected into the neuron were chosen such that 
+the mean ﬁring rate and ISI coefﬁcient of variation (CV) were similar to the 
+example neuron shown in Hausser and Clark (1997). All simulations were run 
+for 300 s. (C) A spike autocorrelogram of the isolated MLI showing regularity 
+in trains of spikes. (D) Membrane potential trace of one MLI selected from 
+the intact network of MLIs and PKJs where inhibitory synaptic currents a 
+present. From the trace, the neuron visibly ﬁres irregularly compared to the 
+isolated case. (E) An inter-spike interval histogram of the same MLI. The 
+distribution shifts rightward and becomes broader, suggesting a slower and 
+more irregular ﬁring pattern. (F) A spike autocorrelogram of the same MLI 
+showing the regularity in spike trains has disappeared. 
+FIGURE 3 | Spontaneously active PKJ neuron models reproduce similar ﬁring dynamics as observed in vitro. Conventions are as in Figure 2. 
+were computed assuming a normal distribution in all cases to 
+make the values comparable to Hausser and Clark (1997). 
+RESULTS 
+MODEL PKJs AND MLIs IN ISOLATION EXHIBIT REGULAR FIRING 
+First, we examined the spike patterns of isolated MLI and PKJ 
+neuron models (no synaptic currents) with spontaneous depolar- 
+izing currents. The top rows of Figures 2, 3 show the response of 
+a model MLI and PKJ, respectively, under these conditions. The 
+random current was sufﬁcient to drive the neuron past thresh- 
+old potential to ﬁre spontaneously (Figures 2, 3A). A histogram 
+of the inter-spike intervals (ISIs) reveals the degree of regularity 
+of ﬁring by the average baseline ﬁring rate of the neuron and 
+variability in timing between spike pairs (Figures 2, 3B). These 
+results are consistent with MLIs and PKJs recorded in vitro when 
+GABAergic transmission has been blocked chemically (Hausser 
+and Clark, 1997).Them 
+odelPKJpr 
+odu 
+c 
+edame 
+anﬁringrate 
+of 38.9 Hz and an ISI CV of 0.17 compared to 40 Hz and 0.18, 
+respectively, for an exemplar neuron in vitro (Hausser and Clark, 
+1997). The model MLI produced a mean ﬁring rate of 29.1 Hz and 
+an ISI CV of 0.14 compared to 30 Hz and 0.14, respectively, for an 
+exemplar neuron in vitro (Hausser and Clark, 1997). The model 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 4 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+MLI appeared slightly more skewed toward longer ISIs compared 
+to the in vitro data, possibly due to longer recording times of 
+300 s in our experiments. While the model PKJ ISI histogram 
+appeared symmetric, it failed a test of normality (Shapiro-Wilk 
+test, p < 10 12) as did the MLI ISI histogram (Shapiro-Wilk test, 
+p < 10 38). Tests of normality were not reported by Hausser 
+and Clark (1997), though the authors noted Gaussian-shaped 
+ISI histograms. A spike autocorrelogram revealed regularity in 
+trains of successive spikes with several peaks at integer multiples 
+of the baseline frequency (Figures 2, 3C). These results suggest 
+that a simple neuron model with a spontaneous random cur- 
+rent is capable of reproducing similar spike timing phenomena 
+as observed in vitro under conditions of GABAergic transmission 
+block. 
+MODEL PKJs AND MLIs IN THE NETWORK EXHIBIT IRREGULAR FIRING 
+Next, we examined the spike patterns of interconnected, sponta- 
+neously active MLI and PKJ neurons in a network (Figure 1). We 
+usedthesameneuronmodelsforMLIandPKJneurons,respec- 
+tively, with dynamics depicted in the top panels of Figures 2, 3, 
+to form the network. Despite the same prototypical MLI and 
+PKJ being used repeatedly, the random connectivity and random 
+synaptic weight assigned when constructing the network resulted 
+in a diversity of neuron responses (Figure 4) with MLI mean ﬁr- 
+ing rates of 13.1 8.0 Hz (n = 160, range: 0.2–29.2 Hz) and PKJ 
+mean ﬁring rates of 25.9 3.5 Hz (n = 16, range: 19.1–33.1 Hz). 
+The ﬁring patterns of MLIs and PKJs in the network changed sub- 
+stantially due to the constant bombardment by inhibitory postsy- 
+naptic currents (IPSCs) from presynaptic neurons. The decreased 
+ﬁring rate and irregular spiking of these neurons is apparent in 
+a trace of the membrane potential (Figures 2, 3D). The ISI his- 
+togram becomes signiﬁcantly skewed favoring longer and more 
+irregular ISIs (Figures 2, 3E). MLI ISI coefﬁcients of variation 
+increased markedly from the isolated case to 0.61 0.24 (range: 
+0.14–1.04; n = 160), as did the PKJ ISI CVs 0.28 0.04 (range: 
+0.21–0.39; n = 16). Hausser and Clark (1997) reported ISI coef- 
+ﬁcients in control conditions of 0.51 0.024 (range: 0.19–0.85; 
+n = 43) for MLIs and 0.28 0.038 (n = 160, range: 0.05–1.13; 
+n = 68) for PKJs. We also found examples of both MLIs and PKJs 
+in the model network that closely matched exemplar neurons 
+reported in vitro data in control conditions. A model PKJ found in 
+the network produces a mean ﬁring rate of 24.5 Hz and an ISI CV 
+of 0.30 compared to 35 Hz and 0.49, respectively, for an exemplar 
+neuron in vitro (Hausser and Clark, 1997). A model MLI found 
+in the network produces a mean ﬁring rate of 17.8 Hz and an 
+ISI CV of 0.43 compared to 15 Hz and 0.40, respectively, for an 
+exemplar neuron in vitro (Hausser and Clark, 1997). It should 
+be noted that the background activity of parallel ﬁber input is 
+present in control conditions reported for in vitro data but was 
+shown to contribute only a modest increase in MLI and PKJ ﬁring 
+ratesinaseparateexperimentofthesamestudy.Noparallelﬁber 
+background activity is present in this model. A signiﬁcant corre- 
+lationbetweenmeanﬁringrateandCVwasfoundinbothMLIs 
+(Spearman rank-order coefﬁcient r = 0.996, p < 10 167)and 
+PKJs (Spearman rank-order coefﬁcient r = 0.991, p < 10 12). 
+Many of the peaks in the spike autocorrelogram disappeared sug- 
+gesting that trains of spikes are no longer regularly spaced. These 
+FIGURE 4 | The network of MLIs and PKJs exhibits a diversity of 
+responses. (A) A histogram of mean ﬁring rates of MLIs from the network 
+during one simulation. (B) A histogram of mean ﬁring rates of PKJs from 
+the network during one simulation. 
+results suggest that a simple neuron model of spontaneously 
+active MLIs and PKJs when interconnected in accordance with 
+known anatomy is capable of reproducing the irregular ﬁring pat- 
+terns of MLIs and PKJs observed in vitro. Finally, analyses of the 
+consistency of the model results among different random instan- 
+tiations of the network constrained by the same parameters and 
+of the robustness of the model to random perturbations in the 
+parameters of up to 10% of the original values were performed 
+(Figures S1–S3). These results suggest the model reproduces sim- 
+ilar results under different random instantiations of the network 
+(Figures S1, S2) and is robust to small changes in the parameters 
+(Figure S3). 
+FEEDFORWARD INHIBITION PRODUCES VARIABLE DELAYS IN THE 
+POSTSYNAPTIC NEURON 
+Next, we ran simulations to illustrate the effect of feedforward 
+inhibition on the membrane potential of PKJs between successive 
+spikes. Multiple traces of the membrane potential of an iso- 
+lated PKJ showing two successive spikes are aligned to the ﬁrst 
+spike and overlaid (Figure 5A). Action potential waveforms have 
+been artiﬁcially drawn since the leaky integrate-and-ﬁre model 
+does not explicitly model the membrane potential during action 
+potentials. The random spontaneous current resulted in variable 
+delays between spikes. A model MLI was then synaptically con- 
+nected providing feedforward inhibition onto the PKJ with a peak 
+IPSC of 4 nS. The MLI was triggered to ﬁre 12 ms after the PKJ’s 
+ﬁrst spike. The effect of feedforward inhibition from the MLI to 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 5 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+FIGURE 5 | Feedforward inhibition causes prolonged inter-spike intervals 
+in the target neuron. (A) 30 membrane potential traces overlaid with ﬁrst spike 
+aligned from a single isolated PKJ. Spikes are artiﬁcially drawn. The variable ISI can 
+be seen. (B) A model MLI was then synaptically connected to the PKJ providing 
+feedforward inhibition and caused to ﬁre 12 ms (marked by the black arrowhead) 
+after the ﬁrst PKJ spike. 30 membrane potential traces with the ﬁrst spike aligned 
+from the PKJ are shown. The effect of the IPSC (4 nS peak in this simulation)can be 
+shown to increase the average ISI. (C) Histograms of ISIs in the case without 
+feedforward inhibition (as in A) (darker shade, left histogram) and with 
+feedforward inhibition (as in B) (lighter shade, right histogram). (D) The 
+relationship between IPSC and ISI can be seen by varying the synaptic 
+conductance randomly in separate trials and measuring the resulting ISI. 
+the PKJ delays the time of the second PKJ spike (Figure 5B). The 
+mean delay with feedforward inhibition is signiﬁcant (Mann– 
+Whitney U -test, p < 10 96, n = 500) (Figure 5C). Moreover, a 
+linear relationship between the peak IPSC and the ISI can be 
+seen (Figure 5D). This suggests the mean ISI is a function of 
+the total synaptic conductance during the interval preceding the 
+second spike. More elaborate methods for characterizing the 
+response of neurons to synaptic input, such as measuring the 
+phase response curves (PRC) of PKJs (Phoka et al., 2010), can 
+be straightforwardly applied to this model in future work. 
+THE EFFECTS OF REMOVING MLI → MLI OR PKJ → MLI SYNAPSES 
+Finally, to explore the effects of MLI → MLI and PKJ → MLI con- 
+nections on the baseline activity of the network, we simulated the 
+network activity when a random subset of synapses from one con- 
+nection type or the other were randomly pruned (i.e., removed). 
+We simulated scenarios where a random subset of 25, 50, or 75% 
+of the original MLI → MLI or PKJ → MLI synapses were pruned, 
+as well as when the network is fully intact (0%) or all synapses of 
+that connection type are removed (100%) (Figure 6). The activity 
+of each neuron was recorded for 60 s and a mean ﬁring rate and 
+mean ISI CV were calculated for each neuron in each neuron-type 
+population. The median (i.e., second quartile) of each popula- 
+tion for both measures was computed and is depicted with ﬁlled 
+circles. The ﬁrst and third quartiles for each measure was also 
+computed and is depicted with bars—where the lower bar is the 
+ﬁrst quartile and the upper bar is the third quartile—to show 
+the distribution of values across the population. The population 
+mean was also computed and is depicted by a cross in a con- 
+trasting color. As more MLI → MLIsyn 
+aps 
+e 
+sa 
+r 
+epr 
+u 
+n 
+ed,the 
+MLI ﬁring rates (Figure 6, top-left panel, dark red line) increase 
+due to decreased mutual inhibition. The MLI ISI CVs (light 
+red) decrease due to increased regularity in ﬁring. The result of 
+increased MLI ﬁring is increased inhibition onto PKJs, result- 
+ing in decreased PKJ ﬁring rates (Figure 6, lower-left panel) and 
+increased PKJ ISI CVs. In contrast to the signiﬁcant changes in 
+MLI and PKJ ﬁring rates and ISI CVs when MLI → MLI synapses 
+are pruned, pruning PKJ → MLI synapses has only a subtle effect 
+on the activity of MLIs (Figure 6, top-right) and PKJs (Figure 6, 
+bottom-right). Statistical tests show that the difference between 
+population ﬁring rates in the fully intact network (0%) and the 
+fully pruned PKJ → MLI connections (100%) is not signiﬁcant 
+for MLIs (Mann–Whitney U -test, p > 0.13, n = 160) or PKJs 
+(Mann–Whitney U -test, p > 0.19, n = 16). These results show 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 6 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+FIGURE 6 | Changes in network activity by pruning MLI → MLI or PKJ → 
+MLI synapses. Simulations were performed where a random set of 
+synapses of either MLI → MLI or PKJ → MLI connections were removed 
+from the model network to investigate the effect of these connection types 
+on the activity of the network. Left column: measurements of MLI population 
+(top row, in red) and PKJ population (bottom row, in blue) ﬁring rates (darker 
+shade) and ISI CVs (lighter shade) when MLI → MLI synapses are randomly 
+pruned by 25, 50, and 75% as well as fully intact (0%) and fully pruned 
+(100%, i.e., no MLI → MLI left synapses at all). Each neuron’s mean ﬁring 
+rate and ISI CV was measured over a 60 s simulation of the operation of the 
+network. Solid circles denote the median of the population for each of these 
+statistics. Bars show the ﬁrst and third quartile to depict the distribution of 
+values across the population. The cross mark denotes the population mean. 
+Right column: similar measurements in the case of PKJ → MLI synapses 
+pruned. Top-left panel: As more MLI → MLI synapses are pruned, the median 
+ﬁring rate of the population of MLIs (dark red) increases due to decreased 
+mutual inhibition. When the synapses are completely pruned, there is very 
+little variance in the population response and quartile bars overlap with the 
+ﬁlled circle and are not visible. Additionally, the median ISI CV decreases as 
+more MLI → MLI synapses are pruned (light pink). Bottom-left: As more 
+MLI → MLI synapses are pruned, inhibition onto PKJs from MLIs increases, 
+thus decreasing the median PKJ population ﬁring rate (dark blue) and 
+increases the median PKJ ISI CV (light blue). Top-right: pruning PKJ → MLI 
+synapses has only a subtle effect on the MLI population median ﬁring right 
+and ISI CV. Bottom right: similarly, pruning PKJ → MLI synapses has only a 
+subtle effect on the PKJ population median ﬁring right and ISI CV. 
+that MLI → MLI mutual inhibition has a signiﬁcant inﬂuence on 
+the baseline activity of the network by governing the average ﬁr- 
+ing rate and variability of spike timing of MLIs and PKJs whereas 
+the effect of PKJ → MLI connections on the baseline activity of 
+the network is more subtle. 
+DISCUSSION 
+In this study, we demonstrate that a network composed of sim- 
+ple neuron models of MLIs and PKJs is sufﬁcient to reproduce 
+the irregular ﬁring patterns of their biological counterparts as 
+observed in vitro. The key elements to the model are neurons 
+with endogenous depolarizing currents that are interconnected 
+via inhibitory synapses in accordance with known anatomy. The 
+random endogenous current drives each neuron to spike in the 
+absence of all input to the neuron in a regular but still vari- 
+able way. In the event of an inhibitory input from another 
+neuron, the membrane potential of the target neuron is temporar- 
+ily decreased, requiring more spontaneous depolarizing current 
+and thereby more time to reach threshold, resulting in a longer 
+inter-spike interval. The time between two spikes is dependent 
+on the amount of the endogenous current and the amount of 
+inhibitory post synaptic conductance. The results suggest that a 
+more elaborate neuron model is not necessary to reproduce these 
+phenomena. In addition, simulations investigating the relative 
+importance of MLI → MLI and PKJ → MLI connections on reg- 
+ulating the baseline activity of the network revealed the signiﬁcant 
+role of MLI mutual inhibition to achieve results matching in vitro 
+data and relatively subtle role of MLI → PKJ synapses. Finally, 
+this network model provides a substrate for additional experi- 
+mental investigation into the role of MLIs in cerebellar learning 
+and function. 
+IMPLICATIONS OF IRREGULAR FIRING 
+Whether irregular ﬁring has a functional role or is simply a 
+consequence of interconnected spontaneously active neurons is 
+not clear. Some evidence suggests a functional role for these 
+ﬁring patterns. Wulff et al. (2009) found that genetically modi- 
+ﬁedmicelackingPKJGABAA receptors exhibited normal motor 
+performance but were unable to consolidate motor learning fol- 
+lowing VOR gain down training. Interestingly, while the ISIs of 
+PKJs were more regular in the genetically modiﬁed mice com- 
+pared to control, the mean ﬁring rate was nearly the same. 
+Motor learning in the cerebellum may initially take place in the 
+cortex and then be partially transferred to the deep cerebellar 
+nuclei/vestibular nuclei (DCN/VN) where it is consolidated for 
+long-term storage (Kassardjian et al., 2005; Shutoh et al., 2006). 
+While the overall quantity of PKJ inhibition onto their targets 
+in the DCN/VN is unchanged in knockout mice, the quality 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 7 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+of PKJ ﬁring patterns may be enough to disrupt consolidation 
+of memory to the DCN/VN and could explain the failure of 
+knockout mice to consolidate VOR gain down learning. This 
+is consistent with electrophysiological results showing that PKJ 
+inhibition onto DCN/VN targets controls learning at mossy ﬁber 
+(MF) to DCN/VN synapses (McElvain et al., 2010; Person and 
+Raman, 2010), a putative location for memory consolidation. 
+Mechanistically, irregular PKJ ﬁring may favor rebound depolar- 
+izations (RDs) occurring in PKJ targets in DCN/VN (Aizenman 
+and Linden, 1999) by providing a period of intense inhibition 
+followed by a period of relative relief, which in turn may con- 
+trol learning at DCN/VN synapses (Pugh and Raman, 2008). In 
+the absence of spontaneous feedforward inhibition provided by 
+MLIs,thePKJsﬁremoreregularlyandpreventDCN/VNtargets 
+from ﬁring appropriately, possibly resulting in impaired mem- 
+ory transfer. However, too much feedforward inhibition leads to 
+more irregular PKJ ﬁring (Figure 6), which might also interfere 
+with learning or motor performance. Episodic ataxia type-2 is a 
+condition caused by mutations to P/Q-type voltage-gated calcium 
+channels expressed in PKJs which leads to increased irregular- 
+ity in PKJ ﬁring and impaired motor performance (Walter et al. , 
+2006). Thus, feedforward inhibition onto PKJs must be carefully 
+balanced to achieve stable learning and motor performance. 
+The irregular ﬁring of PKJs may also be a means of preventing 
+synchronous PKJ activity during periods of rest when the cere- 
+bellar cortex is not actively emitting control signals. If many PKJs 
+did synchronize their ﬁring in response to input stimulus, then 
+the summed activity could encode a sequence of ON periods, 
+when most PKJs are ﬁring, and OFF periods, when most PKJs 
+are silent. Maex and De Schutter (2003) showed computationally 
+that the synaptic conductance delay in a homogeneous network of 
+inhibitory neurons is the primary parameter controlling the fre- 
+quency of synchronicity among these neurons. While this model 
+does not implement spike propagation or synaptic transmission 
+delays, this could be one way of evoking synchronized activity 
+among MLIs and PKJs. This ON-OFF pattern might be a means of 
+implementing Pulse Width Modulation (PWM), a digital control 
+signal used to represent analog values. Person and Raman (2012) 
+found that many synchronous inhibitory inputs to a neuron in 
+the DCN/VN can entrain the neuron to ﬁre at a high and regu- 
+lar rate. This ﬁring rate could be the analog value desired by the 
+PWM control scheme. On the other hand, if irregular ﬁring pre- 
+vents PKJ synchrony during behavior as well, then the summed 
+activity of asynchronous PKJs could represent an analog value for 
+control of the DCN/VN targets. It is also possible that PKJs can 
+switch between operating modes to convey the most appropriate 
+control signal. 
+FUNCTION OF MLI-PKJ NETWORK 
+A more general inquiry is into the functional role of spon- 
+taneously active PKJs and MLIs. One advantage of sponta- 
+neously active neurons is that their ﬁring rates can be both 
+increased and decreased, by excitation and inhibition, respec- 
+tively. Presumably, PKJs need to actively inhibit their DCN/VN 
+targets which are spontaneously active and exhibit rebound 
+depolarizations (Aizenman and Linden, 1999). Tonic inhibition 
+by PKJs can be increased and possibly synchronized by excitatory 
+PF inputs which could hyperpolarize or entrain DCN/VN targets. 
+A decrease in PKJ tonic activity, via MLI feedforward inhibition, 
+disinhibits DCN/VN targets. Such a scheme would allow for sev- 
+eral modes of control and a similar argument can be made for the 
+spontaneously active MLIs. 
+A key feature present in this model is MLI → MLI and PKJ → 
+MLI inhibition. In the model, MLI → MLI inhibition is shown 
+to have a signiﬁcant effect on regulating the baseline ﬁring rate 
+and spike regularity in both MLIs and PKJs (Figure 6). As dis- 
+cussed, a careful balance between these two properties may be 
+needed to ensure effective motor performance and learning. The 
+presence of MLI → MLI inhibition also theoretically allows for 
+competition among MLIs to take place in response to PF stim- 
+uli. Electrophysiological evidence suggests an activity dependent 
+form of learning at PF-MLI synapses may exist (Liu and Cull- 
+Candy, 2000; Rancillac and Crepel, 2004; Smith and Otis, 2005, 
+but see also Jorntell and Ekerot, 2002). If this is correct, a diverse 
+set of MLI receptive ﬁelds and responses could emerge from this 
+competition. Plasticity at MLI → PKJ synapses (Gao et al., 2012) 
+could enable PKJs to learn the most appropriate set of inhibitory 
+inputs to achieve the desired output response. While the anatom- 
+ical data on MLI → PKJ convergence between cat and rat differs 
+(Eccles et al., 1967; Palay and Chan-Palay, 1974), plasticity at these 
+synapses could also tune the total inhibitory conductance onto a 
+PKJ to ensure that the baseline PKJ activity is appropriate. In the 
+present model, this would be achieved by altering the synaptic 
+weights. In another computer model, PKJ → PKJ feedback inhi- 
+bitionenablesPKJsinanetworkwithMLIstoperformtemporal 
+integration on a time-scale of seconds (Maex and Steuber, 2013); 
+theroleofMLI→ MLI and PKJ → MLI inhibition may serve 
+a similar function. In contrast, PKJ → MLI connections appear 
+to have only a small effect on the resting activity of the network 
+(Figure 6). Taken together, these ideas suggest the information 
+storage capacity and expressiveness of the PKJ-MLI network is 
+even greater than previous theories describe (Brunel et al., 2004; 
+Clopath et al., 2012). The model proposed here provides an ini- 
+tial step toward carrying out further computational investigations 
+into these questions. 
+COMPARISON WITH OTHER MODELS 
+De Schutter and Bower (1994b) model a Purkinje cell as a 
+Hodgkin-Huxley-type, multi-compartmental model that repro- 
+duces asymmetric ISI distributions in response to PF and MLI 
+inputs. However, in these experiments the model PKJ relies exclu- 
+sively on PF inputs to drive spiking and not an endogenous 
+depolarizing current. Further the inﬂuence of MLIs is mod- 
+eled indirectly as Poisson spike trains which assumes the ISI 
+distribution is exponential, whereas our model generates MLI 
+spikes by simulating MLI dynamics directly and results in an 
+appropriate ISI distribution. Finally, by simulating the network 
+of MLIs and PKJs, our model enables simulating the response 
+of the MLI-PKJ network to PF input to investigate cerebellar 
+function. Previous computational network models of the cerebel- 
+lum that include MLIs typically ignore a number of anatomical 
+or physiological facts. For example, models do not include the 
+spontaneous activity of MLIs (Yamazaki and Nagao, 2012)o 
+r 
+MLI → MLI and PKJ → MLI connectivity (Contreras-Vidal 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 8 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+et al., 1997; Schweighofer et al., 1998; Medina et al., 2000; Maex 
+and Steuber, 2013). Adaptive ﬁlter models implicitly model the 
+inhibitory effect of MLIs by allowing the PF-PKJ ﬁlter weights 
+to be negative (Fujita, 1982; Dean et al., 2010). While our net- 
+work models a parasagittal strip of cerebellar cortex, other work 
+has modeled a medio-lateral strip to investigate the effects of 
+spontaneously active MLIs on PKJs along a beam of PF inputs 
+(Santamaria et al., 2007). Further effort to extend the model pro- 
+posed in our study to include the medio-lateral axis would be 
+worthwhile. 
+ACKNOWLEDGMENTS 
+The authors would like to thank Professor Nobito Yamamoto, the 
+Japan Society for the Promotion of Science (#SP13031) and the 
+U.S. National Science Foundation (#OISE-1308822) for making 
+this collaboration possible. WL and RH-N gratefully acknowledge 
+funding from the U.S. Ofﬁce of Naval Research (#N00014-12-1- 
+0588). WL would like to acknowledge Soichi Nagao, Mehrdad 
+Yazdani and Geoffrey Gamble for useful discussions. 
+SUPPLEMENTARY MATERIAL 
+The Supplementary Material for this article can be found 
+online at: http://www.frontiersin.org/journal/10.3389/fncom. 
+2014.00157/abstract 
+REFERENCES 
+Aizenman, C. D., and Linden, D. J. (1999). Regulation of the rebound depolariza- 
+tion and spontaneous ﬁring patterns of deep nuclear neurons in slices of rat 
+cerebellum. J. Neurophysiol. 82, 1697–1709. 
+Albus, J. S. (1971). A theory of cerebellar function. Math. Biosci. 10, 25–61. doi: 
+10.1016/0025-5564(71)90051-4 
+Apps, R., and Hawkes, R. (2009). Cerebellar cortical organization: a one-map 
+hypothesis. Nat. Rev. Neurosci. 10, 670–681. doi: 10.1038/nrn2698 
+Bower, J. M. (2010). Model-founded explorations of the roles of molecu- 
+lar layer inhibition in regulating purkinje cell responses in cerebellar cor- 
+tex: more trouble for the beam hypothesis. Front. Cell. Neurosci. 4:27. doi: 
+10.3389/fncel.2010.00027 
+Brunel, N., Hakim, V., Isope, P., Nadal, J. P., and Barbour, B. (2004). Optimal 
+information storage and the distribution of synaptic weights: perceptron versus 
+Purkinje cell. Neuron 43, 745–757. doi: 10.1016/j.neuron.2004.08.023 
+Cerminara, N. L., and Rawson, J. A. (2004). Evidence that climbing ﬁbers control an 
+intrinsic spike generator in cerebellar Purkinje cells. J. Neurosci. 24, 4510–4517. 
+doi: 10.1523/JNEUROSCI.4530-03.2004 
+Chan-Palay, V. (1971). The recurrent collaterals of Purkinje cell axons: a corre- 
+lated study of the rat’s cerebellar cortex with electron microscopy and the Golgi 
+method. Z. Anat. Entwicklungsgesch. 134, 200–234. doi: 10.1007/BF00519300 
+Chu, C. P., Bing, Y. H., Liu, H., and Qiu, D. L. (2012). Roles of molecular layer 
+interneurons in sensory information processing in mouse cerebellar cortex Crus 
+II in vivo. PLoS ONE 7:e37031. doi: 10.1371/journal.pone.0037031 
+Clopath, C., Nadal, J. P., and Brunel, N. (2012). Storage of correlated patterns in 
+standard and bistable Purkinje cell models. PLoS Comput. Biol. 8:e1002448. doi: 
+10.1371/journal.pcbi.1002448 
+Contreras-Vidal, J. L., Grossberg, S., and Bullock, D. (1997). A neural model of 
+cerebellar learning for arm movement control: cortico-spino-cerebellar dynam- 
+ics. Learn. Mem. 3, 475–502. doi: 10.1101/lm.3.6.475 
+Dean, P., Porrill, J., Ekerot, C. F., and Jorntell, H. (2010). The cerebellar microcir- 
+cuit as an adaptive ﬁlter: experimental and computational evidence. Nat. Rev. 
+Neurosci. 11, 30–43. doi: 10.1038/nrn2756 
+De Schutter, E., and Bower, J. M. (1994a). An active membrane model of the cere- 
+bellar Purkinje cell I. Simulation of current clamps in slice. J. Neurophysiol. 71, 
+375–400. 
+De Schutter, E., and Bower, J. M. (1994b). An active membrane model of the cere- 
+bellar Purkinje cell II. Simulation of synaptic responses. J. Neurophysiol. 71, 
+401–419. 
+Eccles, J. C., Ito, M., and SzentaìGothai, J. N. (1967). The Cerebellum as a Neuronal 
+Machine. Berlin;NewYork,NY:Springer-Verlag. 
+Fujita, M. (1982). Adaptive ﬁlter model of the cerebellum. Biol. Cybern. 45, 
+195–206. doi: 10.1007/BF00336192 
+Gao, Z., Van Beugen, B. J., and De Zeeuw, C. I. (2012). Distributed synergis- 
+tic plasticity and cerebellar learning. Nat. Rev. Neurosci. 13, 619–635. doi: 
+10.1038/nrn3312 
+Gerstner, W., and Kistler, W. M. (2002). Spiking neuron models: single neurons, 
+populations, plasticity. Cambridge; New York: Cambridge University Press. 
+Goodman, D. F., and Brette, R. (2009). The brian simulator. Front. Neurosci. 3, 
+192–197. doi: 10.3389/neuro.01.026.2009 
+Grossberg, S. (1969). On learning of spatiotemporal patterns by networks with 
+ordered sensory and motor components. 1. Excitatory components of the 
+cerebellum. Stud. Appl. Math. 105–132. 
+Hausser, M., and Clark, B. A. (1997). Tonic synaptic inhibition modulates neuronal 
+output pattern and spatiotemporal synaptic integration. Neuron 19, 665–678. 
+doi: 10.1016/S0896-6273(00)80379-7 
+Hawkes, R., and Leclerc, N. (1989). Purkinje cell axon collateral distributions reﬂect 
+the chemical compartmentation of the rat cerebellar cortex. Brain Res. 476, 
+279–290. doi: 10.1016/0006-8993(89)91248-1 
+Heiney, S. A., Kim, J., Augustine, G. J., and Medina, J. F. (2014). Precise 
+control of movement kinematics by optogenetic inhibition of Purkinje 
+cell activity. J. Neurosci. 34, 2321–2330. doi: 10.1523/JNEUROSCI.4547- 
+13.2014 
+It¯ 
+o, M. (1984). The Cerebellum and Neural Control. NewYork,NY:RavenPress. 
+Jirenhed, D. A., Bengtsson, F., and Hesslow, G. (2007). Acquisition, extinction, and 
+reacquisition of a cerebellar cortical memory trace. J. Neurosci. 27, 2493–2502. 
+doi: 10.1523/JNEUROSCI.4202-06.2007 
+Jorntell, H., Bengtsson, F., Schonewille, M., and De Zeeuw, C. I. (2010). Cerebellar 
+molecular layer interneurons - computational properties and roles in learning. 
+Tr e n d s Ne u r o s c i . 33, 524–532. doi: 10.1016/j.tins.2010.08.004 
+Jorntell, H., and Ekerot, C. F. (2002). Reciprocal bidirectional plasticity of parallel 
+ﬁber receptive ﬁelds in cerebellar Purkinje cells and their afferent interneurons. 
+Neuron 34, 797–806. doi: 10.1016/S0896-6273(02)00713-4 
+Jorntell, H., and Ekerot, C. F. (2003). Receptive ﬁeld plasticity profoundly alters 
+the cutaneous parallel ﬁber synaptic input to cerebellar interneurons in vivo. 
+J. Neurosci. 23, 9620–9631. 
+Kassardjian, C. D., Tan, Y. F., Chung, J. Y., Heskin, R., Peterson, M. J., and Broussard, 
+D. M. (2005). The site of a motor memory shifts with consolidation. J. Neurosci. 
+25, 7979–7985. doi: 10.1523/JNEUROSCI.2215-05.2005 
+Kondo, S., and Marty, A. (1998). Synaptic currents at individual connections 
+among stellate cells in rat cerebellar slices. J. Physiol. 509(Pt 1), 221–232. doi: 
+10.1111/j.1469-7793.1998.221bo.x 
+Korbo, L., Andersen, B. B., Ladefoged, O., and Moller, A. (1993). Total num- 
+bers of various cell types in rat cerebellar cortex estimated using an unbiased 
+stereological method. Brain Res. 609, 262–268. doi: 10.1016/0006-8993(93) 
+90881-M 
+Lachamp, P. M., Liu, Y., and Liu, S. J. (2009). Glutamatergic modulation of cere- 
+bellar interneuron activity is mediated by an enhancement of GABA release and 
+requires protein kinase A/RIM1alpha signaling. J. Neurosci. 29, 381–392. doi: 
+10.1523/JNEUROSCI.2354-08.2009 
+Liu, S. Q., and Cull-Candy, S. G. (2000). Synaptic activity at calcium-permeable 
+AMPA receptors induces a switch in receptor subtype. Nature 405, 454–458. 
+doi: 10.1038/35013064 
+Maex, R., and De Schutter, E. (2003). Resonant synchronization in heterogeneous 
+networks of inhibitory neurons. J. Neurosci. 23, 10503–10514. 
+Maex, R., and Steuber, V. (2013). An integrator circuit in cerebellar cortex. Eur. J. 
+Neurosci. 38, 2917–2932. doi: 10.1111/ejn.12272 
+Mann-Metzer, P., and Yarom, Y. (1999). Electrotonic coupling interacts with 
+intrinsic properties to generate synchronized activity in cerebellar networks of 
+inhibitory interneurons. J. Neurosci. 19, 3298–3306. 
+Marr, D. (1969). A theory of cerebellar cortex. J. Physiol. 202, 437–470. 
+McElvain, L. E., Bagnall, M. W., Sakatos, A., and Du Lac, S. (2010). Bidirectional 
+plasticity gated by hyperpolarization controls the gain of postsynaptic ﬁr- 
+ing responses at central vestibular nerve synapses. Neuron 68, 763–775. doi: 
+10.1016/j.neuron.2010.09.025 
+Medina, J. F., Garcia, K. S., Nores, W. L., Taylor, N. M., and Mauk, M. D. (2000). 
+Timing mechanisms in the cerebellum: testing predictions of a large-scale 
+computer simulation. J. Neurosci. 20, 5516–5525. 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 9 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+Lennon et al. 
+Spiking PKJ and MLI model 
+Midtgaard, J. (1992). Membrane properties and synaptic responses of Golgi cells 
+and stellate cells in the turtle cerebellum in vitro. J. Physiol. 457, 329–354. 
+O’donoghue, D. L., King, J. S., and Bishop, G. A. (1989). Physiological and 
+anatomical studies of the interactions between Purkinje cells and basket cells 
+in the cat’s cerebellar cortex: evidence for a unitary relationship. J. Neurosci. 9, 
+2141–2150. 
+Palay, S. L., and Chan-Palay, V. (1974). Cerebellar cortex: cytology and organiza- 
+tion. Berlin; Heidelberg; New York, NY: Springer. 
+Palkovits, M., Magyar, P., and Szentagothai, J. (1971). Quantitative histological 
+analysis of the cerebellar cortex in the cat. I. Number and arrangement in 
+space of the Purkinje cells. Brain Res. 32, 1–13. doi: 10.1016/0006-8993(71) 
+90151-X 
+Person, A. L., and Raman, I. M. (2010). Deactivation of L-type Ca current by inhi- 
+bition controls LTP at excitatory synapses in the cerebellar nuclei. Neuron 66, 
+550–559. doi: 10.1016/j.neuron.2010.04.024 
+Person, A. L., and Raman, I. M. (2012). Purkinje neuron synchrony elic- 
+its time-locked spiking in the cerebellar nuclei. Nature 481, 502–505. doi: 
+10.1038/nature10732 
+Phoka, E., Cuntz, H., Roth, A., and Hausser, M. (2010). A new approach for 
+determining phase response curves reveals that Purkinje cells can act as perfect 
+integrators. PLoS Comput. Biol. 6:e1000768. doi: 10.1371/journal.pcbi.1000768 
+Pugh, J. R., and Raman, I. M. (2008). Mechanisms of potentiation of mossy ﬁber 
+EPSCs in the cerebellar nuclei by coincident synaptic excitation and inhibition. 
+J. Neurosci. 28, 10549–10560. doi: 10.1523/JNEUROSCI.2061-08.2008 
+Puia, G., Costa, E., and Vicini, S. (1994). Functional diversity of GABA-activated 
+Cl- currents in Purkinje versus granule neurons in rat cerebellar slices. Neuron 
+12, 117–126. doi: 10.1016/0896-6273(94)90157-0 
+Raman, I. M., and Bean, B. P. (1997). Resurgent sodium current and action 
+potential formation in dissociated cerebellar Purkinje neurons. J. Neurosci. 17, 
+4517–4526. 
+Raman, I. M., and Bean, B. P. (1999). Ionic currents underlying spontaneous action 
+potentials in isolated cerebellar Purkinje neurons. J. Neurosci. 19, 1663–1674. 
+Rancillac, A., and Crepel, F. (2004). Synapses between parallel ﬁbres and stellate 
+cells express long-term changes in synaptic efﬁcacy in rat cerebellum. J. Physiol. 
+554, 707–720. doi: 10.1113/jphysiol.2003.055871 
+Ruigrok, T. J., Hensbroek, R. A., and Simpson, J. I. (2011). Spontaneous activity sig- 
+natures of morphologically identiﬁed interneurons in the vestibulocerebellum. 
+J. Neurosci. 31, 712–724. doi: 10.1523/JNEUROSCI.1959-10.2011 
+Santamaria, F., Tripp, P. G., and Bower, J. M. (2007). Feedforward inhibition con- 
+trols the spread of granule cell-induced Purkinje cell activity in the cerebellar 
+cortex. J. Neurophysiol. 97, 248–263. doi: 10.1152/jn.01098.2005 
+Schweighofer, N., Spoelstra, J., Arbib, M. A., and Kawato, M. (1998). Role of 
+the cerebellum in reaching movements in humans. II. A neural model of 
+the intermediate cerebellum. Eur. J. Neurosci. 10, 95–105. doi: 10.1046/j.1460- 
+9568.1998.00007.x 
+Shutoh, F., Ohki, M., Kitazawa, H., Itohara, S., and Nagao, S. (2006). 
+Memory trace of motor learning shifts transsynaptically from cerebel- 
+lar cortex to nuclei for consolidation. Neuroscience 139, 767–777. doi: 
+10.1016/j.neuroscience.2005.12.035 
+Smith, S. L., and Otis, T. S. (2005). Pattern-dependent, simultaneous plasticity 
+differentially transforms the input-output relationship of a feedforward cir- 
+cuit. Proc. Natl. Acad. Sci. U.S.A. 102, 14901–14906. doi: 10.1073/pnas.05050 
+28102 
+Sultan, F., and Bower, J. M. (1998). Quantitative Golgi study of the rat cerebel- 
+lar molecular layer interneurons using principal component analysis. J. Comp. 
+Neurol. 393, 353–373. 
+Walter, J. T., Alvina, K., Womack, M. D., Chevez, C., and Khodakhah, K. (2006). 
+Decreases in the precision of Purkinje cell pacemaking cause cerebellar dysfunc- 
+tion and ataxia. Nat. Neurosci. 9, 389–397. doi: 10.1038/nn1648 
+Watt, A. J., Cuntz, H., Mori, M., Nusser, Z., Sjostrom, P. J., and Hausser, M. (2009). 
+Traveling waves in developing cerebellar cortex mediated by asymmetrical 
+Purkinje cell connectivity. Nat. Neurosci. 12, 463–473. doi: 10.1038/nn.2285 
+Wulff, P., Schonewille, M., Renzi, M., Viltono, L., Sassoe-Pognetto, M., Badura, 
+A., et al. (2009). Synaptic inhibition of Purkinje cells mediates consolida- 
+tion of vestibulo-cerebellar motor learning. Nat. Neurosci. 12, 1042–1049. doi: 
+10.1038/nn.2348 
+Yamazaki, T., and Nagao, S. (2012). A computational mechanism for uniﬁed gain 
+and timing control in the cerebellum. PLoS ONE 7:e33319. doi: 10.1371/jour- 
+nal.pone.0033319 
+Conﬂict of Interest Statement: The authors declare that the research was con- 
+ducted in the absence of any commercial or ﬁnancial relationships that could be 
+construed as a potential conﬂict of interest. 
+Received: 12 September 2014; accepted: 14 November 2014; published online: 01 
+December 2014. 
+Citation: Lennon W, Hecht-Nielsen R and Yamazaki T (2014) A spiking network 
+model of cerebellar Purkinje cells and molecular layer interneurons exhibiting irregular 
+ﬁring. Front. Comput. Neurosci. 8:157. doi: 10.3389/fncom.2014.00157 
+This article was submitted to the journal Frontiers in Computational Neuroscience. 
+Copyright © 2014 Lennon, Hecht-Nielsen and Yamazaki. This is an open-access arti- 
+cle distributed under the terms of the Creative Commons Attribution License (CC BY). 
+The use, distribution or reproduction in other forums is permitted, provided the 
+original author(s) or licensor are credited and that the original publication in this 
+journal is cited, in accordance with accepted academic practice. No use, distribution or 
+reproduction is permitted which does not comply with these terms. 
+Frontiers in Computational Neuroscience 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 157 | 10 
+
+/*** End Page =9= ***/

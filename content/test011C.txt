@@ -1,0 +1,1258 @@
+/*** Page =0= ***/
+Complex Networks: from Classical to Quantum 
+Jacob Biamonte,1, 2, ∗ Mauro Faccin,3, † and Manlio De Domenico4 , ‡ 
+1Quantum Complexity Science Initiative 
+Department of Physics, University of Malta, MSD 2080 Malta 
+2Institute for Quantum Computing, University of Waterloo, Waterloo, N2L 3G1 Ontario, Canada 
+3ICTEAM, Universit´ 
+e Catholique de Louvain, Euler Building 4, 
+Avenue Lemaitre, B-1348 Louvain-la-Neuve, Belgium 
+4Departament d’Enginyeria Inform` 
+atica i Matem` 
+atiques, 
+Universitat Rovira i Virgili, 43007 Tarragona, Spain 
+Recent progress in applying complex network 
+theory to problems faced in quantum informa- 
+tion and computation has resulted in a beneﬁcial 
+crossover between two ﬁelds. Complex network 
+methods have successfully been used to charac- 
+terize quantum walk and transport models, en- 
+tangled communication networks, graph theoretic 
+models of emergent space-time and in detecting 
+community structure in quantum systems. Infor- 
+mation physics is setting the stage for a theory 
+of complex and networked systems with quan- 
+tum information-inspired methods appearing in 
+complex network science, including information- 
+theoretic distance and correlation measures for 
+network characterization. Novel quantum in- 
+duced eﬀects have been predicted in random 
+graphs—where edges represent entangled links— 
+and quantum computer algorithms have recently 
+been proposed to oﬀer super-polynomial enhance- 
+ment for several network and graph theoretic 
+problems. Here we review the results at the cut- 
+ting edge, pinpointing the similarities and recon- 
+ciling the diﬀerences found in the series of results 
+at the intersection of these two ﬁelds. 
+Quantum mechanics has long been predicted to help 
+solve computational problems in physics [1], chemistry [2], 
+and machine learning [3] and to oﬀer quantum security 
+enhancement in communications [4], including a quantum 
+secure Internet [5]. Network and graph theory funda- 
+mentally arises in nearly all aspects of quantum informa- 
+tion and computation. Rapid experimental progress has 
+pushed quantum computing and communication devices 
+into truly data-intensive domains, where even the classical 
+network describing a quantum system can exhibit complex 
+features, giving rise to what appears as a paradigm shift 
+needed to face a fundamental type of complexity [6–13]. 
+Methods originating in complex networks—traditionally 
+based on statistical mechanics—are now being generalized 
+to the quantum domain in order to address these new 
+quantum complexity challenges. 
+∗ jacob.biamonte@qubit.org; www.QuamPlexity.org 
+† mauro.faccin@uclouvain.be 
+‡ manlio.dedomenico@urv.cat 
+Building on several fundamental discoveries [14, 15], 
+complex network theory has demonstrated that many 
+(non-quantum) systems exhibit similarities in their com- 
+plex features [14–18], in the organization of their struc- 
+ture and dynamics [19–24], the controllability of their 
+constituents [25] and their resilience to structural and dy- 
+namical perturbations [26–31]. Certain quantum systems 
+have been shown to indeed exhibit complex features re- 
+lated to classical systems, as well as novel mechanisms and 
+principles that interrelate complex features in quantum 
+systems [6–13]. 
+Two types of quantum networks have been of primary 
+focus in the series of pioneering results we review. The 
+ﬁrst consists of quantum systems whose connections are 
+represented by entangled states [6, 32, 33]. These quan- 
+tum networks are used in secure quantum communication 
+systems. The second area of focus consists of networks of 
+quantum systems, such as atoms or superconducting quan- 
+tum electronics, whose connections are physical [34–39]. 
+Such systems are used to develop quantum-enhanced algo- 
+rithms or quantum information transport systems, both 
+modeled by quantum walks on complex networks. At a 
+fundamental level, the two types of quantum networks are 
+described by quantum information theory, allowing one to 
+extend the spectrum of network descriptors—such as rank- 
+ing indicators, similarity and correlation measures—inside 
+the quantum domain. 
+Interestingly, the same tools can then be appropriately 
+modiﬁed to apply to traditional complex networks, sug- 
+gesting the existence of a framework—network informa- 
+tion theory—suitable for application to both classical and 
+quantum networked systems [13, 40, 41]. This bidirec- 
+tional cross-over is carving out a coherent path forward 
+built fundamentally on the intersection of these two ﬁelds 
+(see Fig. 1). Fundamentally, several quantum eﬀects are 
+still outside of the predictive range of applicability of 
+complex network theory. Future work should build on 
+recent breakthroughs and head towards a new theory of 
+complex networks which augments the current statistical 
+mechanics approach to complex networks, with a theory 
+built fundamentally on quantum mechanics. Such a uni- 
+ﬁed path forward appears to be through the language of 
+information theory. 
+Here, we make an eﬀort to review some of the crucial 
+steps towards the creation of a network theory based 
+fundamentally on quantum eﬀects. Therefore, we do 
+arXiv:1702.08459v1 [quant-ph] 27 Feb 2017
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+2 
+not cover several topics that, nevertheless, deserve to be 
+mentioned as part of the ﬁeld. These include, in no par- 
+ticular order, quantum gravity theories based on complex 
+networks [42–45], synchronization in and on quantum 
+networks [46], quantum random circuits [47, 48], classical 
+spin models and quantum statistics successfully used in 
+complex network theory [49–51] (see [52] for a thorough 
+review). 
+I. QUANTUM NETWORKS BASED ON 
+ENTANGLED STATES 
+The reader not familiar with some basic concepts of 
+network science might ﬁnd useful a few deﬁnitions. A 
+network is an abstract representation of relationships (en- 
+coded by edges) between units (encoded by nodes) of a 
+complex system. Edges can be directed, i.e. they can 
+represent information incoming to or outgoing from a 
+node and, in general, they can be weighted by real num- 
+bers. The number of incoming, outgoing and total edges 
+is known as incoming, outgoing and total degree of a 
+node, respectively. The sum of the corresponding weights 
+deﬁnes the incoming, outgoing and total strength of that 
+node, respectively. Networks are often characterized by 
+how node degree and strength are distributed and corre- 
+lated. Systems modeled by uncorrelated networks with 
+homogeneous degree distribution are known as Erdos- 
+Renyi networks, whereas systems with power-law degree 
+distribution are known as scale-free networks. We refer 
+to [16, 53] for reviews of network concepts and models. 
+To deﬁne quantum networks based on entangled states, 
+let us start from the state of each ith qubit, written 
+without loss of generality, as 
+|ψi = cos(αi) |0 + e−iθi sin(βi) |1 , (1) 
+with |0 and |1 the preferred or ‘computational’ basis. 
+The qubit is in a pure, coherent superposition of the two 
+basis states and any measurement in this same basis will 
+cause the state to collapse onto |0 or |1 , with probability 
+cos2(αi) and sin2(βi), respectively. Let us consider a 
+quantum system with two qubits, i.e. i = 1 and 2. The 
+basis of this system is given by the so called, tensor 
+product, of the two basis states: |00 , |01 , |10 and |11 . 
+If the two qubits are not entangled, i.e. their states are 
+independent from each other, then the state of the overall 
+system can be written as e.g. |ψ12 = |ψ1 ⊗ |ψ2 , whereas 
+this is not possible if the two qubits are entangled. A 
+generalization of this description to the case of mixed 
+states is obtained in terms of the non-negative density 
+matrix ρ; a unit trace Hermitian operator representing 
+the state of the system as an ensemble of (unknown) pure 
+states. 
+Instead of distributing entanglement on regular graphs, 
+such as uniform lattices typically studied in condensed 
+matter physics, it has been shown that it is possible to 
+tune the amount of entanglement between two nodes 
+in such a way that it equals the probability to have a 
+link in (classical) Erdos-Renyi graphs [6]. Such random 
+graphs can be deﬁned by the family of networks G(N, p), 
+where N is the number of nodes and p the probability 
+to ﬁnd a link between any two nodes. The probability 
+scales with the size of the network following a power 
+law p ∝ N −z , with z ≥ 0. In classical network theory, 
+there exists a critical value for the probability pc(N) for 
+which, if p > pc(N) a given subgraph of n nodes and l 
+links has higher probability to be observed. The classical 
+result is that this critical probability scales with N as 
+pc(N) ∝ N−n/l. 
+Acin, Cirac, and Lewenstein [6] formulated an elegant 
+extension of this picture to the quantum realm by replac- 
+ing each link with an entangled pair of particles, where 
+the probability pi,j = p that the link exists between nodes 
+i and j is substituted by a quantum state ρi,j := ρ of two 
+qubits, one at each node. One can build a quantum net- 
+work where each node consists of N − 1 qubits which are 
+entangled, in pairs, with qubits of other nodes. However, 
+in this case, although the connections are identical and 
+pure they encode non-maximally entangled pairs. For 
+pure states of qubits, ρ = |φ φ|, with 
+|φ=1 
+√2 2−p|00 +√p|11 . (2) 
+Here, 0 ≤ p ≤ 1 quantiﬁes the entanglement of links and 
+the state of the overall quantum random graph can be 
+denoted by |G(N, p) . If each link, i.e. each entangled 
+pair, attempts to convert its state to the maximally entan- 
+gled one (p = 1/2) through local operations and classical 
+communication (LOCC), the optimal probability of suc- 
+cessful conversion is exactly p. It follows that the fraction 
+of existing entangled states converted to maximally en- 
+tangled ones by LOCC corresponds to the probability of 
+having a link between nodes in the corresponding clas- 
+sical random network [6]. By varying the value of the 
+parameter z, i.e. how the critical probability scales with 
+system size, it is possible to control the number and type 
+of subgraphs present in a quantum network of N nodes. 
+This is useful to create special multipartite states, such as 
+the Greenberger-Horne-Zeilinger state which exhibits non- 
+classical correlations [54]. The striking result is that it is 
+possible to obtain, with probability approaching unity, a 
+quantum state with the topology of any ﬁnite subgraph 
+for N approaching inﬁnity and z = −2. 
+This bridge between complex network theory and quan- 
+tum theory provides a powerful tool to investigate the 
+critical properties of a quantum system. For instance, in 
+the case of regular lattices, it has been shown that the 
+probability popt to establish a perfect quantum channel 
+between the nodes can be mapped to the probability of dis- 
+tributing links among each pair of nodes in the lattice [6], 
+a scenario that can be studied using the well-established 
+bond-percolation theory from statistical physics. This 
+result allows one to calculate the critical probability above 
+which the system will exhibit an inﬁnite connected clus- 
+ter and, in the case of qubits, it has been shown that 
+the probability of having an entangled path with inﬁ- 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+3 
+complex 
+networks and 
+quantum physics 
+(current status) 
+quantum algorithms 
+for network analysis 
+algorithms 
+and descriptors 
+quantum transport 
+on complex networks 
+quantum communication 
+networks 
+graphity and 
+emergent models 
+of space-time 
+related types 
+of quantum networks 
+quantum inspired 
+network tools 
+network analysis 
+adapted 
+to quantum 
+physical resources 
+tools for understanding 
+network information theory 
+quantum centrality measures 
+random network models 
+detecting community structure in quantum systems 
+random quantum circuits 
+random tensor networks and geometry 
+quantum generalizations of random graph models 
+entanglement percolation on complex networks 
+quantum inspired network measures 
+polynomial and superpolynomial reductions for certain network 
+problems such as flow and effective resistance 
+polynomial and superpolynomial reductions 
+for certain machine learning and data analysis problems 
+quantum walks solving graph recognition 
+and search engine ranking problems 
+walk models of exciton transport 
+in photosynthetic complexes 
+FIG. 1. Cross-pollination between the ﬁelds of complex networks and quantum information science. Each of the 
+shaded regions represent published ﬁndings that map out the ﬁeld from theoretical, experimental and computational perspectives. 
+The top area classiﬁes the analytical tools inspired by quantum information for classical network analysis and vice versa—both 
+covered in this review—as well as the algorithms, genuinely quantum, developed to address speciﬁc problems in network science. 
+The classiﬁcation in the bottom area includes quantum networks based on entangled states and on physical connections—covered 
+in this review—as well as quantum network models of space-time, random quantum circuits, random tensor networks and 
+geometry. 
+nite length—i.e., an inﬁnite sequence of entangled states 
+connecting an inﬁnite number of qubits—is unity. How- 
+ever, for product states this probability is zero, denoting 
+the existence of a sharp transition between these two 
+scenarios. However, local measurements based on this ap- 
+proach, called classical entanglement percolation (CEP), 
+are not optimal, in general, to generate maximally en- 
+tangled states: CEP is not even asymptotically optimal 
+for two-dimensional lattices and new quantum protocols 
+based on quantum entanglement percolation have to be 
+used instead [6]. A novel critical phenomenon, deﬁning 
+an entanglement phase transition, emerges from this new 
+strategy, where the critical parameter is the degree of 
+entanglement required to be distributed in order to es- 
+tablish a quantum channel with probability that does 
+not decay exponentially with the size of the system, at 
+variance with CEP. This type of enhancement with re- 
+spect to the classical case has been reported for diﬀerent 
+network topologies, such as Erdos-Renyi, scale-free and 
+small-world networks [32]. 
+The static entangled states providing the network con- 
+nectivity described here, will be replaced in the next 
+section by dynamical processes on networked quantum 
+systems. 
+A 
+B 
+S 
+FIG. 2. Entanglement connecting distant network 
+nodes. A pair of distant cavities in a quantum communi- 
+cation network are driven by a shared squeezed light source S. 
+In the systems steady state the two atoms A and B entangle, 
+forming a network edge [33]. 
+II. QUANTUM NETWORKS BASED ON 
+PHYSICAL CONNECTIVITY 
+Another wide area where network concepts have found 
+applicability consists of quantum systems physically in- 
+terconnected, such as atoms or superconducting quantum 
+electronics [34–39]. These types of systems provide fer- 
+tile ground where quantum algorithms are tested [55–59] 
+and quantum information transport systems are studied 
+[60–62]. Typical modeling approaches are based on so 
+called ‘quantum walks’ on complex networks, with recent 
+studies showing that quantum information tasks, typi- 
+cally designed for simple topologies, retain performance in 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+4 
+very disordered structures [63]. Stochastic (non-quantum) 
+walks are also a central model in complex network theory— 
+see the review [64]. 
+Any quantum process can be viewed as a single particle 
+walk on a graph. Single-particle quantum walks represent 
+a universal model of quantum computation—-meaning 
+that any algorithm for a quantum computer can be trans- 
+lated into a quantum walk on a graph—and, additionally, 
+quantum walks have been widely studied in the realm of 
+quantum search on graphs, in both continuous and dis- 
+crete time via coined walks (see e.g. [55–58]—in particular 
+the graph optimality results [63]). The computational 
+advantages of quantum versus stochastic random walk 
+based algorithms has attracted wide interest with typical 
+focus being on general graphs which consequently do not 
+exhibit complex features. However, many works have 
+compared properties of stochastic [65, 66] and quantum 
+random walks [60–62] on complex networks [67]. 
+Network topology has further been shown as a means 
+to direct transport by adding complex numbers—while 
+maintaining Hermiticity—to the networks adjacency ma- 
+trix in ‘chiral quantum walks’ [62, 68, 69] (note that chiral 
+walks were realized experimentally in [12]). Open system 
+walks which mix stochastic and quantum eﬀects in ‘open’ 
+evolutions [61] have aided in the study of quantum ef- 
+fects in biological exciton transport (again, modeled as a 
+quantum walk) and developments in a quantum version of 
+Google’s PageRank [8–10] has been seen, providing a prac- 
+tical solution to overcome the degeneracy issues aﬀecting 
+the classical version and enhancing node ranking in large 
+networks. Recently, Faccin et al. have analytically solved 
+a model which shed light on some key diﬀerences between 
+stochastic and quantum walks on complex networks [7]. 
+These diﬀerences push forward a general understanding 
+which can lead to a theory explaining novel complex fea- 
+tures in quantum systems. 
+Quantum walks on complex networks represent both a 
+practical model of transport [67] as well as an interesting 
+stage of comparison between the quantum and stochastic 
+cases. As a closed quantum system exhibits ﬂuctuations 
+in the probabilities in time, typically a long time average 
+is considered. Physically, this is the best approximation 
+one can hope for, provided that there is no knowledge of 
+when the walk started. In this case, the probability to 
+ﬁnd a quantum walker in the i-th node is given by 
+p(i) = lim 
+T→∞ 1 
+T 
+T 
+0 dt| i|Ut|0 |2, 
+(3) 
+where |0 is the initial state and Ut = e−iQt is the unitary 
+evolution operator deﬁned by the quantum generator Q. 
+Interference between subspaces of diﬀerent energy van- 
+ish in the long time average so we obtain an expression for 
+the probability (PQ)i in terms of the energy eigen-space 
+projectors Πj of the Hamiltonian HQ, 
+(PQ)i = j i|Πj ρ(0)Πj|i . 
+(4) 
+Here Πj = k |φkj φkj | projects onto the subspace 
+spanned by the eigenvalues |φkj of HQ corresponding 
+to the same eigenvalue λj . 
+Quantum-enhanced page-ranking. The non- 
+symmetric adjacency matrix representing the directed 
+connectivity of the World Wide Web, a.k.a. the Google 
+matrix G, satisﬁes the Perron-Frobenius theorem [70] and 
+hence there is a maximal eigenvalue corresponding to an 
+eigenvector of positive entries Gp = p. The eigenvector 
+p corresponds to the limiting distribution of occupation 
+probabilities of a random web surfer—it represents a 
+unique attractor for the dynamics independently of the 
+initial state. The vector p is known as the Page-Rank. 
+Several recent studies embed G into a quantum system 
+and consider quantum versions of Google’s Page-Rank [8– 
+10]. Garnerone et al. [71] relied on an adiabatic quantum 
+algorithm to compute the Page-Rank of a given directed 
+network, whereas Burillo et al. [11] rely on a mixture of 
+unitary and dissipative evolution to deﬁne a ranking that 
+converges faster than classical PageRank. 
+The page-ranking vector p is an eigenvector of ■ − G 
+corresponding to the zero eigenvalue (the lowest). This 
+fact leads to a deﬁnition of a Hermitian operator which 
+can play the role of a Hamiltonian, deﬁned as: 
+hp =(■−G)†(■−G), 
+(5) 
+though highly non-local, its ground state represents the 
+target Page-Rank which could be found by adiabatic 
+quantum annealing into the ground state. Using a quan- 
+tum computer to accelerate the calculation of various 
+network properties has been considered widely [55–58]. 
+As Page-Rank relies on ﬁnding the vector corresponding 
+to the lowest eigenvalue of the Google matrix, the adia- 
+batic algorithm opens the door up to accelerate network 
+calculations using quantum computers. 
+Directing transport by symmetry breaking in 
+chiral walks. Chiral quantum walks, introduced by 
+Zimbor´ 
+as et al. in [62] and realized experimentally in 
+[12] append complex numbers to the adjacency matrix 
+(playing the role of the system Hamiltonian) while still 
+maintaining the Hermitian property [12, 62, 68, 69]. These 
+complex phases in many cases do not eﬀect transfer prob- 
+abilities: the theory explaining this ﬁnding was developed 
+in [12, 62], without relying on approximations or averag- 
+ing. The case of open systems has been investigated as 
+well in [62]. In the scenarios where the addition of com- 
+plex phases aﬀects transfer probabilities, the underlying 
+system breaks time-reversal symmetry and, consequently, 
+the probability ﬂow into the quantum system is biased. 
+This fact enables directed state transfer without requiring 
+a biased (or non-local) distribution in the initial states, 
+or coupling to an environment. 
+When the underlying graph is bipartite (e.g. a graph 
+whose vertices can be divided into two disjoint sets such as 
+a square lattice), time-reversal symmetry in the transport 
+probabilities can not be broken. Transport suppression 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+5 
+is indeed possible however [62]. Bipartite graphs include 
+trees, linear chains and generally, graphs with only even 
+cycles. These results point to a subtle interplay between 
+the topology of the underlying graph, giving rise to a new 
+challenge for dynamical control of probability transfer 
+when considering walks on complex networks [12, 62, 68, 
+69]. 
+Open quantum walks. The area of open quan- 
+tum systems [72] studies noise and its eﬀects in quantum 
+systems. The adiabatic version of Page-Rank [9] uses a 
+quantum stochastic quantum walk as proposed by [61] 
+(see also [73, 74] for studies on open walks). 
+Quantum stochastic walks are deﬁned by a quantum 
+walk undergoing dissipative dynamics. The latter follows 
+the quantum master equation in the Lindbladian form: 
+˙ρ = ▲[ρ] 
+(6) 
+= −i[H,ρ]+ k LkρL†k −1 
+2 L†kLk,ρ (7) 
+where Lk represents a jump operator while [·, ·] and {·, ·} 
+are commutator and anti-commutator respectively. 
+The network topology is embedded by choosing H equal 
+to the adjacency matrix of the symmetrized network and 
+Lk = Lij = Gij |i j|. In this picture, node ranking is 
+deﬁned by an activity vector α computed at the steady 
+state ρss . 
+Paparo et al. [8, 10] introduced a Szegedy type of 
+Markov chain quantization [75] of the random walk. In 
+order to quantize the Markov chain deﬁned by the Google 
+matrix G of N nodes, one introduces a Hilbert space 
+H = span{|i 1|j 2 ,i,j∈[0,N]}and the superposition of 
+outgoing edges from node i: 
+|ψi =|i1⊗k Gki|k2 
+(8) 
+and 
+Π= 
+k |ψk ψk|. 
+(9) 
+Each step of the quantum walk U is deﬁned by a coin ﬂip 
+2Π − ✶ and a swap operation S which ensures unitarity [8] 
+U=S(2Π−✶) 
+(10) 
+the swap operator is S = ij |ij ji|. 
+In the case of quantum Page-Rank, this is set to the 
+instantaneous probability P (i, t) of ﬁnding the walker 
+at node i at the time-step t. To obtain a ﬁxed value 
+for the quantum Page-Rank a time average is calculated 
+as long as with its variance as a measure for quantum 
+ﬂuctuations. 
+Another approach [11] involves deﬁning a Markov quan- 
+tum evolution similar to (7), with a tuning parameter α: 
+˙ρ = −i(1−α)[H,ρ]+α 
+kLkρL†k−1 
+2{L†kLk, ρ} (11) 
+where the Hamiltonian H is the symmeterized adjacency 
+matrix and Lk = Lij = Gij |i i| represent the jump 
+operators which consider the directness of the network. 
+With this deﬁnition, for values of α ∈ (0, 1], a stationary 
+state is guaranteed. In this case, for α = 0 we revert to 
+the unitary evolution while for α = 1 we revert to the 
+stochastic case. 
+The authors [8, 10, 11] show how this deﬁnition of 
+quantum Page-Rank resolves problems of degeneracy in 
+the classical Page-Rank deﬁnition, enhances the impor- 
+tance of secondary hubs and, for certain values of α, the 
+algorithm exhibits faster convergence. 
+Quantum 
+Stochastic 
+Spectral Sim 
+ila r
+FIG. 3. Known mappings between quantum and 
+stochastic generators. Here G = (V, E) is a graph with 
+adjacency matrix A, D is a diagonal matrix of node degrees. 
+This yields the graph Laplacian L = D − A, and hence, the 
+stochastic walk generator LS = LD−1 , from this a similarity 
+transform results in LQ = D−1/2LD−1/2 , which generates a 
+valid quantum walk and exhibits several interesting connec- 
+tions to the classical case. The mapping L −→ L⊤L preserves 
+the lowest 0 energy ground state, opening the door for adia- 
+batic quantum annealing which solves computational problems 
+by evolving a system into its ground state. 
+III. TOWARDS UNIFIED ANALYSIS OF 
+NETWORK COMPLEXITY 
+The interaction between network science and quantum 
+information science has led to the development of theoret- 
+ical and computational tools that beneﬁtted from both 
+ﬁelds. On the one hand, quantum-inspired tools, such 
+as information entropies and quantum distance measures, 
+have been successfully applied to practical problems con- 
+cerning classical complex networks [13]. On the other 
+hand, classical network descriptors have been ported to 
+the quantum realm to gain better insights about the struc- 
+ture and the dynamics of networked quantum systems [76]. 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+6 
+The cross-pollination between the two ﬁelds, brieﬂy re- 
+viewed in this section, is still ongoing with vibrant future 
+research opportunities. 
+Information entropy of classical networks. His- 
+torically, the concept of entropy has been successfully 
+used to quantify the complexity of many systems [77, 78]. 
+Recently, the possibility of using quantum entropy and 
+other quantum information theoretical measures has been 
+explored by the community of network scientists. 
+For classical complex networks, von Neumann’s entropy 
+has been applied over one decade ago [79]. The combina- 
+torial Laplacian matrix L, obtained from the adjacency 
+matrix representing the network, is rescaled by the num- 
+ber of edges in the network. The normalization of the 
+matrix L guarantees that the corresponding eigenvalues 
+are non-negative and sum up to 1—in order to be inter- 
+preted as probabilities [80]—and some other properties 
+which makes the resulting object similar to a quantum 
+density matrix ρ. Network entropy is deﬁned according 
+to von Neumann quantum entropy as 
+S(ρ) = −Tr(ρ log2 ρ). 
+(12) 
+By exploiting the eigen-decomposition of the Laplacian 
+matrix, it can be shown that this entropy corresponds to 
+the Shannon entropy of the eigenvalue spectrum of ρ. This 
+entropy has been generalized to the case of multilayer 
+systems [81], composite networks where units exhibit 
+diﬀerent types of relationships that are generally modeled 
+as diﬀerent layers (see [17, 18, 82] for a thorough review). 
+It has been recently shown that the von Neumann 
+entropy calculated from the rescaled Laplacian does 
+not satisfy the sub-additivity property in some circum- 
+stances [13, 40]. This undesirable feature can be addressed 
+by means of a more grounded deﬁnition [13], whose ratio- 
+nale is to measure the entropy of a network by exploiting 
+how information diﬀuses through its topology (see Fig. 4A– 
+B). Information diﬀusion in this context is governed by 
+the equation 
+˙ψi(t) = − 
+N 
+j=1 Lijψj(t), 
+(13) 
+with ψi(t) the amount of information in node i at time t. 
+The solution of this diﬀusion equation is given, in vector 
+notation, by ψ(t) = exp(−Lt)ψ(0), whose normalized 
+propagator is used to deﬁne the density matrix as 
+ρ= e−τL 
+Tr(e−τ L) , 
+(14) 
+where time plays the role of a resolution parameter allow- 
+ing one to probe entropy at diﬀerent scales [13]. A similar 
+approach, involving a modiﬁed Laplacian matrix, has 
+been recently used for revealing the mesoscale structure 
+of complex directed networks [83, 84]. 
+This quantum-inspired framework provides a power- 
+ful basis to develop an information theory of complex 
+networks, with direct applications in classical network 
+science, such as system comparison. 
+Comparing classical networks. A known problem 
+in network science is to compare two networks, without 
+relying on a speciﬁc subset of indicators. Network infor- 
+mation entropy allows one to introduce relative entropies 
+such as the Kullback-Leibler divergence, to compare two 
+networks with density matrices ρ and σ respectively: 
+D(ρ||σ) = Tr[ρ(log2 ρ − log2 σ)]. (15) 
+By exploiting the well-known classical result that the 
+minimization of Kullback-Leibler divergence between a 
+reference distribution and its parametric model corre- 
+sponds to the maximization of the likelihood, it has been 
+shown that in a network context this allows one to deﬁne 
+the network log-likelihood by 
+log2 L(Θ) = Tr[ρ log2 σ(Θ)]. 
+(16) 
+The introduction of network likelihood (see Fig. 4C) opens 
+the door to a variety of applications in statistical inference 
+and model selection, based on concepts such as the Fisher 
+information matrix, Akaike and Bayesian information 
+criteria, and minimum description length, to cite some of 
+them [13]. 
+This new framework has been used to compare networks 
+for several purposes. For instance, in the case of pairs of 
+networks, the graphs are ﬁrst merged by connecting each 
+node from one network to any other node in the other 
+network. Successively, continuous-time quantum walks 
+are used to explore the composite system and the quantum 
+Jensen-Shannon divergence between the evolution of two 
+walks is calculated. This divergence, that is a measure 
+of (dis)similarity, is shown to be maximum when the two 
+original networks are isomorphic [57]. 
+The square root of quantum Jensen-Shannon divergence 
+has the nice property of deﬁning a metric, allowing one 
+to deﬁne a distance between networks. If ρ and σ are two 
+density matrices corresponding to two networks with N 
+nodes, their Jensen-Shannon divergence is deﬁned by 
+DJS(ρ||σ) = 1 
+2DKL(ρ||µ) + 1 
+2 DKL(σ||µ) (17) 
+=S(µ)− 1 
+2[S(ρ) + S(σ)], (18) 
+that is the diﬀerence between the entropy of the mix- 
+tureµ= 1 
+2 (ρ + σ) and the semi-sum of the entropies of 
+the original systems. In the context of multilayer sys- 
+tems, this measure has been used to quantify the distance 
+between layers of a multiplex network, cluster and aggre- 
+gate them appropriately in order to reduce its structural 
+complexity [40]. 
+These ideas have quickly found direct applications in 
+biology. In genetic molecular systems, such as the ones 
+described by gene-protein interactions, layers might en- 
+code diﬀerent relationships among molecules—functional, 
+e.g. additive, suppressive and other types of association, 
+or physical, e.g. co-localization or direct interaction. The 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+8 
+12 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+12 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+12 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+12 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+10 
+11 
+12 
+13 
+14 
+(a) Transport; t → 0 
+(b) Transport; t → ∞ 
+(c) Fidelity; t → ∞ 
+FIG. 5. Community Detection in a light harvesting network (LHCII) [76]. (top left) Monomeric subunit of the 
+LHCII complex with pigments Chl-a (red) and Chl-b (green) packed in the protein matrix (gray). (top center) Schematic 
+representation of Chl-a and Chl-b in the monomeric subunit, here the labeling follows the usual nomenclature (b601, a602. . . ). 
+(top right) Network representation of the pigments in circular layout, colors represent the typical partitioning of the pigments 
+into communities. The widths of the links represent the strength of the couplings |Hij| between nodes. Here the labels maintain 
+only the ordering (b601→1, a602→2,. . . ). (a,b,c) Partition of LHCII applying the quantum community detection algorithm 
+in [76]. Transport (for long times) and Fidelity approaches give similar results while short time transport is closer to classical 
+community detection. Link width denotes the pairwise closeness of the nodes. 
+random wiring [53], to mention some of them, were de- 
+veloped to reproduce degree distributions commonly ob- 
+served in empirical systems. Despite the complexity of 
+the linking pattern, the degree distribution of a network 
+aﬀects in a simple way the ongoing dynamics. In fact, it 
+can be shown that the probability of ﬁnding a memoryless 
+random walker—at a given node of a symmetric network 
+at the stationary state—is just proportional to the degree 
+of such node [65]. 
+In [7] the authors consider the relationship between 
+the stochastic and the quantum version of such processes, 
+with the ultimate goal of shedding light on the meaning of 
+degree centrality in the case of quantum networks. They 
+consider a stochastic evolution governed by the Laplacian 
+matrix LS = LD−1, the stochastic generator that charac- 
+terizes classical random walk dynamics and leads to an 
+occupation probability proportional to node degree. In 
+the quantum version, an hermitian generator is required 
+and the authors proposed the symmetric Laplacian ma- 
+trixLQ=D−1 
+2LD−1 
+2 , generating a valid quantum walk 
+that, however, does not lead to a stationary state, mak- 
+ing diﬃcult a direct comparison between classical and 
+quantum versions of the dynamics. A common and useful 
+workaround to this issue is to average the occupation 
+probability over time (4). 
+The generators of the two dynamics are spectrally 
+similar (see Fig. 3) and share the same eigenvalues, 
+while the eigenvectors are related by the transformation 
+φC 
+i =D−1 
+2φQ 
+i . As a consequence, if the system is in the 
+ground state the average probability to ﬁnd the walker 
+on a node will be the same as in the classic case, which 
+will depend solely on the degree of each node. For the 
+cases in which the system is not in the ground state, it is 
+possible to deﬁne a quantumness measure 
+ε=1−φQ 
+0|ρ0|φQ 
+0, 
+describing how far from the classical case the probability 
+distribution of the quantum walker will be. In the case 
+of uniformly distributed initial state ρ0, this provides a 
+measure for the heterogeneity of the degree distribution 
+of a quantum network. 
+Mesoscale organization of quantum systems. 
+Community detection, and in general mesoscopic struc- 
+ture detection, has been widely studied in the literature 
+of classical complex networks [90, 91]. While the deﬁni- 
+tion of community “a subset of nodes tightly connected 
+compared to what is expected” is in general ill deﬁned 
+and part of an ongoing debate, the number of proposed 
+algorithms is incredibly high and still growing. 
+The cross-pollination of community detection with 
+quantum mechanics is in two levels. On the one hand, 
+chronologically, the ﬁrst attempt was to borrow tools 
+from quantum mechanics for applications to classical sys- 
+tems [83, 92–95]. On the other hand an algorithm to ﬁnd 
+communities in complex quantum systems was proposed 
+in [76]. 
+In [92, 93] the authors propose a method for data clus- 
+tering similar to kernel density estimators, in a quantum 
+framework. The given data points are mapped to a Gaus- 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+9 
+sian wave function and, supposing that the latter is an 
+eigenstate for some time-independent Schr¨ 
+odingher equa- 
+tion: 
+Hψ=[T+V(x)]ψ=E0ψ, 
+the minimization of the potential V (x) leads to the desired 
+clustering. An extension to dynamical quantum systems 
+has been introduced in [94]. In this case the expectation 
+values of the position operator evolves in time toward the 
+closer minimum of the potential. This formulation can 
+leverage the acceleration of graphics hardware. 
+A method based on continuous-time quantum walks 
+was proposed in [95]. Here a node aﬃnity measure based 
+on the response of node population density to link failure 
+was given. If the population on two nodes changes in a 
+similar manner after link removal, they are more likely to 
+belong to the same community. 
+A magnetic Laplacian, where a magnetic ﬁeld is ex- 
+pected to traverse all cycles in the network, was used 
+in [83]. With an approach similar to chiral walks, pre- 
+viously described, the symmetric Laplacian is amended 
+with the original link directionality by a phase term e±iθ , 
+with θ being a parameter for the method, and used for 
+community detection in directed networks, a longstanding 
+problem in network science. 
+In the case of quantum systems, partitioning in mod- 
+ular units has been often carried out on the basis of ad 
+hoc considerations. In an eﬀort to extend community 
+detection to the quantum mechanics realm, Faccin et 
+al. [76] introduced several closeness matrices inspired by 
+diﬀerent quantum quantities. Given the Hamiltonian 
+H = ij Hij |i j| of the quantum system of interest, 
+the authors consider a continuous-time random walk on 
+the system topology. The ﬁrst quantity is energy trans- 
+port, porting to the quantum realm the concept applied 
+in several classical algorithms where communities are in- 
+terpreted as traps for the dynamical process. In this 
+framework, two nodes are considered to be close if, on 
+average, their in-between transport is high. If this av- 
+erage is computed over a short time period (compared 
+to evolution time scales), then the closeness values are 
+proportional to the Hamiltonian terms |Hij|, providing a 
+classical approach to community detection (see Fig. 5). A 
+second quantity, also proposed as a closeness measure, is 
+related to the average ﬁdelity of the evolving process com- 
+pared to the initial state. In this case the localization of 
+eigenstates is the characteristic determining the closeness 
+of two nodes. These methods augment current ad hoc 
+approaches to partitioning nodes in quantum transport 
+systems with enhanced methods based on community 
+detection algorithms. 
+IV. OUTLOOK IN QUANTUM NETWORK 
+SCIENCE 
+Generalization of complex network methods to the 
+quantum setting represents a foundational advancement 
+required to understand complexity in physical systems. 
+These methods represent a change of paradigm which 
+bring several road blocks that must be faced. Centrally, 
+the application domain of complex network methods to 
+quantum physics must be expanded, whereas studies in 
+the other direction, i.e. where methods from the quantum 
+domain have now been ported to network science. 
+From a foundational perspective, as networks necessar- 
+ily represent physical systems, such systems are inherently 
+governed by the laws of information physics. In fact, a re- 
+search line is emerging now that seeks to quantify, in terms 
+of implicit information processing capacity, networked sys- 
+tems, with several applications to social, technological 
+and biological systems [13, 40, 41, 86, 87]. Although this 
+interesting direction seems promising, yet it is compara- 
+bly in its infancy, whereas it is still not known how to 
+generalize classical concepts of complexity science to the 
+quantum domain. 
+Another relevant research direction, crucial for applica- 
+tions in classical network science, concerns the interplay 
+between structure and dynamics, which is almost entirely 
+unclear in the case of quantum networks. Although scale- 
+free networks have been considered in the quantum set- 
+ting [32], the result is an—albeit interesting—toy model 
+with theoretical predictions to be veriﬁed experimentally. 
+Therefore, further advancement along this track is of cen- 
+tral interest, because it might play a fundamental role in 
+quantum enhanced technology and could lead to experi- 
+ments devoted to test cross-disciplinary ideas in quantum 
+and complexity science [33]. 
+The quest for a theoretical foundation for quantum 
+complex networks might have a deep impact in informa- 
+tion and communication technology. While information 
+processing in classical systems is well controlled, it is 
+also rather limited and quantum computing might over- 
+come such limitations [96, 97]. However, given that such 
+systems are more sensitive to interactions with the en- 
+vironment, they are also more exposed to errors than 
+their classical counterparts. Quantum error-correcting 
+codes allow us to store and manipulate quantum infor- 
+mation in the presence of certain types of noise that, in 
+this context, might perturb the quantum system caus- 
+ing eﬀects similar to random failures in classical complex 
+networks. The development of quantum error correction 
+techniques that make quantum computing and quantum 
+communication possible can not prescind from the study 
+of ‘system resilience’, a topic that found uncountable ap- 
+plications in classical network science [26, 28, 31, 98, 99]. 
+Other types of perturbations that are natural for classical 
+systems, such as targeted attacks of network hubs [26] 
+or cascade-based attacks [100], still have no clear quan- 
+tum counterpart and their study, from both theoretical 
+and experimental perspectives, will play a key role in 
+the development of a quantum Internet [5]. In fact, it is 
+tantalizing to think about how quantum hubs should be 
+protected by the quantum counterpart of typical denial 
+of service attacks. 
+Continued advances in the theory of complexity in net- 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+10 
+worked quantum systems will help address the challenges 
+faced as quantum technologies scale up to commercially 
+feasible products. Work towards a quantum theory of 
+complex networked systems is already opening up novel 
+avenues when facing contemporary complexity challenges. 
+All authors designed the study and wrote the paper. 
+The authors declare no competing ﬁnancial interests. 
+JDB acknowledges the Foundational Questions Institute 
+(FQXi, under grant FQXi-RFP3-1322) for ﬁnancial support. 
+MF acknowledges the MOVE-IN fellowship program for ﬁ- 
+nancial support. MDD acknowledges ﬁnancial support from 
+the Spanish program Juan de la Cierva (IJCI-2014-20225). 
+The authors thank Alex Arenas and Leonie Mueck for useful 
+feedback, and the Institute for Quantum Computing at the 
+University of Waterloo and the Perimeter Institute for The- 
+oretical Physics for funding and allowing us to organize the 
+ﬁrst workshop on the intersection of these topics. Diagrams 
+are courtesy of Lusa Zheglova (illustrator). 
+[1] Johnson, T. H., Clark, S. R. & Jaksch, D. What is a 
+quantum simulator? EPJ Quantum Technology 1, 1–12 
+(2014). URL http://dx.doi.org/10.1140/epjqt10. 
+[2] Lanyon, B. P. et al. Towards quantum chemistry on 
+a quantum computer. Nature Chemistry 2, 106–111 
+(2010). 0905.0887. 
+[3] Biamonte, J. et al. Quantum Machine Learning. ArXiv 
+e-prints (2016). 1611.09347. 
+[4] Komar, P. et al. A quantum network of clocks. Nature 
+Physics 10, 582–587 (2014). 
+[5] Kimble, H. J. The quantum internet. Nature 453, 1023– 
+1030 (2008). 
+[6] Ac´ 
+ın, A., Cirac, J. I. & Lewenstein, M. Entanglement 
+percolation in quantum networks. Nature Physics 3, 
+256–259 (2007). 
+[7] Faccin, M., Johnson, T., Biamonte, J., Kais, S. & Migdal, 
+P. Degree distribution in quantum walks on complex net- 
+works. Physical Review X 3, 041007 (2013). URL http: 
+//link.aps.org/doi/10.1103/PhysRevX.3.041007. 
+[8] Paparo, G. D. & Martin-Delgado, M. A. Google in a 
+quantum network. Sci. Rep. 2, 444 (2012). 
+[9] Garnerone, S. Thermodynamic formalism for dis- 
+sipative quantum walks. Physical Review A 86, 
+032342 (2012). URL http://link.aps.org/doi/10. 
+1103/PhysRevA.86.032342. 
+[10] Paparo, G., M¨ 
+uller, M., Comellas, F. & Martin-Delgado, 
+M. Quantum google algorithm. The European Physical 
+Journal Plus 129 (2014). URL http://dx.doi.org/10. 
+1140/epjp/i2014-14150-y. 
+[11] S´ 
+anchez-Burillo, E., Duch, J., G´ 
+omez-Garde˜ 
+nes, J. & 
+Zueco, D. Quantum navigation and ranking in complex 
+networks. Scientiﬁc reports 2 (2012). 
+[12] Lu, D. et al. Chiral Quantum Walks. ArXiv e-prints 
+(2014). 1405.6209. 
+[13] De Domenico, M. & Biamonte, J. Spectral entropies as 
+information-theoretic tools for complex network compar- 
+ison. Physical Review X 6, 041062 (2016). 
+[14] Watts, D. J. & Strogatz, S. H. Collective dynamics of 
+small-world networks. Nature 393, 440–442 (1998). 
+[15] Barab´ 
+asi, A.-L. & Albert, R. Emergence of scaling in 
+random networks. science 286, 509–512 (1999). 
+[16] Boccaletti, S., Latora, V., Moreno, Y., Chavez, M. & 
+Hwang, D.-U. Complex networks: Structure and dynam- 
+ics. Physics reports 424, 175–308 (2006). 
+[17] Kivel¨ 
+a, M. et al. Multilayer networks. Journal of complex 
+networks 2, 203–271 (2014). 
+[18] De Domenico, M., Granell, C., Porter, M. A. & Arenas, 
+A. The physics of spreading processes in multilayer 
+networks. Nature Physics 12, 901–906 (2016). 
+[19] Guimera, R. & Amaral, L. A. N. Functional cartography 
+of complex metabolic networks. Nature 433, 895–900 
+(2005). 
+[20] Palla, G., Der´ 
+enyi, I., Farkas, I. & Vicsek, T. Uncov- 
+ering the overlapping community structure of complex 
+networks in nature and society. Nature 435, 814–818 
+(2005). 
+[21] Song, C., Havlin, S. & Makse, H. A. Self-similarity of 
+complex networks. Nature 433, 392–395 (2005). 
+[22] Colizza, V., Flammini, A., Serrano, M. A. & Vespignani, 
+A. Detecting rich-club ordering in complex networks. 
+Nature physics 2, 110–115 (2006). 
+[23] Boguna, M., Krioukov, D. & Claﬀy, K. C. Navigability 
+of complex networks. Nature Physics 5, 74–80 (2009). 
+[24] Vespignani, A. Modelling dynamical processes in com- 
+plex socio-technical systems. Nature Physics 8, 32–39 
+(2012). 
+[25] Liu, Y.-Y., Slotine, J.-J. & Barab´ 
+asi, A.-L. Controllabil- 
+ity of complex networks. Nature 473, 167–173 (2011). 
+[26] Albert, R., Jeong, H. & Barab´ 
+asi, A.-L. Error and attack 
+tolerance of complex networks. Nature 406, 378–382 
+(2000). 
+[27] Callaway, D. S., Newman, M. E., Strogatz, S. H. & Watts, 
+D. J. Network robustness and fragility: Percolation on 
+random graphs. Physical Review Letters 85, 5468 (2000). 
+[28] Buldyrev, S. V., Parshani, R., Paul, G., Stanley, H. E. 
+& Havlin, S. Catastrophic cascade of failures in interde- 
+pendent networks. Nature 464, 1025–1028 (2010). 
+[29] Gao, J., Buldyrev, S. V., Stanley, H. E. & Havlin, S. 
+Networks formed from interdependent networks. Nature 
+physics 8, 40–48 (2012). 
+[30] Radicchi, F. & Arenas, A. Abrupt transition in the 
+structural formation of interconnected networks. Nature 
+Physics 9, 717–720 (2013). 
+[31] De Domenico, M., Sol´ 
+e-Ribalta, A., G´ 
+omez, S. & Arenas, 
+A. Navigability of interconnected networks under random 
+failures. Proceedings of the National Academy of Sciences 
+111, 8351–8356 (2014). 
+[32] Cuquet, M. & Calsamiglia, J. Entanglement percolation 
+in quantum complex networks. Physical Review Letters 
+103, 240503 (2009). 
+[33] Perseguers, S., Lewenstein, M., Ac´ 
+ın, A. & Cirac, J. 
+Quantum random networks. Nature Physics 6, 539–543 
+(2010). 
+[34] Cirac, J. I., Zoller, P., Kimble, H. J. & Mabuchi, H. 
+Quantum state transfer and entanglement distribution 
+among distant nodes in a quantum network. Physical 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+11 
+Review Letters 78, 3221 (1997). 
+[35] Chaneliere, T. et al. Storage and retrieval of single 
+photons transmitted between remote quantum memories. 
+Nature 438, 833–836 (2005). 
+[36] Wilk, T., Webster, S. C., Kuhn, A. & Rempe, G. Single- 
+atom single-photon quantum interface. Science 317, 
+488–490 (2007). 
+[37] Politi, A., Cryan, M. J., Rarity, J. G., Yu, S. & O’Brien, 
+J. L. Silica-on-silicon waveguide quantum circuits. Sci- 
+ence 320, 646–649 (2008). 
+[38] Ritter, S. et al. An elementary quantum network of 
+single atoms in optical cavities. Nature 484, 195–200 
+(2012). 
+[39] Aspuru-Guzik, A. & Walther, P. Photonic quantum 
+simulators. Nature Physics 8, 285–291 (2012). 
+[40] De Domenico, M., Nicosia, V., Arenas, A. & Latora, V. 
+Structural reducibility of multilayer networks. Nature 
+Communications 6, 6864 (2015). 
+[41] Schieber, T. A. et al. Quantiﬁcation of network structural 
+dissimilarities. Nature Communications 8, 13928 (2017). 
+[42] Ambjørn, J., Jurkiewicz, J. & Loll, R. Emergence of a 
+4d world from causal quantum gravity. Physical Review 
+Letters 93, 131301 (2004). 
+[43] Levin, M. A. & Wen, X.-G. String-net condensation: 
+A physical mechanism for topological phases. Physical 
+Review B 71, 045110 (2005). 
+[44] Konopka, T., Markopoulou, F. & Severini, S. Quantum 
+graphity: a model of emergent locality. Physical Review 
+D 77, 104029 (2008). 
+[45] Rovelli, C. & Speziale, S. Geometry of loop quantum 
+gravity on a graph. Physical Review D 82, 044018 (2010). 
+[46] Vinokur, V. M. et al. Superinsulator and quantum 
+synchronization. Nature 452, 613–615 (2008). 
+[47] Emerson, J., Weinstein, Y. S., Saraceno, M., Lloyd, S. 
+& Cory, D. G. Pseudo-random unitary operators for 
+quantum information processing. Science 302, 2098– 
+2100 (2003). 
+[48] Brown, W. G. & Viola, L. Convergence rates for arbi- 
+trary statistical moments of random quantum circuits. 
+Physical Review Letters 104, 250501 (2010). 
+[49] Bianconi, G. & Barab´ 
+asi, A.-L. Bose-einstein condensa- 
+tion in complex networks. Physical Review Letters 86, 
+5632 (2001). 
+[50] Reichardt, J. & Bornholdt, S. Detecting fuzzy commu- 
+nity structures in complex networks with a potts model. 
+Physical Review Letters 93, 218701 (2004). 
+[51] Garlaschelli, D. & Loﬀredo, M. I. Generalized 
+bose-fermi statistics and structural correlations in 
+weighted networks. Physical Review Letters 102, 
+038701 (2009). URL http://link.aps.org/doi/10. 
+1103/PhysRevLett.102.038701. 
+[52] Dorogovtsev, S. N., Goltsev, A. V. & Mendes, J. F. 
+Critical phenomena in complex networks. Reviews of 
+Modern Physics 80, 1275 (2008). 
+[53] Newman, M. E. J. The structure and function of complex 
+networks. SIAM Review 45, 167–256 (2003). 
+[54] Greenberger, D. M., Horne, M. A. & Zeilinger, A. Going 
+beyond bell?s theorem. In Bell?s theorem, quantum 
+theory and conceptions of the universe, 69–72 (Springer, 
+1989). 
+[55] Ambainis, A. Quantum walks and their algorithmic 
+applications. International Journal of Quantum Infor- 
+mation 1, 507–518 (2003). 
+[56] Shenvi, N., Kempe, J. & Whaley, K. B. Quantum 
+random-walk search algorithm. Physical Review A 67, 
+052307 (2003). 
+[57] Rossi, L., Torsello, A. & Hancock, E. R. Measuring 
+graph similarity through continuous-time quantum walks 
+and the quantum jensen-shannon divergence. Physical 
+Review E 91, 022815 (2015). 
+[58] Wong, T. G. & Meyer, D. A. Irreconcilable Diﬀerence 
+Between Quantum Walks and Adiabatic Quantum Com- 
+puting. ArXiv e-prints (2016). 1603.05423. 
+[59] Chakraborty, S., Novo, L., Di Giorgio, S. & Omar, Y. 
+Optimal quantum spatial search on random temporal 
+networks. ArXiv e-prints (2017). 1701.04392. 
+[60] Childs, A., Farhi, E. & Gutmann, S. An example of the 
+diﬀerence between quantum and classical random walks. 
+Quantum Information Processing 1, 35–43 (2002). 
+[61] Whitﬁeld, J. D., Rodr´ 
+ıguez-Rosario, C. A. & 
+Aspuru-Guzik, A. Quantum stochastic walks: 
+A generalization of classical random walks and 
+quantum walks. Physical Review A 81, 022323 
+(2010). URL http://arxiv.org/abs/0905.2942http: 
+//link.aps.org/doi/10.1103/PhysRevA.81.022323. 
+0905.2942. 
+[62] Zimboras, Z. et al. Quantum transport enhancement 
+by time-reversal symmetry breaking. Sci. Rep. 3, 2361 
+(2013). 
+[63] Chakraborty, S., Novo, L., Ambainis, A. & Omar, Y. 
+Spatial Search by Quantum Walk is Optimal for Almost 
+all Graphs. Physical Review Letters 116, 100501 (2016). 
+1508.01327. 
+[64] Masuda, N., Porter, M. A. & Lambiotte, R. Random 
+walks and diﬀusion on networks. ArXiv e-prints (2016). 
+1612.03281. 
+[65] Noh, J. D. & Rieger, H. Random walks on complex 
+networks. Physical Review Letters 92, 118701 (2004). 
+[66] Burda, Z., Duda, J., Luck, J. & Waclaw, B. Localization 
+of the maximal entropy random walk. Physical Review 
+Letters 102, 160602 (2009). 
+[67] M¨ 
+ulken, O., Dolgushev, M. & Galiceanu, M. Complex 
+quantum networks: From universal breakdown to opti- 
+mal transport. Physical Review E 93, 022304 (2016). 
+1511.00910. 
+[68] Cameron, S. et al. Universal state transfer on graphs. 
+Linear Algebra and its Applications 455, 115–142 (2014). 
+[69] T¨ 
+odtli, B. et al. Continuous-Time Quantum Walks 
+on Directed Bipartite Graphs. ArXiv e-prints (2016). 
+1606.00992. 
+[70] Baez, J. C. & Biamonte, J. Quantum Techniques for 
+Stochastic Mechanics. ArXiv e-prints (2012). 1209.3632. 
+[71] Garnerone, S., Zanardi, P. & Lidar, D. A. Adiabatic 
+quantum algorithm for search engine ranking. Physical 
+Review Lett. 108, 230506 (2012). 
+[72] Breuer, H. & Petruccione, F. The Theory of Open 
+Quantum Systems (OUP Oxford, 2007). URL https: 
+//books.google.com.mt/books?id=DkcJPwAACAAJ. 
+[73] Sinkovicz, P., Kurucz, Z., Kiss, T. & Asb´ 
+oth, J. K. Quan- 
+tized recurrence time in unital iterated open quantum dy- 
+namics. Physical Review A 91, 042108 (2015). URL http: 
+//link.aps.org/doi/10.1103/PhysRevA.91.042108. 
+[74] Manzano, D. & Hurtado, P. I. Symmetry and the thermo- 
+dynamics of currents in open quantum systems. Physical 
+Review B 90, 125138 (2014). 1310.7370. 
+[75] Szegedy, M. Quantum speed-up of markov chain based 
+algorithms. In Foundations of Computer Science, 2004. 
+Proceedings. 45th Annual IEEE Symposium on, 32–41 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+12 
+(IEEE, 2004). 
+[76] Faccin, M., Migdal, P., Johnson, T. H., Bergholm, V. 
+& Biamonte, J. D. Community Detection in Quantum 
+Complex Networks. Physical Review X 4, 041012 (2014). 
+1310.6638. 
+[77] Pincus, S. M. Approximate entropy as a measure of 
+system complexity. Proceedings of the National Academy 
+of Sciences 88, 2297–2301 (1991). 
+[78] Costa, M., Goldberger, A. L. & Peng, C.-K. Multi- 
+scale entropy analysis of complex physiologic time series. 
+Physical Review Letters 89, 068102 (2002). 
+[79] Braunstein, S. L., Ghosh, S. & Severini, S. The laplacian 
+of a graph as a density matrix: a basic combinatorial 
+approach to separability of mixed states. Annals of 
+Combinatorics 10, 291–317 (2006). 
+[80] Anand, K., Bianconi, G. & Severini, S. Shannon and 
+von neumann entropy of random networks with hetero- 
+geneous expected degree. Physical Review E 83, 036109 
+(2011). 
+[81] De Domenico, M. et al. Mathematical formulation of mul- 
+tilayer networks. Physical Review X 3, 041022 (2013). 
+[82] Boccaletti, S. et al. The structure and dynamics of 
+multilayer networks. Physics Reports 544, 1–122 (2014). 
+[83] Fanuel, M., Alaiz, C. & Suykens, J. Magnetic eigenmaps 
+for community detection in directed networks. Physical 
+Review E 95, 022302 (2016). 
+[84] Fanuel, M., Alaiz, C., Fern´ 
+andez, ´ 
+A. & Suykens, J. Mag- 
+netic eigenmaps for the visualization of directed networks. 
+arXiv:1606.08266 (2016). 
+[85] Ding, T. & Schloss, P. D. Dynamics and associations 
+of microbial community types across the human body. 
+Nature 509, 357 (2014). 
+[86] Bentley, B. et al. The multilayer connectome of 
+caenorhabditis elegans. PLOS Computational Biology 
+12, e1005283 (2016). 
+[87] De Domenico, M., Sasai, S. & Arenas, A. Mapping multi- 
+plex hubs in human functional brain networks. Frontiers 
+in Neuroscience 10, 326 (2016). 
+[88] Albert, R. & Barab´ 
+asi, A.-L. Statistical mechanics of 
+complex networks. Rev. Mod. Phys. 74, 47–97 (2002). 
+[89] Caldarelli, G., Capocci, A., De Los Rios, P. & 
+Mu˜ 
+noz, M. A. Scale-free networks from varying 
+vertex intrinsic ﬁtness. Physical Review Lett. 89, 
+258702 (2002). URL http://link.aps.org/doi/10. 
+1103/PhysRevLett.89.258702. 
+[90] Newman, M. E. Communities, modules and large-scale 
+structure in networks. Nature Physics 8, 25–31 (2012). 
+[91] Fortunato, S. Community detection in graphs. Physics 
+Reports 486, 75–174 (2010). 
+[92] Horn, D. Clustering via hilbert space. Physica A: 
+Statistical Mechanics and its Applications 302, 70 
+– 79 (2001). URL http://www.sciencedirect.com/ 
+science/article/pii/S0378437101004423. Proc. Int. 
+Workshop on Frontiers in the Physics of Complex Sys- 
+tems. 
+[93] Weinstein, M. & Horn, D. Dynamic quantum clustering: 
+A method for visual exploration of structures in data. 
+Physical Review E 80, 066117 (2009). URL http:// 
+link.aps.org/doi/10.1103/PhysRevE.80.066117. 
+[94] Wittek, P. High-performance dynamic quantum 
+clustering on graphics processors. Journal of Com- 
+putational Physics 233, 262 – 271 (2013). URL 
+http://www.sciencedirect.com/science/article/ 
+pii/S0021999112005165. 
+[95] Tsomokos, D. I. Quantum walks on complex networks 
+with connection instabilities and community structure. 
+Physical Review A 83, 052315 (2011). URL http:// 
+link.aps.org/doi/10.1103/PhysRevA.83.052315. 
+[96] Bennett, C. H. & DiVincenzo, D. P. Quantum informa- 
+tion and computation. Nature 404, 247–255 (2000). 
+[97] Markov, I. L. Limits on fundamental limits to computa- 
+tion. Nature 512, 147–154 (2014). 
+[98] Scheﬀer, M. et al. Anticipating critical transitions. Sci- 
+ence 338, 344–348 (2012). 
+[99] Gao, J., Barzel, B. & Barab´ 
+asi, A.-L. Universal resilience 
+patterns in complex networks. Nature 530, 307–312 
+(2016). 
+[100] Motter, A. E. Cascade control and defense in complex 
+networks. Physical Review Letters 93, 098701 (2004). 
+
+/*** End Page =11= ***/

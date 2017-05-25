@@ -1,0 +1,834 @@
+/*** Page =0= ***/
+ORIGINAL RESEARCH 
+published: 06 February 2017 
+doi: 10.3389/fnmol.2017.00019 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+1 
+February 2017 | Volume 10 | Article 19 
+Edited by: 
+Isabel Varela-Nieto, 
+Spanish National Research Council, 
+Spain 
+Reviewed by: 
+James Ames, 
+University of California, Davis, USA 
+Marta Magarinos, 
+Autonomous University of Madrid, 
+Spain 
+*Correspondence: 
+Erik De Schutter 
+erik@oist.jp 
+†These authors have contributed 
+equally to this work. 
+Received: 31 October 2016 
+Accepted: 16 January 2017 
+Published: 06 February 2017 
+Citation: 
+Hepburn I, Jain A, Gangal H, 
+Yamamoto Y, Tanaka-Yamamoto K 
+and De Schutter E (2017) A Model of 
+Induction of Cerebellar Long-Term 
+Depression Including RKIP Inactivation 
+of Raf and MEK. 
+Front. Mol. Neurosci. 10:19. 
+doi: 10.3389/fnmol.2017.00019 
+A Model of Induction of Cerebellar 
+Long-Term Depression Including 
+RKIP Inactivation of Raf and MEK 
+Iain Hepburn 1, 2 †, Anant Jain 1, 3 †, Himanshu Gangal 1 , Yukio Yamamoto 4 , 
+Keiko Tanaka-Yamamoto 4 and Erik De Schutter 1, 2* 
+1 Computational Neuroscience Unit, Okinawa Institute of Science and Technology, Okinawa, Japan, 2 Theoretical 
+Neurobiology, University of Antwerp, Antwerp, Belgium, 3 Department of Neurobiology, Northwestern University, Evanston, IL, 
+USA, 4 Center for Functional Connectomics, Korea Institute of Science and Technology, Seoul, South Korea 
+We report an updated stochastic model of cerebellar Long Term Depression (LTD) 
+with improved realism. Firstly, we verify experimentally that dissociation of Raf kinase 
+inhibitor protein (RKIP) from Mitogen-activated protein kinase kinase (MEK) is required 
+for cerebellar LTD and add this interaction to an earlier published model, along with 
+the known requirement of dissociation of RKIP from Raf kinase. We update Ca2 
+dynamics as a constant-rate inﬂux, which captures experimental input proﬁles accurately. 
+We improve α-amino-3-hydroxy-5-methyl-4 isoxazolepropionic acid (AMPA) receptor 
+interactions by adding phosphorylation and dephosphorylation of AMPA receptors when 
+bound to glutamate receptor interacting protein (GRIP). The updated model is tuned to 
+reproduce experimental Ca2 peak vs. LTD amplitude curves at four different Ca2 pulse 
+durations as closely as possible. We ﬁnd that the updated model is generally more robust 
+with these changes, yet we still observe some sensitivity of LTD induction to copy number 
+of the key signaling molecule Protein kinase C (PKC). We predict natural variability in this 
+number by stochastic diffusion may inﬂuence the probabilistic LTD response to Ca2 
+input in Purkinje cell spines and propose this as an extra source of stochasticity that may 
+be important also in other signaling systems. 
+Keywords: long-term depression, Purkinje cell, dendritic spine, molecular modeling, stochastic simulation, 
+cerebellum 
+INTRODUCTION 
+Cerebellar long-term depression (LTD) is a decrease in the eﬃcacy of synaptic transmission 
+from parallel ﬁbers (PFs) to Purkinje cells (PCs) (Ito, 2001). A transient increase in postsynaptic 
+Ca2 concentration is crucial for the induction of LTD, leading to activation of many molecular 
+species that are implicated in synaptic plasticity (Tanaka and Augustine, 2008; Figure 1). The 
+molecular processes result in phosphorylation of AMPA-type glutamate receptors (AMPARs) by 
+Ca2 -dependent protein kinase C (PKC) and their subsequent removal from the surface of the PF- 
+PC synapse (Ito, 2001; Evans, 2007; Gallimore et al., 2016). Based on experimental evidence, the 
+mechanism that is responsible for maintaining PKC activation after the Ca2 stimulus has ﬁnished 
+is a Ca2 -activated positive feedback loop involving a speciﬁc mitogen-activated protein kinase, 
+the extracellular signal-regulated kinase (ERK; Bhalla and Iyengar, 1999; Tanaka and Augustine, 
+2008; Antunes and De Schutter, 2012). In this pathway, PKC activation leads to activation of 
+Raf by a process that involves phosphorylation of RKIP (Yamamoto et al., 2012). Raf activates 
+Mitogen-activated protein kinase kinase (MEK), which activates ERK. Activated ERK then activates 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+FIGURE 1 | The Cerebellar Long Term Depression molecular network in LTD_STEPS 2.1. The phosphorylation and dephosphorylation pathways in our model. 
+This network is activated by increase in intracellular Ca2 and the model has been tuned to Ca2 uncaging experiments. Numbers in brackets give the initial number 
+of molecules in the spine for each simulation and correspond to the estimated number of molecules located in one spine of a Purkinje cell dendrite of volume 0.08 
+µm3 where a concentration of 1 µM corresponds to 48 molecules. PKC phosphorylates AMPAR and is responsible for its reduction from the surface leading 
+eventually to LTD. Our model includes a MAPkinase feedback loop, which involves Raf, MEK, ERK, cPLA2 and AA molecules. Transiently activated by Ca2 initially, 
+PKC activity is maintained by this feedback loop. PP2A dephosphorylates AMPAR, thus counteracting PKC activity on AMPAR, and also suppresses feedback loop 
+activity. Raf regulation has been improved by the addition of the RKIP mechanism in the current version of the model, and MEK-RKIP interaction has also been 
+included. This scheme was illustrated using the Motifolio PPT Drawing Toolkits (Motifolio Inc, MD, USA). 
+cytosolic phospholipase A2 (cPLA2), which produces 
+arachidonic acid (AA), which activates PKC (O’Flaherty 
+et al., 2001) completing the loop. Within the network, Protein 
+phosphatase 2 (PP2A) plays a duel role; it dephosphorylates 
+MEK (Sontag et al., 1993) suppressing feedback loop activity, and 
+dephosphorylates AMPARs (Launey et al., 2004) counteracting 
+AMPAR internalization. Due to the small size of PC dendritic 
+spines, stochastic simulation of the network is necessary and an 
+initial stochastic model predicted that single synapses exist in one 
+of two discrete stable states—LTD or non-LTD—with no clear 
+threshold of response to the input Ca2 signal (Antunes and 
+De Schutter, 2012); features which are absent with deterministic 
+modeling. 
+In this study we present an update to the 2012 stochastic 
+LTD model (Antunes and De Schutter, 2012) with several 
+new components. For convenience, we term the 2012 model 
+“LTD_STEPS 1.0” and the updated models presented in 
+this paper “LTD_STEPS 2.0” and “LTD_STEPS 2.1.” Recent 
+experiment evidence shows the role of Raf kinase inhibitor 
+protein (RKIP) in regulating Raf (Corbit et al., 2003; Yamamoto 
+et al., 2012). RKIP binds to Raf-1 making an RKIP-Raf complex 
+(Figure 1). Activation of PKC by a transient increase in Ca2 
+leads to phosphorylation of RKIP bound to Raf, which results 
+in release of Raf from the complex. Based on this evidence 
+we improve LTD_STEPS 1.0 by adding more realistic reactions 
+contributing to Raf activation. It’s important to note at this 
+point that in our model we do not distinguish between the 
+three distinct Raf isoforms: Raf-1 (or c-Raf), B-Raf and A-Raf 
+(Matallanas et al., 2011). There is evidence for expression of 
+at least two diﬀerent isoforms in Purkinje cells, Raf-1, and B- 
+Raf, and with diﬀerence subcellular locations (Morice et al., 
+1999). In our previous work we saw clear expression of Raf-1 
+in Purkinje cell dendrites (Yamamoto et al., 2012) and, based 
+on these observations, we have largely focused on Raf-1 speciﬁc 
+interactions when developing the LTD model. However, earlier 
+reports have suggested B-Raf is also expressed in Purkinje cell 
+dendrites (Morice et al., 1999), so we cannot rule out some 
+role of B-Raf within the pathway. However, Raf-1 and B-Raf 
+perform similar functions, both binding and phosphorylating 
+MEK, although with diﬀerent kinetics (Matallanas et al., 2011). 
+RKIP is known to associate with both Raf-1 and B-Raf isoforms 
+(Trakul et al., 2005) and has been shown to inhibit B-Raf 
+activation in cancer cells (Park et al., 2005) as well as the 
+strong interaction with Raf-1 previously mentioned. So due 
+to the similar role for Raf-1 and B-Raf within the pathway, 
+including activation of MEK and interaction with RKIP, and lack 
+of conclusive experimental evidence for more detailed modeling, 
+our approach is to include a generic Raf molecule in the feedback 
+loop with overall activity tuned to match experimental data, and 
+not to incorporate isoform-speciﬁc kinetics. 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+2 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+In addition to its interaction with Raf, RKIP has been reported 
+to interfere with Mitogen-activated protein kinase kinase (MEK) 
+phosphorylation by forming ternary complexes with MEK, 
+resulting in the suppression of feedback loop activation (Yeung 
+et al., 2000). To understand this signiﬁcance in the context 
+of cerebellar LTD we also investigate experimentally whether 
+dissociation of RKIP from MEK is required for PKC activation of 
+the ERK pathway, and make further improvements to our model 
+based on these ﬁndings. We also improve the Ca2 dynamics and 
+adjust several parameters so that both the Ca2 input signal and 
+response of the model mimic experimental observations closely. 
+We compare LTD_STEPS 2.1 to LTD_STEPS 2.0 and 
+LTD_STEPS 1.0 in terms of noise propagation and sensitivity, 
+concluding that LTD_STEPS 2.1 appears to be generally more 
+robust, yet with no adverse aﬀect on LTD induction. As an initial 
+practical application of LTD_STEPS 2.1, we test the inﬂuence 
+of cytoplasmic PKC copy number—which may vary naturally 
+within spines by eﬀects such as stochastic diﬀusion and varying 
+spine morphology—on LTD induction. Diﬀering LTD induction 
+probabilities are observed within the estimated natural range of 
+cytoplasmic PKC, and we propose that dynamic variability in 
+signaling molecules may act as an extra signiﬁcant source of 
+stochasticity in synaptic signaling pathways. 
+MATERIALS AND METHODS 
+Experimental Procedures 
+All procedures involving mice were carried out in accordance 
+with the recommendations of the Institutional Animal Care and 
+Use Committee of Korea Institute of Science and Technology. 
+The protocol was approved by the Institutional Animal Care and 
+Use Committee of Korea Institute of Science and Technology. 
+Cloning Experiments 
+Recombinant glutathione-S-transferase (GST) and GST-fused 
+mutant of Raf kinase inhibitory protein (RKIP-TV-delRBD) were 
+puriﬁed from E. coli using glutathione sepharose (Amersham 
+Biosciences). RKIP-TV-delRBD possesses a single mutation of 
+threonine residue 153 to valine (Corbit et al., 2003) and a deletion 
+mutation of amino acids 77–108, which include a main site for its 
+association with Raf-1 (Yeung et al., 2000). Puriﬁed proteins were 
+dialyzed in HEPES buﬀered solution (20 mM HEPES, pH 7.2), 
+concentrated by centrifugal ﬁlter devices (Millipore), and stored 
+at −80◦C. 
+Electrophysiology Experiments 
+Chemicals were obtained from Sigma or Wako Pure Chemical 
+Industries, unless otherwise speciﬁed. Whole-cell patch clamp 
+recordings were made from Purkinje cells in sagittal slices 
+(200 µm) of cerebella from 17- to 21-day-old mice of either sex. 
+Slices were bathed in extracellular solution (ACSF) containing 
+(in mM): 125 NaCl, 2.5 KCl, 1.3 MgCl2, 2 CaCl2, 1.25 
+NaH2PO4, 26 NaHCO3, 20 glucose, and 0.01 bicuculline 
+methochloride (Tocris). Patch pipettes (resistance 5–6 M ) 
+were ﬁlled with (in mM): 130 potassium gluconate, 2 NaCl, 
+4 MgCl2 , 4 Na2-ATP, 0.4 Na-GTP, 20 HEPES (pH 7.2), 10 
+phosphocreatine and 0.25 EGTA. Recombinant proteins (1– 
+2 mg/ml) were added into the internal solution along with 
+dextran-conjugated ﬂuorescein (Molecular Probes), to monitor 
+the dialysis of intracellular solutions into Purkinje cells by a 
+ﬂuorescent microscope (Olympus BX61WI or Nikon Eclipse 
+FN1). Excitatory postsynaptic currents (EPSCs) were evoked 
+in Purkinje cells (holding potential of −70 mV) by activating 
+parallel ﬁbers (PFs) with a glass-stimulating electrode on the 
+surface of the molecular layer (PF-EPSCs). PF-EPSCs were 
+acquired and analyzed using pClamp software (Molecular 
+Devices). To evoke LTD by electrical stimulation (PF& V), PF 
+stimuli were paired with Purkinje cell depolarization ( 10 mV, 
+200 ms) 300 times at 1 Hz. Data were accepted if the series 
+resistance changed <20%, input resistance was >80 M , and 
+holding current changed <10%. 
+Statistical diﬀerences were determined by the Student’s t-test 
+and analysis was performed with OriginPro 8.1 software. 
+Immunoblotting Experiments 
+The inhibitory eﬀect of RKIP-TV-delRBD on ERK 
+phosphorylation was tested by immunoblotting, as described 
+previously (Yamamoto et al., 2012). In brief, human embryonic 
+kidney 293T (HEK293T) cells transfected with pEGFP-RKIP- 
+WT or pEGFP-RKIP-TV-delRBD were treated with or without 
+TPA (100 nM) for 5 min and lysed in lysis buﬀer containing 
+the following: 150 mM NaCl, 50 mM Tris, pH 8, 1 mM EDTA, 
+0.2% NP-40 alternative (Calbiochem), 10% glycerol, 1X 
+proteinase inhibitor cocktail, and 1X phosphatase inhibitor 
+cocktail. The supernatants of cell lysates were subjected to 
+SDS-PAGE analysis to detect phosphorylated ERK, ERK, and 
+GFP by immunoblotting. Primary antibodies used were rabbit 
+anti-ERK (Cell Signaling Technology), rabbit anti-phospho- 
+ERK (Cell Signaling Technology) or mouse anti-GFP (Roche 
+Applied Science). Secondary antibodies used were horseradish 
+peroxidase-conjugated anti-mouse or anti-rabbit IgG (GE 
+Healthcare) antibodies. 
+Addition of RKIP Reactions to LTD_STEPS 
+1.0 
+Due to lack of experimental evidence on speciﬁc mechanisms 
+for Raf activation LTD_STEPS 1.0 contained an artiﬁcial Raf 
+activation reaction (Antunes and De Schutter, 2012). Raf-Act 
+molecule became activated by PKC, and then activated Raf. 
+Recently, a role of RKIP in regulating Raf activation during 
+cerebellar LTD has been proposed experimentally (Corbit et al., 
+2003; Yamamoto et al., 2012). According to these experimental 
+results in Purkinje cells, RKIP inhibits the Raf activation of MEK 
+by making complexes with Raf. Experimental characterization 
+using high-resolution heteronuclear nuclear magnetic resonance 
+spectroscopy (Odabaei et al., 2004) demonstrated that Raf-RKIP 
+interaction is regulated mainly by the phosphorylation of RKIP 
+at Ser-153. RKIP binds to Raf in the native form and when 
+phosphorylated releases Raf. The Raf released from the complex 
+may or may not be active. Experimental evidence suggests 
+that PKC phosphorylates RKIP and dissociates the RKIP-Raf 
+complex, usually releasing active Raf (Corbit et al., 2003). 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+3 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+To obtain the Raf-RKIP binding kinetic parameters, we 
+analyzed a published mathematical model that explores the 
+kinetic parameters for Raf-RKIP complex formation (Kwang- 
+Hyun et al., 2003). This model includes a reaction in which 
+artiﬁcial molecule RKIP phosphatase (RP) dephosphorylates 
+phosphorylated RKIP. This model is also based on the old 
+theory of Raf-RKIP complex dissociated by ERK, which is now 
+generally refuted since the evidence of phosphorylation was 
+based on the wrong pocket-binding site of RKIP previously 
+established. Initially we replicated this model in STEPS and 
+validated the implementation. We then modiﬁed this isolated 
+model by removing the ERK phosphorylation reaction on 
+RKIP. We added a cPLA2-AA-PKC loop to this isolated model, 
+where ERK phosphorylates cPLA2, which activates PKC via AA 
+(Supplementary Figure 1). In our new isolated model of the loop, 
+PKC dissociates the Raf-RKIP reaction, with phosphorylation 
+kinetics as that of ERK in the model. The artiﬁcial RP reaction was 
+retained in this modiﬁed isolated model due to no experimental 
+results for alternative RKIP dephosphorylation (although some 
+studies suggests a fast de-phosphorylation of RKIP; Lorenz et al., 
+2003). 
+We added the isolated model to LTD_STEPS 1.0 and termed 
+the new model LTD_STEPS 2.0. RKIP also forms complexes 
+with MEK (Yeung et al., 2000) and thus we added the RKIP- 
+MEK complex to LTD_STEPS 2.0. We used the same parameters 
+for RKIP-MEK complex as for RKIP-Raf reactions. In our 
+model and with the experimental evidence shown in Section 
+Dissociation of RKIP from Raf and MEK is Required for 
+Cerebellar LTD, the dissociation of both the complexes is by 
+activated PKC. In LTD_STEPS 2.0, activated PKC transfers to 
+the membrane. The dissociation of Raf-RKIP complex by active 
+PKC is a surface reaction and then the phosphorylated Raf 
+and phosphorylated RKIP are transported into the cytoplasm 
+again for further activities. We increased the Raf concentration 
+to 0.15 µM (up from 0.10 µM in LTD_STEPS 1.0) based on 
+recent experimental measurements of its average concentration 
+(Fujioka et al., 2006). In cell populations the RKIP concentration 
+is known to be around 5–10 times higher than Raf (Corbit 
+et al., 2003). In LTD_STEPS 2.0, we used a RKIP concentration 
+of 1.0 µM. 
+We then added the interactions of PKC and PP2A 
+with glutamate receptor interacting protein (GRIP)-bound 
+AMPAR (GRIP_AMPAR) to the model, as described in Section 
+Addition of PKC-GRIP_AMPAR and PP2A-GRIP_AMPAR 
+Interactions Makes the Model More Robust and Reduces 
+Fluctuations of ERK and cPLA2, and termed this model 
+LTD_STEPS 2.1, so that the only diﬀerence in terms of 
+molecular interactions between LTD_STEPS 2.0 and LTD_STEPS 
+2.1 is the inclusion of the GRIP_AMPAR interactions in 
+LTD_STEPS 2.1. LTD_STEPS 2.1 was then tuned by making 
+small modiﬁcations to capture dose-response curves accurately 
+compared to experimental data, as described in Section Updated 
+Ca2 Dynamics Captures Experimental Input Ca2 Proﬁle 
+and LTD Dose-Response Accurately. Apart from these changes 
+mentioned, other binding parameters and concentrations were 
+maintained from LTD_STEPS 1.0 (Antunes and De Schutter, 
+2012). 
+Simulations 
+All simulations were run in software STEPS (Hepburn et al., 
+2012). The LTD models were run as stochastic well-mixed 
+models. 
+Where computing the mean response of the bistable LTD 
+model (such as for data shown in Figures 4, 5) 200 iterations 
+of the model were run with diﬀerent random number seeds, and 
+mean calculated over those 200 iterations. The LTD response was 
+measured as the proportion of synaptic AMPARs 50 min after 
+Ca2 stimulus relative to before stimulus. 
+The diﬀusion simulation of Figure 7 was run on a tetrahedral 
+mesh describing the dendritic morphology. This mesh consisted 
+of a section of dendrite 20 µm length and diameter 1 µm 
+with 20 spines of varying morphological properties (varying 
+head volume, varying neck widths, and varying neck lengths) 
+constrained by experimental observations (Harris and Stevens, 
+1988). The simulations were run for 1000 s and population of 
+PKC molecules recorded in all spine heads every 0.01 s. 
+RESULTS 
+Dissociation of RKIP from Raf and MEK Is 
+Required for Cerebellar LTD 
+Recent experiment evidence shows the role of Raf kinase 
+inhibitor protein (RKIP) in regulating Raf (Corbit et al., 2003; 
+Yamamoto et al., 2012). While RKIP interacts with and inhibits 
+Raf, PKC-dependent phosphorylation of RKIP at serine or 
+threonine 153 causes dissociation of RKIP from Raf, allowing 
+Raf to activate downstream kinases MEK and ERK, so that the 
+main pathway of PKC activating ERK is thought to be mediated 
+by the dissociation of RKIP from Raf (Corbit et al., 2003; Lorenz 
+et al., 2003; Figure 1). However, because RKIP was also shown to 
+directly interact with MEK (Yeung et al., 2000), the dissociation 
+of RKIP from MEK seems to be also required for the pathway 
+of PKC activating ERK. Our previous study demonstrated that 
+while a non-phosphorylatable RKIP mutant (RKIP-TV) inhibited 
+cerebellar LTD, deletion of the binding site for both Raf and 
+MEK in RKIP-TV reversed this eﬀect (Yamamoto et al., 2012). 
+Biochemical analysis revealed the dissociation of RKIP from 
+both Raf and MEK after LTD stimulation (Yamamoto et al., 
+2012). These results suggest that the dissociation of RKIP from 
+not only Raf, but also MEK, following RKIP phosphorylation 
+is required for LTD. In the current study, we conﬁrmed the 
+requirement of dissociation of RKIP from MEK for LTD by 
+using another deletion mutant of non-phosphorylatable RKIP 
+(RKIP-TV-delRBD), which lacks a main site for its association 
+with Raf, yet includes a site binding with MEK (Yeung et al., 
+2000). The immunoblot analysis in HEK293T cells demonstrated 
+that RKIP-TV-delRBD inhibited ERK phosphorylation triggered 
+by TPA, a PKC activator (Figure 2A), conﬁrming that RKIP- 
+TV-delRBD interrupts ERK activation presumably through 
+constitutive MEK binding. When control protein, GST, was 
+introduced into Purkinje cells, the pairing electrical stimulation 
+induced LTD (Figure 2B). On average, PF-EPSCs were depressed 
+by 32.9 ± 5.2% (n 4) at 20–40 min after the end of PF& V. 
+In contrast, introducing RKIP-TV-delRBD into Purkinje cells 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+4 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+FIGURE 2 | The requirement of dissociation of RKIP from MEK for LTD. (A) Immunoblot analysis of ERK phosphorylation in HEK293T cells expressing GFP 
+fused RKIP-WT or RKIP-TV-delRBD. TPA (100 nM) was extracellularly applied for 5 min to activate PKC. (B) Time course of LTD induced by PF& V in the presence of 
+GST (n 4, open circles) or RKIP-TV-delRBD (n 5, ﬁlled circles). PF-EPSC amplitudes are normalized to their mean prestimulation level. Error bars represent SEM. 
+blocked LTD and the depression was signiﬁcantly smaller (−7.2 
+± 8.7%; n 5; p < 0.01) than that in the presence of GST 
+(Figure 2B). Because RKIP-TV-delRBD can be considered to 
+interact with only MEK, this result supports that dissociation 
+of RKIP from MEK following RKIP phosphorylation is also 
+required for LTD. 
+Updated Ca2 Dynamics Captures 
+Experimental Input Ca2 Proﬁle and LTD 
+Dose-Response Accurately 
+LTD_STEPS 1.0 simulated changes in Ca2 concentration due to 
+Ca2 uncaging with Gaussian-shaped Ca2 stimuli of durations 
+from 1 to 60 s (Antunes and De Schutter, 2012). We obtained 
+Ca2 concentration measurements of the original experimental 
+Ca2 pulses with durations of 0.5, 1, 15, and 30 s (Tanaka et al., 
+2007) and observed that they are skewed (Figure 3). Therefore, 
+we ﬁtted a constant-rate response to mimic the experimental 
+Ca2 uncaging dynamics more closely in LTD_STEPS 2.1 
+(Figure 3). The constant-rate response was modeled as a simple 
+production reaction for the duration of the pulse: 
+k 
+→[Ca2 ] 
+where diﬀerent rates, k, give varying peaks of the Ca pulse. 
+The experimentally measured degree of LTD induced by Ca2 
+pulses of diﬀerent amplitudes follows a sigmoidal relationship 
+(Tanaka et al., 2007): 
+LTD LTDmax [Ca2 ]nHill 
+KnHill 
+1 2 [Ca2 ]nHill 
+(1) 
+We reﬁtted the output of the LTD_STEPS 2.1 model to the 
+measurements of the original experimental data (Tanaka et al., 
+2007). We reduced the number of AMPARs at rest in the 
+synapse to 80 (Masugi-Tokita et al., 2007). LTD magnitude was 
+measured 30 min after input for diﬀerent concentrations and 
+pulse widths of Ca2 . Sigmoidal curves were obtained by the 
+FIGURE 3 | Comparison between the measured Ca2 response to the 
+constant rate Ca2 pulse in LTD_STEPS 2.1 (green) and Gaussian Ca2 
+pulse in LTD_STEPS 1.0 (blue) to experimental data (black) for a 30 s 
+Ca2 uncaging stimulus. The simulated pulses have the same peak value 
+as the uncaging stimulus. 
+Scipy optimize curve_ﬁt function for both the simulation data 
+and experimental data. The parameters of the curves ([Hill 
+coeﬃcient (nHill), the [Ca2 ] required to achieve the half- 
+maximum magnitude of LTD (K1 2), and maximum depression 
+(LTDmax)]) were measured from the optimized ﬁts, and the 
+model ﬁne-tuned for best agreement between experimental 
+observations and model behavior. The number of SERCA pumps 
+in the model was reduced from LTD_STEPS 1.0 and the initial 
+number of PKC and PP2A molecules adjusted to get the optimal 
+ﬁts. PKC was adjusted to 1.1 µM (55 molecules) from 1 µM 
+in LTD_STEPS 1.0 and PP2A was reduced to 0.7 µM (35 
+molecules) from 1.5 µM. With these adjustments, the updated 
+model shows realistic behavior quantitatively when compared 
+to experimental measurements, with a perfect ﬁt of nHill and a 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+5 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+FIGURE 4 | Response of LTD_STEPS 2.1 compared to experimental Ca2 uncaging data (Tanaka et al., 2007). (A) LTD response to Ca2 input of 
+LTD_STEPS 2.1 for Ca2 pulses of 0.5 s (blue), 1 s (red), 15 s (orange), and 30 s (green), which were the same pulse-widths as reported originally in uncaging 
+experiments. (B) Maximum amplitude of LTD (%) of LTD_STEPS 2.1 (circles) and experiment (black error bars) at the four different Ca2 pulse widths. (C) nHill (see 
+Equation 1) of LTD_STEPS 2.1 (circles) and experiment (black error bars) at the four different Ca2 pulse widths. (D) K1 2 (see Equation 1) of LTD_STEPS 2.1 (circles) 
+and experiment (black error bars) at the four different Ca2 pulse widths. In all cases for the ﬁts to experimental data, the black error bars show one standard 
+deviation as reported by the ﬁtting software. Error bars are not shown for the simulation data because they were very small due to the large number of ﬁtted points. 
+FIGURE 5 | Demonstration of increased robustness of LTD_STEPS 2.1: addition of AMPAR_GRIP interactions with PKC and PP2A decrease sensitivity 
+to Raf copy number. (A) Mean Synaptic AMPAR vs. time for LTD_STEPS 2.1 with varying Raf number (concentration given in brackets in units of µM) showing no 
+sensitivity to Raf copy number within the tested 3–9 molecules range (normal conditions 7 molecules, 0.15 µM). (B) Mean Synaptic AMPAR vs. time for LTD_STEPS 
+2.0. This model shows strong sensitivity to Raf copy number within the same 3–9 molecules range. In both cases the Ca2 input was 15 s duration with a peak of 
+∼4 µM to give a 100% probability of LTD under normal conditions of Raf 0.15 µM (see Figure 4). 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+6 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+good approximation of K1 2 (Figure 4). These ﬁts are better than 
+those of LTD_STEPS 1.0, but it was not possible to ﬁt both the 
+experimentally observed nHill and K1 2 values perfectly over the 
+entire range. 
+Addition of PKC-GRIP_AMPAR and 
+PP2A-GRIP_AMPAR Interactions Makes 
+the Model More Robust and Reduces 
+Fluctuations of ERK and cPLA2 
+LTD_STEPS 1.0 did not allow phosphorylation by PKC and 
+dephosphorylation by PP2A of synaptic AMPAR when bound 
+to GRIP, only the small fraction of free AMPARs in the 
+synapse could react with PKC and PP2A. The phosphorylation 
+interactions with AMPAR bound to GRIP (GRIP_AMPAR) were 
+added to the model LTD_STEPS 2.1 and the new behavior 
+of this model compared to a version (LTD_STEPS 2.0) where 
+these phosphorylation interactions are absent, but includes the 
+addition of RKIP. Our ﬁrst observation was that with the 
+GRIP_AMPAR interactions the model appears more robust. 
+This is demonstrated by ultrasensitivity of LTD induction to 
+Raf copy number in LTD_STEPS 2.0, resulting in a lack of 
+stable LTD induction when the number of Raf molecules 
+was below 5 (5 was the number of Raf molecules in the 
+LTD_STEPS 1.0 model; Figure 5). Such strong sensitivity to Raf 
+copy number was not observed in the more robust model LTD_ 
+STEPS 2.1. 
+With this change and other additions to the model, we 
+tested one of the predictions of LTD_STEPS 1.0: strong 
+ﬂuctuations of activation of molecules in the positive feedback 
+loop, in particular of ERK and the cPLA2, were suggested 
+as important indicators of activity in the feedback loop 
+FIGURE 6 | Reduced noise within the network in LTD_STEPS 2.1. (A) and (B) Activity in the molecular network over time of 1 h with short Ca2 stimulus at 
+10 min for one example each of LTD (red traces) and non-LTD (blue traces) for models LTD_STEPS 2.1 (A) and LTD_STEPS 2.0 (B). Note the stronger ﬂuctuations in 
+LTD_STEPS 2.0 LTD traces, particularly for ERK and cPLA2 . Strong ﬂuctuations of Raf and associated activated RKIP are observable for both models due to the low 
+copy number of the Raf molecule. (C) Coefﬁcient of variation for 7 different types of active molecule including some as shown in (A) for LTD_STEPS 2.1. Note, the 
+observed weak ﬂuctuations of ERK and cPLA2 result in a low CV. (D) The same CV measurements for LTD_STEPS 2.0. Note similar amplitude of CV for ERK, cPLA2 
+and AA in comparison to LTD_STEPS 1.0 (Antunes and De Schutter, 2012), which also omitted phosphorylation reactions with GRIP_AMPAR. For both models 
+shown in (C) and (D) the Ca2 input was longer in duration than for (A) and (B) at 15 s to give no expected failed runs of LTD (see Figure 4), so the CV 
+measurements do not include any non-LTD traces. 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+7 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+(Antunes and De Schutter, 2012). However, with the addition 
+of RKIP and its interactions with Raf and MEK, plus 
+the phosphorylation and dephosphorylation of GRIP-bound 
+AMPAR (model LTD_STEPS 2.1), the ﬂuctuations of these 
+molecules was severely diminished (Figures 6A,C) compared to 
+the 2012 report (see Figures 4,5 of Antunes and De Schutter, 
+2012) and to the case where the interactions with GRIP- 
+bound AMPAR are not included (model LTD_STEPS 2.0; 
+Figures 6B,D). The loss of these ﬂuctuations did not aﬀect 
+activity of the feedback loop, nor hinder induction of LTD 
+(Figure 4). 
+Stochastic Diffusion from Dendrite Causes 
+Varying Molecule Population in Spines 
+Dendritic spines cannot typically be thought of as isolated 
+chemical compartments at relatively long timescales 
+(Svoboda et al., 1996; Bloodgood and Sabatini, 2005), 
+meaning that the inactive proteins that make up the initial 
+state of the cytosolic signaling system may diﬀuse to and 
+from the dendrite with the degree of dendritic coupling 
+depending strongly on spine morphology (Bloodgood 
+and Sabatini, 2005; Grunditz et al., 2008; Khan et al., 
+2012). 
+We constructed a diﬀusion model in realistic dendritic 
+morphology to investigate how stochastic diﬀusion between 
+dendrite and spine may aﬀect the initial presence of cytosolic 
+proteins in a spine before stimulus. We injected cytoplasmic 
+PKC molecules at a concentration of 1.14 µM, the concentration 
+used in LTD_STEPS 2.1 before LTD induction, and simulated 
+diﬀusion with a rate of 5.45 µm2s−1 (Craske et al., 2005). 
+Figure 7A shows the normalized distribution of the number of 
+PKC molecules in a spine of volume 0.08 µm3 from simulation 
+compared to the binomial distribution. Figure 7B compares 
+the resulting measured coeﬃcient of variation (CV) for all 
+spines compared to the binomial distribution. As expected 
+these results show that the binomial distribution is the correct 
+description of expected molecule population per spine and so 
+other morphological features play no important role on this 
+long timescale. The relatively high CVs for these small volumes 
+predicts a signiﬁcant natural variability in molecule number per 
+spine. 
+PKC Copy Number Affects Probability of 
+LTD Induction 
+The results of Figure 7A demonstrates that PKC copy number, 
+with a mean of 55, has a signiﬁcant probability of being as 
+low as ∼40 and as high as ∼70 by natural variation. We tested 
+LTD_STEPS 2.1 under these two scenarios to investigate whether 
+this range of variability in copy number could inﬂuence LTD 
+induction. 
+Figure 8B shows the response of the model under normal 
+conditions, i.e., with initial PKC copy number of 55, where the 
+probabilistic bistable behavior already observed in LTD_STEPS 
+1.0 can clearly be seen. At 0 µM.s integrated Ca2 input, 
+all runs of the model respond by ﬂuctuating around 0% 
+LTD response, which we deﬁne as a non-LTD response 
+FIGURE 7 | Free PKC stochastic diffusion simulated in tetrahedral 
+mesh representing a section of Purkinje cell dendrite 20 µm length 
+containing 20 spines of varying morphological properties. Simulation 
+was run for 1000 s with PKC population sampled in each spine head every 
+0.01 s. (A) For one spine of volume 0.08 µm3 normalized measured 
+distribution of molecules over the 1000 s sample time (blue bars) compared to 
+binomial PDF (black line). (B) Coefﬁcient of variation (CV) vs. spine head 
+volume from simulation (circles) compared to expected CV by the binomial 
+distribution (red line). 
+corresponding to a physiological absence of spontaneous LTD. 
+As integrated Ca2 increases, some runs switch to the other 
+bistable state, that of ∼30% reduction in synaptic AMPARs, 
+which we deﬁne as an LTD response. At some point (marked 
+on the Figure with vertical dashed line) any individual run 
+of the stochastic model has an equal probability of going 
+to LTD or non-LTD, which is at ∼6 µM.s integrated Ca2 
+with normal PKC copy number (Figure 8B). As Ca2 input 
+increases further eventually all simulations give an LTD 
+response. 
+Figures 8A,C show that varying PKC copy number shifted 
+the probabilistic threshold for LTD induction: for 40 molecules 
+of PKC (Figure 8A) the position of equal LTD or non- 
+LTD induction was at integrated Ca2 ∼9 µM.s, whereas it 
+was at integrated Ca2 ∼4 µM.s for 70 molecules of PKC 
+(Figure 8C). Based on these results we predict that variation in 
+cytoplasmic PKC copy number, which occurs by the diﬀusion 
+of molecules within dendrite and spines (Figure 7A), may 
+signiﬁcantly inﬂuence the probability of LTD induction within 
+a spine. We did not observe any other signiﬁcant eﬀect for 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+8 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+FIGURE 8 | LTD response heatmaps of LTD_STEPS 2.1 with varying 
+initial PKC copy number of (A) 40 molecules, (B) 55 molecules, and (C) 70 
+molecules. Ca2 input to the model (e.g., Figure 3) is integrated for many 
+different pulse durations and amplitudes and for the corresponding individual 
+responses of the model, data is binned and normalized to produce the 
+heatmaps. The vertical dashed white lines indicate the approximate position 
+where 50% of the simulations can be classiﬁed as non-LTD responses 
+(ﬂuctuating around 0% LTD) and 50% can be classiﬁed as LTD responses 
+(ﬂuctuating around ∼30% LTD). 
+varying PKC number in this range, such as a change in LTD 
+amplitude. 
+DISCUSSION 
+We report an updated stochastic model of molecular LTD 
+in parallel ﬁber-Purkinje cell synapses. The model is more 
+realistic than LTD_STEPS 1.0 in terms of containing several 
+new additions that are known to inﬂuence LTD induction and 
+by more closely following experimental observations. We have 
+shown experimentally that RKIP dissociation from MEK is 
+necessary for LTD induction and we have added this interaction 
+to the model as well as the known interactions of RKIP with 
+Raf. The addition of PP2A and PKC interactions with AMPAR 
+bound to GRIP appears to have increased the robustness of the 
+model and reduced ﬂuctuations of ERK and cPLA2 without, 
+however, adversely aﬀecting LTD induction. Adjustments to the 
+Ca2 input and output dynamics both improve Ca2 proﬁles 
+and capture LTD response curves accurately when compared to 
+experiment. 
+When considering the initial state of the LTD system, the 
+molecular population can be expected to show natural variation 
+described by the binomial distribution. The binomial distribution 
+is one of the most commonly applied probability distributions in 
+biology and in recent years has found increasing use in cellular 
+biology such as for controlling the probabilistic distribution and 
+open probability of membrane channels (Hille, 2001) including 
+those on single spines (Sabatini and Svoboda, 2000; Ribrault 
+et al., 2011), molecular ﬂuctuations in cell division (Kar et al., 
+2009), and it also has very wide use in genetics, but it has 
+not up to now (to our knowledge) been applied speciﬁcally 
+to describe intracellular signaling molecule populations within 
+small subcellular volumes such as dendritic spines. In this 
+study we ﬁnd that this natural source of variability may 
+signiﬁcantly aﬀect the probability of LTD induction. Speciﬁcally, 
+we tested variation in PKC copy number, which was found 
+to shift the LTD-Ca2 response curves. We did not model 
+dynamic changes in PKC copy number after stimulus for 
+these simulations, which is no doubt a simpliﬁcation but with 
+some justiﬁcation since it has been proposed that spines act 
+dynamically to restrict diﬀusion through the neck after stimulus 
+in order to retain second messengers and activated proteins 
+in the spines (Bloodgood and Sabatini, 2005), although the 
+degree of compartmentalization depends on the time course 
+of inactivation (Harvey et al., 2008). Signaling systems can be 
+expected to be more robust to the variability in some signaling 
+molecules than others, however, based on our ﬁndings we expect 
+generally the response of molecular signaling systems to have 
+some sensitivity to the natural variability in copy numbers 
+and propose this as an extra source of stochasticity for such 
+systems. 
+AUTHOR CONTRIBUTIONS 
+IH and AJ: Contributed to the LTD model, ran simulations, 
+analyzed data and wrote the manuscript. HG: Contributed to the 
+LTD model, ran simulations and analyzed data. YY: Performed 
+molecular part of experiments and wrote part of the manuscript. 
+KT: Performed electrophysiology part of experiments and wrote 
+part of the manuscript. ED: Supervised the project and wrote the 
+manuscript. 
+FUNDING 
+This work was funded by the Okinawa Institute of Science 
+and Technology Graduate University and the Korea Institute 
+of Science and Technology Institutional Program (Project No. 
+2E26190). 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+9 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+SUPPLEMENTARY MATERIAL 
+The Supplementary Material for this article can be found 
+online at: http://journal.frontiersin.org/article/10.3389/fnmol. 
+2017.00019/full#supplementary-material 
+Availability 
+The updated model, LTD_STEPS 2.1, is available at ModelDB: 
+(http://senselab.med.yale.edu/ModelDB/showModel.cshtml? 
+model=222732) 
+STEPS is available at http://steps.sourceforge.net 
+REFERENCES 
+Antunes, G., and De Schutter, E. (2012). A stochastic signaling 
+network mediates the probabilistic induction of cerebellar long-term 
+depression. J. Neurosci. 32, 9288–9300. doi: 10.1523/JNEUROSCI.5976- 
+11.2012 
+Bhalla, U. S., and Iyengar, R. (1999). Emergent properties of networks of biological 
+signaling pathways. Science 283, 381–387. doi: 10.1126/science.283.54 
+00.381 
+Bloodgood, B. L., and Sabatini, B. L. (2005). Neuronal activity regulates 
+diﬀusion across the neck of dendritic spines. Science 310, 866–869. 
+doi: 10.1126/science.1114816 
+Corbit, K. C., Trakul, N., Eves, E. M., Diaz, B., Marshall, M., and Rosner, M. R. 
+(2003). Activation of Raf-1 signaling by protein kinase C through a mechanism 
+involving Raf kinase inhibitory protein. J. Biol. Chem. 278, 13061–13068. 
+doi: 10.1074/jbc.M210015200 
+Craske, M. L., Fivaz, M., Batada, N. N., and Meyer, T. (2005). Spines and 
+neurite branches function as geometric attractors that enhance protein 
+kinase C action. J. Cell Biol. 170, 1147–1158. doi: 10.1083/jcb.2005 
+03118 
+Evans, G. J. (2007). Synaptic signalling in cerebellar plasticity. Biol. Cell 99, 
+363–378. doi: 10.1042/BC20070010 
+Fujioka, A., Terai, K., Itoh, R. E., Aoki, K., Nakamura, T., Kuroda, S., 
+et al. (2006). Dynamics of the Ras/ERK MAPK cascade as monitored by 
+ﬂuorescent probes. J. Biol. Chem. 281, 8917–8926. doi: 10.1074/jbc.M5093 
+44200 
+Gallimore, A. R., Aricescu, A. R., Yuzaki, M., and Calinescu, R. (2016). A 
+Computational model for the AMPA receptor phosphorylation master switch 
+regulating cerebellar long-term depression. PLoS Comput. Biol. 12:e1004664. 
+doi: 10.1371/journal.pcbi.1004664 
+Grunditz, A., Holbro, N., Tian, L., Zuo, Y., and Oertner, T. G. (2008). 
+Spine neck plasticity controls postsynaptic calcium signals through 
+electrical compartmentalization. J. Neurosci. 28, 13457–13466. 
+doi: 10.1523/JNEUROSCI.2702-08.2008 
+Harris, K. M., and Stevens, J. K. (1988). Dendritic spines of rat cerebellar 
+Purkinje-cells - serial electron-microscopy with reference to their biophysical 
+characteristics. J. Neurosci. 8, 4455–4469. 
+Harvey, C. D., Yasuda, R., Zhong, H., and Svoboda, K. (2008). The spread of Ras 
+activity triggered by activation of a single dendritic spine. Science 321, 136–140. 
+doi: 10.1126/science.1159675 
+Hepburn, I., Chen, W., Wils, S., and De Schutter, E. (2012). STEPS: 
+eﬃcient simulation of stochastic reaction-diﬀusion models in 
+realistic morphologies. BMC Syst. Biol. 6:36. doi: 10.1186/1752-05 
+09-6-36 
+Hille, B. (2001). “Counting channels and measuring ﬂuctuations,” in Ion Channels 
+of Excitable Membranes, 3rd Edn, ed B. Hille (Sunderland, MA: Sinauer 
+Associates), 377–404. 
+Ito, M. (2001). Cerebellar long-term depression: characterization, signal 
+transduction, and functional roles. Physiol. Rev. 81, 1143–1195. 
+Kar, S., Baumann, W. T., Paul, M. R., and Tyson, J. J. (2009). Exploring the roles of 
+noise in the eukaryotic cell cycle. Proc. Natl. Acad. Sci. U.S.A. 106, 6471–6476. 
+doi: 10.1073/pnas.0810034106 
+Khan, S., Reese, T. S., Rajpoot, N., and Shabbir, A. (2012). Spatiotemporal 
+maps of CaMKII in dendritic spines. J. Comput. Neurosci. 33, 123–139. 
+doi: 10.1007/s10827-011-0377-1 
+Kwang-Hyun, C., Sung-Young, S., Hyun-Woo, K., Wolkenhauer, O., McFerran, B., 
+and Kolch, W. (2003). “Mathematical modeling of the inﬂuence of RKIP on the 
+ERK signaling pathway,” in Computational Methods in Systems Biology. CMSB 
+2003. Lecture Notes in Computer Science, ed C. Priami (Berlin, Heidelberg: 
+Springer), 127–141. doi: 10.1007/3-540-36481-1_11 
+Launey, T., Endo, S., Sakai, R., Harano, J., and Ito, M. (2004). Protein phosphatase 
+2A inhibition induces cerebellar long-term depression and declustering 
+of synaptic AMPA receptor. Proc. Natl. Acad. Sci. U.S.A. 101, 676–681. 
+doi: 10.1073/pnas.0302914101 
+Lorenz, K., Lohse, M. J., and Quitterer, U. (2003). Protein kinase C switches 
+the Raf kinase inhibitor from Raf-1 to GRK-2. Nature 426, 574–579. 
+doi: 10.1038/nature02158 
+Masugi-Tokita, M., Tarusawa, E., Watanabe, M., Molnár, E., Fujimoto, K., 
+and Shigemoto, R. (2007). Number and density of AMPA receptors 
+in individual synapses in the rat cerebellum as revealed by SDS- 
+digested freeze-fracture replica labeling. J. Neurosci. 27, 2135–2144. 
+doi: 10.1523/JNEUROSCI.2861-06.2007 
+Matallanas, D., Birtwistle, M., Romano, D., Zebisch, A., Rauch, J., von Kriegsheim, 
+A., et al. (2011). Raf family kinases: old dogs have learned new tricks. Genes 
+Cancer 2, 232–260. doi: 10.1177/1947601911407323 
+Morice, C., Nothias, F., König, S., Vernier, P., Baccarini, M., Vincent, J. D., 
+et al. (1999). Raf-1 and B-Raf proteins have similar regional distributions 
+but diﬀerential subcellular localization in adult rat brain. Eur. J. Neurosci. 11, 
+1995–2006. doi: 10.1046/j.1460-9568.1999.00609.x 
+Odabaei, G., Chatterjee, D., Jazirehi, A. R., Goodglick, L., Yeung, K., and Bonavida, 
+B. (2004). Raf-1 kinase inhibitor protein: structure, function, regulation of 
+cell signaling, and pivotal role in apoptosis. Adv. Cancer Res. 91, 169–200. 
+doi: 10.1016/S0065-230X(04)91005-6 
+O’Flaherty, J. T., Chadwell, B. A., Kearns, M. W., Sergeant, S., and 
+Daniel, L. W. (2001). Protein kinases C translocation responses to low 
+concentrations of arachidonic acid. J. Biol. Chem. 276, 24743–24750. 
+doi: 10.1074/jbc.M101093200 
+Park, S., Yeung, M. L., Beach, S., Shields, J. M., and Yeung, K. C. (2005). RKIP 
+downregulates B-Raf kinase activity in melanoma cancer cells. Oncogene 24, 
+3535–3540. doi: 10.1038/sj.onc.1208435 
+Ribrault, C., Sekimoto, K., and Triller, A. (2011). From the stochasticity of 
+molecular processes to the variability of synaptic transmission. Nat. Rev. 
+Neurosci. 12, 375–387. doi: 10.1038/nrn3025 
+Sabatini, B. L., and Svoboda, K. (2000). Analysis of calcium channels in 
+single spines using optical ﬂuctuation analysis. Nature 408, 589–593. 
+doi: 10.1038/35046076 
+Sontag, E., Fedorov, S., Kamibayashi, C., Robbins, D., Cobb, M., and Mumby, M. 
+(1993). The interaction of SV40 small tumor antigen with protein phosphatase 
+2A stimulates the map kinase pathway and induces cell proliferation. Cell 75, 
+887–897. doi: 10.1016/0092-8674(93)90533-V 
+Svoboda, K., Tank, D. W., and Denk, W. (1996). Direct measurement 
+of coupling between dendritic spines and shafts. Science 272, 716–719. 
+doi: 10.1126/science.272.5262.716 
+Tanaka, K., and Augustine, G. J. (2008). A positive feedback signal 
+transduction loop determines timing of cerebellar long-term 
+depression. Neuron 59, 608–620. doi: 10.1016/j.neuron.2008. 
+06.026 
+Tanaka, K., Khiroug, L., Santamaria, F., Doi, T., Ogasawara, H., 
+Ellis-Davies, G. C. R., et al. (2007). Ca2 requirements for 
+cerebellar long-term synaptic depression: role for a postsynaptic 
+leaky integrator. Neuron 54, 787–800. doi: 10.1016/j.neuron.2007. 
+05.014 
+Trakul, N., Menard, R. E., Schade, G. R., Qian, Z., and Rosner, M. 
+R. (2005). Raf kinase inhibitory protein regulates Raf-1 but not B-Raf 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+10 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+Hepburn et al. 
+LTD Model Including RKIP 
+kinase activation. J. Biol. Chem. 280, 24931–24940. doi: 10.1074/jbc.M4139 
+29200 
+Yamamoto, Y., Lee, D., Kim, Y., Lee, B., Seo, C., Kawasaki, H., et al. 
+(2012). Raf kinase inhibitory protein is required for cerebellar long- 
+term synaptic depression by mediating PKC-dependent MAPK 
+activation. J. Neurosci. 32, 14254–14264. doi: 10.1523/JNEUROSCI.2812- 
+12.2012 
+Yeung, K., Janosch, P., McFerran, B., Rose, D. W., Mischak, H., Sedivy, J. M., 
+et al. (2000). Mechanism of suppression of the Raf/MEK/extracellular signal- 
+regulated kinase pathway by the Raf kinase inhibitor protein. Mol. Cell. Biol. 
+20, 3079–3085. doi: 10.1128/MCB.20.9.3079-3085.2000 
+Conﬂict of Interest Statement: The authors declare that the research was 
+conducted in the absence of any commercial or ﬁnancial relationships that could 
+be construed as a potential conﬂict of interest. 
+Copyright © 2017 Hepburn, Jain, Gangal, Yamamoto, Tanaka-Yamamoto and De 
+Schutter. This is an open-access article distributed under the terms of the Creative 
+Commons Attribution License (CC BY). The use, distribution or reproduction in 
+other forums is permitted, provided the original author(s) or licensor are credited 
+and that the original publication in this journal is cited, in accordance with accepted 
+academic practice. No use, distribution or reproduction is permitted which does not 
+comply with these terms. 
+Frontiers in Molecular Neuroscience | www.frontiersin.org 
+11 
+February 2017 | Volume 10 | Article 19 
+
+/*** End Page =10= ***/

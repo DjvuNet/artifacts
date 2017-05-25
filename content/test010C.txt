@@ -1,0 +1,993 @@
+/*** Page =0= ***/
+HYPOTHESIS AND THEORY 
+published: 19 October 2016 
+doi: 10.3389/fncir.2016.00081 
+Cortical Neural Computation by 
+Discrete Results Hypothesis 
+Carlos Castejon* and Angel Nuñez 
+Department of Anatomy, Histology and Neuroscience, School of Medicine, Autonomous University of Madrid, Madrid, Spain 
+Edited by: 
+Jessica Cardin, 
+Yale School of Medicine, USA 
+Reviewed by: 
+Amanda Casale, 
+University of California, San Diego, 
+USA 
+Makoto Osanai, 
+Tohoku University, Japan 
+*Correspondence: 
+Carlos Castejon 
+castejon.neuro@gmail.com 
+Received: 11 July 2016 
+Accepted: 29 September 2016 
+Published: 19 October 2016 
+Citation: 
+Castejon C and Nuñez A (2016) 
+Cortical Neural Computation by 
+Discrete Results Hypothesis. 
+Front. Neural Circuits 10:81. 
+doi: 10.3389/fncir.2016.00081 
+One of the most challenging problems we face in neuroscience is to understand how 
+the cortex performs computations. There is increasing evidence that the power of the 
+cortical processing is produced by populations of neurons forming dynamic neuronal 
+ensembles. Theoretical proposals and multineuronal experimental studies have revealed 
+that ensembles of neurons can form emergent functional units. However, how these 
+ensembles are implicated in cortical computations is still a mystery. Although cell 
+ensembles have been associated with brain rhythms, the functional interaction remains 
+largely unclear. It is still unknown how spatially distributed neuronal activity can be 
+temporally integrated to contribute to cortical computations. A theoretical explanation 
+integrating spatial and temporal aspects of cortical processing is still lacking. In this 
+Hypothesis and Theory article, we propose a new functional theoretical framework to 
+explain the computational roles of these ensembles in cortical processing. We suggest 
+that complex neural computations underlying cortical processing could be temporally 
+discrete and that sensory information would need to be quantized to be computed by 
+the cerebral cortex. Accordingly, we propose that cortical processing is produced by the 
+computation of discrete spatio-temporal functional units that we have called “Discrete 
+Results” (Discrete Results Hypothesis). This hypothesis represents a novel functional 
+mechanism by which information processing is computed in the cortex. Furthermore, 
+we propose that precise dynamic sequences of “Discrete Results” is the mechanism 
+used by the cortex to extract, code, memorize and transmit neural information. The novel 
+“Discrete Results” concept has the ability to match the spatial and temporal aspects of 
+cortical processing. We discuss the possible neural underpinnings of these functional 
+computational units and describe the empirical evidence supporting our hypothesis. 
+We propose that fast-spiking (FS) interneuron may be a key element in our hypothesis 
+providing the basis for this computation. 
+Keywords: cerebral cortex, sensory processing, cell ensembles, fast-spiking cells, brain oscillations, discrete 
+computation, neural synchronization, processing resolution 
+INTRODUCTION 
+The cerebral cortex is possibly one of the most complex natural systems. Untangling its intricate 
+functional microcircuit is one of the formidable challenges of neuroscience. However, despite its 
+importance, how cortical computations are performed and the underlying neural mechanisms 
+remain unclear. 
+Frontiers in Neural Circuits | www.frontiersin.org 
+1 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+There is increasing evidence that the power of the cortical 
+processing is produced by populations of neurons forming 
+dynamic neuronal ensembles. Theoretical proposals (Lorente 
+de Nó, 1938; Hebb, 1949; Hopfield, 1982; Engel et al., 2001; 
+Buzsáki, 2010; Yuste, 2015) and multineuronal experimental 
+studies (Fujisawa et al., 2008; Miller et al., 2014) have revealed 
+that ensembles of neurons can form emergent functional 
+units. However, it is still unknown how distributed neuronal 
+activity can be functionally integrated to contribute to cortical 
+computations. Moreover, no one knows what these functional 
+units look like, or how they emerge. In sum, how these 
+ensembles are implicated in cortical computations is still a 
+mystery. 
+Although cell ensembles have been associated with brain 
+rhythms, the functional interaction remains largely unclear. It is 
+still unknown how spatially distributed neuronal activity can be 
+temporally integrated to contribute to cortical computations. A 
+theoretical explanation integrating spatial and temporal aspects 
+of cortical processing is still lacking. 
+In this Hypothesis and Theory article, we propose a new 
+functional theoretical framework to explain the computational 
+roles of these ensembles in cortical processing. We suggest that 
+complex neural computations underlying cortical processing 
+could be temporally discrete. Accordingly, we propose that 
+cortical processing is produced by the computation of discrete 
+spatio-temporal functional units that we have called ‘‘Discrete 
+Results’’ (Discrete Results Hypothesis). Furthermore, we propose 
+that precise dynamic sequences of Discrete Results is the 
+mechanism used by the cortex to extract, code, memorize and 
+transmit neural information. 
+As we describe in the next sections, this proposal has 
+the ability to match the spatial and temporal aspects of 
+cortical processing. Moreover, our hypothesis represents a 
+novel functional mechanism by which information processing 
+is computed in the cortex. We discuss the possible neural 
+underpinnings of this proposal and describe the empirical 
+evidence supporting our hypothesis. 
+NEURONAL PROCESSING BY 
+DISTRIBUTED NEURONAL ACTIVITY 
+The power of the cortex lies in the dynamic coordination 
+of neurons (Hebb, 1949; Pouget et al., 2000; Yuste, 2015). 
+Coordinated activity of large ensembles of spatially distributed 
+cells across the cortex provides the source for the processing 
+and encoding of sensory information. Experimental work 
+supports this idea. Highly distributed representations of tactile 
+information have been described in the cortex (Nicolelis et al., 
+1997). In the visual cortex, sensory stimuli recruit intrinsically 
+generated cortical ensembles (Miller et al., 2014; Okun et al., 
+2015). Representation of motor programs via cell ensembles has 
+been described (Hommel, 2004). Moreover, the auditory cortex 
+is dominated by broad scale dynamics in which a complete 
+representation of sounds emerges only at a global scale (Bathellier 
+et al., 2012). 
+Accordingly, multineuronal recording studies (Fujisawa et al., 
+2008; Miller et al., 2014) have revealed that ensembles of neurons 
+can form emergent functional units. Therefore, they may be the 
+building blocks used in cortical processing. However, important 
+questions concerning integration of cortical activity remain 
+unresolved. It is still unknown how these ensembles are present 
+in the cortex and how spatially distributed cells can functionally 
+contribute to unified stimulus codification. Moreover, although 
+cell ensembles have long been thought to be associated with 
+brain rhythms (Harris et al., 2003), a theoretical explanation 
+integrating spatial and temporal aspects of cortical processing has 
+yet to be proposed. 
+RHYTHMIC NEURONAL ACTIVITY IN THE 
+BRAIN 
+Mammalian brain activity is rich in rhythms. The preservation 
+of that rhythmic activity during the course of evolution 
+demonstrates its relevance and appears to reflect a common 
+functional mechanism for neural processing (Buzsáki and 
+Draguhn, 2004). These rhythms are involved in perception, 
+attention, memory, consciousness and movement execution 
+(Gray et al., 1989; Engel et al., 2001; Fries et al., 2001; Brown, 
+2007; Buschman and Miller, 2010; Baldauf and Desimone, 2014). 
+They play a key role in neural communication (Fries, 2005; 
+Schroeder and Lakatos, 2009; Siegel et al., 2012). Moreover, it 
+has been suggested that oscillatory activity contributes to spike 
+synchronization of distributed neurons (Gray et al., 1989; Nuñez 
+et al., 1992; Engel et al., 2001) and that synchrony underlies 
+binding of separate features enabling perceptual unity (Singer 
+and Gray, 1995). 
+Excitation and inhibition play a key role in the generation 
+of rhythmic activity (Steriade et al., 1993; Whittington et al., 
+1995; Traub et al., 1996; Cardin et al., 2009). However, the 
+mechanisms underlying oscillations and synchrony are still 
+not well understood. Furthermore, current theories about their 
+computational role are incomplete (Thiele and Stoner, 2003; 
+Roelfsema et al., 2004; Hermes et al., 2015). It remains unclear 
+what function they play in neural processing. They may 
+contribute to discretize the computation. 
+DISCRETE NEURAL COMPUTATION 
+The brain receives a constant flow of analog sensory information 
+from the environment. Successful interaction with the world 
+depends on accurate processing of that information. Therefore, 
+the challenging task that the brain faces is to rapidly extract 
+changing relevant features from the environment in order to 
+respond adequately. It requires a precise detection of changes 
+sampling the flow of sensory information to compare its 
+contents. Consequently, a primary function of the brain could 
+be to discretize the continuous flow of information, compare 
+those sampled units and extract relevant information from 
+that computation (Figure 1). In sum, although the brain 
+receives a constant flow of analog sensory information from 
+the environment, sensory stimuli changes will be sampled in a 
+discrete manner. 
+Scientists have long theorized that our cognition operates 
+discontinuously within a framework of discrete cycles 
+Frontiers in Neural Circuits | www.frontiersin.org 
+2 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+FIGURE 1 | Discrete neural processing. Successful interaction with the world depends on accurate processing of rapidly changing stimuli. It requires a precise 
+detection of changes sampling the ﬂow of sensory information to compare its contents. Of particular interest are relevant events, such as the appearance of a 
+predator. A challenge faced by the prey’s brain is to rapidly extract predator changing features from the scene in order to react satisfactorily. In this hypothetical 
+example, the prey’s visual system actively samples the visual environment. Discrete samples are taken separately by brief temporal periods. Predator movements 
+(choosing between the prey and the ball) can be detected by computing differences between the subsamples (see “Cortical Neural Computation by Discrete Results 
+Hypothesis: Functional Spatio-Temporal Units of Computation” Section). That computation allows the prey to know if the predator is approaching or leaving and to 
+take appropriate action. 
+(Pitts and McCulloch, 1947; Harter, 1967; Allport, 1968; 
+Varela et al., 1981; VanRullen and Koch, 2003; Buschman 
+and Miller, 2010). Accordingly, neural systems could undergo 
+oscillatory activity patterns. These oscillations could divide the 
+neural processing into a series of discrete computational events. 
+There are relevant experimental data demonstrating this 
+discrete processing. Discrete computations are well described 
+in visual perception (VanRullen et al., 2005). One example 
+is microsaccadic eye movements by which the visual system 
+acquires fine spatial detail (Ko et al., 2010). Accordingly, 
+vision is interrupted and sensory processing is discretized, 
+separating it into distinct epochs. Recent evidence has been 
+shown for discrete perceptual sampling in the somatosensory 
+domain (Baumgarten et al., 2015). They demonstrated that 
+somatosensory perception operates in a discrete mode, with 
+sensory input being sampled by discrete perceptual cycles. 
+Memory (Lundqvist et al., 2016) and attention are other 
+examples of this computational nature (Buschman and Miller, 
+2009; Busch and VanRullen, 2010). It is known that oscillatory 
+neuronal activity in the frontal eye field reflects the successive 
+cycles of a sequential attentional exploration process during 
+visual search (Buschman and Miller, 2009). Furthermore, 
+discretized processing and encoding in the hippocampus is 
+well described (Buzsáki, 2005). However, how the brain, 
+especially the cerebral cortex, performs this computation is 
+unknown. 
+Frontiers in Neural Circuits | www.frontiersin.org 
+3 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+CORTICAL NEURAL COMPUTATION BY 
+DISCRETE RESULTS HYPOTHESIS: 
+FUNCTIONAL SPATIO-TEMPORAL UNITS 
+OF COMPUTATION 
+One of the most challenging problems we face in neuroscience 
+is to understand how the cortex performs computations. Here 
+we suggest that complex neural computations underlying cortical 
+processing could be temporally discrete. But how does the 
+cortex perform this computation? We propose that cortical 
+processing is produced by the computation of discrete emergent 
+functional units that we have called Discrete Results (Discrete 
+Results Hypothesis). As we describe in the next sections, 
+this novel concept has the ability to match the spatial and 
+temporal aspects of cortical processing. We discuss the possible 
+neural underpinnings of these spatio-temporal computational 
+units and describe the empirical evidence supporting our 
+hypothesis. 
+Our Discrete Results Hypothesis suggests that the 
+computational principle of the cortex lies in the precise 
+temporal coordination of spikes of spatially distributed neurons. 
+It is necessary to divide the temporal and spatial dimension of 
+that proposal for a better clarification. 
+Spatial Dimension of Cortical Processing: 
+The “Ensemble” as a Functional Spatial 
+Unit 
+In the cortex, most neuronal activity occurs in the form of 
+coactive groups of cells defining neuronal ensembles (Miller 
+et al., 2014). However, it is unclear how they emerge, with which 
+neurons, what and how the relation is between the members, 
+what spatial and temporal extension they have and what exactly 
+an ensemble functionally means. 
+In our hypothesis, we define ‘‘Ensemble’’ as a specific 
+spatially distributed set of excitatory neurons (referred to 
+as pyramidal cells hereafter, PCs) that are controlled by a 
+definite synchronized network of fast-spiking (FS) inhibitory 
+cells (see ‘‘Neural Underpinnings of Discrete Results Hypothesis : 
+Spatio-Temporal Integration By Fast-Spiking Cells Synchronized 
+Network.’’ Section). All PCs organized by that particular 
+synchronized inhibitory network form part of that Ensemble. It 
+means that the Ensemble is formed by all the PCs whose firing 
+could be transiently constrained by that specific synchronized 
+inhibitory network (Figure 2). The members and spatial 
+extension of the Ensemble is determined by that inhibitory 
+network. Moreover, individual PCs could participate in different 
+emergent Ensembles. 
+These emergent clusters of PCs form functional spatial units 
+of cortical computation. However, that spatial aspect must be 
+complemented with a temporal one. 
+Temporal Dimension of Cortical Processing: 
+“Temporal Structure of Spikes” 
+Neurons are temporally precise on very fine timescales (Mainen 
+and Sejnowski, 1995; Shmiel et al., 2005; Butts et al., 2007). 
+Experimental evidence indicates that the exact time point at 
+FIGURE 2 | Spatial functional units of cortical processing. A speciﬁc 
+spatially distributed set of pyramidal cells (PCs; in orange) that are controlled 
+by a speciﬁc coupled network of fast-spiking (FS) inhibitory cells (in red) form 
+functional spatial units (“Ensembles”) of cortical computation (in green). All 
+PCs organized by that particular inhibitory network form part of that 
+Ensemble. Individual PCs could participate in different Ensembles. The 
+members and spatial extension of the Ensemble is determined by the 
+inhibitory network. Red lines represent mutual connections between FS 
+inhibitory cells in the network. These neurons innervate strategically the PCs 
+(blue lines) extending a blanket of precise inhibition onto them. 
+which a spike occurs plays an important role in information 
+processing (Markram et al., 1997). Moreover, the precise timing 
+of neuronal spiking is vital for coding of information (Singer 
+and Gray, 1995). Therefore, this temporal precision is likely 
+to be crucial for cortical computation. However, the functional 
+significance remains unclear. 
+The Discrete Results hypothesis suggests that cortical 
+processing is produced by a highly ordered temporal 
+organization. Spike timing of PCs in a particular Ensemble 
+is constrained by an inhibitory network generating a precise 
+structured firing. We propose that this network constrains 
+PCs spikes in temporal precise manner creating what we have 
+called ‘‘Temporal Structure of Spikes’’ (Figure 3). We defined 
+it as the accurate spike timing organization resulting from the 
+precise temporal suppression of PCs spikes in the Ensemble. 
+Spikes from PCs occur independently but organized inside the 
+temporal structure. We propose that this Temporal Structure 
+of Spikes is very important in the processing, coding and 
+transfer of information in the cerebral cortex. The temporally 
+structured firing activity enables information to be processed 
+and coded in a way that downstream networks can compute. 
+Accordingly, the existence of this specific temporal structure 
+implies that failures in that precision of spikes will result 
+in processing dysfunctions. An example of the importance 
+of the temporal structure is the spike-timing-dependent 
+plasticity (Caporale and Dan, 2008). This temporal structure 
+is not fixed. It can be dynamically adjusted (for example 
+by sensory input or by top-down influence) to meet the 
+finest processing resolution depending on perceptual, task 
+or attentional demands. Furthermore, the structure could be 
+adjusted by neuromodulators. Accordingly, variations in the 
+temporal structure will produce changes in the rate and temporal 
+Frontiers in Neural Circuits | www.frontiersin.org 
+4 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+FIGURE 3 | Temporal structure of spikes. Spike timing of PCs is constrained by FS inhibitory interneurons. These cells set the timing and rate of action potentials 
+produced by PCs limiting the temporal window during which they can be generated (Pouille and Scanziani, 2001). Moreover, PCs cannot discharge when they are 
+shunted by strong inhibition. Consequently, the synchronized spiking of the inhibitory network creates temporal order among the PCs ﬁring, generating precise silent 
+periods that we have called “Silent Gaps” during which action potentials cannot be generated (vertical columns in purple). Rhythmic inhibition of the interneuron 
+network provides alternating periods of spiking and no spiking in the Ensemble of PCs constraining these spikes into discrete periods generating a scaffold that we 
+have called “Temporal Structure of Spikes”. Rows represent hypothetical spike rasters for an Ensemble of four PCs. Spikes from these PCs occur independently but 
+organized inside that temporal structure (top). These cycles would result in the oscillations observed in the brain (bottom left). The temporal structure can be 
+dynamically adjusted to meet the ﬁnest processing resolution depending on perceptual, task or attentional demands (bottom right). 
+precision of PCs firing in the Ensemble. PCs spikes latencies 
+and synchronization between them will vary accordingly. 
+Consequently, changes in that temporal precision will code 
+different content. 
+Experimental data provide support for this proposal. It is 
+known that spike timing of PCs is constrained by the inhibitory 
+cells. FS interneurons quickly limit the temporal window during 
+which action potentials can be generated (Pouille and Scanziani, 
+2001; Li et al., 2015). Consequently, PCs are more likely to 
+fire at precise points in time (Cardin et al., 2009). More 
+importantly, PCs cannot discharge when they are shunted by 
+strong inhibition. We propose that these precise inhibitory inputs 
+to PCs generate strict periods of no spiking (‘‘Silent Gaps’’) 
+in the Ensemble. Our hypothesis suggests that these precise 
+Silent Gaps are very important for cortical computation. They 
+divide the neural processing in the Ensemble into a series of 
+Frontiers in Neural Circuits | www.frontiersin.org 
+5 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+discrete computational events that we have called ‘‘Discrete 
+Results’’. 
+It is also known that FS interneurons generate synchronized 
+networks by mutual chemical and electrical connections in the 
+neocortex (Whittington et al., 1995; Traub et al., 1996; Galarreta 
+and Hestrin, 1999; Gibson et al., 1999). Electrical synapses 
+generate highly precise transmission between interneurons 
+of these networks. We propose that this coupling promotes 
+the harmonized firing of connected neurons (Jones et al., 
+2000; Deans et al., 2001; Bartos et al., 2007) forming 
+a synchronized network imposing a time-dependent spike 
+restriction in the Ensemble of PCs. Different synchronized 
+networks of FS interneurons create different sets of possible 
+Ensembles. The simultaneous firing of the FS interneurons in the 
+inhibitory network generates a synchronized inhibitory activity 
+at their postsynaptic PCs in the Ensemble. The synchronized 
+spiking of the inhibitory network could be fast enough to 
+adjust the onset spiking of PCs (Woodruff et al., 2011; Li 
+et al., 2015) and to create a temporal structure or scaffold 
+providing alternating windows of no spiking in the emergent 
+Ensemble of PCs. The rhythmic functioning of this network 
+creates a sequence of temporal discrete events. This network 
+rhythmically concentrates PCs discharges to particular discrete 
+moments providing observable oscillation cycles at population 
+level. 
+In sum, the inhibitory network forms a spatial structure of 
+synchronized FS inhibitory cells and then this synchronized 
+network generates a temporal structure of firing in the Ensemble. 
+DISCRETE RESULT: A FUNCTIONAL 
+SPATIO-TEMPORAL UNIT OF 
+COMPUTATION 
+Spatio-temporal activity patterns play an important role in 
+cortical mechanisms of information processing (Ayzenshtat 
+et al., 2010). Consequently, we propose that PCs compute 
+and communicate information by using specific spatio-temporal 
+patterns of spiking. Our hypothesis suggests that the cortex 
+generates and employs these precise patterns to perform 
+its computations. Thus cortical processing depends on the 
+precise temporally structured relations among the respective 
+spikes of PCs of the Ensemble. Information is encoded in 
+the precise relations between temporal structured discharges. 
+Individual spikes of PCs in the Ensemble take functional 
+relevance when inserted into that temporal structure, forming 
+a Discrete Result. Precise silent periods (Silent Gaps) inside 
+the structure discretize the processing and allow for the 
+formation of these discrete spatio-temporal functional units. 
+All PCs belonging to the same Ensemble participate in the 
+Discrete Result. Therefore, all PCs in the Ensemble have the 
+opportunity to fire. Spikes from these PCs occur independently 
+but organized inside the temporal structure. Each Discrete 
+Result emerges transiently formed by the combination of 
+the firing and silent responses (no firing) of all PCs in 
+the Ensemble (Figure 4). Thus, PCs silent responses are 
+also important in cortical computation and codification. The 
+same Ensemble can form multiple Discrete Results. This 
+FIGURE 4 | Discrete Results: neural computational units. PCs belonging to the same Ensemble participate in the Discrete Result. Therefore, all PCs in the 
+Ensemble have the opportunity to ﬁre. Spikes from these PCs occur independently but organized inside the temporal structure. Each potential Discrete Result 
+emerges transiently formed by the combination of the ﬁring and silent responses (no ﬁring) of all PCs in the Ensemble. Therefore, PCs silent responses are also 
+important in cortical computation and codiﬁcation. Moreover, the same Ensemble can form multiple Discrete Results. This means that the same PCs of the Ensemble 
+process and encode multitude of contents. Consequently, there are great potential neural possibilities that could form a Discrete Result and also enormous 
+possibilities that could form different sequences of Discrete Results. In this hypothetical example, the Ensemble is formed by seven PCs and the synchronized 
+network of FS interneurons by three cells. Five possible Discrete Results are shown. PCs spikes are displayed as green dots and silent responses (no spikes) as red 
+dots. On the right, a digital (binary) representation of these hypothetical Discrete Results is shown. 
+Frontiers in Neural Circuits | www.frontiersin.org 
+6 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+means that the same PCs of the Ensemble, process and 
+encode multitude of contents. Consequently, there are great 
+potential neural possibilities that could form a Discrete Result 
+and also enormous possibilities that could form different 
+sequences of Discrete Results. Therefore, the number of 
+possible representations that can be formed is titanic. This 
+mechanism could explain why the cortex is so robust to 
+damage. Moreover, the content coded by a Discrete Result 
+depends also on the resolution of the Temporal Structure of 
+Spikes. 
+Individual PCs could participate in different Ensembles 
+and be potentially implicated in multiple representations. 
+Furthermore, different synchronized networks of FS 
+interneurons create different sets of possible Ensembles. 
+Accordingly, the cortex performs computations using multiple 
+Ensembles in parallel creating a multitude of Discrete 
+Results simultaneously. Moreover, different sets of possible 
+Ensembles are created by different synchronized networks 
+of FS interneurons along the cortical processing hierarchy. 
+Discrete Results at higher levels integrate computational 
+results from previous stages. Therefore, each Discrete Result 
+constitutes a functional unit that has the ability to process, 
+integrate and represent specific content (Discrete Results) from 
+previous computations (Figure 5). Consequently, in sensory 
+FIGURE 5 | Discrete Results: functional units of neural computational integration. Different sets of possible Ensembles are created by different synchronized 
+networks of FS cells along the cortical processing hierarchy. Experimental studies support this idea. Distinct clusters of FS interneurons have been identiﬁed in the 
+cortex. For example, in the rat barrel cortex, one layer 4 FS interneuron type has an axonal domain strictly conﬁned to a barrel (Koelbl et al., 2015). Accordingly, the 
+cortex performs computations using multiple Ensembles in parallel creating a multitude of Discrete Results simultaneously. Discrete Results at higher levels integrate 
+computational results from previous stages. Therefore, each Discrete Result constitutes a functional unit that has the ability to process, integrate and represent 
+speciﬁc content (Discrete Results) from previous computations. Consequently, in sensory processing, they functionally contribute to uniﬁed stimulus codiﬁcation. 
+Therefore, the Discrete Result concept could explain the binding of separate features enabling perceptual unity. Experimental data provide support for this proposal. 
+Highly distributed representations of tactile information have been described in the cortex (Nicolelis et al., 1997). Moreover, the auditory cortex is dominated by broad 
+scale dynamics in which a complete representation of sounds emerges only at a global scale (Bathellier et al., 2012). 
+Frontiers in Neural Circuits | www.frontiersin.org 
+7 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+processing, they functionally contribute to unified stimulus 
+codification. 
+The Discrete Result concept has the ability to explain how 
+complex neural computations underlying cortical processing 
+could be temporally discrete. Consequently, we propose 
+that sensory information would need to be quantized to 
+be computed by the cerebral cortex. Therefore, processing 
+of sensory information must be temporally discrete and 
+information flow in the cortex must be quantized allowing 
+for the formation of Discrete Results. Therefore, in sensory 
+processing, they can be defined as each neural computational 
+functional unit resulting in quantization of the continuous flow 
+of sensory information (Figure 6). Increasing the number 
+of Discrete Results per temporal unit allows resolution 
+enhancement. It could be dynamically adjusted by sensory 
+input or by top-down influence to meet the finest processing 
+resolution depending on perceptual, task or attentional 
+demands. 
+NEURAL COMPUTATION BY DYNAMIC 
+SEQUENCE OF DISCRETE RESULTS 
+Multineuronal activity structured in temporal sequences has 
+been suggested since long ago (Lorente de Nó, 1938; Hebb, 
+FIGURE 6 | Discrete Results in cortical sensory processing. 
+Hypothetical spatial maps of cortical neurons for each computational event 
+resulting in quantization of the continuous ﬂow of sensory information are 
+shown. Green cells show a representative Ensemble of PCs organized by a 
+speciﬁc synchronized network of FS interneurons. Individual spikes of these 
+PCs take functional relevance inserted into a temporal structure forming 
+discrete spatiotemporal functional units (Discrete Results). In this hypothetical 
+example, relevant sensory information (predator movements) can be extracted 
+by computing differences between the Discrete Results. Increasing the 
+number of Discrete Results per temporal unit allows resolution enhancement. 
+1949; Abeles, 1991). Experimental studies have increased our 
+knowledge about how this sequential activity is generated in the 
+brain (Harris et al., 2003). However, untangling its functional 
+computational significance is still a formidable challenge today. 
+We propose that precise sequences of Discrete Results are the 
+mechanism used by the cortex to perform computations. The 
+computation of the Discrete Results sequence is the mechanism 
+used by the cortex to extract, code, memorize and transmit neural 
+information. This proposal is a neuronal population mechanism 
+to compute and code. Dynamic sequences of Discrete Results 
+generate representations. Different sequences codify different 
+contents. 
+The rhythmic functioning of the synchronized inhibitory 
+network creates a sequence of Discrete Results (Figure 7). 
+Computations between successive Discrete Results in the 
+sequence produce the power of the cortical processing. 
+Experimental data provide support for this hypothesis. 
+Sequential activity of multineuronal spiking has been well 
+described in the cortex (Fujisawa et al., 2008; Crowe et al., 
+2010; Harvey et al., 2012; Carrillo-Reid et al., 2015) and in the 
+hippocampus (O’Keefe and Burgess, 1996; Fyhn et al., 2004; 
+Foster and Wilson, 2006; Pastalkova et al., 2008; Wikenheiser 
+and Redish, 2015). 
+Moreover, cortical processing by dynamic sequences of 
+Discrete Results could be the neural source of some rhythmic 
+signals observed at population level. This hypothesis of neural 
+processing could be applied to other structures and nuclei of the 
+brain. 
+NEURAL UNDERPINNINGS OF DISCRETE 
+RESULTS HYPOTHESIS: 
+SPATIO-TEMPORAL INTEGRATION BY 
+FAST-SPIKING CELLS SYNCHRONIZED 
+NETWORK 
+Our Discrete Results hypothesis suggests that complex 
+neural computations underlying cortical processing could 
+be temporally discrete. Moreover, we propose that cortical 
+processing is produced by the computation of discrete 
+spatio-temporal functional units. But what could be the 
+neuronal elements underlining this computation? The 
+cerebral cortex is composed of many types of neurons. 
+Although all of them play a key role in cortical processing, 
+our hypothesis suggests that there must be a specific type 
+of inhibitory cell that may be implicated in the creation 
+of a spatio-temporal structure supporting discrete cortical 
+computation. We propose that FS interneuron may be 
+a key element in our hypothesis providing the basis for 
+this computation. These cells forming a synchronized 
+spatially distributed cortical network may impose a 
+temporal spike restriction in PCs creating functionally 
+coupled units of computation. Their rhythmic activity 
+may create a sequence of spatio-temporal functional 
+units (Discrete Results), discretizing the information 
+processing. In sum, we propose that they are able to 
+Frontiers in Neural Circuits | www.frontiersin.org 
+8 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+FIGURE 7 | Dynamic sequences of Discrete Results are the mechanism used by the cortex to perform computations. Different sequences of Discrete 
+Results codify different content. In this example, both types of predator trajectories involve different sequentially activated Discrete Results. One sequence codiﬁes 
+the predator approaching and the other leaving. By computing the successive Discrete Results in the sequence the prey’s cortex is allowed to extract predator 
+trajectory in order to respond appropriately. 
+integrate the spatial and temporal dimension of cortical 
+computation. 
+FS cells (Kawaguchi and Kubota, 1997) are the largest 
+population of interneurons in the neocortex. They play a key role 
+as pacemakers for oscillations (Whittington et al., 1995; Traub 
+et al., 1996) and in shaping multineuronal activity (Cardin et al., 
+2009). However, it is still unclear how these cells functionally 
+contribute to the operations performed by the cortex. 
+It is known that they form dense matrices covering PCs 
+(Packer and Yuste, 2011) extending a blanket of inhibition 
+onto them (Karnani et al., 2014). They strategically innervate 
+the axon initial segment (chandelier cells) or soma/proximal 
+(basket cells) dendrites of PCs (Klausberger and Somogyi, 
+2008). They shape the precise timing and dynamic range of 
+action potentials produced by PCs (Pouille and Scanziani, 
+2001; Cardin et al., 2009; Sohal et al., 2009; Li et al., 2015). 
+They generate synchronized networks by mutual chemical and 
+electrical connections (Galarreta and Hestrin, 1999; Gibson 
+et al., 1999; Sohal et al., 2009). Accordingly, they fire in 
+high synchrony (Jones et al., 2000) at high-frequency firing 
+pattern without a significant spike adaptation (Kawaguchi and 
+Kubota, 1997). They have narrow spike-waveform, fast kinetics 
+(Atallah et al., 2012) and high synchronous release of GABA 
+(Hefft and Jonas, 2005). Furthermore, they show broader tuning 
+than other neurons (Kerlin et al., 2010; Hofer et al., 2011; 
+Li et al., 2015). Thus, in accord with our proposal, these 
+properties render them well suited for a structural role in 
+cortical processing. Our hypothesis suggests that these cells 
+create a temporal structure or scaffold (Temporal Structures 
+of Spikes) providing alternating windows of no spiking (Silent 
+Gaps) in the emergent Ensemble of PCs. Since different classes 
+of FS cells have distinct properties in their temporal pattern 
+of discharge (Gupta et al., 2000; Dehorter et al., 2015), it 
+is then likely that they create diverse temporal restriction in 
+Frontiers in Neural Circuits | www.frontiersin.org 
+9 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+PCs firing forming different Temporal Structures of Spikes. 
+Moreover, we propose that different synchronized networks 
+of FS interneurons create different sets of possible Ensembles. 
+Experimental work supports this idea. Distinct clusters of FS 
+interneurons have been identified in the cortex. For example, 
+in the rat barrel cortex, one layer 4 FS interneuron type has 
+an axonal domain strictly confined to a barrel (Koelbl et al., 
+2015). 
+Our hypothesis suggests that precise dynamic sequences 
+of Discrete Results is the mechanism used by the cortex to 
+extract, code, memorize and transmit neural information 
+and that FS cells could play a key role in this discrete 
+cortical processing. In agreement with that proposal, these 
+cells are essential for perception, cognition, attention, 
+memory and behavior (Isomura et al., 2009; Letzkus 
+et al., 2011; Yizhar et al., 2011; Courtin et al., 2014; Hu 
+et al., 2014; Kim et al., 2016). They are also implicated in 
+plasticity and learning (Hensch, 2005; Yazaki-Sugiyama 
+et al., 2009; Letzkus et al., 2011; Donato et al., 2013) 
+and have been implicated in psychiatric disorders such 
+as epilepsy and schizophrenia (Powell et al., 2003; Lewis 
+et al., 2012). A prediction of our hypothesis would be that 
+silencing of these neurons will disrupt normal cortical 
+processing. Recently, it has been shown that silencing of 
+these interneurons disrupts attentional processing (Kim 
+et al., 2016). Furthermore, our hypothesis suggests that 
+discrete cortical processing can be dynamically adjusted 
+to meet the finest processing resolution depending on 
+perceptual, task or attentional demands. We propose that 
+increasing the number of Discrete Results per temporal unit 
+allows resolution enhancement. Accordingly, experimental 
+data show that perceptual coding and discrimination 
+are improved by increased spiking of these cells (Lee 
+et al., 2012). Moreover, in agreement with our proposal, 
+increases in task difficulty and attentional requirements 
+are accompanied by an enhancement of FS cells firing 
+(Chen et al., 2008). 
+CONCLUSION 
+There is increasing evidence that most neuronal activity in the 
+cortex occurs in the form of coactive groups of cells defining 
+neuronal ensembles. However, it is unclear what exactly an 
+ensemble functionally means. These ensembles of neurons can 
+form emergent functional units. In this Hypothesis and Theory 
+article, we propose a new functional theoretical framework to 
+explain the computational roles of these ensembles in cortical 
+processing. We suggest that complex neural computations 
+underlying cortical processing could be temporally discrete 
+and that sensory information would need to be quantized to 
+be computed by the cerebral cortex. Accordingly, we propose 
+that cortical processing is produced by the computation of 
+discrete spatio-temporal functional units that we have called 
+Discrete Results. For example, perceptual integration, processing 
+resolution and information coding can be now explained by our 
+hypothesis. 
+The Discrete Result concept explains how complex neural 
+computations underlying cortical processing could be temporally 
+discrete. This novel concept has the ability to integrate the 
+physiological and computational aspects of cortical processing 
+defining the traditional idea of cells ensemble limiting their 
+spatio-temporal dimension and differentiating their membership 
+and relations between the members. Moreover, the Discrete 
+Results hypothesis constitutes a conceptual advance with special 
+relevance for neuroscience and computer sciences. 
+AUTHOR CONTRIBUTIONS 
+CC: conceived the hypothesis. CC and AN: conceptually 
+developed and wrote this article. 
+FUNDING 
+Work was supported by a grant from Ministerio de Economia y 
+Competitividad (BFU2012-36107). 
+REFERENCES 
+Abeles, M. (1991). Corticonics: Neural Circuits of the Cerebral Cortex. Cambridge, 
+UK: Cambridge University Press. 
+Allport, D. A. (1968). Phenomenal simultaneity and the perceptual moment 
+hypothesis. Br. J. Psychol. 59, 395–406. doi: 10.1111/j.2044-8295.1968. 
+tb01154.x 
+Atallah, B. V., Bruns, W., Carandini, M., and Scanziani, M. (2012). Parvalbumin- 
+expressing interneurons linearly transform cortical responses to visual stimuli. 
+Neuron 73, 159–170. doi: 10.1016/j.neuron.2011.12.013 
+Ayzenshtat, I., Meirovithz, E., Edelman, H., Werner-Reiss, U., Bienenstock, 
+E., Abeles, M., et al. (2010). Precise spatiotemporal patterns among 
+visual cortical areand their relation to visual stimulus processing. 
+J. Neurosci. 30, 11232–11245. doi: 10.1523/JNEUROSCI.5177- 
+09.2010 
+Baldauf, D., and Desimone, R. (2014). Neural mechanisms of object-based 
+attention. Science 334, 424–427. doi: 10.1126/science.1247003 
+Bartos, M., Vida, I., and Jonas, P. (2007). Synaptic mechanisms of synchronized 
+gamma oscillations in inhibitory interneuron networks. Nat. Rev. Neurosci. 8, 
+45–56. doi: 10.1038/nrn2044 
+Bathellier, B., Ushakova, L., and Rumpel, S. (2012). Discrete neocortical dynamics 
+predict behavioral categorization of sounds. Neuron 76, 435–449. doi: 10. 
+1016/j.neuron.2012.07.008 
+Baumgarten, T. J., Schnitzler, A., and Lange, J. (2015). Beta oscillations 
+define discrete perceptual cycles in the somatosensory domain. Proc. 
+Natl. Acad. Sci. U S A 112, 12187–12192. doi: 10.1073/pnas.15014 
+38112 
+Brown, P. (2007). Abnormal oscillatory synchronisation in the motor system leads 
+to impaired movement. Curr. Opin. Neurobiol. 17, 656–664. doi: 10.1016/j. 
+conb.2007.12.001 
+Busch, N. A., and VanRullen, R. (2010). Spontaneous EEG oscillations reveal 
+periodic sampling of visual attention. Proc. Natl. Acad. Sci. U S A 107, 
+16048–16053. doi: 10.1073/pnas.1004801107 
+Buschman, T. J., and Miller, E. K. (2009). Serial, covert shifts of attention 
+during visual search are reflected by the frontal eye fields and correlated 
+with population oscillations. Neuron 63, 386–396. doi: 10.1016/j.neuron.2009. 
+06.020 
+Buschman, T. J., and Miller, E. K. (2010). Shifting the spotlight of attention: 
+evidence for discrete computations in cognition. Front. Hum. Neurosci. 4:194. 
+doi: 10.3389/fnhum.2010.00194 
+Frontiers in Neural Circuits | www.frontiersin.org 
+10 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+Butts, D. A., Weng, C., Jin, J. Z., Yeh, C. I., Lesica, N. A., Alonso, J. M., et al. 
+(2007). Temporal precision in the neural code and the timescales of natural 
+vision. Nature 449, 92–95. doi: 10.1038/nature06105 
+Buzsáki, G. (2005). Theta rhythm of navigation: link between path integration 
+and landmark navigation, episodic and semantic memory. Hippocampus 15, 
+827–840. doi: 10.1002/hipo.20113 
+Buzsáki, G. (2010). Neural syntax: cell assemblies, synapsembles and readers. 
+Neuron 68, 362–385. doi: 10.1016/j.neuron.2010.09.023 
+Buzsáki, G., and Draguhn, A. (2004). Neuronal oscillations in cortical networks. 
+Science 304, 1926–1929. doi: 10.1126/science.1099745 
+Caporale, N., and Dan, Y. (2008). Spike timing-dependent plasticity: a Hebbian 
+learning rule. Annu. Rev. Neurosci. 31, 25–46. doi: 10.1146/annurev.neuro.31. 
+060407.125639 
+Cardin, J. A., Carlén, M., Meletis, K., Knoblich, U., Zhang, F., Deisseroth, K., et al. 
+(2009). Driving fast-spiking cells induces gamma rhythm and controls sensory 
+responses. Nature 459, 663–667. doi: 10.1038/nature08002 
+Carrillo-Reid, L., Miller, J. K., Hamm, J. P., Jackson, J., and Yuste, R. (2015). 
+Endogenous sequential cortical activity evoked by visual stimuli. J. Neurosci. 
+35, 8813–8828. doi: 10.1523/JNEUROSCI.5214-14.2015 
+Chen, Y., Martinez-Conde, S., Macknik, S. L., Bereshpolova, Y., Swadlow, H. A., 
+and Alonso, J. M. (2008). Task difficulty modulates the activity of specific 
+neuronal populations in primary visual cortex. Nat. Neurosci. 11, 974–982. 
+doi: 10.1038/nn.2147 
+Courtin, J., Chaudun, F., Rozeske, R. R., Karalis, N., Gonzalez-Campo, C., 
+Wurtz, H., et al. (2014). Prefrontal parvalbumin interneurons shape neuronal 
+activity to drive fear expression. Nature 505, 92–96. doi: 10.1038/nature 
+12755 
+Crowe, D. A., Averbeck, B. B., and Chafee, M. V. (2010). Rapid sequences 
+of population activity patterns dynamically encode task-critical spatial 
+information in parietal cortex. J. Neurosci. 30, 11640–11653. doi: 10. 
+1523/JNEUROSCI.0954-10.2010 
+Deans, M. R., Gibson, J. R., Sellitto, C., Connors, B. W., and Paul, D. L. (2001). 
+Synchronous activity of inhibitory networks in neocortex requires electrical 
+synapses containing connexin36. Neuron 31, 477–485. doi: 10.1016/s0896- 
+6273(01)00373-7 
+Dehorter, N., Ciceri, G., Bartolini, G., Lim, L., del Pino, I., and Marín, O. 
+(2015). Tuning of fast-spiking interneuron properties by an activity-dependent 
+transcriptional switch. Science 349, 1216–1220. doi: 10.1126/science.aab3415 
+Donato, F., Rompani, S. B., and Caroni, P. (2013). Parvalbumin-expressing basket- 
+cell network plasticity induced by experience regulates adult learning. Nature 
+504, 272–276. doi: 10.1038/nature12866 
+Engel, A. K., Fries, P., and Singer, W. (2001). Dynamic predictions: oscillations 
+and synchrony in top-down processing. Nat. Rev. Neurosci. 2, 704–716. doi: 10. 
+1038/35094565 
+Foster, D. J., and Wilson, M. A. (2006). Reverse replay of behavioural sequences in 
+hippocampal place cells during the awake state. Nature 440, 680–683. doi: 10. 
+1038/nature04587 
+Fries, P. (2005). A mechanism for cognitive dynamics: neuronal communication 
+through neuronal coherence. Trends Cogn. Sci. 9, 474–480. doi: 10.1016/j.tics. 
+2005.08.011 
+Fries, P., Reynolds, J. H., Rorie, A. E., and Desimone, R. (2001). Modulation of 
+oscillatory neuronal synchronization by selective visual attention. Science 291, 
+1560–1563. doi: 10.1126/science.1055465 
+Fujisawa, S., Amarasingham, A., Harrison, M. T., and Buzsáki, G. (2008). 
+Behavior-dependent short-term assembly dynamics in the medial prefrontal 
+cortex. Nat. Neurosci. 11, 823–833. doi: 10.1038/nn.2134 
+Fyhn, M., Molden, S., Witter, M. P., Moser, E. I., and Moser, M. B. (2004). 
+Spatial representation in the entorhinal cortex. Science 305, 1258–1264. doi: 10. 
+1126/science.1099901 
+Galarreta, M., and Hestrin, S. (1999). A network of fast-spiking cells in the 
+neocortex connected by electrical synapses. Nature 402, 72–75. doi: 10. 
+1038/47029 
+Gibson, J. R., Beierlein, M., and Connors, B. W. (1999). Two networks of 
+electrically coupled inhibitory neurons in neocortex. Nature 402, 75–79. doi: 10. 
+1038/47035 
+Gray, C. M., Konig, P., Engel, A. K., and Singer, W. (1989). Oscillatory responses in 
+cat visual cortex exhibit inter-columnar synchronization which reflects global 
+stimulus properties. Nature 338, 334–337. doi: 10.1038/338334a0 
+Gupta, A., Wang, Y., and Markram, H. (2000). Organizing principles for a 
+diversity of GABAergic interneurons and synapses in the neocortex. Science 
+287, 273–278. doi: 10.1126/science.287.5451.273 
+Harris, K. D., Csicsvari, J., Hirase, H., Dragoi, G., and Buzsáki, G. (2003). 
+Organization of cell assemblies in the hippocampus. Nature 424, 552–556. 
+doi: 10.1038/nature01834 
+Harter, M. R. (1967). Excitability cycles and cortical scanning: a review of two 
+hypotheses of central intermittency in perception. Psychol. Bull. 68, 47–58. 
+doi: 10.1037/h0024725 
+Harvey, C. D., Coen, P., and Tank, D. W. (2012). Choice-specific sequences in 
+parietal cortex during a virtual-navigation decision task. Nature 484, 62–68. 
+doi: 10.1038/nature10918 
+Hebb, D. (1949). The Organization of Behavior: A Neuropsychological Theory. New 
+York, NY: Wiley-Interscience. 
+Hefft, S., and Jonas, P. (2005). Asynchronous GABA release generates long- 
+lasting inhibition at a hippocampal interneuron-principal neuron synapse. Nat. 
+Neurosci. 8, 1319–1328. doi: 10.1038/nn1542 
+Hensch, T. K. (2005). Critical period plasticity in local cortical circuits. Nat. Rev. 
+Neurosci. 6, 877–888. doi: 10.1038/nrn1787 
+Hermes, D., Miller, K. J., Wandell, B. A., and Winawer, J. (2015). Stimulus 
+dependence of gamma oscillations in human visual cortex. Cereb. Cortex 25, 
+2951–2959. doi: 10.1093/cercor/bhu091 
+Hofer, S. B., Ko, H., Pichler, B., Vogelstein, J., Ros, H., Zeng, H., et al. (2011). 
+Differential connectivity and response dynamics of excitatory and inhibitory 
+neurons in visual cortex. Nat. Neurosci. 14, 1045–1052. doi: 10.1038/nn. 
+2876 
+Hommel, B. (2004). Event files feature binding in and across perception 
+and action. Trends Cogn. Sci. 8, 494–500. doi: 10.1016/j.tics.2004. 
+08.007 
+Hopfield, J. J. (1982). Neural networks and physical systems with emergent 
+collective computational abilities. Proc. Natl. Acad. Sci. U S A 79, 2554–2558. 
+doi: 10.1073/pnas.79.8.2554 
+Hu, H., Gan, J., and Jonas, P. (2014). Fast-spiking, parvalbumin+ GABAergic 
+interneurons: from cellular design to microcircuit function. Science 
+345:1255263. doi: 10.1126/science.1255263 
+Isomura, Y., Harukuni, R., Takekawa, T., Aizawa, H., and Fukai, T. (2009). 
+Microcircuitry coordination of cortical motor information in self-initiation 
+of voluntary movements. Nat. Neurosci. 12, 1586–1593. doi: 10.1038/nn. 
+2431 
+Jones, M. S., MacDonald, K. D., Choi, B., Dudek, F. E., and Barth, D. S. 
+(2000). Intracellular correlates of fast (>200 Hz) electrical oscillations in rat 
+somatosensory cortex. J. Neurophysiol. 84, 1505–1518. 
+Karnani, M. M., Agetsuma, M., and Yuste, R. (2014). A blanket of inhibition: 
+functional inferences from dense inhibitory connectivity. Curr. Opin. 
+Neurobiol. 26, 96–102. doi: 10.1016/j.conb.2013.12.015 
+Kawaguchi, Y., and Kubota, Y. (1997). GABAergic cell subtypes and their 
+synaptic connections in rat frontal cortex. Cereb. Cortex 7, 476–486. doi: 10. 
+1093/cercor/7.6.476 
+Kerlin, A. M., Andermann, M. L., Berezovskii, V. K., and Reid, R. C. (2010). 
+Broadly tuned response properties of diverse inhibitory neuron subtypes 
+in mouse visual cortex. Neuron 67, 858–871. doi: 10.1016/j.neuron.2010. 
+08.002 
+Kim, H., Ährlund-Richter, S., Wang, X., Deisseroth, K., and Carlén, M. (2016). 
+Prefrontal parvalbumin neurons in control of attention. Cell 164, 208–218. 
+doi: 10.1016/j.cell.2015.11.038 
+Klausberger, T., and Somogyi, P. (2008). Neuronal diversity and temporal 
+dynamics: the unity of hippocampal circuit operations. Science 321, 53–57. 
+doi: 10.1126/science.1149381 
+Ko, H.-K., Poletti, M., and Rucci, M. (2010). Microsaccades precisely relocate gaze 
+in a high visual acuity task. Nat. Neurosci. 13, 1549–1553. doi: 10.1038/nn. 
+2663 
+Koelbl, C., Helmstaedter, M., Lübke, J., and Feldmeyer, D. (2015). A barrel-related 
+interneuron in layer 4 of rat somatosensory cortex with a high intrabarrel 
+connectivity. Cereb. Cortex 25, 713–725. doi: 10.1093/cercor/bht263 
+Lee, S. H., Kwan, A. C., Zhang, S., Phoumthipphavong, V., Flannery, J. G., 
+Masmanidis, S. C., et al. (2012). Activation of specific interneurons improves 
+V1 feature selectivity and visual perception. Nature 488, 379–383. doi: 10. 
+1038/nature11312 
+Frontiers in Neural Circuits | www.frontiersin.org 
+11 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+Castejon and Nuñez 
+Discrete Results Hypothesis 
+Letzkus, J. J., Wolff, S. B., Meyer, E. M., Tovote, P., Courtin, J., Herry, C., et al. 
+(2011). A disinhibitory microcircuit for associative fear learning in the auditory 
+cortex. Nature 480, 331–335. doi: 10.1038/nature10674 
+Lewis, D. A., Curley, A. A., Glausier, J. R., and Volk, D. W. (2012). Cortical 
+parvalbumin interneurons and cognitive dysfunction in schizophrenia. Trends 
+Neurosci. 35, 57–67. doi: 10.1016/j.tins.2011.10.004 
+Li, L., Xiong, X. R., Ibrahim, L. A., Yuan, W., Tao, H. W., and Zhang, L. I. 
+(2015). Differential receptive field properties of parvalbumin and somatostatin 
+inhibitory neurons in mouse auditory cortex. Cereb. Cortex 25, 1782–1791. 
+doi: 10.1093/cercor/bht417 
+Lorente de Nó, R. (1938). Analysis of the activity of the chains of internuncial 
+neurons. J. Neurophysiol. 1, 207–244. 
+Lundqvist, M., Rose, J., Herman, P., Brincat, S. L., Buschman, T. J., and Miller, E. K. 
+(2016). Gamma and beta bursts underlie working memory. Neuron 90, 
+152–164. doi: 10.1016/j.neuron.2016.02.028 
+Mainen, Z. F., and Sejnowski, T. J. (1995). Reliability of spike timing in neocortical 
+neurons. Science 268, 1503–1506. doi: 10.1126/science.7770778 
+Markram, H., Lübke, J., Frotscher, M., and Sakmann, B. (1997). Regulation of 
+synaptic efficacy by coincidence of postsynaptic APs and EPSPs. Science 275, 
+213–215. doi: 10.1126/science.275.5297.213 
+Miller, J. E., Ayzenshtat, I., Carrillo-Reid, L., and Yuste, R. (2014). Visual stimuli 
+recruit intrinsically generated cortical ensembles. Proc. Natl. Acad. Sci. U S A 
+111, E4053–E4061. doi: 10.1073/pnas.1406077111 
+Nicolelis, M. A. L., Ghazanfar, A. A., Faggin, B., Votaw, S., and Oliveira, 
+L. M. O. (1997). Reconstructing the engram: simultaneous, multisite, many 
+single neuron recordings. Neuron 18, 529–537. doi: 10.1016/s0896-6273(00) 
+80295-0 
+Nuñez, A., Amzica, F., and Steriade, M. (1992). Voltage-dependent fast (20–40 Hz) 
+oscillations in long-axoned neocortical neurons. Neuroscience 51, 7–10. doi: 10. 
+1016/0306-4522(92)90464-d 
+O’Keefe, J., and Burgess, N. (1996). Geometric determinants of the place fields of 
+hippocampal neurons. Nature 381, 425–428. doi: 10.1038/381425a0 
+Okun, M., Steinmetz, N. A., Cossell, L., Iacaruso, M. F., Ko, H., Barthó, P., et al. 
+(2015). Diverse coupling of neurons to populations in sensory cortex. Nature 
+521, 511–515. doi: 10.1038/nature14273 
+Packer, A. M., and Yuste, R. (2011). Dense, unspecific connectivity of neocortical 
+parvalbumin-positive interneurons: a canonical microcircuit for inhibition? 
+J. Neurosci. 31, 13260–13271. doi: 10.1523/JNEUROSCI.3131-11.2011 
+Pastalkova, E., Itskov, V., Amarasingham, A., and Buzsáki, G. (2008). Internally 
+generated cell assembly sequences in the rat hippocampus. Science 321, 
+1322–1327. doi: 10.1126/science.1159775 
+Pitts, W., and McCulloch, W. S. (1947). How we know universals: the perception 
+of auditory and visual forms. Bull. Math. Biophys. 9, 127–147. doi: 10. 
+1007/bf02478291 
+Pouget, A., Dayan, P., and Zemel, R. (2000). Information processing with 
+population codes. Nat. Rev. Neurosci. 1, 125–132. doi: 10.1038/35039062 
+Pouille, F., and Scanziani, M. (2001). Enforcement of temporal fidelity in 
+pyramidal cells by somatic feed-forward inhibition. Science 293, 1159–1163. 
+doi: 10.1126/science.1060342 
+Powell, E. M., Campbell, D. B., Stanwood, G. D., Davis, C., Noebels, J. L., 
+and Levitt, P. (2003). Genetic disruption of cortical interneuron development 
+causes region- and GABA cell type-specific deficits, epilepsy and behavioral 
+dysfunction. J. Neurosci. 23, 622–631. 
+Roelfsema, P. R., Lamme, V. A., and Spekreijse, H. (2004). Synchrony and 
+covariation of firing rates in the primary visual cortex during contour grouping. 
+Nat. Neurosci. 7, 982–991. doi: 10.1038/nn1304 
+Schroeder, C. E., and Lakatos, P. (2009). Low-frequency neuronal oscillations as 
+instruments of sensory selection. Trends Neurosci. 32, 9–18. doi: 10.1016/j.tins. 
+2008.09.012 
+Shmiel, T., Drori, R., Shmiel, O., Ben-Shaul, Y., Nadasdy, Z., Shemesh, M., et al. 
+(2005). Neurons of the cerebral cortex exhibit precise interspike timing in 
+correspondence to behavior. Proc. Natl. Acad. Sci. U S A 102, 18655–18657. 
+doi: 10.1073/pnas.0509346102 
+Siegel, M., Donner, T. H., and Engel, A. K. (2012). Spectral fingerprints of 
+large-scale neuronal interactions. Nat. Rev. Neurosci. 13, 120–134. doi: 10. 
+1038/nrn3137 
+Singer, W., and Gray, C. M. (1995). Visual feature integration and the 
+temporal correlation hypothesis. Annu. Rev. Neurosci. 18, 555–586. doi: 10. 
+1146/annurev.neuro.18.1.555 
+Sohal, V. S., Zhang, F., Yizhar, O., and Deisseroth, K. (2009). Parvalbumin 
+neurons and gamma rhythms enhance cortical circuit performance. Nature 
+459, 698–702. doi: 10.1038/nature07991 
+Steriade, M., Nuñez, A., and Azmica, F. (1993). A novel slow (<1 Hz) oscillation 
+of neocortical neurons in vivo: depolarizing and hyperpolarizing components. 
+J. Neurosci. 13, 3252–3265. 
+Thiele, A., and Stoner, G. (2003). Neuronal synchrony does not correlate 
+with motion coherence in cortical area MT. Nature 421, 366–370. doi: 10. 
+1038/nature01285 
+Traub, R. D., Whittington, M. A., Stanford, I. M., and Jefferys, J. G. (1996). 
+A mechanism for generation of long-range synchronous fast oscillations in the 
+cortex. Nature 383, 621–624. doi: 10.1038/383621a0 
+VanRullen, R., and Koch, C. (2003). Is perception discrete or continuous? Trends 
+Cogn. Sci. 7, 207–213. doi: 10.1016/S1364-6613(03)00095-0 
+VanRullen, R., Reddy, L., and Koch, C. (2005). Attention-driven discrete sampling 
+of motion perception. Proc. Natl. Acad. Sci. U S A 102, 5291–5296. doi: 10. 
+1073/pnas.0409172102 
+Varela, F. J., Toro, A., John, E. R., and Schwartz, E. L. (1981). Perceptual framing 
+and cortical alpha rhythm. Neuropsychologia 19, 675–686. doi: 10.1016/0028- 
+3932(81)90005-1 
+Whittington, M. A., Traub, R. D., and Jefferys, J. G. (1995). Synchronized 
+oscillations in interneuron networks driven by metabotropic glutamate 
+receptor activation. Nature 373, 612–615. doi: 10.1038/373612a0 
+Wikenheiser, A. M., and Redish, A. D. (2015). Hippocampal theta sequences reflect 
+current goals. Nat. Neurosci. 18, 289–294. doi: 10.1038/nn.3909 
+Woodruff, A. R., McGarry, L. M., Vogels, T. P., Inan, M., Anderson, S. A., 
+and Yuste, R. (2011). State-dependent function of neocortical chandelier 
+cells. J. Neurosci. 31, 17872–17886. doi: 10.1523/JNEUROSCI.3894- 
+11.2011 
+Yazaki-Sugiyama, Y., Kang, S., Câteau, H., Fukai, T., and Hensch, T. K. (2009). 
+Bidirectional plasticity in fast-spiking GABA circuits by visual experience. 
+Nature 462, 218–221. doi: 10.1038/nature08485 
+Yizhar, O., Fenno, L. E., Prigge, M., Schneider, F., Davidson, T. J., 
+O’Shea, D. J., et al. (2011). Neocortical excitation/inhibition balance in 
+information processing and social dysfunction. Nature 477, 171–178. doi: 10. 
+1038/nature10360 
+Yuste, R. (2015). From the neuron doctrine to neural networks. Nat. Rev. Neurosci. 
+16, 487–497. doi: 10.1038/nrn3962 
+Conﬂict of Interest Statement: The authors declare that the research was 
+conducted in the absence of any commercial or financial relationships that could 
+be construed as a potential conflict of interest. 
+Copyright © 2016 Castejon and Nuñez. This is an open-access article distributed 
+under the terms of the Creative Commons Attribution License (CC BY). The use, 
+distribution and reproduction in other forums is permitted, provided the original 
+author(s) or licensor are credited and that the original publication in this journal 
+is cited, in accordance with accepted academic practice. No use, distribution or 
+reproduction is permitted which does not comply with these terms. 
+Frontiers in Neural Circuits | www.frontiersin.org 
+12 
+October 2016 | Volume 10 | Article 81 
+
+/*** End Page =11= ***/

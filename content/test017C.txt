@@ -1,0 +1,1889 @@
+/*** Page =0= ***/
+ORIGINAL RESEARCH ARTICLE 
+published: 24 December 2012 
+doi: 10.3389/fnins.2012.00183 
+An FPGA-based silicon neuronal network with selectable 
+excitability silicon neurons 
+Jing Li 1 , Yuichi Katori 2,3 and Takashi Kohno 2 * 
+1 Graduate School of Engineering, The University of Tokyo, Tokyo, Japan 
+2 Institute of Industrial Science, The University of Tokyo, Tokyo, Japan 
+3 FIRST, Aihara Innovative Mathematical Modelling Project, Japan Science and Technology Agency, Tokyo, Japan 
+Edited by: 
+Jonathan C. Tapson, University of 
+Cape Town, South Africa 
+Reviewed by: 
+Emre O. Neftci, Institute of 
+Neuroinformatics, Switzerland 
+Theodore Yu, Texas Instruments, Inc., 
+USA 
+*Correspondence: 
+Takashi Kohno, Graduate School of 
+Engineering, Institute of Industrial 
+Science, The University of Tokyo, 
+4-6-1 Komaba, Meguro-ku, Tokyo 
+153-8505, Japan. 
+e-mail: kohno@sat.t.u-tokyo.ac.jp 
+This paper presents a digital silicon neuronal network which simulates the nerve system 
+in creatures and has the ability to execute intelligent tasks, such as associative memory. 
+Two essential elements, the mathematical-structure-based digital spiking silicon neuron 
+(DSSN) and the transmitter release based silicon synapse, allow us to tune the excitability 
+of silicon neurons and are computationally efﬁcient for hardware implementation. We adopt 
+mixed pipeline and parallel structure and shift operations to design a sufﬁcient large and 
+complex network without excessive hardware resource cost. The network with 256 full- 
+connected neurons is built on a Digilent Atlys board equipped with a Xilinx Spartan-6 LX45 
+FPGA. Besides, a memory control block and USB control block are designed to accom- 
+plish the task of data communication between the network and the host PC. This paper 
+also describes the mechanism of associative memory performed in the silicon neuronal 
+network. The network is capable of retrieving stored patterns if the inputs contain enough 
+information of them. The retrieving probability increases with the similarity between the 
+input and the stored pattern increasing. Synchronization of neurons is observed when the 
+successful stored pattern retrieval occurs. 
+Keywords: silicon neuron, silicon synapse, digital silicon neuronal network, FPGA, associative memory, synchrony 
+1. INTRODUCTION 
+The nervous system transmits signals by cooperation between 
+neurons and synapses. The neuron generates an overshoot of its 
+membrane potential (spike) when stimulated by a sufﬁcient large 
+current. The waveform is distributed to the synapse and causes 
+neuronal transmitters to be released. The information processing 
+in the nerve system is autonomous, ﬂexible, and robust against var- 
+ious signal distortions. The silicon neuronal network is designed 
+to reproduce activities of the nerve system in real-time. Compared 
+to the current computers, the silicon neuronal network is based 
+on the parallel and distributed processing mechanism rather than 
+the serial centralized framework. This distinctive computational 
+style is expected to allow real-time and large-scale processing of 
+advanced task similar to that in the nerve system (Mallik et al., 
+2005; Mitra et al., 2009). Besides, the hybrid network constructed 
+with the silicon and the biological neurons is investigated to learn 
+complex behaviors in neurons (Le Masson et al., 2002). A silicon 
+half-center oscillator composed of silicon neurons is proposed 
+for application as an embedded biomedical device and a motion 
+controller (Simoni and DeWeerth, 2007). 
+The ionic-conductance-based model of a neuronal cell 
+describes its dynamics of ions and ionic channels as exactly as pos- 
+sible. Though equations of this type of models are generally com- 
+plex, it can reproduce neuronal dynamics considerably precisely. 
+Success of the ﬁrst one, the Hodgkin-Huxley model (Hodgkin and 
+Huxley, 1952), gave rise to various neuron models of this type. 
+Silicon neurons that implement this type of models can reproduce 
+the complex neuronal behaviors, including bursting, tonic ﬁring, 
+and so on (Mahowald and Douglas, 1991; Simoni et al., 2004; 
+Yu and Cauwenberghs, 2010). The integrate-and-ﬁre (IF) model 
+aims to describe the spike generation in neurons with simple 
+equations without taking ionic dynamics into account (Lapicque, 
+1907). Later, a leakage term was incorporated to describe attract- 
+ing nature of the resting state, which formulated the leaky IF (LIF) 
+model. It is an efﬁcient and compact model but with the tradeoff of 
+dynamics. Some of neuromorphic chips that implement neuronal 
+networks with LIF neurons are low power for real-time simulation 
+and conveniently applicable to various applications, optimization, 
+recognition, and memory (Chicca et al., 2007; Chakrabartty, 2010; 
+Arthur et al., 2012). Several efforts to reduce the limitation in 
+the dynamics of the LIF model resulted to expanded LIF mod- 
+els including generalized (Jolivet et al., 2004), exponential (Brette 
+and Gerstner, 2005), and quadratic (Izhikevich, 2006) IF mod- 
+els. They were implemented to realize simple silicon neurons that 
+can produce variety of neuronal activities such as spike-frequency 
+adaptation and autonomous bursting (Rubin et al., 2004; Indiveri 
+et al., 2010; van Schaik et al., 2010). However, the limited struc- 
+ture in the LIF model prevents realizing the property of Class II 
+neurons in the Hodgkin’s classiﬁcation. A quadratic IF model pro- 
+posed by Izhikevich (IZH) successfully simulates a wide variety 
+of neuronal activities by combination of a two-variable differen- 
+tial equation and reset of the state variables. Whereas most of 
+the above silicon neurons are realized by the analog electronic 
+circuit technology, there are several digital circuit implementa- 
+tions of the LIF (Indiveri et al., 2011) and the IZH (Cassidy and 
+Andreou, 2008; Thomas and Luk, 2009) models. One of them 
+www.frontiersin.org 
+December 2012 | Volume 6 | Article 183 | 1 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+Li et al. 
+Silicon neuronal network 
+succeeded to realize a large-scale network with 1024 neurons on 
+a single FPGA chip. In these implementations of the IZH model, 
+the equations are solved using the ﬂoating point operation. One 
+of the important points in realizing digital silicon neurons that 
+can simulate various neuronal activities with compact and sim- 
+ple circuits, is to select a neuron model with such capability and 
+ﬁnd a suitable circuit for its implementation. The IZH model is 
+considerably a good selection because its non-linearity is only 
+second order and it can be implemented with fewer multipli- 
+ers than other models with the similar capability. This model, 
+however, is not fully capable of realizing the graded responses to 
+the stimulus of Class II neurons. This is because the IZH model 
+approximate the spike process by reset of the state variables, which 
+leads to very similar spikes in response to various stimulus. For 
+example, the maximum membrane potential values in spikes are 
+uniform (30 mV). Another neuron model named a mathematical- 
+structure-based Digital Spiking Silicon Neuron (DSSN) model was 
+proposed (Kohno and Aihara, 2007). This model was designed to 
+simulate several classes of neurons by simple digital arithmetic cir- 
+cuits. It was demonstrated that complex behaviors similar to those 
+in a brain area can be reproduced by an implementation by ﬁxed 
+point operation circuits, which is expected to reduce the hard- 
+ware resource requirement in circuit implementation. Because this 
+model does not approximate the spike process by the reset of the 
+state variables, it can realize more effectively the graded responses 
+of Class II neurons than the IZH model. Because the transmit- 
+ter release at the chemical synapses is controlled by the membrane 
+potential at the axon terminal, the graded response property of the 
+neuronal cells is reﬂected to the amount of synaptic transmitter 
+release, which is modeled in our silicon synapse as illustrated in 
+Figure 3. With the DSSN model in Class II mode, the information 
+of input signal is more directly reﬂected in the transmitter release 
+than the other 2 models. With the neuronal models with reset- 
+ting of the state variables including the IZH model (Figure 3C), 
+this property is almost ignored although there is a possibility that 
+it plays some roles in the information processing in the nerve 
+system. 
+We implemented a network of the DSSNs and silicon synapses 
+on a FPGA device. We have developed a silicon synapse model 
+based on the kinetic ones in (Destexhe et al., 1998) that describes 
+the transmitter release in the presynapse and information of dura- 
+tion of a spike. To demonstrate that our implementation is oper- 
+ating appropriately, we executed an auto-associative memory task, 
+retrieving a memorized pattern by its fragments, which has been 
+widely investigated theoretically (Hopﬁeld, 1982; Knoblauch and 
+Palm, 2001; Sudo et al., 2009). Behaviors of the associative memory 
+in our network are evaluated by an overlap index (Domany and 
+Orland, 1987; Aoyagi, 1995). Synchrony of neurons is also inves- 
+tigated by another index, the phase synchronization index (PSI; 
+Rosenblum et al., 2001). Similar retrieving ability is also shown 
+in a network (Arthur et al., 2012) which is composed by the LIF 
+model based silicon neurons. The LIF model can realize only Class 
+I neurons whereas the DSSN model in our network can simulate 
+both Class I and II neurons by selecting appropriate parameters. 
+In this paper, we report the comparison between the performance 
+of auto-associative tasks in the networks composed of Class I and 
+II neurons. 
+This paper is organized as follows: In the second section, the 
+model of our silicon neuron and its bifurcation structure are intro- 
+duced ﬁrstly. Then the model of our silicon synapse is presented. 
+We explain the architecture of the implementation of our sili- 
+con neuronal network thirdly, including its pipeline structure that 
+improves the efﬁciency of circuit area occupation. Fourthly, we dis- 
+cuss our FPGA implementation and blocks of bidirectional data 
+transfer with a PC. The experiment results and their analysis are 
+followed as the third section. The conclusion section follows where 
+summary, discussion, and views of our future work are presented. 
+2. MATERIALS AND METHOD 
+2.1. SILICON NEURON MODEL 
+We adopted the DSSN model (Kohno and Aihara, 2007) for the 
+silicon neurons in our silicon neuronal network system. It is a 
+qualitative model designed from the viewpoint of the non-linear 
+dynamics, which includes sufﬁcient dynamical structure to realize 
+the dynamics of Class I and II neurons in the Hodgkin’s classi- 
+ﬁcation (Hodgkin, 1948). It is optimized for implementation by 
+digital arithmetic circuits and deﬁned by two-variable differential 
+equations shown as follows: 
+dv 
+dt=ϕ 
+τ f(v)−n+I0+Istim , 
+(1) 
+dn 
+dt=1 
+τ g(v)−n , 
+(2) 
+f(v)= an(v+bn)2−cn when v<0, 
+−apv−bp2+cp when v 0, (3) 
+g(v)= knv−pn2+qn when v<r, 
+kpv−pp2+qp when v r, (4) 
+where v and n denote the membrane potential and a slow variable 
+that abstractly represents the activity of ionic channels, respec- 
+tively. Parameter I 0 is a bias constant. In Eq. (1), I stim is the 
+weighted sum of the postsynaptic inputs from silicon synapses. 
+Parameters ϕ and τ are time constants. Parameters r, ax , bx , cx , 
+kx , px , qx for x = n and p, are constants that control the nullclines 
+of the variables. All the variables and constants in Eq. (1) are 
+abstracted and do not have a physical unit. By selecting appropri- 
+ate values for these parameters, both Class I and II neurons can be 
+realized with parameter set in Tables 1 and 2. Their phase planes, 
+bifurcation diagrams, and ﬁring frequency are shown in Figure 1. 
+Figure 1A shows the v − n phase plane of our silicon neuron 
+model in its Class I mode when I stim = 0. There are three cross- 
+ing points between the v - and the n-nullclines. They are a stable 
+equilibrium (S), an unstable saddle point (T), and an unstable 
+equilibrium (U) from left to right, respectively. Point (S) that cor- 
+responds to the resting state attracts the state point located near to 
+it, while (U) repels it. And (T) is known to involve crucially to the 
+mechanism of the threshold phenomena of the spike generation. 
+Points (S) and (T) approach each other if I stim is increased. They 
+coalesce and disappear when I stim reaches I 1, which is called a 
+saddle-node bifurcation. Point (U) is the only equilibrium point 
+when I stim gets larger. Figure 1B shows a bifurcation diagram of 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2012 | Volume 6 | Article 183 | 2 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+Li et al. 
+Silicon neuronal network 
+Table 1 | Parameters for Class I mode. 
+Par. 
+Value 
+Par. 
+Value 
+an 
+8.0 
+ap 
+8.0 
+bn 
+0.25 
+bp 
+0.25 
+cn 
+0.5 
+cp 
+0.5 
+kn 
+2.0 
+kp 
+16.0 
+pn 
+−2−2 − 2−4 
+pp 
+2−5 − 2−2 
+qn 
+−0.705795601 
+qp 
+−0.6875 
+ϕ 
+1.0 
+τ 
+0.003 
+r 
+−0.205357142 
+I0 
+−0.205 
+Table 2 | Parameters for Class II mode. 
+Par. 
+Value 
+Par. 
+Value 
+an 
+8.0 
+ap 
+8.0 
+bn 
+0.25 
+bp 
+0.25 
+cn 
+0.5 
+cp 
+0.5 
+kn 
+4.0 
+kp 
+16.0 
+pp 
+−2−1 − 2−4 
+pp 
+2−5 − 2−2 
+qn 
+−1.317708517 
+qp 
+−0.6875 
+ϕ 
+0.5 
+τ 
+0.003 
+r 
+−0.104166 
+I0 
+−0.23 
+our model in the Class I mode, where I stim is the bifurcation para- 
+meter. It allows overviewing the relationship between dynamics of 
+v and value of Istim. While Istim <I1, v converges to(S), which is 
+the only stable state. The limit cycle is generated when I stim = I 1 
+whose maximum and minimum values of v are plotted in this 
+ﬁgure. If I stim > I 1, v oscillates along this limit cycle. 
+Figure 1C shows ﬁring frequency in the Class I mode. The 
+repetitive ﬁring starts with an arbitrarily zero frequency at the 
+bifurcation point because the moving speed of the state point near 
+the saddle-node bifurcation point is slow and decreases to zero 
+when I stim is decreased to I 1 . And it increases monotonically if 
+I stim is increased, which is the property of the Class I neuron. 
+Figure 1D shows the v − n phase plane in the Class II mode 
+when I stim = 0. The v - and the n-nullclines cross each other at 
+a point, stable equilibrium (S). It changes from stable to unsta- 
+ble when I stim = I 3 via the Hopf bifurcation. The number of 
+intersections is always one, which is independent of I stim . In a 
+bifurcation diagram of Figure 1E, a limit cycle appears if I stim 
+increases and reaches I 2. When I stim is located between I 2 and 
+I 3, neurons have two stable states, a resting state and a stable 
+limit cycle that corresponds to periodical ﬁring. Our neuron ﬁres 
+if I stim increases above I 3 no matter where the initial state is. 
+In this case, repetitive ﬁring starts with a non-zero frequency 
+because there is no mechanism that reduces the speed of the 
+state point (see Figure 1F), which is the property of the Class 
+II neuron. 
+2.2. SILICON SYNAPSE MODEL 
+As described in the introduction, our silicon synapse is based on 
+the kinetic synapse model (Destexhe et al., 1998). The synaptic 
+process in response to a single pulse input in our silicon neuron is 
+described by the following equation. 
+d ˜Is 
+dt=˜ 
+α[T] 1− ˜Is −β˜Is, 
+(5) 
+where, ˜I s and [T ] represent the postsynaptic current and the 
+amount of the released transmitter per impinging spike, respec- 
+tively. Parameters ˜ 
+α and β are the forward and the backward rate 
+constants which represent the rate of the receptors transitioning 
+from the closed state to the open state and its opposite, respec- 
+tively. We assume that [T ] has rectangular pulse waveform whose 
+maximum value is 1 and minimum value is 0, in similar way as in 
+(Destexhe et al., 1998). The value of [T ] is determined by the mem- 
+brane potential of the presynaptic neuron; the pulses of [T ] starts 
+when the membrane potential crosses over the threshold voltage 
+(0 in this article) and ends when it crosses down the threshold. For 
+simpliﬁcation, we deﬁned a new variable Is = ˜ 
+α+β 
+˜ 
+α ˜Is.Thenweget 
+the following equation. 
+dIs 
+dt=(˜ 
+α+β)(1−Is) when [T]=1, 
+−βIs 
+when [T] = 0, (6) 
+It can be written as follows, if we deﬁne a new constant 
+α=˜ 
+α+β. 
+dIs 
+dt = α(1−Is) when [T]=1, 
+−βIs 
+when [T] = 0, 
+(7) 
+The effect of this scaling factor ˜ 
+α+β 
+˜ 
+α can be canceled by another 
+coefﬁcient c in Eq. (8). 
+Figure 2 illustrates an example of this simpliﬁed synaptic activ- 
+ity when the presynaptic neuron is in the Class II mode and 
+α = 83.3 and β = 333.3. The stimulus input I stim applied here 
+is 0.04 for the ﬁrst 18.75 ms and increases to 0.06 until 37.5 ms 
+and ﬁnally equals to 0.08. The exponential growth and decay 
+of the postsynaptic input depends on the time duration of the 
+transmitter release. 
+Figure 3 illustrates the time duration of the transmitter release 
+in our silicon synapse model connected to the DSSN and the IZH 
+models. The neuron models are at oscillatory state in response to 
+sustained stimulus current I stim . It is apparent that with the DSSN 
+model in the Class II mode (Figure 3B), our silicon synapse model 
+can transmit more detailed information of the I stim than with the 
+other mode (Figure 3A) and the IZH model (Figure 3C). 
+The weighted sum of the postsynaptic input I stim in Eq. (1) is 
+calculated by Eq. (8). 
+Iistim = c 
+N 
+j=1 WijIjs 
+(8) 
+where, parameters i and j are the indices of the neurons, I istim is 
+the stimulus input of neuron i and N is the number of neurons. 
+The parameter c is a coefﬁcient used to scale I stim into an appro- 
+priate range and ensure that neurons ﬁre regularly. It equals to 
+0.060546875 for Class I mode and 0.03125 for Class II mode in 
+this paper. Weight Wij indicates the strength of the connection 
+www.frontiersin.org 
+December 2012 | Volume 6 | Article 183 | 3 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+Li et al. 
+Silicon neuronal network 
+I1 
+I2 I3 
+Saddle 
+Stable 
+Unstable 
+Hopf 
+bifurcation 
+Stable limit cycle 
+Stable limit cycle 
+Stable 
+Unstable 
+Unstable limit cycle 
+V
+n-nullcline 
+n-nullcline 
+v-nullcline 
+v-nullcline 
+(S) (T) (U) 
+(S) 
+Class I 
+Class II 
+V 
+N
+Saddle-node bifurcation 
+-1.0 
+-0.8 
+-0.6 
+-0.4 
+-0.2 
+0.0 
+0.2 
+0.4 
+0.6 
+0.8 
+1.0 
+N
+-1.0 
+-0.8 
+-0.6 
+-0.4 
+-0.2 
+0.0 
+0.2 
+0.4 
+0.6 
+0.8 
+1.0 
+-1.0 
+0.0 
+1.0 
+V 
+-1.0 
+0.0 
+1.0 
+-0.71 
+-0.65 
+0 
+20 
+40 
+60 
+80 
+Frequency (Hz)
+0 
+20 
+40 
+60 
+80 
+Frequency (Hz)
+-0.01 0 
+0.02 0.04 0.06 0.08 
+Istim 
+-0.01 0 
+0.02 0.04 0.06 0.08 
+Istim 
+0.2 
+0.4 
+0.0 
+-0.2 
+-0.4 
+-0.6 
+V
+0.2 
+0.4 
+0.0 
+-0.2 
+-0.4 
+-0.6 
+-0.26 
+-0.16 
+-0.01 0 
+0.02 0.04 0.06 0.08 
+Istim 
+-0.01 0 
+0.02 0.04 0.06 0.08 
+Istim 
+A 
+D 
+B 
+E 
+C 
+F 
+FIGURE 1 | Phase planes, bifurcation diagrams, and ﬁring frequency 
+of our silicon neuron model in its Class I and Class II modes. (A) 
+Phase plane in the Class I mode. Istim = 0. (B) Bifurcation diagram in the 
+Class I mode, where the bifurcation parameter is I stim . I1 = 0.005. (C) 
+Frequency of repetitive ﬁring in the Class I mode. (D) Phase plane in the 
+Class II mode. I stim = 0. (E) Bifurcation diagram in the Class II mode. 
+I 2 = 0.009, I 3 = 0.013. (F) Frequency of repetitive ﬁring in the Class II 
+mode. 
+from neuron j to neuron i. The larger absolute value of the weight 
+Wij means the stronger effect from neuron j to i. A neuron excites 
+(inhibits) its postsynaptic neuron if Wij is positive (negative). 
+2.3. ARCHITECTURE OF SILICON NEURONAL NETWORK 
+We designed a Hopﬁeld-type silicon neuronal network in which 
+neurons connect to all the other neurons and whose block diagram 
+is shown in Figure 4. 
+It is composed of multiple (Nf) silicon neuronal network mod- 
+ules (SNNMs). An SNNM executes calculation for multiple Nv 
+silicon neurons and synapses sequentially. The SNNM is com- 
+posed of three units: a DSSN, a silicon synapse, and an accumulator 
+units. The DSSN unit calculates the membrane potential v which 
+is received by the silicon synapse unit to generate the postsynaptic 
+input Is . An accumulator unit in an SNNM calculates the weighted 
+sum of Is , which is added with the bias constant I 0 to give stimulus 
+current to the DSSN unit in the same SNNM. Equations (9–11) 
+show the function of the DSSN unit and the silicon synapse unit 
+conﬁgured with the Class I neuronal parameters (see in Tables 1 
+and 2 for values of Class I and Class II parameters). Where, t 
+equals 0.000375 in these equations. 
+v(t+ t) 
+= 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+v(t)+ tϕ 
+τ 8v2(t)+4v(t)−n(t)+I0+Istim 
+when v<0, 
+v(t)+ tϕ 
+τ −8v2(t)+4v(t)−n(t)+I0+Istim 
+when v≥0, 
+(9) 
+n(t+ t) 
+= 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+n(t)+ t 
+τ 2v2(t)+v(t)+ 14v(t)− 16728 
+215 − n(t) 
+when v<r, 
+n(t)+ t 
+τ 16v2(t)+8v(t)−v(t)+2560 
+215 − n(t) 
+when v≥r, 
+(10) 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2012 | Volume 6 | Article 183 | 4 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+Li et al. 
+Silicon neuronal network 
+Is(t+ t)= Is(t)+ tα(1−Is(t)) when [T]=1, 
+Is (t)− tβIs (t) 
+when [T] = 0, 
+(11) 
+The multiplication operation can be replaced by a shift operation 
+if the multiplier is a power of two, by which the required hardware 
+resource is reduced. In the DSSN model, the value of the parame- 
+ters was selected to realize the bifurcation structure but not the 
+detailed waveform of spikes. We could ﬁnd appropriate values for 
+the coefﬁcients in our model equations in powers of 2 and sums 
+of 2 power-of-2 numbers. Other parameters like qn and qp are not 
+powers of 2 because they are not coefﬁcients and are not involved 
+in the multiplication. Here, we represent v and n using 18-bit 
+signed ﬁxed point with 15-bit fractions. We chose 18-bit based 
+on the size of the multipliers in commonly used FPGA devices in 
+0.2 
+-0.4 
+-0.3 
+-0.2 
+-0.1 
+0.0 
+0.1 
+-0.2 
+0.0 
+0.2 
+0.4 
+0.6 
+0.8 
+1.0 
+1.2 
+-0.001 
+0.000 
+0.001 
+0.002 
+0.003 
+0.004 
+0.005 
+0.006 
+v
+[T]
+Is
+0 
+10 
+20 
+30 
+40 
+50 
+60 
+Time(ms) 
+0 
+10 
+20 
+30 
+40 
+50 
+60 
+Time(ms) 
+0 
+10 
+20 
+30 
+40 
+50 
+60 
+Time(ms) 
+FIGURE 2 | Numerical simulation of postsynaptic current generation of 
+the Class II neuron. Istim = 0.04 when 0 < t ≤ 18.75 ms; Istim = 0.06 when 
+18.75<t≤37.5ms;Istim =0.08whent>37.5ms, α =83.3,β=333.3. 
+these days. We conﬁrmed that our silicon neuronal network does 
+not change its dynamic behaviors when bit precision is increased. 
+Figures 5A,B show block diagrams of the circuits that calculate 
+the right-hand side of Eqs (9) and (10), the v - and the n-circuits, 
+respectively. Symbols ×, +, and MUX in the ﬁgure represent a 
+multiplier, an adder, and a multiplexer, respectively. A multiplexer 
+selects one of input signals with the control signal and forward 
+the selected input to the output port. A multiplier is shared for all 
+the multiplicative operations because they share the same input 
+v. Therefore, a DSSN costs 1 multiplier, 10 adders, and 5 multi- 
+plexers. These logic units are classiﬁed with 3 stages which run in 
+sequence and cost 3 clocks. The postsynaptic input Is is calculated 
+by a circuit whose block diagram is illustrated in Figure 5C, which 
+is composed of 2 adders, 1 multiplexer without the multiplier, and 
+they run within 2 clocks. 
+In an accumulator unit, each update step needs (Nf × 
+Nv −1)×Nv addition and Nf ×N2 
+v multiplication operations 
+according to the Eq. (8) and all these operations can be done 
+within Nf × N2 
+v + 1 clocks because an adder circuit integrates 
+the result of the multipliers that are operated in parallel. We used 
+parallel structures to execute this large number of operations and 
+reduce the number of clocks in a step. For example, if we use 4 
+multipliers and adders in parallel, the clock number is reduced 
+to 1/4 except for the last clock for an addition. The time cost of 
+one update step for the DSSN unit and the silicon synapse unit is 
+Nv + 4 clocks. Figure 6 shows the clock cycles for one update step 
+of the network. These three units execute the calculation in their 
+pipelined structure. The accumulator unit calculates I stim from 
+the 1st clock until the ( Nf ×N 2 
+v 
+4 + 1)th clock. The DSSN unit starts 
+running at the (Nf ×N2 
+v 
+4 −Nv +3)thclockandtotalcostsNv+2 
+clocks because it contains 3 stages as shown in Figure 5. While the 
+silicon synapse unit costs Nv + 1 clocks because of 2 stages in it. 
+All of them ﬁnish their calculation at the ( Nf ×N 2 
+v 
+4 + 6)th clock. 
+Thus the relationship between the period of an update step t 
+and the running clock of the system fs is described in the following 
+Eq. (12). 
+t=1fs 
+Nf×N2 
+v 
+4 +6. 
+(12) 
+DSSN model (Class I mode) 
+DSSN model (Class II mode) 
+IZH model (Class II mode) 
+0 
+1 
+2 
+3 
+4 
+5 
+0.00 
+0.05 
+0.15 
+0.10 
+0 0.4 0.8 1.2 1.6 2.0 
+Istim 
+0 0.02 
+0.06 
+0.10 
+Istim 
+Time duration of [T] (ms)
+Time duration of [T] (ms)
+0.04 
+0.08 
+0 
+1 
+2 
+3 
+4 
+5 
+Time duration of [T] (ms)
+0 0.02 
+0.06 
+0.10 
+Istim 
+0.04 
+0.08 
+A 
+B 
+C 
+FIGURE 3 | The time duration of the transmitter release in our silicon synapse model connected to the DSSN model in (A) Class I and (B) Class II 
+modes and (C) the IZH model. Each neuronal model is in the oscillatory state in response to the sustained stimulus Istim . 
+www.frontiersin.org 
+December 2012 | Volume 6 | Article 183 | 5 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+Li et al. 
+Silicon neuronal network 
+I0_1 
+Is_1 
+......
+......
+......
+...... 
+Is_Nf 
+...... 
+I0_Nf 
+SNNM 
+Is_1 
+Is_Nf 
+... 
+... 
+... 
+Is_1 
+Is_Nf 
+Is_1 
+Is_Nf 
+DSSN unit 
+Silicon 
+Synapse unit 
+Accumulator 
+unit 
+Istim 
+NV 
+12 
+2 
+... 
+... 
+1 
+SNNM 
++ 
+NV 
+SNNM 
+Accumulator 
+unit 
+DSSN unit 
+Silicon 
+Synapse unit 
+1 
+1 
+2 
+2 
+... 
+... 
+Istim 
++ 
+NV 
+NV 
+FIGURE 4 | Structure of our silicon neuronal network. The network 
+includes multiple (Nf) silicon neuronal network modules (SNNMs). An 
+SNNM executes calculation for multiple Nv silicon neurons and 
+synapses sequentially. The SNNM is composed of three units: a 
+DSSN, a silicon synapse, and an accumulator units. The DSSN unit 
+calculates the membrane potential v which is received by the silicon 
+synapse unit to generate the postsynaptic input Is . An accumulator 
+unit in an SNNM calculates the weighted sum of Is and added with 
+the bias constant I0 gives stimulus current to the DSSN unit in the 
+same SNNM. 
+2.4. FPGA IMPLEMENTATION 
+We implemented our silicon neuronal network on a FPGA. The 
+Digilent Atlys FPGA board equipped with Xilinx Spartan-6 LX45 
+FPGA is selected to construct an all-to-all connected 256-neuron 
+network (Nf = 16 and Nv = 16). Here, we use block RAMs to store 
+synaptic weights and 4 multipliers in parallel for the accumula- 
+tor unit. The multipliers and a part of adders are implemented in 
+the DSP elements. Device utilization after synthesis by ISE design 
+tool is listed in Table 3. We integrated a communication mod- 
+ule that transfers data between the PC and the FPGA device via 
+the USB port. Control signals are sent to the FPGA and neu- 
+ronal ﬁring information of the network are sent back to the PC. 
+The architecture of the total system is illustrated in Figure 7. The 
+DDR2 memory is utilized as a buffer to avoid the speed con- 
+ﬂict between data generation in the network and data transfer 
+through the USB bus. Our silicon neuronal network starts calcu- 
+lation when it receives the start signal and initial state stimulus 
+from the PC. 
+3. RESULTS 
+We evaluated the functionality of our silicon neuronal network cir- 
+cuit by constructing an auto-associative memory network, which 
+retrieves stored memory patterns in response to an input similar 
+to one of them. The auto-associative memory task is one of the 
+most fundamental task for the fully connected silicon neuronal 
+networks because the analysis of spike generation and phase lock- 
+ing are available to evaluate the properties of the network. This 
+network is composed of 256 silicon neurons and 2562 synapses. 
+We considered binary memory patterns denoted by x u 
+i ∈{−1,1}; 
+xu 
+i represents the state of the ith neuron in the uth stored pat- 
+tern. The weight matrix of this network is calculated by corre- 
+lation learning using these patterns as follows (Hopﬁeld, 1984). 
+Wij = 
+ 1p 
+p 
+u=1 xu 
+ixuj when i=j, 
+0 
+when i=j, 
+(13) 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2012 | Volume 6 | Article 183 | 6 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+Li et al. 
+Silicon neuronal network 
+n 
+2560/2^15 
+n 
+v 
+MUX 
+sgn(v-r) 
+MUX 
+sgn(v-r) 
+MUX 
+sgn(v) 
++ 
++ 
++ 
++ 
++ 
+x 
+*1/8 
+*1/32 
+*-1/8 
+*-1/8 
+-16728/2^15 
+MUX 
+sgn(v-r) 
+*1/4 
+*2 
+x 
++ 
+MUX 
++ 
++ 
++ 
++ 
+*-1 
+*1/2 
+sgn(v) 
+v 
+n 
+I0 
+Istim 
+*-1/8 
+v 
++ 
+MUX 
+sgn(v) 
++ 
+31 
+Is 
+*-1/32 
+*-1/8 
+Is 
+1st stage 2nd stage 3rd stage 
+A 
+B 
+C 
+FIGURE 5 | Block diagrams of the v -, n-, and Is -circuits. Symbols ×, +, 
+and MUX mean a multiplier, an adder, and a multiplexer, respectively. 
+Selection signal to the multiplexer sgn(v ) is the sign bit of v and the same 
+to sgn(v –r ). Values marked with * represent the multiplication that is 
+realized by a right or a left shift operation. Multiplication by a negative value 
+is realized by multiplication by its absolute and then bit inversion and 
+increment. (A) The block diagram of the v -circuit, which costs 1 multiplier, 5 
+adders, and 1 multiplexer. (B) The block diagram of the n-circuit, which 
+costs 1 multiplier, 5 adders, and 4 multiplexers. The logic units in (A,B) are 
+compiled into the 3-stage pipeline structure. (C) The block diagram of the 
+Is -circuit, which costs 2 adders and 1 multiplexer. This unit has the 2-stage 
+pipeline structure. A multiplier is shared in (A,B) because their inputs are 
+the same. 
+where p ≡ 4 is the number of the stored patterns. Those patterns 
+we used here are shown in Figure 8A as black-white pictures 
+with 16 × 16 pixels, where black and white represent x u 
+i=1 
+and xu 
+i = −1, respectively. The external inputs we applied to the 
+network are based on a stored pattern, but with certain amount 
+of errors. We prepared input patterns with different amount of 
+errors for each of 4 stored patterns by randomly inverting pixels. 
+The error rates vary from 5 to 50% with 5% steps. We show an 
+example of these patterns, which were generated from the stored 
+pattern 1 in Figure 8B. 
+The overlap deﬁned in (Domany and Orland, 1987; Aoyagi, 
+1995) was calculated to quantify the similarity between the state 
+of neurons and a stored pattern. The following equations describe 
+the overlap Mu between the state of neurons and the uth stored 
+pattern. 
+Mu(t)= 1 
+N|N 
+j=1 
+xuj exp iφj(t) |, 
+(14) 
+where N is the number of neurons and φj(t ) is the phase value 
+of the jth neuron given at time t by Eq. (15) (Rosenblum et al., 
+2001). 
+φj(t)=2πk+2π t−tkj 
+t k+1 
+j −tkj, tkj≤t<tk+1 
+j 
+(15) 
+where t kj is the time when the membrane potential of the jth 
+neuron grows over the threshold and the transmitter starts to be 
+released in response to the kth spike. All neurons in our network 
+ﬁre regularly where phase ϕj(t ) codes the state of the jth neuron. 
+Thus, according to Eq. (14), we deﬁned that the network success- 
+fully retrieves the stored pattern if the relevant overlap equals to 1. 
+Because the synchronization between neurons is important in 
+such phase-coded network, we analyzed it by the phase synchro- 
+nization index (PSI) which is proposed in (Rosenblum et al., 2001). 
+It is calculated by Eq. (16) and takes a value in [0, 1]. The full 
+synchrony is detected if the PSI equals to 1. 
+PSI(t) = 1 
+N|N 
+j=1 
+exp i2φj (t) |, 
+(16) 
+where φj(t ) is the phase value deﬁned by the Eq. (15). Here we 
+chose the coefﬁcient 2 in the exponential part to scale neuronal 
+phases because phase differences between neurons are 0 or π when 
+the input pattern coincides to one of the stored patterns. 
+We applied an impulse stimulus input I stim for 16.875 ms which 
+refracts an input pattern. The network is expected running 45 
+update steps in this period and one update step costs 0.375 ms 
+when the clock is 2746.67 KHz according to the Eq. (12). In a neu- 
+ron the initial I stim corresponds to the pixel with value of 1 and 
+−1, I stim is large and small, respectively. These I stim values are 
+0.125 and 0 for Class I neurons and 0.0425 and 0 for Class II. Then 
+I stim equals to 0.074 and 0.0295 for Class I and II neurons after the 
+impulse. In this task, these I stim were added to I 0 for simplicity just 
+after the system reset signal (clears registers for v and n to zero) is 
+disactivated. In applications such as connection with event-based 
+biomorphics sensors including silicon retina and cochlea (Liu and 
+Delbruck, 2010), the stimulus input may be applied via the sili- 
+con synapses dedicated to receive external inputs and pulse width 
+limiter circuits in case the sensors output too long pulse. 
+We refer to our neuronal network as in the Class I mode 
+when all of the neurons are in the Class I mode and the same 
+to the Class II mode. Figure 9 shows the raster plots of the 
+memory retrieval in the Class I mode and the input pattern 
+includes Figure 9A 10%, Figure 9B 20%, and Figure 9C 30% 
+errors (see Figure 8B). The input pattern appearing in the 
+network at 15.375 ms. Then the neurons’ activity is controlled 
+by the dynamics that depend on the value of the weights 
+www.frontiersin.org 
+December 2012 | Volume 6 | Article 183 | 7 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+Li et al. 
+Silicon neuronal network 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+...... 
+...... 
+(Nf x Nv2)/4 
+Accmulator 
+unit 
+DSSN unit 
+Silicon Synapse unit 
+6 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+...... 
+...... 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+...... 
+...... 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+...... 
+...... 
+Clock cycle 
+010203040506...Nv 
+010203040506...Nv 
+010203040506...Nv 
+Adder 1 
+Multiplier 1 
+Adder 2 
+Multiplier 2 
+Adder 3 
+Multiplier 3 
+Adder 4 
+Multiplier 4 
+1st Stage 
+010203040506...Nv 
+010203040506...Nv 
+2nd Stage 
+3rd Stage 
+1st Stage 
+2nd Stage 
+FIGURE 6 | Clock cycles for an update step of our network. The 
+horizontal axis is the clock cycle. Each square labeled with a number 
+corresponds to one clock. Each row represents a logic unit utilized in a 
+SNNM. The logic units, 4 adders and 4 multipliers which belong to the 
+accumulator unit cost Nf ×N 2 
+v 
+4 +1clocksbecause(Nf ×Nv −1)×Nv addition 
+andNf ×N2 
+v multiplication are required in an accumulator unit. The ﬁrst 
+stage in the DSSN unit runs at the (Nf ×N2 
+v 
+4 − Nv + 3)th clock, just after the 
+calculation of I stim of the ﬁrst neuron. The second and the third stages run 
+with 1 clock and 2 clocks delay after it. In the silicon synapse unit, the ﬁrst 
+stage starts running after the membrane potential v of the ﬁrst neuron is 
+obtained in the DSSN unit. So all of the logic units ﬁnish their calculation at 
+the(Nf×N2 
+v 
+4 + 6)th clock. 
+Table 3 | Device utilization on FPGA device. 
+Logic utilization 
+Utilization 
+Available 
+Slice registers 
+14,198 (26%) 
+54,576 
+LUTs 
+18,556 (68%) 
+27,288 
+Block RAMs 
+73 (63%) 
+116 
+DSPs 
+48 (82%) 
+58 
+USB 
+Controller 
+DDR2 
+Memory 
+PC 
+DSSN Network 
+USB control 
+block 
+Memory control 
+block 
+FPGA Device 
+FPGA Board 
+FIGURE 7 | The architecture of the whole system. 
+stored in the network. The stored pattern 1 in Figure 8A 
+and it’s reversed pattern alternately appear from 55.875 ms in 
+Figure 9A, from 56.625 ms in Figure 9B, and they do not 
+appear in Figure 9C, which means unsuccessful memory retrieval. 
+Figure 10 shows the process of memory retrieval and the 
+properties of synchrony of the neural activities when the network 
+is in the Class I mode and 5 of patterns in Figure 8B were 
+1 
+2 
+3 
+4 
+5% 10% 15% 20% 25% 
+30% 35% 40% 45% 50% 
+A 
+B 
+FIGURE 8 | (A) Stored patterns and (B) a set of input patterns generated 
+based on the stored pattern 1. 
+applied as inputs. If the input pattern contains errors less than 
+or equal to 20%, the network immediately achieves successful 
+memory retrieval (M 1 = 1) and maintains the retrieved pattern 
+for the remaining time. If overlaps stabilize, the state of the 
+network is assumed to be a steady state. In this state of the net- 
+work, the stored pattern is exactly retrieved on each ﬁring cycle 
+(Figures 10A,B), and the PSI reaches unity, which indicates that 
+the neural activities are fully synchronous(Figures 10F,G). When 
+the input pattern contains 30% errors (Figure 10C), the over- 
+lap M 1 transiently increases to unity at the beginning and then 
+decreases to M 1 ≈ 0.8538 around 0.19275 s, and the PSI also tran- 
+siently increases to unity and then decreases according to the 
+changes in the overlap (Figure 10H). When the errors are further 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2012 | Volume 6 | Article 183 | 8 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+Li et al. 
+Silicon neuronal network 
+0 
+50 
+150 
+250 
+200 
+100 
+Neuron ID
+0 
+50 
+150 
+250 
+200 
+100 
+Neuron ID
+0 
+50 
+150 
+250 
+200 
+100 
+Neuron ID
+5 
+1 
+. 
+0 
+5 
+0 
+. 
+0 
+0 
+. 
+0 
+0 
+2 
+. 
+0 
+0 
+1 
+. 
+0 
+0.30 
+0.25 
+20% 
+Time(s) 
+5 
+1 
+. 
+0 
+5 
+0 
+. 
+0 
+0 
+. 
+0 
+0 
+2 
+. 
+0 
+0 
+1 
+. 
+0 
+0.30 
+0.25 
+Time(s) 
+5 
+1 
+. 
+0 
+5 
+0 
+. 
+0 
+0 
+. 
+0 
+0 
+2 
+. 
+0 
+0 
+1 
+. 
+0 
+0.30 
+0.25 
+Time(s) 
+30% 
+10% 
+A 
+B 
+C 
+FIGURE 9 | Raster plots of the memory retrieval in the Class I 
+mode and the input pattern includes 10, 20, and 30% errors shown 
+in Figure 8B. The input pattern is observed at 15.375 ms in both (A–C). 
+The stored pattern 1 and it’s reversed pattern alternately appear from 
+55.875 ms in (A), and from 56.625 ms in (B). However, they do not 
+appear in (C). 
+increased (Figures 10D,E), an accurate stored pattern cannot be 
+retrieved with errors remaining on the output pattern and the PSI 
+is also largely decreased (Figures 10I,J). In Figure 11, we plotted 
+the relation between the overlap and PSI, where PSI is 1 if our 
+network retrieves a stored pattern completely. 
+Our neuronal network in the Class II mode achieves success- 
+ful memory retrieval when the errors are less than or equal to 
+30% (Figures 12A–C) where the neurons exhibit synchronous 
+activity (Figures 12F–H). When the errors in the input pattern 
+are larger than 30%, the network cannot achieve successful mem- 
+ory retrieval (M 1 < 1; Figures 12D,E), and the synchronization 
+largely decreases to PSI ≈ 0.4 (Figures 12I,J). Thus the relation- 
+ship between the performance of the memory retrieval and the 
+synchrony in the Class II mode is similar to that in the Class I 
+mode (Figure 13). 
+In order to investigate the reproducibility of the memory 
+retrieval performance, we tested more cases to evaluate robust- 
+ness against input errors in the Class I and II mode networks. We 
+performed 12 trials of above experiment using 12 sets of input 
+patterns which are generated based on 4 stored patterns and 3 
+sets for each stored pattern. The 10 different error rates varying 
+from 5 to 50% of input patters are tested. We calculated the frac- 
+tion of successful memory retrieval, which attains Mu = 1 in the 
+steady state of the network dynamics (Figure 14). In the Class 
+I mode, our neuronal network achieves the successful memory 
+retrieval in all the cases when errors in a input pattern are less 
+than or equal to 10%; the fraction of successful memory retrieval 
+decreases with errors increasing. The fraction becomes 0 when 
+errors are larger than 40% in the Class I mode network. On the 
+other hand, the Class II mode network shows completely success- 
+ful memory retrieval even with the 25% errors. The fraction of the 
+successful memory retrieval decreases but still keeps around 90% 
+with the 30% errors, while it is only around 10% for the Class I 
+mode network. These results suggest that the Class II mode net- 
+work performs better than the Class I mode network when the 
+associative memory task is executed. 
+4. CONCLUSION 
+We have reported our silicon neuronal network based on the dig- 
+ital operational circuit, which can be efﬁciently implemented in 
+a FPGA device. Our silicon neuron is implemented by using the 
+DSSN model where neuronal behaviors are abstracted using math- 
+ematical techniques so that it is capable of realizing behaviors in 
+both Class I and II neurons with small number of multipliers 
+to reduce the hardware resource requirement. Because the state 
+variables are not reset in the spiking dynamics, it is expected 
+that this model can describe the dependence of spike waveform 
+on the stimulus far more effectively than the LIF and the IZH 
+models where resetting of the variables is one of the points that 
+reduce the complexity in their models and their implementations. 
+www.frontiersin.org 
+December 2012 | Volume 6 | Article 183 | 9 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+Li et al. 
+Silicon neuronal network 
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+10% 
+10% 
+Time(s) 
+20% 
+20% 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+30% 
+30% 
+40% 
+40% 
+50% 
+50% 
+A 
+B 
+C 
+D 
+E 
+F 
+G 
+H 
+I 
+J 
+FIGURE 10 | Responses of associative memory on the Class I 
+mode network when the patterns in Figure 8B was applied. 
+Planes (A–E) show the overlaps when the input pattern contains from 
+10 to 50% errors. In each plane, four colored curves labeled as M1, 
+M2, M3, and M4 are overlaps between the state of the neurons and 
+the stored pattern 1, 2, 3, and 4, respectively. Planes (F–J) show the 
+synchronized properties when the input pattern contains from 10 to 
+50% errors. 
+1.2 
+1.0 
+0.8 
+0.6 
+0.4 
+0.2 
+0.0 
+PSI
+0 
+0.2 
+0.4 
+0.6 
+0.8 
+1.0 
+1.2 
+Overlap 
+In the Class I mode network 
+10-20% 
+30% 
+40% 
+50% 
+FIGURE 11 | Relevance of the overlap and the synchronization in 
+Figure 10. 
+It restricts dynamics in the spikes by assuming their maximum 
+values are uniform. The IZH model actually can realize various 
+neuronal activities including that of Class II neurons, which the 
+LIF model cannot, though its spikes have a very similar waveform 
+(Figure 3C). Meanwhile, simplicity in our model is maintained 
+by reducing the number of multiplications, which is effective to 
+realize compact digital circuit implementations. By utilizing the 
+techniques of the phase plane and the bifurcation analyses, we 
+successfully found the parameters for Class I and II models where 
+the coefﬁcients are selected in powers of two or sums of two such 
+numbers. It allows us to replace the multiplications in our model 
+by shift and add operations except for calculation of the square 
+of variable v. Thus, our model can be implemented with single 
+multiplier, which is the same to in (Cassidy and Andreou, 2008). 
+Their circuit cannot realize the graded response of Class II neurons 
+because they are implementing the IZH model. In addition, our 
+silicon neuron circuit can be expanded to a 3-variable version with 
+no additional multiplier, which can produce autonomous burst- 
+ing similar to in the IZH model (Kobayashi et al., 2011). It was 
+also shown that our model can reproduce very complex neuronal 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2012 | Volume 6 | Article 183 | 10 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+Li et al. 
+Silicon neuronal network 
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+Mu
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+1.0 
+0.5 
+0.0 
+PSI
+10% 
+10% 
+Time(s) 
+20% 
+20% 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+Time(s) 
+0 0.2 0.4 0.6 0.8 1.0 
+30% 
+30% 
+40% 
+40% 
+50% 
+50% 
+A 
+B 
+C 
+D 
+E 
+F 
+G 
+H 
+I 
+J 
+FIGURE 12 | Responses of associative memory on the Class II 
+mode network when the patterns in Figure 8B was applied. 
+Planes (A–E) show the overlaps when the input pattern contains from 
+10 to 50% errors. In each plane, four colored curves labeled as M1, 
+M2, M3, and M4 are overlaps between the state of the neurons and 
+the stored pattern 1, 2, 3, and 4, respectively. Planes (F–J) show the 
+synchronized properties when the input pattern contains from 10 to 
+50% errors. 
+behaviors including chaotic ones by the ﬁxed point representation 
+(Kohno and Aihara, 2007) that requires less hardware resource 
+than the ﬂoating point representation, which are used in (Thomas 
+and Luk, 2009). Our silicon synapse model qualitatively describes 
+process of the transmitter release, receptor activation, and genera- 
+tion of synaptic current described in the kinetic models (Destexhe 
+et al., 1998). It was implemented without using multipliers by 
+selecting t α and t β in power of two numbers. The salient 
+feature of the synaptic output in our model is the time course 
+of rise and decay that is dependent on the spike width. However 
+it is usually neglected in other silicon neuronal networks (Cas- 
+sidy and Andreou, 2008; Thomas and Luk, 2009; Arthur et al., 
+2012). 
+We constructed a fully connected network of 256 neurons on 
+a Digilent Atlys FPGA board equipped with a Xilinx Spartan-6 
+LX45 FPGA. Calculating one step of a neuron needs 257 multipli- 
+cations and 267 additions. This large amount of calculation was 
+solved by the pipelined and parallel structure based on the tradeoff 
+between hardware resource requirement and updating speed of the 
+network. 
+The functionality of our silicon neuronal network and the sig- 
+niﬁcance of the Class II model in our silicon neuron were demon- 
+strated by an auto-associative memory task. Its performance was 
+evaluated by storing 4 patterns and applying inputs similar to them 
+but including errors. The result shows that our silicon neuronal 
+network has potential of retrieving the stored pattern even when 
+the input pattern contains error and the neurons ﬁre synchro- 
+nously in case of successful retrieving. The Class II mode network 
+has higher retrieving probability than the Class I mode network 
+which is caused by differences of dynamical properties in Class I 
+and II neurons. We can expect that the retrieving probability of 
+our network is better than (Arthur et al., 2012) because it can only 
+realize Class I neurons. It is known that one of the major difference 
+between Class I and II neurons is the dependence of the spike form 
+on the input strength. In Class II neurons, it depends strongly on 
+the input, whereas it is almost constant in Class I neurons. We 
+www.frontiersin.org 
+December 2012 | Volume 6 | Article 183 | 11 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+Li et al. 
+Silicon neuronal network 
+1.2 
+1.0 
+0.8 
+0.6 
+0.4 
+0.2 
+0.0 
+PSI
+0 
+0.2 
+0.4 
+0.6 
+0.8 
+1.0 
+1.2 
+Overlap 
+In the Class II mode network 
+10-30% 
+40% 
+50% 
+FIGURE 13 | Relevance of the overlap and the synchronization in 
+Figure 12. 
+FIGURE 14 | Retrieving probability for the Class I and II mode 
+networks. Randomly generated 12 sets of patterns based of the 4 stored 
+patterns (Figure 8A) were used as the input. 
+expect that this difference is playing at least a partial role in the 
+performance of the auto-associative task, which will be elucidated 
+in our future works. In this paper, our silicon neuronal network 
+was tested only in its fully connected network topology without 
+any adaptive learning rules. Because any connecting topology can 
+be realized by disabling appropriate connections in the fully con- 
+nected one, our system is ready to be tested in any settings. Under 
+such restrictions, our results support that our silicon neuronal 
+network can execute one of the most fundamental tasks for the 
+neuronal networks and its distinctive feature of realizing Class II 
+neurons can improve retrieving performance. 
+The custom neuromorphic chips investigated by both FACETs 
+and NeuroGrid are the compact analog circuits which are com- 
+posed of the silicon neurons based on the detailed neuron models 
+(Bruderle et al., 2010; Choudhary et al., 2012). Their circuit is 
+compact and consumes lower power but is generally sensitive to 
+the noise and the fabrication mismatch. SpiNNaker simulates the 
+detailed neuronal model which runs in the software on the embed- 
+ded ARM processors with a high speed clock (Jin et al., 2010). 
+Such systems generally consume higher power in comparison to 
+our silicon neuronal network which is based on the optimized for 
+implementation model and implemented by the compact and ded- 
+icated hardware running with a low speed clock. In SyNAPSE, the 
+digital circuit implementation of the LIF model is used (Arthur 
+et al., 2012), which we already have mentioned above. For real- 
+time operation as an artiﬁcial nerve system, our silicon neuronal 
+network requires very low clock frequency around several thou- 
+sands of kilo hertzs. Each silicon neuron has 256 synaptic inputs, 
+which will be increased up to about 10,000, which is a typical num- 
+ber of synaptic connection of a neuronal cell in the neocortex. In 
+such case, the clock frequency will be about a hundred mega hertz 
+(about 40 times faster than current frequency). Digital circuits 
+with such range of clock frequency can be implemented by the 
+near-threshold logic technology which consumes very low power. 
+And it also consumes less power in cheap FPGAs. Thus our system 
+can be suitably applied to robot controllers and compact intelligent 
+sensor devices. For example, there is a possibility that our silicon 
+neuronal network is connected to the event-based biomimetic sen- 
+sors via additional silicon synapses dedicated to external inputs 
+and realize an intelligent sensor such as retina-like image sen- 
+sors. On the other hand, our silicon neuronal network can operate 
+much more faster than the nerve system even in entry-level FPGA 
+devices. Actually, our system can operate with 100 MHz system 
+clock, which 40 times accelerated in comparison to the real-time 
+operation. Thus, our system can be applied as a high speed sim- 
+ulator of neuronal networks composed of the qualitative neuron 
+models, which is utilized as an important tool for the connection- 
+ists. Compared with the event-based network (Chicca et al., 2004), 
+our network is expected to catch sensitive event information for 
+its high speed operation and low power consumption. 
+In our future works, we will evaluate performance of our silicon 
+neuronal network in the auto-associative task more in detail from 
+theoretical viewpoints. It includes the comparison of the perfor- 
+mance between our DSSN model’s and the IZH model’s networks 
+as well as the evaluation of the memory capacity and the effect of 
+introducing the STDP learning rules into both of the networks. 
+This will elucidate more clearly how the neuron classes affect the 
+performance of the auto-associative memory task. The large-scale 
+network will also be pursued that can be implemented in a single 
+FPGA chip, which will be applied to realizing intelligent sensors 
+including retina-like image sensors. We expect possibility that the 
+selectivity of neuron classes in our silicon neuronal network can 
+improve such devices. 
+ACKNOWLEDGMENTS 
+This work was partially supported by JSPS Grant-in-Aid for Chal- 
+lenging Exploratory Research Number 21650069. This research 
+was also partially supported by Aihara Innovative Mathematical 
+Modelling Project, the Japan Society for the Promotion of Sci- 
+ence (JSPS) through its “Funding Program for World-Leading 
+Innovative R&D on Science and Technology (FIRST Program).” 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2012 | Volume 6 | Article 183 | 12 
+
+/*** End Page =11= ***/
+/*** Page =12= ***/
+Li et al. 
+Silicon neuronal network 
+REFERENCES 
+Aoyagi, T.(1995). Network of nerual 
+oscillators for retrieving phase 
+information. Phys. Rev. Lett. 74, 
+4075–4078. 
+Arthur, J., Merolla, P., Akopyan, F., 
+Alvarez, R., Cassidy, A., Chandra, S., 
+et al. (2012). “Building block of a 
+programmable neuromorphic sub- 
+strate: a digital neurosynaptic core,” 
+in International Joint Conference on 
+Neural Networks. Brisbane. 
+Brette, R., and Gerstner, W. (2005). 
+Adaptive exponential integrate-and- 
+ﬁre model as an effective description 
+of neuronal activity. J. Neurophysiol. 
+94, 3637–3642. 
+Bruderle, D., Bill, J., Kaplan, B., 
+Kremkow, J., Meier, K., Muller, E., 
+et al. (2010). “Simulator-like explo- 
+ration of cortical network architec- 
+tures with a mixed-signal VLSI sys- 
+tem,” in Proceeding of the IEEE Inter- 
+national Symposium on Circuits and 
+Systems, Paris, 2784–2787. 
+Cassidy, A., and Andreou, A. G. (2008). 
+“Dynamical digital silicon neurons,” 
+in IEEE Transactions on Biomed- 
+ical Circuits and Systems, Baltimore, 
+289–292. 
+Chakrabartty, S., and Liu, S. C. (2010). 
+“Exploiting spike-based dynamics in 
+a silicon cochlea for speaker identi- 
+ﬁcation,” in Proceeding of the IEEE 
+International Symposium on Circuits 
+and Systems, Paris, 513–516. 
+Chicca, E., Indiveri, G., and Douglas, 
+R. J. (2004). “An event-based VLSI 
+network of integrate-and-ﬁre neu- 
+rons,” in Proceeding of the IEEE Inter- 
+national Symposium on Circuits and 
+Systems, Vancouver, 357–360. 
+Chicca, E., Whatley, A. M., Licht- 
+steiner, P., Dante, V., Delbruck, T., 
+Del Giudice, P., et al. (2007). A 
+multi-chip pulse-based neuromor- 
+phic infrastructure and its applica- 
+tion to a model of orientation selec- 
+tivity. IEEE Trans. Circuits Syst. 54, 
+981–993. 
+Choudhary, S., Sloan, S., Fok, S., Neckar, 
+S., Trautmann, E., Gao, P., et al. 
+(2012). “Silicon neurons that com- 
+pute,” in International Conference on 
+Artiﬁcial Neural Networks, Lausanne, 
+121–128. 
+Destexhe, A., Mainen, Z. F., and 
+Sejnowski, T. J. (1998). “Kinetic 
+models of synaptic transmissionm,” 
+in Methods in Neuronal Modeling, 
+eds C. Koch and I. Segev (Cam- 
+bridge, FL: MIT Press), 1–25. 
+Domany, E., and Orland, H. (1987). A 
+maximum overlap neural network 
+for pattern recognition. Phys. Lett. 
+125, 32–34. 
+Hodgkin, A. L. (1948). The local electric 
+changes associated with repetitive 
+action in a non-medullated axon. J. 
+Physiol. 107, 165–181. 
+Hodgkin, A. L., and Huxley, A. F. (1952). 
+A quantitative description of mem- 
+brane current and its application to 
+conduction and excitation in nerve. 
+J. Physiol. 117, 500–544. 
+Hopﬁeld, J. J. (1982). Neural networks 
+and physical systems with emer- 
+gent collective computational abili- 
+ties. Proc. Natl. Acad. Sci. U.S.A. 79, 
+2254–2558. 
+Hopﬁeld, J. J. (1984). Neurons with 
+graded response have collective 
+computational properties like those 
+of two-state neurons. Proc. Natl. 
+Acad. Sci. U.S.A. 81, 3088–3092. 
+Indiveri, G., Linares-Barranco, B., 
+Hamilton, T. J., van Schaik, A., 
+Etienne-Cummings, R., Delbruck, 
+T., et al. (2011). Neuromorphic sili- 
+con neuron circuits. Front. Neurosci. 
+5:73. doi:10.3389/fnins.2011.00073 
+Indiveri, G., Stefanini, F., and Chicca, E. 
+(2010). “Spike-based learning with a 
+generalized integrate and ﬁre silicon 
+neuron,” in Proceeding of the IEEE 
+International Symposium on Circuits 
+and Systems, Paris, 1951–1954. 
+Izhikevich, E. M. (2006). Dynamical 
+Systems in Neuroscience: The Geome- 
+try of Excitability and Bursting. Cam- 
+bridge: MIT Press. 
+Jin, X., Lujan, M., Plana, L. A., Davies, 
+S., Temple, S., Furber, S. B. (2010). 
+Modeling spiking neural networks 
+on SpiNNaker. Comput. Sci. Eng. 12, 
+91–97. 
+Jolivet, R., Lewis, T., and Gerstner, 
+W. (2004). Generalized integrate- 
+and-ﬁre models of neuronal activ- 
+ity approximate spike trains of a 
+detailed model to a high degree 
+of accuracy. J. Neurophysiol. 92, 
+959–976. 
+Knoblauch, A., and Palm, G. (2001). 
+Pattern separation and synchroniza- 
+tion in spiking associativ ememories 
+and visual areas. Neural Netw. 14, 
+763–780. 
+Kohno, T., and Aihara, K. (2007). “Dig- 
+ital spiking silicon neuron: concept 
+and behaviors in GJ-coupled net- 
+work,” in Proceedings of International 
+Symposium on Artiﬁcial Life and 
+Robotics, Beppu, OS3–OS6. 
+Kobayashi, W., Kohno, T., and Aihara, 
+K. (2011). “3-Variable digital spik- 
+ing silicon neuron,” in Proceedings 
+of the 24th Workshop on Circuit and 
+Systems, Hyogo, 1–5. 
+Lapicque, L. (1907). Recherches quan- 
+titatives sur l’excitation electrique 
+des nerfs traitee comme une 
+polarization. J. Physiol. Paris 9, 
+620–635. 
+Le Masson, G., Renaud-le, M. S., Debay, 
+D., and Bal, T. (2002). Feedback 
+inhibition controls spike transfer 
+in hybrid thalamic circuits. Nature 
+4178, 854–858. 
+Liu, S. C., and Delbruck, T. (2010). Neu- 
+romorphic sensory systems. Curr. 
+Opin. Neurobiol. 20, 1–8. 
+Mahowald, M., and Douglas, R. (1991). 
+A silicon neuron. Nature 354, 
+515–518. 
+Mallik, U., Jacob Vogelstein, R., Culur- 
+ciello, E., Etienne-Cummings, R., 
+and Cauwenberghs, G. (2005). 
+“A real-time spike-domain sensory 
+information processing system,” in 
+Proceeding of the IEEE International 
+Symposium on Circuits and Systems, 
+Kobe, 1919–1922. 
+Mitra, S., Fusi, S., and Indiveri, G. 
+(2009). Real-time classiﬁcation of 
+complex patterns using spike-based 
+learning in neuromorphic VLSI. 
+IEEE Trans. Biomed. Circuits Syst. 3, 
+32–42. 
+Rosenblum, M., Pikovsky, A., Kurths, 
+J., Schaefer, C., and Tass, P. (2001). 
+“Phase synchronization: from the- 
+ory to data analysis,” in Handbook 
+of Biological Physics, ed. A. J. Hoff 
+(Netherlands: Elsevier Science), 
+279–321. 
+Rubin, D. B. D., Chicca, E., and Indiveri, 
+G. (2004). Characterizing the ﬁr- 
+ing properties of an adaptive analog 
+VLSI neuron. Lect. Notes Comput. 
+Sci. 3141, 189–200. 
+Simoni, M., Cymbalyuk, G., Sorensen, 
+M., Calabrese, R., and DeWeerth, S. 
+(2004). A multiconductance silicon 
+neuron with biologically matched 
+dynamics. IEEE Trans. Biomed. Eng. 
+51, 342–354. 
+Simoni, M., and DeWeerth, S. 
+(2007). Sensory feedback in a 
+half-Center oscillator model. 
+IEEE Trans. Biomed. Eng. 54, 
+193–204. 
+Sudo, A., Sato, A., and Hasegawa, 
+O. (2009). Associative memory for 
+online learning in noisy environ- 
+ments using self-organizing incre- 
+mental neural network. IEEE Trans. 
+Neural Netw. 20, 964–972. 
+Thomas, D. B., and Luk, W. (2009). 
+“FPGA accelerated simulation of 
+biologically plausible spiking neural 
+networks,” in Proceedings of the 17th 
+IEEE Symposium on Field Program- 
+mable Custom Computing Machines, 
+Napa, 45–52. 
+van Schaik, A., Jin, C., and Hamilton, 
+T. J. (2010). “A log-domain imple- 
+mentation of the Izhikevich neuron 
+model,” in Proceedings of the IEEE 
+International Symposium on Circuits 
+and Systems, Paris, 4253–4256. 
+Yu, T., and Cauwenberghs, G. (2010). 
+“Analog VLSI biophysical neurons 
+and synapses with programmable 
+membrane channel kinetics,” in 
+IEEE Transactions on Biomedical Cir- 
+cuits and Systems, Paphos, 139–148. 
+Conﬂict of Interest Statement: The 
+authors declare that the research was 
+conducted in the absence of any com- 
+mercial or ﬁnancial relationships that 
+could be construed as a potential con- 
+ﬂict of interest. 
+Received: 26 July 2012; accepted: 04 
+December 2012; published online: 24 
+December 2012. 
+Citation: Li J, Katori Y and Kohno T 
+(2012) An FPGA-based silicon neuronal 
+network with selectable excitability sili- 
+con neurons. Front. Neurosci. 6:183. doi: 
+10.3389/fnins.2012.00183 
+This article was submitted to Frontiers in 
+Neuromorphic Engineering, a specialty of 
+Frontiers in Neuroscience. 
+Copyright © 2012 Li, Katori and Kohno. 
+This is an open-access article distributed 
+under the terms of the Creative Com- 
+mons Attribution License, which per- 
+mits use, distribution and reproduction 
+in other forums, provided the original 
+authors and source are credited and sub- 
+ject to any copyright notices concerning 
+any third-party graphics etc. 
+www.frontiersin.org 
+December 2012 | Volume 6 | Article 183 | 13 
+
+/*** End Page =12= ***/

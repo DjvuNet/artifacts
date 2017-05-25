@@ -1,0 +1,751 @@
+/*** Page =0= ***/
+RESEARCH ARTICLE 
+Bovine Leukemia Virus Small Noncoding 
+RNAs Are Functional Elements That Regulate 
+Replication and Contribute to Oncogenesis 
+In Vivo 
+Nicolas A. Gillet1,2*, Malik Hamaidia1,2, Alix de Brogniez1,2, Gerónimo Gutiérrez3, 
+Nathalie Renotte1,2, Michal Reichert4, Karina Trono3, Luc Willems1,2* 
+1 Molecular and Cellular Epigenetics, Interdisciplinary Cluster for Applied Genoproteomics (GIGA), 
+University of Liège, Liège, Belgium, 2 Molecular and Cellular Biology, Gembloux Agro-Bio Tech, University 
+of Liège, Gembloux, Belgium, 3 Instituto de Virología, Centro de Investigaciones en Ciencias Veterinarias y 
+Agronómicas, Castelar, Argentina, 4 National Veterinary Research Institute, Pulawy, Poland 
+* n.gillet@ulg.ac.be (NAG); luc.willems@ulg.ac.be (LW) 
+Abstract 
+Retroviruses are not expected to encode miRNAs because of the potential problem of self-cleav- 
+age of their genomic RNAs. This assumption has recently been challenged by experiments 
+showing that bovine leukemia virus (BLV) encodes miRNAs from intragenomic Pol III promoters. 
+The BLV miRNAs are abundantly expressed in B-cell tumors in the absence of significant levels 
+of genomic and subgenomic viral RNAs. Using deep RNA sequencing and functional reporter 
+assays, we show that miRNAs mediate the expression of genes involved in cell signaling, can- 
+cer and immunity. We further demonstrate that BLV miRNAs are essential to induce B-cell 
+tumors in an experimental model and to promote efficient viral replication in the natural host. 
+Author Summary 
+The recent discovery of miRNA expression by retroviruses is a matter of active debate and 
+some controversy. Several retroviruses including human immunodeficiency virus (HIV) 
+potentially encode functional small non-coding RNAs that are nevertheless undetectable 
+in vivo. While these miRNAs regulate multiple host and viral processes in vitro, their con- 
+tribution to infection and pathogenesis remains largely unknown. Using next-generation 
+sequencing and reverse genetics, we provide mechanistic and functional evidence demon- 
+strating that BLV miRNAs are functional genetic elements that regulate replication and 
+contribute to oncogenesis in suitable animal models. 
+Introduction 
+Virally encoded miRNAs were first identified in DNA viruses. Most of these miRNAs are 
+generated from endonucleolytic cleavage of long viral transcripts. Retroviruses were initially 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+1/18 
+11 
+OPEN ACCESS 
+Citation: Gillet NA, Hamaidia M, de Brogniez A, 
+Gutiérrez G, Renotte N, Reichert M, et al. (2016) 
+Bovine Leukemia Virus Small Noncoding RNAs Are 
+Functional Elements That Regulate Replication and 
+Contribute to Oncogenesis In Vivo. PLoS Pathog 12 
+(4): e1005588. doi:10.1371/journal.ppat.1005588 
+Editor: Christopher S Sullivan, University of Texas at 
+Austin, UNITED STATES 
+Received: December 31, 2015 
+Accepted: March 31, 2016 
+Published: April 28, 2016 
+Copyright: © 2016 Gillet et al. This is an open 
+access article distributed under the terms of the 
+Creative Commons Attribution License, which permits 
+unrestricted use, distribution, and reproduction in any 
+medium, provided the original author and source are 
+credited. 
+Data Availability Statement: All relevant data are 
+within the paper and its Supporting Information files. 
+Funding: This work received financial support of the 
+“Fonds National de la Recherche Scientifique” 
+(FNRS), the Télévie, the Interuniversity Attraction 
+Poles (IAP) Program “Virus-host interplay at the early 
+phases of infection” BELVIR initiated by the Belgian 
+Science Policy Office, the Belgian Foundation against 
+Cancer (FBC), the “Centre anticancéreux près ULg” 
+(CAC) and the "Fonds Léon Fredericq" (FLF), the 
+“AgricultureIsLife” project of Gembloux Agrobiotech 
+(GxABT), the “ULg Fonds Spéciaux pour la 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+assumed not to encode miRNAs because of the potential self-cleavage of their RNA genome. 
+Human immunodeficiency virus (HIV), West Nile virus (WNV), Dengue virus (DENV), hepa- 
+titis A virus (HAV) and Ebola virus (EBOV) potentially express small non-coding RNAs [1–4]; 
+however, no significant amounts of viral miRNAs have been identified by high-throughput 
+sequencing of RNA from cultured cells infected with these different viruses [5–7]. Recently, 
+four retroviruses, i.e., bovine leukemia virus (BLV), bovine foamy virus (BFV), avian leucosis 
+virus (ALV-J) and simian foamy virus (SFV) were shown to express viral miRNAs in infected 
+cells [8–11]. ALV-J encodes a single viral miRNA (XSR) from a Pol II-transcribed precursor 
+that is processed by the canonical biogenesis pathway. ALV-J thus tolerates some Drosha and 
+Dicer cis-cleavage of the viral genome. In contrast, BLV and BFV massively express viral miR- 
+NAs driven by Pol III promoters embedded within their proviral genome. These viruses avoid 
+unproductive cleavage of their genomic RNA because only the subgenomic Pol III transcripts 
+are processed into miRNAs. The BFV long terminal repeat U3 region is transcribed into a 
+122-nucleotide pri-miRNA that is subsequently cleaved into two pre-miRNAs and processed 
+in three viral miRNAs. The BLV genome encodes a cluster of five miRNA hairpins from a pro- 
+viral region lacking significant open reading frames located just 3' to the envelope gene. These 
+hairpins undergo maturation into ten miRNAs in a Drosha-independent pathway [8,12,13]. 
+BLV naturally infects the bovine species (Bos taurus), zebu (Bos indicus) and water buffalo 
+(Bubalus bubalis). BLV infection remains mostly asymptomatic in a large majority of infected 
+animals. Only approximately one-third of BLV-infected cows will develop benign lymphocyto- 
+sis. In a minority of cases (approximately 5%), BLV infection leads to B-cell leukemia/lym- 
+phoma after long latency periods (7–10 years). Experimental inoculation of sheep with BLV 
+recapitulates the different steps of oncogenesis with higher frequencies (up to 100%) and rela- 
+tively short latency periods (approximately 2 years) [14]. Remarkably, BLV persists and repli- 
+cates in vivo in the absence of significant levels of viral mRNA transcription [15–17]. In 
+contrast, BLV miRNAs are massively expressed in the infected cells, representing up to approx- 
+imately 40% of all cellular miRNAs [12]. Because ribonucleic acids are likely less immunogenic 
+than viral antigens, BLV miRNAs could thus modify the cell fate and concomitantly escape 
+from immune recognition. 
+Although miRNAs encoded by BLV are massively expressed, their biological significance in 
+viral replication and pathogenesis is still unknown. In this report, we specifically addressed this 
+question in the BLV system using a reverse genetics approach. 
+Results 
+BLV miRNAs modulate the expression of genes involved in 
+oncogenesis, cell signaling, apoptosis and immune response 
+To investigate the role of the miRNAs in the natural host, a BLV provirus isogenic to a wild- 
+type molecular clone but devoid of the intergenic sequences located between the env and R3 
+genes (pBLV- miRNA) was constructed (Fig 1A) and inoculated into 3 calves. All three ani- 
+mals produced specific antibodies against BLV gp51 envelope protein and became persistently 
+infected by the deleted virus, demonstrating that the miRNAs are dispensable for infectivity. 
+Serial PCR amplifications of peripheral blood mononuclear cell (PBMC) DNA with primers 
+flanking the miRNA region and subsequent sequencing confirmed that pBLV- miRNA was 
+indeed infectious in vivo (Fig 1B). Quantitative RT-qPCR further revealed the lack of viral 
+miRNA expression in these animals (B1-3p, B2-5p, B3-3p, B4-3p and B5-5p), as in a control 
+bovine B-lymphocyte cell line (BL3) (Fig 1C). In contrast, the miRNA copy numbers measured 
+in primary PBMCs from wild-type infected calves (Bo-WT) were similar to the levels of BL3 
+cells transduced with a lentiviral vector expressing the BLV miRNAs (BL3-miRNA, Fig 1C). 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+2/18 
+Recherche” and the “Plan Cancer” of the “Service 
+Public Fédéral” and the Polish National Science 
+Centre (decision 2012/07B/NZ6/03536). The funders 
+had no role in study design, data collection and 
+analysis, decision to publish, or preparation of the 
+manuscript. 
+Competing Interests: The authors have declared 
+that no competing interests exist. 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+3/18 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+Because a minimal heptameric seed sequence is sufficient for activity, the ten BLV miRNAs 
+are predicted to substantially modify the host transcriptome. To address species-specificity, cell 
+type adequacy and biological relevance, gene expression was characterized in parallel in pri- 
+mary PBMCs and miRNA-transduced BL3 lymphocytes. High-throughput RNA sequencing 
+was performed with pLenti-miRNA-transduced BL3 cells (BL3-miRNA) or control pLenti- 
+transduced BL3 (BL3) and with PBMCs from wild-type BLV (Bo-WT), pBLV- miRNA (Bo- 
+miRNA) or mock-infected calves. Fig 2A illustrates the expression coverage profile corre- 
+sponding to the granzyme A (GZMA) locus. GZMA mRNA was expressed in control lympho- 
+cytes (BL3) but not in pLenti-miRNA-transduced BL3 cells (BL3-miRNA). Consistently, 
+GZMA transcripts were present in PBMCs from pBLV- miRNA-inoculated animals (Bo- 
+miRNA) and uninfected controls but were almost undetectable in Bo-WT calves (Fig 2A). 
+The combined analysis of BL3 cells and PBMCs thus identified mRNAs associated with the 
+presence of the miRNAs in B lymphocytes and in vivo. Panel B of Fig 2 provides the top list of 
+mRNAs that match these criteria. Gene ontology analysis using MSigDB software (Molecular 
+Signature DataBase from the Broad Institute) identified a network of the most enriched path- 
+ways that included cell signaling, cancer genes and immune response (Fig 2C). 
+FOS, GZMA and PPT1 are biologically relevant miRNA targets 
+The expression networks of statistically significant and biologically relevant genes revealed 
+intramodular hubs in consensus modules (Fig 2C). Based on their connection frequency, the 
+following six hub genes were selected for further functional analysis (boxes on Fig 2C): PPT1 
+(palmitoyl-protein thioesterase 1), ANXA1 (annexin A1), GZMA (granzyme A), PIK3CG 
+(phosphatidylinositol-4,5-bisphosphate 3-kinase, catalytic subunit gamma), FOS (FBJ murine 
+osteosarcoma viral oncogene homolog) and MAP2K1 (mitogen-activated protein kinase kinase 
+1 or MEK1). BLV miRNA functionality was evaluated in BL3 cells by reporter constructs con- 
+taining gene cDNAs cloned downstream of the Renilla luciferase gene. BLV miRNAs silenced 
+the luciferase activity of reporter plasmids containing the full-length cDNAs of FOS, GZMA 
+and PPT1 (compare BL3-miRNA with BL3 on Fig 3A). As a control for specificity, luciferase 
+expression of a backbone reporter lacking cDNAs was unaffected by BLV miRNAs (S3 Fig). In 
+contrast, ANXA1, MAP2K1 and PIK3CG reporters were not down-regulated under similar 
+conditions, indicating that these genes were not direct miRNA targets (Fig 3A). The FOS, 
+GZMA and PPT1 mRNAs were predicted by Sfold and STarMiRNA software to be direct inter- 
+actors of miRNA B4-3p (Fig 3G and S1 Fig). Mutation of the predicted miRNA binding sites in 
+the full-length cDNAs of FOS, GZMA and PPT1 abrogated miRNA silencing (Fig 3B). To test 
+the selective effect of BLV miRNA B4 on the FOS, GZMA and PPT1 mRNAs, HEK293T cells 
+were transfected with a pSUPER plasmid encoding only miRNA B4 (Fig 3C–3F). The levels of 
+miRNA expression achieved in HEK293T cells were biologically relevant as they were similar 
+to those measured in PBMCs (S2 Fig). BLV miRNA B4 silenced the luciferase activity of 
+reporter plasmids containing the full-length cDNAs of FOS, GZMA and PPT1 (compare pSU- 
+PER with pSUPER-B4 on Fig 3C). Mutation of the predicted miRNA binding sites in the full- 
+length cDNAs of FOS, GZMA and PPT1 abrogated the miRNA B4 silencing (Fig 3D). Insertion 
+Fig 1. miRNA-deleted BLV virus and BLV miRNAs-expressing bovine B-cell line (A) A modified 
+version (pBLV -miRNA) of the wild type BLV provirus (pBLV-WT) was generated by deleting the 
+region encoding the miRNAs. (B) Upon inoculation of the calves, the integrity of the miRNA sequences was 
+verified by nested PCR (upper panels) and Sanger sequencing (lower panels). 793 bp and 231 bp 
+correspond to the amplicon lengths of pBLV-WT and pBLV -miRNA, respectively. (C) miRNA expression 
+levels were measured by quantitative RT-qPCR in miRNA-transduced BL3 cells (BL3-miRNA) and in primary 
+PBMCs from WT and -miRNA-infected calves. 
+doi:10.1371/journal.ppat.1005588.g001 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+4/18 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+5/18 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+of the predicted target (Fig 3E) but not of a mutated version (Fig 3F) in the 3'UTR of the lucif- 
+erase gene recapitulated the silencing activity of the miRNAs. 
+These functional reporter assays thus identified direct (FOS, GZMA and PPT1) and indirect 
+(ANXA1, MAP2K1 and PIK3CG) targets among biologically relevant genes whose expression 
+is affected by BLV miRNAs in vivo. 
+BLV miRNAs are dispensable for infection but contribute to viral 
+replication in the natural host 
+To evaluate the role of the miRNAs in viral fitness, 12 calves were inoculated either with the 
+wild-type molecular clone or with the recombinant pBLV- miRNA. The proviral loads profile 
+indicated that the viral burden at 28–30 days post-inoculation was significantly lower in pBLV- 
+miRNA infected animals compared to wild-type levels (Fig 4A Mann-Whitney test, p = 0.04). 
+The integrity of the miRNAs was also important to maintain stable proviral loads in the long 
+term (i.e., at 252–254 days on Fig 4A; Mann Whitney test, p = 0.03). Nested PCR and sequenc- 
+ing indicated the absence of reversion of the mutation at any time post-infection (S4 Fig). Con- 
+sistently, spontaneous ex-vivo transcription of viral mRNAs was reduced in the animals 
+infected with pBLV- miRNA compared to wild-type levels (Fig 4B Mann Whitney test, 
+p = 0.009, p = 0.004 and p = 0.002 for GAG, ENV and TAX, respectively). miRNAs were abun- 
+dantly expressed in PBMCs (Fig 4C) as well as in the plasma (Fig 4D) of wild-type BLV- 
+infected calves and correlated with proviral loads but were undetectable in the pBLV- miRNA 
+deletants. The expression of miRNA-regulated transcripts ANXA1, FOS, GZMA, MAP2K1, 
+PPT1 and PIK3CG further validated the transcriptomic profiling data in a larger series of ani- 
+mals (Fig 4E). 
+Together, these observations demonstrate that ablation of the BLV miRNAs impacts repli- 
+cation fitness in the natural host. 
+Suppression of oncogenicity in the absence of BLV miRNAs 
+Due to the low frequency of tumor development and the long latency period, the evaluation of 
+the role of miRNAs in oncogenesis in the bovine species would take decades. Although sheep 
+are not naturally infected by BLV, this model recapitulates the main characteristics of bovine 
+leukemia-lymphoma and allows one to address this important question. Replication efficacy of 
+the wild-type and pBLV- miRNA viruses was initially similar during early stages post-inocula- 
+tion (NS, Fig 5A). At later times, the miRNA deletant was unable to maintain wild-type replica- 
+tion ( p = 0.04 according to the Mann Whitney test). The levels of miRNA expression in 
+PBMCs and in the plasma were similar to those measured in the calves (Fig 5B and 5C). Since 
+BLV miRNAs are abundantly expressed in the plasma, GZMA transcription could be affected 
+in other cell types (CTLs and NK cells). Cell sorting and RT-qPCR demonstrated that miRNA- 
+associated GZMA down-regulation is restricted to the B cell lineage (S4 Fig). As in the bovine 
+Fig 2. Transcriptome changes induced by BLV miRNAs. (A) The transcriptomes of BL3 and BL3-miRNA cells and primary PBMCs from mock-, pBLV - 
+miRNA or pBLV-WT-infected calves (Not infected, Bo- 
+-miRNA and Bo-WT, respectively) were determined by RNA-Seq. GZMA transcriptional activity is 
+illustrated using the Integrative Genomics Viewer (IGV) software from the Broad Institute. (B) Changes in gene expression induced by viral miRNAs. The first 
+column (BL3 ><BL3-miRNA) lists the transcripts that are significantly deregulated in BL3 cells compared to BL3-miRNA. The second column (Bo- miRNA > 
+< Bo-WT) compares the transcripts that are significantly modulated in primary PBMCs of the calves infected with pBLV-WT and pBLV -miRNA. The third 
+column (cow- miRNA ><not infected) reports the differences in the expression levels between Bo- miRNA PBMCs and uninfected controls. A colored 
+scale with increasing shades of blue indicating depletion and increasing shades of yellow indicating enrichment is shown on the bottom of panel E. P-values 
+were calculated using Cuffdiff software (NS for not significant,* p< 0.05, ** p< 0.01, *** p< 0.001). Sequencing data results from biological triplicates in each 
+group. (C) Pathway enrichment analysis of miRNA-induced transcriptional modifications. The genes significantly deregulated by the viral miRNAs were 
+clustered by ontology using MSigDB. The gene regulation network was constructed using Cytoscape software. The circle size is proportional to enrichment 
+of the annotation. FDR q-value threshold for gene ontology annotation was set to 0.05. 
+doi:10.1371/journal.ppat.1005588.g002 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+6/18 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+7/18 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+species, replication of the pBLV- miRNA deletant in sheep occurred in the absence of rever- 
+sion (S5 Fig). Fifty percent of the sheep infected with wild-type BLV developed leukemia-lym- 
+phoma within 22 months, confirming previous rates reported in the literature (Fig 5D)[18]. 
+Compared to the high incidence of leukemia-lymphoma in the sheep inoculated with parental 
+BLV, none of the animals infected with pBLV- miRNA displayed any clinical sign of oncoge- 
+nicity (Fig 5D). 
+These data thus reveal a dramatic suppression of oncogenicity subsequent to the loss of 
+BLV miRNAs. 
+Discussion 
+The high abundance of BLV miRNAs in tumors suggested a possible role in viral replication 
+and oncogenesis [8,12]. In this report, we have provided mechanistic and functional evidence 
+demonstrating that the BLV miRNAs modify host gene expression to promote viral persistence 
+and induce pathogenicity. The goal of the transcriptomic analysis was to identify the global 
+changes associated with the BLV miRNAs in the natural host. The rationale was based on the 
+merged analysis of a well-characterized cell system (BL3 bovine cells transduced with miRNAs) 
+and primary PBMCs isolated from infected cows. The main reason of this strategy is that unbi- 
+ased isolation of BLV-infected B cells from an infected animal is technically still impossible. 
+Therefore, RNA sequencing was performed in parallel with miRNA or mock-transduced BL3 
+cells and primary PBMCs from cows inoculated with wild-type or recombinant pBLV- 
+miRNA viruses. The objective was not to produce an exhaustive list of direct RNA targets but 
+rather monitor the global effect of the miRNAs. High-throughput sequencing of RNA isolated 
+from immunoprecipitated Ago-miRNA-mRNA complexes would identify only direct BLV 
+miRNA targets. Transcriptomic profiling by high throughput RNA sequencing identified 
+genes whose expression is affected by miRNAs in B-lymphocytes and primary PBMCs (Fig 
+2B). This approach revealed a list of biologically relevant genes that are directly (GZMA, FOS, 
+PPT1) or indirectly (ANXA1, MAP2K1 and PIK3CG) targeted by the BLV miRNAs (Fig 3). In 
+contrast, peroxidasin homolog (PXDN) identified by miRNA/RNA duplex prediction analyses 
+and reporter assays was not a biologically relevant miRNA target in vivo [8,12]. Similarly, 
+tumor suppressor HMGbox transcription factor 1 (HBP1) whose expression is halved in sheep 
+tumor cells [12] is unaffected in bovine B-lymphocytes expressing the BLV miRNAs (S6 Fig). 
+Gene ontology analysis revealed intramodular hubs in two consensus modules that relate to 
+apoptosis and immunity (GZMA, PPT1 and ANXA1) or cell signaling and oncogenesis (FOS, 
+MAP2K1 and PIK3CG). In particular, the serine protease GZMA expressed mostly by natural 
+killer (NK) cells and cytotoxic T-lymphocytes (CTL) but also by B cells under inflammatory 
+conditions [19], induces caspase-independent apoptosis [20,21]. Knockout of GZMA in mouse 
+models sensitizes to the animals viral infections, indicating a central role in immunity [22]. 
+Inactivation of GZMA by Kaposi's sarcoma-associated herpes virus (KSHV) miRNA-K12-6 
+further supports the significance of this target in other viral life cycles [23]. Our data (S4 Fig) 
+show that GZMA expression is reduced by BLV miRNAs in B-lymphocytes but not in non-B 
+cells. It remains nevertheless possible that microRNAs are transiently transferred via the 
+Fig 3. Validation of RNA targets by luciferase reporter assays. A series of psiCHECK2 luciferase reporter plasmids were constructed by insertion of the 
+full length cDNAs of ANXA1, FOS, MAP2K1, GZMA, PIK3CG and PPT1 (A,C), the full length cDNAs mutated in the miRNA predicted target sequence(s) (B, 
+D), the miRNA predicted target sequence (E) and a mutated predicted target sequence (F). Reporter plasmids were transfected in BL3 or BL3-miRNA cells 
+and luciferase activity was determined at 24 hours (A,B). Y axis are relative luciferase units. Reporter plasmids were also co-transfected with expression 
+vectors for all 10 viral miRNAs (pSUPER-miRNAs) or for miRNA-B4 only (pSUPER-B4) in HEK 293T cells and luciferase activity was determined at 24 hours 
+(C-F). (G) Prediction of miR-B4-3p duplexes with cFOS, GZMA and PPT1 transcripts using the STarMir program. NS (not significant), * p< 0.05, ** p< 0.01, 
+*** p< 0.001 according to Student's t-test. Error bars are standard deviations. 
+doi:10.1371/journal.ppat.1005588.g003 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+8/18 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+9/18 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+immunological synapse upon contact with CTL or NK cells. Another important BLV miRNA 
+target is FOS, which mediates the primary response to B-cell receptor signaling upon dimeriza- 
+tion with c-JUN in the AP1 complex [24–26]. Interestingly, Tcl1-directed inhibition of AP-1 
+transcriptional activity is associated with a CLL-like disease in mice [27]. Similarly, transgenic 
+mice overexpressing miR-29, a cellular miRNA sharing the BLV miRNA B4-3p seed sequence 
+and repressing the FOS transcript [28], develop B-cell tumors [29]. FOS expression is also 
+Fig 4. Viral transcription and replication in the bovine natural host. (A) Calves were inoculated at day 0 with the pBLV -miRNA wild-type provirus (WT) 
+or with the isogenic strain deleted of the miRNAs ( miRNA). Proviral loads (number of copies in 100 PBMCs) were determined by quantitative real time PCR. 
+* (p< 0.05) means statistically significant according to Mann Whitney test. One BLV-infected calf died (†). (B) PBMCs from pBLV -miRNA and pBLV-WT- 
+infected calves were cultivated ex vivo for 24 h. The levels of GAG, ENV and TAX mRNAs were determined by RT-qPCR and normalized to HPRT. * (p< 
+0.05) or ** (p< 0.01) means significant or highly significant, respectively, according to the Mann Whitney test. (C) BLV miRNAs (B1-3p, B2-5p, B3-3p, B4-3p 
+and B5-5p) in primary PBMCs were quantified by RT-qPCR and normalized to HPRT. (D) Plasmatic levels (copy numbers in 1 l of plasma) of viral and host 
+(Let-7a and Mir-92a) miRNAs were titrated by RT-qPCR. (E) RNA was extracted from pBLV-WT (red) or pBLV -miRNA (green)-infected PBMCs and 
+analyzed by RT-qPCR for ANXA1, FOS, GZMA, MAP2K1, PIK3CG and PPT1 expression. Statistical significance was determined by the Mann Whitney test: 
+NS (not significant), * p< 0.05, ** p< 0.01, *** p< 0.001. 
+doi:10.1371/journal.ppat.1005588.g004 
+Fig 5. Viral replication and pathogenesis in experimentally inoculated sheep. (A) Sheep were inoculated at day zero with pBLV-WT (red) or pBLV - 
+miRNA (green). Proviral loads (number of copies in 100 PBMCs) were determined by real time PCR. NS (not significant) and * (p< 0.05) according to the 
+Mann Whitney test. (B) BLV miRNAs (B1-3p, B2-5p, B3-3p, B4-3p and B5-5p) in primary PBMCs were titrated by real time quantitative PCR and normalized 
+to HPRT. (C) BLV miRNAs (copies in 1 l of plasma) were titrated and determined by RT-qPCR. (D) Survival curves of sheep infected with pBLV -miRNA 
+(n = 6 in green) or wild-type BLV virus (n = 7 in red). * (p< 0.05) according to the Logrank test. 
+doi:10.1371/journal.ppat.1005588.g005 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+10/18 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+repressed by KSHV-encoded miRNA-K12-11 in lymphoma B-cells [23,30], illustrating com- 
+mon pathways of virus-induced oncogenesis. A third hub transcript that directly interacts with 
+BLV miRNAs is PPT1, a glycoprotein involved in the catabolism of lipid-modified proteins 
+during lysosomal degradation. PPT1 removes thioester-linked fatty acyl groups from cysteine 
+residues and modulates tumor necrosis factor alpha (TNFα) signaling [31]. Because PPT1-defi- 
+cient fibroblasts are partially resistant to TNF-induced cell death, BLV miRNAs could promote 
+survival via this pathway [31]. RNA sequencing also revealed a series of genes whose expression 
+is modified by pathways not involving direct seed-to-target interactions such as ANXA1, a 
+mediator of macrophage phagocytosis. Together, the experimental data from this report and 
+evidence from the literature highlight common mechanisms of transformation shared by other 
+DNA viruses or those involved in human leukemia. 
+Assessing the role of viral miRNAs in cell lines faces objections of biological relevance in 
+vivo. Transduction of BLV miRNAs into the BL3 cell line was not associated with alterations of 
+cell proliferation or apoptosis (S7 Fig). BLV miRNAs do not directly impact on viral mRNAs 
+or proteins in vitro (S8 Fig). In contrast, ablation of the miRNAs had significant effects on viral 
+replication in the natural host (Fig 4). Compared to the wild-type controls, the proviral loads 
+associated with miRNA deletants were indeed significantly lower during the primary infection 
+and decreased regularly in the long-term. Whether miRNAs deletion will ultimately lead to an 
+abortive infection remains to be determined but is predicted to require extensive periods of sev- 
+eral years. Notwithstanding, a decrease in viral burden correlates with a reduction in viral 
+transmission as well as pathogenicity. Consistently, our preliminary evidence indicates that the 
+miRNA deletant does not transmit from cow-to-calf (S9 Fig). Considering the low frequency 
+(5%) and long latency period (7–10 years) of tumor development in the natural host, assessing 
+the role of the miRNAs in the bovine species is an interesting but almost unanswerable ques- 
+tion. Nevertheless, observations in the sheep experimental model indicate that BLV miRNAs 
+contribute to leukemogenesis (Fig 5). Because sheep develop a leukemia/lymphoma that closely 
+mimics natural pathogenesis, BLV miRNAs are speculated to be important mediators of onco- 
+genesis in the bovine species. It should be mentioned that the reduced proviral load observed 
+in the pBLV- miRNA-infected animals is likely to cause reduced pathogenicity. In fact, it is 
+not possible to dissociate both parameters in vivo since development of leukemia positively 
+correlates with proviral loads in the PBMCs [32,33]. Whether BLV miRNAs exert a direct 
+oncogenic role by targeting specific cellular transcripts independently of viral replication 
+remains to be demonstrated. 
+A role of viral miRNAs in pathogenesis has important consequences for the safety of an 
+anti-BLV vaccine that is currently under development [34]. Considering the evidence reported 
+here, a safe live-attenuated vaccine should also include a deletion of the miRNAs to limit the 
+risk of disease. Another consequence of this report relates to human health, although this topic 
+is still controversial [35,36]. Because viral (BLV miRNA B4) and cellular (miRNA-29) miRNAs 
+share identical seed sequences, there is also a potential threat for zoonotic-induced oncogene- 
+sis, as recently suggested by the association of BLV and breast cancer [37]. 
+Materials and Methods 
+Construction and inoculation of the miRNA-deleted provirus 
+Plasmid pBLV-WT (GenBank: JC613347.1) contains an infectious and pathogenic wild-type 
+BLV provirus (strain 344). An isogenic molecular clone (pBLV -miRNA) was constructed by 
+deleting pBLV-WT of the miRNA coding region (nucleotides 6170 to 6736 according to the 
+BLV reference genome NC_001414.1) (see S1 Text). Calves and sheep were inoculated by sub- 
+cutaneous injection of pBLV-WT or pBLV -miRNA as described in reference [38]. At regular 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+11/18 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+intervals of time, heparinized blood was collected by jugular venipuncture and an aliquot of 
+plasma was cryopreserved. PBMCs were isolated by Lymphoprep density gradient centrifuga- 
+tion (Stemcell technologies), resuspended in fetal calf serum containing 10% DMSO (Sigma- 
+Aldrich) and frozen at -80°C or in liquid nitrogen. 
+Transcriptomic analysis 
+The BLV sequences corresponding to the miRNA region (nucleotides 6170 to 6759 of the refer- 
+ence BLV genome NC_001414.1) were inserted into a lentiviral vector (pLenti6, Life technolo- 
+gies) to construct pLenti-miRNA. HEK 293T cells were transfected using lipofectamine 2000 
+(Life Technologies) with pLenti6 or pLenti-miRNA vectors together with pCAG-HIVgp and 
+pCMV-VSV-G-RSV-Rev (provided by Masahiro Fujii, Niigata University, Japan). Forty-eight 
+hours after transfection, the supernatant was collected and incubated with BL3 cells in presence 
+of polybrene (10 g/ml). BL3 is a bovine B cell line with lymphoblastic morphology derived 
+from a naturally occurred lymphosarcoma [39]. After selection with blasticidin (10 g/ml), cor- 
+rect miRNA expression in BL3-miRNA cells was verified by RT-qPCR. Total RNA was isolated 
+from 3 independent batches of BL3 and BL3-miRNA cells using the miRNANeasy kit (Qiagen). 
+In parallel, RNA was also extracted in triplicate from bovine PBMCs isolated from pBLV-WT, 
+pBLV- miRNA and mock- infected calves (3 animals in each category). Proviral loads in 100 
+PBMCs of these animals were comparable: 4, 0.4 and 5.5 copies (pBLV-WT) and 2.3, 1.5 and 
+1.7 copies (pBLV- miRNA). Truseq Stranded mRNA libraries were prepared according to the 
+manufacturer’s instructions (Illumina) and indexed 100bp paired-end runs were acquired on a 
+HiSeq2000 Illumina sequencer. After mapping of the reads with the Tophat software, differen- 
+tial expression analysis was performed with Cufflinks. 
+Construction of effector/sensor plasmids and luciferase reporter assays 
+Details on plasmid constructions are provided in the Supporting Information file S1 Text. 
+After extraction of BL3 RNA, reverse transcription and PCR amplification, a series of lucifer- 
+ase reporter plasmids (ANXA1, GZMA, FOS, MAP2K1, PIK3CG and PPT1) were con- 
+structed by inserting the full-length bovine cDNA sequences into psiCHECK2 (Promega). 
+Mutations of the predicted target sequences in these reporter plasmids were introduced 
+using the Q5 directed mutagenesis kit (NEB). Reporter constructs (500ng) were transfected 
+into 200,000 BL3 or BL3-miRNA cells using the Neon Transfection System (ThermoFisher 
+Scientific). Electroporation parameters included 3 pulses of 1350V during 10ms. Effector 
+plasmid pSUPER-miRNA was constructed by cloning the five miRNA hairpins (nucleotides 
+6170 to 6759 of the BLV reference genome NC_001414.1) into BglII and HindIII sites of 
+expression vector pSUPER (Oligoengine). pSUPER-B4 only contains the miRNA-B4 hairpin 
+(nucleotides 6484 to 6664). Reporter (100ng) and effector (500ng) constructs were trans- 
+fected with Lipofectamine 2000 into 200,000 HEK 293T cells (293T/17; ATCC CRL-11268) 
+in a 24 well plate. After 24 hours, cells were lysed and luciferase activities were measured 
+using the Dual-Glo Luciferase Assay System (Promega) according to the manufacturer’s 
+instructions. Assays were carried out in independent biological triplicates. See S1 Text for 
+primers used for cloning. 
+Quantification of proviral loads 
+DNA was extracted from PBMCs using DNeasy Blood and Tissue kit (Qiagen). BLV sequences 
+were PCR amplified using pol gene sequence-specific primers 5'-GAAACTCCAGAGCAAT 
+GGCATAA-3' and 5'-GGTTCGGCCATCGAGACA-3'. As reference for quantification, 
+β-actin was amplified with oligonucleotides 5'-TCCCTGGAGAAGAGCTACGA-3’ and 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+12/18 
+
+/*** End Page =11= ***/
+/*** Page =12= ***/
+5’-GGCAGACTTAGCCTCCAGTG-3'. DNA was amplified by real-time quantitative PCR in a 
+Roche light cycler using MESA green master mix (Eurogentec). The thermal protocol was initi- 
+ated by a 5 min denaturation step at 95°C, followed by 45 cycles (15 sec at 95°C, 20 sec at 60°C, 
+40 sec at 72°C) and terminated by a melting curve. PCR efficiencies were calculated for each 
+sample using 100ng, 33ng and 11ng of DNA. Standard curves were generated using PCR4topo 
+vectors (Life Technologies) containing the corresponding pol or actin amplicon. Proviral load 
+was calculated, as an average of the three dilutions, from the number of proviral copies divided 
+by half of the number of actin copies and expressed as number of proviral copies per 100 of 
+PBMCs. 
+Nested PCR of proviral sequences 
+One hundred nanograms of genomic DNA were used for the first round of PCR using primers 
+(Fw 5’-GCTTGACCTCTCGCCTTTTA-3’; Rv GTGCCGAGGTGGAAATAGAA), Phusion 
+hot start II High Fidelity DNA polymerase and High Fidelity buffer (NEB). Thermal cycling 
+conditions were: 30 sec at 98°C; 35 cycles (98°C 5 sec, 63°C 10 sec, 72°C 30 sec); 2 min at 72°C. 
+One microliter of a 10-fold dilution of first round PCR was used as template for the second 
+round PCR using primers (nFw 5’-CCCCTAAACCCGATTCTGAT-3’; nRv 5’-GGGCTTGTT 
+ACATGGGAAGA-3’). Thermal protocol for nested PCR were: 30 sec at 98°C, 35 cycles (5 sec 
+at 98°C, 10 sec at 62°C, 30 sec at 72°C), 2 min at 72°C. Actin gene DNA was amplified with 
+primers (Fw 5’-TCCCTGGAGAAGAGCTACGA-3’ and Rv 5’-GGCAGACTTAGCCT 
+CCAGTG-3’) from 100 ng of genomic DNA according to the cycling protocol: 30 sec at 98°C 
+followed by 35 cycles of (5 sec at 98°C /10 sec at 64°C / 30 sec at 72°C) and terminated by 
+2 min at 72°C. 
+Quantification of viral mRNAs by RT-qPCR 
+PBMCs were cultivated during 24 hours in RPMI medium supplemented with L-glutamine, 
+antibiotics, 10% fetal calf serum (FCS), 0.2 M of phorbol 12-myristate 13-acetate (PMA), 
+0.5 M of ionomycin, 0.1 M of concanamycin A (Sigma Aldrich). HEK293T were transfected 
+with plasmids pBLV-WT or pBLV -miRNA using lipofectamine 2000 (Life Technologies) and 
+cultivated during 48 hours in RPMI medium supplemented with L-glutamine, antibiotics and 
+10% FCS. Total RNA was extracted from ex vivo cultivated PBMCs and transfected HEK293T 
+using the miRNeasy kit (Qiagen). After digestion with Turbo DNAse (Life Technologies), 
+cDNA was synthesized with random hexamers using the Reverse Transcriptase Superscript III 
+(Life Technologies). cDNA was amplified by PCR with primers for HPRT (5’-GGTCAAGAAG 
+CATAAACCAAAG-3’ and 5’-AAGGGCATATCCCACAACAAAC-3’), Tax/Rex (5’-GCGTT 
+TGCTGAAAGCCTTCAA-3’ and 5’-GGGCAGGCATGTAGAGAGTG-3’), Gag (5’-TCCC 
+TTTCTCATCACGTTCC-3’ and 5’-GTGGGGGTGAATGGTGTAAC-3’) and Env (5’-C 
+TATCCGGCAGCGGTCAG-3’ and 5’-GAGGAGAGTAAGAGTGAGACTTACCC-3’)ina 
+Roche light cycler using MESA green master mix (Eurogentec) according to the protocol: 5min 
+denaturation at 95°C followed by 45 cycles (15 sec 95°C, 20 sec 60°C, 40 sec 72°C) and termi- 
+nated with a melting curve. PCR efficiency was calculated for each sample using three serial 
+dilutions of input DNA (100ng, 33ng and 11ng). Relative BLV/HPRT expression was calcu- 
+lated using the delta-delta Ct method. 
+Quantification of cellular mRNAs by RT-qPCR 
+Total RNA was extracted from uncultured bovine PBMCs using the miRNeasy kit (Qiagen) 
+and reversed transcribed into cDNA with the Reverse Transcriptase Superscript III (Life Tech- 
+nologies). Three cDNA dilutions (1x, 3x and 9x) were amplified by real-time quantitative PCR 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+13/18 
+
+/*** End Page =12= ***/
+/*** Page =13= ***/
+in a Roche light cycler using MESA green master mix (Eurogentec) according to the protocol: 5 
+min denaturation at 95°C followed by 45 cycles of PCR (15 sec at 95°C, 20 sec at 60°C, 40 sec at 
+72°C) and terminated with a melting curve. Primers used for PCR amplification are provided 
+in the Supporting Information file S1 Text. After calculation of PCR efficiencies, mRNA 
+expression relative to HPRT was using the delta-delta Ct method. cDNA was amplified for 
+HPRT house-keeping gene transcript and for ANXA1, FOS, GZMA, MAP2K1, PIK3CG and 
+PPT1. 
+Quantification of BLV microRNA 
+Total RNA of HEK293T, YR2 and PBMCs was extracted using the miRNeasy kit (Qiagen), 
+incubated with Turbo DNAse kit (Life Technologies) and reverse transcribed using the Taq- 
+man microRNA Reverse transcription kit (Life Technologies) and stem-loop custom BLV 
+microRNA specific primers (Life Technologies). To generate HPRT cDNA, 1.5 pmol of primer 
+5’-AAGGGCATATCCCACAACAAAC-3’ was added at the end of the reverse transcription 
+step and incubated for 10 min at 50°C. cDNA was PCR amplified in a Roche light cycler with 
+HPRT primers (5’-GGTCAAGAAGCATAAACCAAAG-3’ and 5’-AAGGGCATATCCCAC 
+AACAAAC-3’) and custom Taqman BLV microRNA probes (Life Technologies) using MESA 
+green master mix (Eurogentec) or Taqman Universal Master Mix II (Life Technologies), 
+respectively. The thermal protocol used for microRNA quantification started with a denatur- 
+ation step at 95°C for 10min followed by 45 PCR cycles (15 sec at 95°C, 60 sec at 60°C). For 
+HPRT, PCR cycles included 5 min denaturation at 95°C followed by 45 cycles of PCR (15 sec at 
+95°C, 20 sec at 60°C, 40 sec at 72°C) and terminated with a melting curve. PCR efficiencies 
+were calculated for each sample using three cDNA dilutions. Expression of BLV microRNA to 
+relative to HPRT was calculated using the delta-delta Ct method. 
+BLV microRNAs levels in plasma 
+Frozen plasmas were incubated for 10 min at 37°C, centrifuged during 1 hour at 20,000g and 
+filtrated on 0.1 m pores. A spike-in control (C. elegans miR-39) was added to the plasma for 
+absolute quantification according to the miRNeasy kit’s user manual. RNA was extracted using 
+the miRNeasy Serum/Plasma kit (Qiagen) and reverse transcribed using the Taqman micro- 
+RNA Reverse transcription kit (Life Technologies) with stem-loop custom microRNA primers 
+(bovine let-7a and miR-92a, BLV miRNAs and C. elegans miR-39, Life Technologies). cDNA 
+was synthesized using custom Taqman probe for each miR (Life Technologies). Three cDNA 
+dilutions (1x, 3x and 9x) were amplified in a Roche light cycler using Taqman Universal Master 
+Mix II (Life Technologies) according to the protocol: 10 min at 95°C followed by 45 PCR cycles 
+(15 sec at 95°C, 60 sec at 60°C). Expression of BLV miRNAs relative to the miR-39 spike-in 
+control was calculated by the using delta-delta Ct method. 
+Ethics statement 
+Animal experimentation was conducted in accordance with the most recent national and inter- 
+national guidelines for animal care and use and following the directive 2010/63/UE of the 
+European parliament. Handling of animals and experimental procedures were reviewed and 
+approved by INTA´s Institutional Committee for Care and Use of Experimental Animals 
+(CICUAE-INTA) under protocol number 35/2010 and by PIWet Committee for Care and Use 
+of Experimental Animals under the protocol number 1515. 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+14/18 
+
+/*** End Page =13= ***/
+/*** Page =14= ***/
+Statistics 
+Statistical tests were performed using GraphPad Prism and Microsoft Excel. The symbols 
+, 
+, andNSwereusedwhenp<0.001, p<0.01, p<0.05 and Not Significant, 
+respectively. 
+Supporting Information 
+S1 Text. The supporting file S1 Text contains supporting material and methods. 
+(DOCX) 
+S1 Fig. Predicted interactions of BLV-miR-B4-3p with bovine cFOS (A), GZMA (B) and 
+PPT1 (C) transcripts as determined with STarMir software. 
+(DOCX) 
+S2 Fig. Comparison of BLV miRNAs levels in transfected HEK293T cells, in primary 
+PBMCs, in an ovine tumor cell line and in transduced BL3 lymphocytes. The amounts of 
+B1-3p, B2-5p, B3-3p, B4-3p and B5-5p were measured by RT-qPCR in HEK 293T cells trans- 
+fected with increasing amounts of plasmid pBLV-WT (500ng, 1 or 2 g / 200,000 cells), in pri- 
+mary PBMCs isolated from 3 BLV cows with different proviral loads (2, 11 and 43 copies / 100 
+PBMCs), in a lymphocytic B cell line established from ovine PBMCs of a leukemic sheep (YR2) 
+and in transduced BL3-miRNA cells. Error bars represent standard deviations. 
+(DOCX) 
+S3 Fig. Specificity control of the psiCHECK2 luciferase reporter. (A) HEK293T cells were 
+co-transfected with an empty psiCHECK2 luciferase reporter plasmid together with pSUPER, 
+pSUPER-miRNAs or pSUPER-B4 expression vectors. Luciferase activity was determined at 24 
+hours post-transfection. (B) HEK 293T cells were co-transfected with a psiCHECK2 luciferase 
+reporter plasmid containing the Mir-B4-3p complementary sequence together with pSUPER, 
+pSUPER-miRNAs or pSUPER-B4 vectors. Luciferase activity was determined at 24 hours post- 
+transfection. Statistical significance as determined by Student t-test: NS (not significant), p< 
+0.05, p< 0.01, p< 0.001. Error bars represent standard deviations. 
+(DOCX) 
+S4 Fig. BLV miRNA-associated GZMA down-regulation is restricted to the B cell lineage. 
+GZMA mRNA levels were decreased in PBMCs and IgM+ cells from BLV WT compared to 
+BLV- miRNA (A and B), but not in B cell-depleted PBMCs (C). 
+(DOCX) 
+S5 Fig. Control of viral strain specificity in BLV-inoculated animals. DNA was isolated 
+from primary PBMCs of 6 calves (A) and 6 sheep (B) infected with pBLV-WT (1–6 and 13– 
+18) or pBLV- miRNA (7–12 and 19–24), as indicated. DNA sequences surrounding the 
+miRNA cluster (see Fig 1A) were amplified by nested PCR. 
+(DOCX) 
+S6 Fig. HBP1 expression is not affected by the BLV miRNAs. The transcriptomes of BL3 and 
+BL3-miRNA cells were determined by RNA-Seq. HBP1 transcriptional activity is illustrated 
+using the Integrative Genomics Viewer (IGV) software from the Broad Institute. 
+(DOCX) 
+S7 Fig. Transduction of BLV miRNAs into the BL3 cell line was not associated with alter- 
+ations of cell proliferation or apoptosis. (A) Cell proliferation was estimated by the decrease 
+of CFSE intensity. No significant difference was observed between BL3 and BL3-miRNA cells. 
+(B) Apoptotic cells were identified by AnnexinV/7AAD positivity (upper right quadrant). No 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+15/18 
+
+/*** End Page =14= ***/
+/*** Page =15= ***/
+significant difference was observed between BL3 and BL3-miRNA cells. Illustration of a repre- 
+sentative experiment. 
+(DOCX) 
+S8 Fig. HEK 293T cells were transfected with a vector containing wild-type (WT) or 
+miRNA provirus and cultivated during 48h (experiment done in triplicate). (A) The levels 
+of the viral RNAs (GAG, ENV and TAX) were determined by RT-qPCR. (B) The percentages 
+of cells positive for the viral capsid protein p24 were determined by FACS. (C) The levels of 
+capsid (CA, p24), envelope (SU, gp51) and Tax (p34) proteins were analyzed by western blot. 
+Experiment done in triplicate. Statistical significance as determined by Student t-test, NS for 
+not significant. Error bars represent standard deviations. 
+(DOCX) 
+S9 Fig. Lack of transmission of the pBLV- miRNA strain from 2 dams to their calves. 
+DNA was extracted from PBMCs of two calves born from pBLV- miRNA-infected dams and 
+amplified by nested PCR. The absence of a 231bp fragment encompassing the miRNA region 
+(Fig 1A) indicates the absence of pBLV- miRNA transmission. As control, genomic DNA 
+integrity was supported by PCR of the actin gene. 
+(DOCX) 
+Acknowledgments 
+We thank the GIGA genotranscriptomics, imaging and viral vectors technology platforms. We 
+are grateful to Masahiro Fujii (Niigata University, Japan) for providing reagents. 
+Author Contributions 
+Conceived and designed the experiments: NAG LW. Performed the experiments: NAG MH 
+AdB GG NR MR KT. Analyzed the data: NAG. Contributed reagents/materials/analysis tools: 
+GG MR KT. Wrote the paper: NG LW. 
+References 
+1. Omoto S, Ito M, Tsutsumi Y, Ichikawa Y, Okuyama H, et al. (2004) HIV-1 nef suppression by virally 
+encoded microRNA. Retrovirology 1: 44. PMID: 15601474 
+2. Hussain M, Torres S, Schnettler E, Funk A, Grundhoff A, et al. (2012) West Nile virus encodes a micro- 
+RNA-like small RNA in the 3' untranslated region which up-regulates GATA4 mRNA and facilitates 
+virus replication in mosquito cells. Nucleic Acids Res 40: 2210–2223. doi: 10.1093/nar/gkr848 PMID: 
+22080551 
+3. Shi J, Duan Z, Sun J, Wu M, Wang B, et al. (2014) Identification and validation of a novel microRNA-like 
+molecule derived from a cytoplasmic RNA virus antigenome by bioinformatics and experimental 
+approaches. Virol J 11: 121. doi: 10.1186/1743-422X-11-121 PMID: 24981144 
+4. Teng Y, Wang Y, Zhang X, Liu W, Fan H, et al. (2015) Systematic Genome-wide Screening and Predic- 
+tion of microRNAs in EBOV During the 2014 Ebolavirus Outbreak. Sci Rep 5: 9912. doi: 10.1038/ 
+srep09912 PMID: 26011078 
+5. Whisnant AW, Bogerd HP, Flores O, Ho P, Powers JG, et al. (2013) In-depth analysis of the interaction 
+of HIV-1 with cellular microRNA biogenesis and effector mechanisms. MBio 4: e000193. doi: 10.1128/ 
+mBio.00193-13 PMID: 23592263 
+6. Shi J, Sun J, Wang B, Wu M, Zhang J, et al. (2014) Novel microRNA-like viral small regulatory RNAs 
+arising during human hepatitis A virus infection. FASEB J 28: 4381–4393. doi: 10.1096/fj.14-253534 
+PMID: 25002121 
+7. Bogerd HP, Skalsky RL, Kennedy EM, Furuse Y, Whisnant AW, et al. (2014) Replication of many 
+human viruses is refractory to inhibition by endogenous cellular microRNAs. J Virol 88: 8065–8076. 
+doi: 10.1128/JVI.00985-14 PMID: 24807715 
+8. Kincaid RP, Burke JM, Sullivan CS (2012) RNA virus microRNA that mimics a B-cell oncomiR. Proc 
+Natl Acad Sci U S A 109: 3077–3082. doi: 10.1073/pnas.1116107109 PMID: 22308400 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+16/18 
+
+/*** End Page =15= ***/
+/*** Page =16= ***/
+9. Whisnant AW, Kehl T, Bao Q, Materniak M, Kuzmak J, et al. (2014) Identification of novel, highly 
+expressed retroviral microRNAs in cells infected by bovine foamy virus. J Virol 88: 4679–4686. doi: 10. 
+1128/JVI.03587-13 PMID: 24522910 
+10. Yao Y, Smith LP, Nair V, Watson M (2014) An avian retrovirus uses canonical expression and process- 
+ing mechanisms to generate viral microRNA. J Virol 88: 2–9. doi: 10.1128/JVI.02921-13 PMID: 
+24155381 
+11. Kincaid RP, Chen Y, Cox JE, Rethwilm A, Sullivan CS (2014) Noncanonical microRNA (miRNA) bio- 
+genesis gives rise to retroviral mimics of lymphoproliferative and immunosuppressive host miRNAs. 
+MBio 5: e00074. doi: 10.1128/mBio.00074-14 PMID: 24713319 
+12. Rosewick N, Momont M, Durkin K, Takeda H, Caiment F, et al. (2013) Deep sequencing reveals abun- 
+dant noncanonical retroviral microRNAs in B-cell leukemia/lymphoma. Proc Natl Acad Sci U S A 110: 
+2306–2311. doi: 10.1073/pnas.1213842110 PMID: 23345446 
+13. Burke JM, Bass CR, Kincaid RP, Sullivan CS (2014) Identification of tri-phosphatase activity in the bio- 
+genesis of retroviral microRNAs and RNAP III-generated shRNAs. Nucleic Acids Res 42: 13949– 
+13962. doi: 10.1093/nar/gku1247 PMID: 25428356 
+14. Gillet N, Florins A, Boxus M, Burteau C, Nigro A, et al. (2007) Mechanisms of leukemogenesis induced 
+by bovine leukemia virus: prospects for novel anti-retroviral therapies in human. Retrovirology 4: 18. 
+PMID: 17362524 
+15. Lagarias DM, Radke K (1989) Transcriptional activation of bovine leukemia virus in blood cells from 
+experimentally infected, asymptomatic sheep with latent infections. J Virol 63: 2099–2107. PMID: 
+2539506 
+16. Jensen WA, Rovnak J, Cockerell GL (1991) In vivo transcription of the bovine leukemia virus tax/rex 
+region in normal and neoplastic lymphocytes of cattle and sheep. J Virol 65: 2484–2490. PMID: 
+1850025 
+17. Radke K, Sigala TJ, Grossman D (1992) Transcription of bovine leukemia virus in peripheral blood 
+cells obtained during early infection in vivo. Microb Pathog 12: 319–331. PMID: 1323740 
+18. Florins A, Gillet N, Boxus M, Kerkhofs P, Kettmann R, et al. (2007) Even attenuated bovine leukemia 
+virus proviruses can be pathogenic in sheep. J Virol 81: 10195–10200. PMID: 17626096 
+19. Hagn M, Jahrsdorfer B (2012) Why do human B cells secrete granzyme B? Insights into a novel B-cell 
+differentiation pathway. Oncoimmunology 1: 1368–1375. PMID: 23243600 
+20. Lieberman J (2010) Granzyme A activates another way to die. Immunol Rev 235: 93–104. doi: 10. 
+1111/j.0105-2896.2010.00902.x PMID: 20536557 
+21. Grossman WJ, Verbsky JW, Tollefsen BL, Kemper C, Atkinson JP, et al. (2004) Differential expression 
+of granzymes A and B in human cytotoxic lymphocyte subsets and T regulatory cells. Blood 104: 
+2840–2848. PMID: 15238416 
+22. Chowdhury D, Lieberman J (2008) Death by a thousand cuts: granzyme pathways of programmed cell 
+death. Annu Rev Immunol 26: 389–420. doi: 10.1146/annurev.immunol.26.021607.090404 PMID: 
+18304003 
+23. Haecker I, Gay LA, Yang Y, Hu J, Morse AM, et al. (2012) Ago HITS-CLIP expands understanding of 
+Kaposi's sarcoma-associated herpesvirus miRNA function in primary effusion lymphomas. PLoS 
+Pathog 8: e1002884. doi: 10.1371/journal.ppat.1002884 PMID: 22927820 
+24. Klemsz MJ, Justement LB, Palmer E, Cambier JC (1989) Induction of c-fos and c-myc expression dur- 
+ing B cell activation by IL-4 and immunoglobulin binding ligands. J Immunol 143: 1032–1039. PMID: 
+2787345 
+25. Huo L, Rothstein TL (1995) Receptor-specific induction of individual AP-1 components in B lympho- 
+cytes. J Immunol 154: 3300–3309. PMID: 7534795 
+26. Eferl R, Wagner EF (2003) AP-1: a double-edged sword in tumorigenesis. Nat Rev Cancer 3: 859– 
+868. PMID: 14668816 
+27. Pekarsky Y, Palamarchuk A, Maximov V, Efanov A, Nazaryan N, et al. (2008) Tcl1 functions as a tran- 
+scriptional regulator and is directly involved in the pathogenesis of CLL. Proc Natl Acad Sci U S A 105: 
+19643–19648. doi: 10.1073/pnas.0810965105 PMID: 19064921 
+28. Sekiya Y, Ogawa T, Yoshizato K, Ikeda K, Kawada N (2011) Suppression of hepatic stellate cell activa- 
+tion by microRNA-29b. Biochem Biophys Res Commun 412: 74–79. doi: 10.1016/j.bbrc.2011.07.041 
+PMID: 21798245 
+29. Santanam U, Zanesi N, Efanov A, Costinean S, Palamarchuk A, et al. (2010) Chronic lymphocytic leu- 
+kemia modeled in mouse by targeted miR-29 expression. Proc Natl Acad Sci U S A 107: 12210– 
+12215. doi: 10.1073/pnas.1007186107 PMID: 20566844 
+30. Gottwein E, Mukherjee N, Sachse C, Frenzel C, Majoros WH, et al. (2007) A viral microRNA functions 
+as an orthologue of cellular miR-155. Nature 450: 1096–1099. PMID: 18075594 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+17/18 
+
+/*** End Page =16= ***/
+/*** Page =17= ***/
+31. Tardy C, Sabourdy F, Garcia V, Jalanko A, Therville N, et al. (2009) Palmitoyl protein thioesterase 1 
+modulates tumor necrosis factor alpha-induced apoptosis. Biochim Biophys Acta 1793: 1250–1258. 
+doi: 10.1016/j.bbamcr.2009.03.007 PMID: 19345705 
+32. Alvarez I, Gutierrez G, Gammella M, Martinez C, Politzki R, et al. (2013) Evaluation of total white blood 
+cell count as a marker for proviral load of bovine leukemia virus in dairy cattle from herds with a high 
+seroprevalence of antibodies against bovine leukemia virus. Am J Vet Res 74: 744–749. doi: 10.2460/ 
+ajvr.74.5.744 PMID: 23627387 
+33. Ohno A, Takeshima SN, Matsumoto Y, Aida Y (2015) Risk factors associated with increased bovine 
+leukemia virus proviral load in infected cattle in Japan from 2012 to 2014. Virus Res 210: 283–290. doi: 
+10.1016/j.virusres.2015.08.020 PMID: 26321160 
+34. Gutierrez G, Rodriguez SM, de Brogniez A, Gillet N, Golime R, et al. (2014) Vaccination against delta- 
+retroviruses: the bovine leukemia virus paradigm. Viruses 6: 2416–2427. doi: 10.3390/v6062416 
+PMID: 24956179 
+35. Tang KW, Alaei-Mahabadi B, Samuelsson T, Lindh M, Larsson E (2013) The landscape of viral expres- 
+sion and host gene fusion and adaptation in human cancer. Nat Commun 4: 2513. doi: 10.1038/ 
+ncomms3513 PMID: 24085110 
+36. Buehring GC, Shen HM, Jensen HM, Choi KY, Sun D, et al. (2014) Bovine leukemia virus DNA in 
+human breast tissue. Emerg Infect Dis 20: 772–782. doi: 10.3201/eid2005.131298 PMID: 24750974 
+37. Buehring GC, Shen HM, Jensen HM, Jin DL, Hudes M, et al. (2015) Exposure to Bovine Leukemia 
+Virus Is Associated with Breast Cancer: A Case-Control Study. PLoS One 10: e0134304. doi: 10.1371/ 
+journal.pone.0134304 PMID: 26332838 
+38. Gillet NA, Gutierrez G, Rodriguez SM, de Brogniez A, Renotte N, et al. (2013) Massive depletion of 
+bovine leukemia virus proviral clones located in genomic transcriptionally active sites during primary 
+infection. PLoS Pathog 9: e1003687. doi: 10.1371/journal.ppat.1003687 PMID: 24098130 
+39. Theilen GH, Rush JD, Nelson-Rees WA, Dungworth DL, Munn RJ, et al. (1968) Bovine leukemia: 
+establishment and morphologic characterization of continuous cell suspension culture, BL-1. J Natl 
+Cancer Inst 40: 737–749. PMID: 4171552 
+BLV miRs Promote Viral Replication and Malignancy 
+PLOS Pathogens | DOI:10.1371/journal.ppat.1005588 April 28, 2016 
+18/18 
+
+/*** End Page =17= ***/

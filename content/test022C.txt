@@ -1,0 +1,2015 @@
+/*** Page =0= ***/
+ORIGINAL RESEARCH ARTICLE 
+published: 16 December 2014 
+doi: 10.3389/fnins.2014.00412 
+A compound memristive synapse model for statistical 
+learning through STDP in spiking neural networks 
+Johannes Bill * and Robert Legenstein 
+Faculty of Computer Science and Biomedical Engineering, Institute for Theoretical Computer Science, University of Technology, Graz, Austria 
+Edited by: 
+Christian G. Mayr, University of 
+Zurich and ETH Zurich, Switzerland 
+Reviewed by: 
+Nabil Imam, Cornell University, USA 
+Love Mattias Cederström, 
+Technische Universität Dresden, 
+Germany 
+*Correspondence: 
+Johannes Bill, Institute for 
+Theoretical Computer Science, 
+University of Technology, 
+Inffeldgasse 16b/1, A-8010 Graz, 
+Austria 
+e-mail: bill@tugraz.at 
+Memristors have recently emerged as promising circuit elements to mimic the function 
+of biological synapses in neuromorphic computing. The fabrication of reliable nanoscale 
+memristive synapses, that feature continuous conductance changes based on the timing 
+of pre- and postsynaptic spikes, has however turned out to be challenging. In this article, 
+we propose an alternative approach, the compound memristive synapse, that circumvents 
+this problem by the use of memristors with binary memristive states. A compound 
+memristive synapse employs multiple bistable memristors in parallel to jointly form 
+one synapse, thereby providing a spectrum of synaptic efﬁcacies. We investigate the 
+computational implications of synaptic plasticity in the compound synapse by integrating 
+the recently observed phenomenon of stochastic ﬁlament formation into an abstract 
+model of stochastic switching. Using this abstract model, we ﬁrst show how standard 
+pulsing schemes give rise to spike-timing dependent plasticity (STDP) with a stabilizing 
+weight dependence in compound synapses. In a next step, we study unsupervised 
+learning with compound synapses in networks of spiking neurons organized in a 
+winner-take-all architecture. Our theoretical analysis reveals that compound-synapse STDP 
+implements generalized Expectation-Maximization in the spiking network. Speciﬁcally, 
+the emergent synapse conﬁguration represents the most salient features of the input 
+distribution in a Mixture-of-Gaussians generative model. Furthermore, the network’s 
+spike response to spiking input streams approximates a well-deﬁned Bayesian posterior 
+distribution. We show in computer simulations how such networks learn to represent 
+high-dimensional distributions over images of handwritten digits with high ﬁdelity even in 
+presence of substantial device variations and under severe noise conditions. Therefore, 
+the compound memristive synapse may provide a synaptic design principle for future 
+neuromorphic architectures. 
+Keywords: neuromorphic, synapse, synaptic plasticity, STDP, memristor, WTA, Bayesian inference, unsupervised 
+learning 
+1. INTRODUCTION 
+A characteristic property of massively parallel computation in 
+biological and artiﬁcial neural circuits is the need for intensive 
+communication between neuronal elements. As a consequence, 
+area- and energy consumption of neuromorphic circuits is often 
+dominated by those circuits that implement synaptic transmis- 
+sion between neural elements (Schemmel et al., 2008). Biological 
+synapses are highly dynamic computational entities, exhibiting 
+plasticity on various time scales (Malenka and Bear, 2004). In 
+order to capture the most salient of these aspects, silicon synapses 
+thus demand extensive circuitry if implemented in CMOS tech- 
+nology. On this account, novel nanoscale circuit elements have 
+recently gained interest in the ﬁeld of neuromorphic engineer- 
+ing as a promising alternative solution for the implementation 
+of artiﬁcial synaptic connections. In particular, for mixed-signal 
+neuromorphic CMOS architectures, which combine traditional 
+digital circuits with analog components, memristors are consid- 
+ered a promising class of circuit elements due to high integra- 
+tion densities, synapse-like plasticity dynamics, and low power 
+consumption (Choi et al., 2009; Jo et al., 2010; Kuzum et al., 
+2011; Indiveri et al., 2013). One particularly important feature of 
+memristors is that their electrical resistance (often termed “mem- 
+ristance”) can be altered in a persistent manner by applying a 
+voltage to its terminals, leading to the eponymous perception 
+of memristors as resistors with memory. As an important appli- 
+cation of this property, it was shown that the memristance can 
+be changed based on the spike timings of the pre- and post- 
+synaptic neurons in a manner that approximates spike-timing 
+dependent plasticity (STDP), a plasticity rule that is believed to 
+represent a ﬁrst approximation for the changes of synaptic efﬁ- 
+cacies in biological synapses (Markram et al., 1997; Caporale 
+and Dan, 2008; Markram et al., 2012). On the level of single 
+synapses, this important property has been conﬁrmed experi- 
+mentally in real memristors (Mayr et al., 2012)a 
+ndha 
+sbe 
+e 
+n 
+included into computational models of memristive plasticity 
+(Serrano-Gotarredona et al., 2013). On the network level, models 
+of memristive STDP were employed in computer simulations to 
+demonstrate the potential applicability of neuromorphic designs 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 1 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+with memristive synapses to pattern recognition tasks (Querlioz 
+et al., 2011). 
+In practice however, the production of functional memristive 
+synapses with nanoscale dimensions has proven difﬁcult, mainly 
+due to large device variations and their unreliable behavior. It 
+turned out to be particularly challenging to fabricate reliable 
+nanoscale memristive synapses that feature a continuous spec- 
+trum of conductance values. As an alternative solution, it was pro- 
+posed to employ bistable memristors as neuromorphic synapses 
+instead since they exhibit a high degree of uniformity (Fang et al., 
+2011) and high durability (Jo et al., 2009b). For switching between 
+their two stable conductance states, bistable memristors can be 
+operated in a deterministic as well as in a stochastic regime (Jo 
+et al., 2009b). 
+Using machine learning theory, we show in this article that 
+stochastically switching bistable memristors become compu- 
+tationally particularly powerful in mixed-signal neuromorphic 
+architectures when multiple memristors are combined to jointly 
+form one synapse. Such a joint operation of multiple memris- 
+tors can be interpreted as the collective function of ion channels 
+in biological synapses (Indiveri et al., 2013). Concretely, we pro- 
+pose the compound memristive synapse model which employs 
+M bistable memristors operating in parallel to form a single 
+synaptic weight between two neurons. To implement synaptic 
+plasticity, we employ standard STDP pulsing schemes (Querlioz 
+et al., 2011; Serrano-Gotarredona et al., 2013) and exploit the 
+stochastic nature of memristive switching (Jo et al., 2009b; Gaba 
+et al., 2013; Suri et al., 2013; Yu et al., 2013). For the analy- 
+sis of the resulting plasticity dynamics, we perceive individual 
+memristors as binary stochastic switches. This abstract descrip- 
+tion was previously utilized to capture the most salient features of 
+experimentally observed memristive switching (Suri et al., 2013) 
+and appears compatible with pivotal aspects of the experimental 
+literature (Jo et al., 2009b; Gaba et al., 2013). 
+We show analytically and through computer simulations that 
+the change of the synaptic efﬁcacy for a given pairing of pre- 
+and postsynaptic spikes follows an STDP-like plasticity rule such 
+that the expected weight change depends on the momentary 
+synaptic weight in a stabilizing manner. The resulting compound- 
+synapse STDP enables a synapse to attain many memristive states 
+depending on the history of pre- and postsynaptic activity. A 
+stabilizing weight dependence of synaptic plasticity exists in bio- 
+logical synapses (Bi and Poo, 1998) and has been shown to 
+facilitate learning and adaptation in neural systems (Van Rossum 
+et al., 2000; Morrison et al., 2007). In particular, it has been shown 
+in Nessler et al. (2013) that in stochastic winner-take-all (WTA) 
+architectures, STDP with stabilizing weight dependence imple- 
+ments an online Expectation-Maximization algorithm. When 
+exposed to input examples, neurons in the WTA network learn 
+to represent the hidden causes of the observed input in a well- 
+deﬁned generative model. This adaptation proceeds in a purely 
+unsupervised manner. We adopt a similar strategy here and 
+apply the compound memristive synapse model in a network of 
+stochastically spiking neurons arranged in a WTA architecture. 
+We show analytically that compound-synapse STDP optimizes 
+the synaptic efﬁcacies such that the WTA network neurons in 
+the hidden layer represent the most salient features of the input 
+distribution in a Mixture-of-Gaussians generative model. After 
+training, the network performs Bayesian inference over the hid- 
+den causes for the given input pattern. We show in computer 
+simulations that such networks are able to learn to represent 
+high-dimensional distributions over images of handwritten dig- 
+its. After unsupervised training, the network transforms noisy 
+input spike-patterns into a sparse and reliable spike code that 
+supports classiﬁcation of images. It turns out that even small com- 
+pound synapses, consisting of only four bistable constituents per 
+synapse, are sufﬁcient for reliable image classiﬁcation in our sim- 
+ulations. We furthermore show that the proposed model is able 
+to represent the input distribution with high ﬁdelity even in the 
+presence of substantial device variations and under severe noise 
+conditions. These ﬁndings render the compound synapse model 
+a promising design principle for novel high-density, low-power 
+mixed-signal CMOS architectures. 
+2. RESULTS 
+2.1. STOCHASTIC MEMRISTORS AS PLASTIC SYNAPSES 
+Memristors have gained increasing attention in neuromorphic 
+engineering as possible substrates for plastic synapses (Jo et al., 
+2010) due to the possibility to change their electrical con- 
+ductance without the requirement of extensive supporting cir- 
+cuitry. Recently, Zamarreño-Ramos et al. (2011) and Querlioz 
+et al. (2011) have proposed a pulsing scheme to realize spike- 
+timing dependent plasticity (STDP) with memristive synapses 
+in response to pre- and postsynaptic activity as sketched in 
+Figure 1A: Pre-synaptic spikes trigger a rectangular voltage pulse 
+of duration τ (shown in green) that is sent to the memristor’s 
+presynaptic terminal. Similarly, postsynaptic neurons send back a 
+copy of their spikes to the postsynaptic terminal as a brief volt- 
+age pulse (shown in blue). The combined effect of these pulses 
+was shown to trigger STDP-type plasticity in the memristor as 
+illustrated in Figure 1B, where we adopted the convention to 
+measure the voltage drop at the memristor as “presynaptic minus 
+postsynaptic potential.” If only the postsynaptic neuron spikes 
+(Figure 1B, left), the voltage pulse exceeds the lower thresh- 
+old of the memristor, leading to long-term depression (LTD). 
+Conversely, if a postsynaptic spike follows a presynaptic spike 
+within duration τ (Figure 1B, right), the combined voltage trace 
+exceeds the memristor’s upper threshold, thus resulting in long- 
+term potentiation (LTP). Pre-synaptic pulses alone do not trigger 
+any plasticity. Overall, the memristor’s conductance obeys an 
+STDP-type plasticity rule. 
+The direct implementation of the above plasticity rule in 
+mixed-signal neuromorphic architectures, however, faces practi- 
+cal challenges due to the continuous spectrum of the conductance 
+values it relies on. Memristors that support a (quasi-) continu- 
+ous spectrum of memristive states often suffer from instabilities 
+to maintain their conductance value (“volatility”) and typically 
+show unreliable changes under repetitive application of identical 
+pulses. 
+Here we explore an alternative approach that employs multiple 
+bistable memristors, that support only two distinct conductance 
+states per memristor, to jointly form one synapse. Such devices 
+were reported to exhibit a high degree of uniformity (Fang et al., 
+2011). Concretely, we propose a synapse model which employs 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 2 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+FIGURE 1 | Compound memristive synapse model with stochastic 
+memristors. (A) STDP pulsing scheme. Input spikes elicit a rectangular 
+voltage trace (green, left) that is sent to the presynaptic terminal of the 
+memristor synapse. Post-synaptic spikes elicit a brief voltage pulse (blue) 
+which is sent back to the synapse. (B) Solitary postsynaptic spikes trigger 
+LTD since the voltage exceeds the lower threshold of the memristor. 
+Simultaneous pre- and postsynaptic spikes trigger LTP since the voltage 
+exceeds the upper threshold. (C) Compound memristive synapse model. A 
+synapse is composed of M bistable memristors operating in parallel. Each 
+memristor can either be active (weight ω) or inactive (weight 0). The total 
+synaptic weight Wki between input neuron yi and network neuron zk is the 
+sum of the individual memristor weights. (D) Bistable memristors switch 
+stochastically between the active and inactive state depending on the applied 
+voltage difference across its terminals. Switching to the active state (inactive 
+state) occurs with probability πup (πdown) if a certain threshold voltage (dotted 
+line) is exceeded. (E) Summary of stochastic transitions for 
+compound-synapse STDP. (F) In an STDP pairing experiment, the stabilizing 
+weight dependence of compound synapse plasticity governs convergence to 
+a dynamic equilibrium. 10,000 plasticity pulses were applied to a synapse 
+with M = 10 constituents. During the ﬁrst half, 80% (20%) of the events 
+were of LTP (LTD) type. During the second half, the probability for LTP (LTD) 
+events was inverted to 20% (80%). Thin lines: number of active memristors 
+mki (t) for two example simulation runs. Thick line: Average mki (t) over 100 
+runs. The average weight converges to a dynamic equilibrium. 
+M bistable memristors operating in parallel to form a single 
+synaptic weight Wki between the i-th input neuron yi and the k-th 
+network neuron zk. The model which we refer to as compound 
+memristive synapse is sketched in Figure 1C. Each memristor is 
+assumed to provide two stable states: a high-conductive (active) 
+state and a low-conductive (inactive) state. Since the dynamic 
+range of memristors typically covers several orders of magnitude, 
+the weight contribution of inactive memristors is almost negligi- 
+ble. In line with this notion, each inactive memristor contributes 
+weight 0 in the synapse model and each active memristor con- 
+tributes weight ω. Since parallel conductances sum up, the total 
+weight of the compound memristive synapse reads 
+Wki=ω mki 
+(1) 
+with mki ∈ 0, 1,...,M denoting the number of active memris- 
+tors. As a consequence, a compound memristive synapse supports 
+M + 1 discrete weight levels, ranging from 0 to the maximum 
+weight Wmax = ω M. 
+Plasticity in this synapse model naturally emerges from tran- 
+sitions between the active and inactive state of the bistable 
+constituents. However, deterministic transitions, which are, for 
+instance, desirable in memristor-based memory cells, impair the 
+performance in a neuromorphic online learning setup with com- 
+pound memristive synapses: If all constituents of a synapse, 
+that experience the same pre- and postsynaptic spikes, change 
+their state simultaneously, the compound weight toggles between 
+Wki = 0andWki = Wmax depending on the latest pulse pair, not 
+showing any gradual trace of memory formation as required for 
+STDP. 
+A possible remedy to this issue can be found in memristors that 
+exhibit stochastic rather than deterministic switching between 
+their stable states. Yu et al. (2013), for instance, reported stochas- 
+tic transitions in HfOx/TiOx memristors (from the class of anion- 
+based memristors) and explored in computer simulations how 
+stochastic bistable memristors could be used in a neuromorphic 
+learning architecture. Similar studies explored the usability of 
+stochastically switching bistable cation-based memristive materi- 
+als (Jo et al., 2009b; Gaba et al., 2013; Suri et al., 2013). In these 
+nanoscale devices, changes in the memristance were shown to be 
+dominated by the formation of a single conductive ﬁlament (Jo 
+et al., 2009b). Stochastic switching was demonstrated for both 
+directions (active ↔ inactive) (Suri et al., 2013)withswitching 
+probabilities being adjustable via the duration (Gaba et al., 2013; 
+Suri et al., 2013) and amplitude (Jo et al., 2009b; Gaba et al., 2013) 
+of the voltage applied across the terminals. These observations 
+have led to the conclusion that “switching can be fully stochas- 
+tic” with switching probabilities being almost unaffected by the 
+rate at which consecutive plasticity pulses are delivered (Gaba 
+et al., 2013). Furthermore, bistable memristors can be extremely 
+durable, not showing any notable degradation over hundreds of 
+thousands of programming cycles (Jo et al., 2009b). Owing to 
+these pivotal properties, Suri et al. (2013) proposed an STDP- 
+type plasticity rule that perceives bistable memristors as simple 
+stochastic switches. 
+Here we generalize this idea to compound memristive synapses 
+and investigate the computational function of the arising plastic- 
+ity rules in spiking networks from a machine learning perspective. 
+Figure 1D illustrates a simple model of stochastic switching of 
+individual memristors that employs the STDP-pulsing scheme 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 3 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+from Zamarreño-Ramos et al. (2011) and Querlioz et al. (2011) 
+discussed above: If the voltage between the pre- and postsynap- 
+tic terminal of a device exceeds a certain threshold (dotted lines) 
+for the duration of the back-propagating spike signal, stochastic 
+switching may occur. Inactive memristors jump to the active state 
+with probability πup provided a sufﬁciently strong positive volt- 
+age, resulting in stochastic LTP. Similarly, active memristors turn 
+inactive with probability πdown given a sufﬁciently strong negative 
+voltage, leading to stochastic LTD. No switching occurs if only a 
+small (or zero) voltage is applied, or if the memristor is already in 
+the respective target state. Since the applied pre- and postsynaptic 
+pulse amplitudes are free parameters in the model, the jumping 
+probabilities πup and πdown can be controlled, to a certain extent, 
+by the experimenter. This simple model captures the most salient 
+aspects of stochastic switching in bistable memristive devices as 
+discussed above, cp. also Suri et al. (2013) and the Discussion sec- 
+tion. In order to distinguish the abstract memristor model from 
+physical memristive devices, we will in the following refer to the 
+model memristors as “stochastic switches,” “constituents,” or sim- 
+ply as “switches” for the sake of brevity. Furthermore, we refer 
+to the resulting stochastic plastic behavior of compound memris- 
+tive synapses in response to pre-post spike pairs, summarized in 
+Figure 1E,ascompound-synapse STDP. 
+From the transition probabilities of individual stochas- 
+tic switches we can calculate the expected temporal weight 
+change d 
+dt Wki of the compound memristive synapse as a func- 
+tion of pre- and postsynaptic activity. Formally, we denote the 
+presence of a rectangular input pulse (green in Figure 1A)of 
+the i-th input by yi(t) = 1 (and the absence by yi(t) = 0). The 
+brief pulses that are sent back from a postsynaptic neuron zk 
+to the synapse (blue in Figure 1A) are formally treated as point 
+events at the spike times of the postsynaptic neuron. We denote 
+the spike time of the f th spike of neuron zk by tfk . The spike 
+train sk(t)ofaneuronzk is formally deﬁned as the sum of Dirac 
+delta pulses δ( ) at the spike times: sk(t) = f δ(t tfk ). When 
+asynapticefﬁcacyWki is subject to a stochastic LTP update, there 
+are (M mki) constituents in the compound memristive synapse 
+that are currently inactive and could undergo an LTP transi- 
+tion. Each constituent independently switches to its active state 
+with probability πup , thereby contributing ω to the compound 
+weight Wki. Hence, the expected weight change for the LTP con- 
+dition reads (M mki) ωπup. A similar argumentation applies 
+to the LTD case. In summary, considering that plasticity always 
+requires a postsynaptic spike, and that LTP is induced in the pres- 
+ence of a presynaptic pulse (yi(t) = 1), while LTD is induced in 
+the absence of a presynaptic pulse (yi(t) = 0), the expected weight 
+change of the compound memristive synapse reads: 
+d 
+dt Wki =sk(t) (M mki) ωπup yi(t) 
+LTP 
+mki ωπdown (1 yi(t)) 
+LTD  (2) 
+= sk(t) Mωπup yi(t) mkiωπup yi(t) 
+mkiωπdown + mkiωπdown yi(t) 
+= sk(t) Wmax πup yi(t) Wki πdown 
++ sk(t) Wki yi(t) (πdown πup) . 
+In order to obtain a simple closed form solution of the weight 
+changes, we set πup = πdown , i.e., the probability of potentiation 
+of a single switch under LTP equals its probability of depression 
+under LTD. This choice will facilitate the theoretical analysis of 
+learning in a spiking network, later on. In a hardware implemen- 
+tation, the switching probabilities could be adjusted via the pre- 
+and postsynaptic amplitudes of the STDP pulses. We obtain the 
+following closed form solution for the expected weight change: 
+d 
+dt Wki =πup Wmax sk(t) yi(t) Wki/Wmax . (3) 
+Notably, the plasticity rule (3) differs from standard additive 
+STDP rules in that it includes the weight dependent term 
+Wki/Wmax . This weight dependence has its origin in the varying 
+number of (in-)active stochastic switches mki that could actu- 
+ally undergo plastic changes and is in line with a prominent 
+ﬁnding from neurobiology (Bi and Poo, 1998): Relative changes 
+Wki/Wki become weaker for strong weights under LTP, while 
+under LTD the relative change is weight-independent. Studies in 
+computational neuroscience, see e.g., Van Rossum et al. (2000), 
+foundthatthistypeofweightdependencefacilitatestheforma- 
+tion of stable connections in spiking networks. 
+In Figure 1F, we illustrate the stochastic convergence of a 
+compound synaptic weight to a stable, dynamic equilibrium 
+in a simple STDP pairing experiment. The synapse consists 
+of M = 10 bistable switches with switching probabilities set to 
+πup = πdown = 0.001. These synapse parameters will also be 
+used in network level simulations, later on. In a small com- 
+puter simulation, 5 of the 10 constituents are initially set active 
+(mki(t = 0) = 5). Then, 5000 postsynaptic spikes are sent to 
+the postsynaptic terminal of the synapse for triggering stochas- 
+tic switching in the bistable constituents. 80% of these events 
+are randomly paired with a presynaptic pulse, i.e., 80% of the 
+events are of LTP type and 20% are of LTD type. After 5000 
+plasticity pulses, the statistics are inverted to 20% LTP and 80% 
+LTD events for another 5000 plasticity pulses. The thin lines 
+in Figure 1F show the evolution of mki(t) in this STDP pair- 
+ing experiment for two independent simulation runs. In the ﬁrst 
+half, the synaptic weight tends to settle around higher weight val- 
+ues, while in the second half, it stochastically declines toward 
+lo 
+w 
+e 
+rw 
+eightv 
+alu 
+e 
+s 
+.Thegr 
+adu 
+alc 
+o 
+n 
+v 
+e 
+rge 
+n 
+c 
+eofthea 
+v 
+e 
+r 
+age 
+weight, as suggested by Equation (3), becomes apparent by taking 
+the mean over 100 simulation runs (thick line). The stabilizing 
+weight dependence of the STDP rule leads to convergence to a 
+dynamic equilibrium such that the mean value shows slow, con- 
+tinuous changes as expected from the theory. Individual synapses 
+ﬂuctuate stochastically around this mean. 
+Equation (3) is reminiscent of a theoretically derived synaptic 
+plasticity rule for statistical model optimization in spiking neu- 
+ral networks proposed by Nessler et al. (2013). Building upon 
+the theoretical approach developed by Nessler et al. (2013),we 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 4 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+will next turn to the question how to conceive stochastic learning 
+with compound memristive synapses from a Bayesian perspective 
+as unsupervised model optimization via a powerful optimiza- 
+tion method that is known as Expectation-Maximization in the 
+machine learning literature. 
+2.2. COMPOUND MEMRISTIVE SYNAPSES IN WINNER-TAKE-ALL 
+NETWORKS 
+The winner-take-all (WTA) network structure is a ubiquitous 
+circuit motif in neocortex (Douglas and Martin, 2004; Lansner, 
+2009) and is often utilized in neuromorphic engineering (Mead 
+and Ismail, 1989; Indiveri, 2000). Recently, WTA networks 
+attracted increasing attention in theoretical studies on statistical 
+learning (Habenschuss et al., 2012; Keck et al., 2012; Habenschuss 
+et al., 2013; Nessler et al., 2013; Kappel et al., 2014) because their 
+comparatively simple network dynamics facilitate a comprehen- 
+sive mathematical treatment. In this section, we introduce the 
+WTA architecture that we will use to study the learning capa- 
+bilities of spiking neural networks with compound memristive 
+synapses subject to STDP. 
+The WTA network architecture is sketched in Figure 2A.The 
+network consists of N spiking input neurons y1 ,...,yN and K 
+spiking network neurons z1,...,zK with all-to-all connectivity 
+in the forward synapses. Lateral inhibition introduces competi- 
+tion among the network neurons. Network neurons are stochastic 
+spike response neurons (Gerstner and Kistler, 2002)withthe 
+membrane potential uk of network neuron zk being given by 
+uk(t)=bk+ N 
+i=1Wki yi(t) . 
+(4) 
+The membrane potential uk(t) integrates the inputs yi(t), i.e., 
+the rectangular voltage pulses following each input spike, linearly 
+through the synaptic weights Wki.Theparameterbk denotes the 
+intrinsic excitability of the neuron and controls its general dispo- 
+sition to ﬁre. In Methods we outline how the linear membrane 
+potential (4) can be realized with leaky integrators, a common 
+neuron model in neuromorphic designs. For the spike response 
+of the network neurons zk, a stochastic ﬁring mechanism is 
+employed. In the WTA network, neurons zk spike in a Poissonian 
+manner with instantaneous ﬁring rate ρk(t) that depends on the 
+membrane potential uk(t) and on lateral inhibition uinh(t): 
+ρk(t) = rnet euk(t) uinh(t) , 
+(5) 
+with a constant rnet > 0 that scales the overall ﬁring rate of 
+the network. In other words, the neuron spikes with probability 
+ρk(t) δt in a small time window δt → 0. The inhibitory con- 
+tribution uinh(t) := log Kj = 1 exp (uj(t)) summarizes the effect 
+of lateral inhibition in the network and introduces WTA- 
+competition between the network neurons to ﬁre in response 
+to a given stimulus y1(t),...,yN (t). Notably, the exponential 
+relationship (5) between an idealized membrane potential and 
+neuronal ﬁring is consistent with biological ﬁndings about the 
+response properties of neocortical pyramidal neurons (Jolivet 
+et al., 2006). 
+The feed-forward synapses from inputs yi to network neu- 
+rons zk are implemented as compound memristive synapses and 
+their synaptic weights Wki are adapted through stochastic STDP 
+as described above. The intrinsic excitabilities bk are adapted 
+according to a homeostatic plasticity rule (Habenschuss et al., 
+2012) that ensures that all network neurons take part in the 
+network response and thus facilitates the emergence of a rich 
+neural representation that covers the entire input space. Besides 
+its observed stabilizing effect (Querlioz et al., 2011), homeostatic 
+intrinsic plasticity plays a distinct computational role when com- 
+bined with synaptic learning: Network neurons that maintain 
+many strong synapses Wki gain an “unrightful advantage” during 
+WTA competition over neurons that are specialized on low- 
+activity input patterns (and therefore maintain weaker weights). 
+A detailed analysis of the learning dynamics in the network 
+shows that, in order to compensate for this advantage, the for- 
+mer must be burdened with a lower excitability bk than the 
+latter. A formal deﬁnition of the homeostatic plasticity mecha- 
+nism and a discussion of its computational role from a theory 
+FIGURE 2 | Spiking network for probabilistic inference and online 
+learning. (A) Winner-take-all network architecture with lateral inhibition 
+and synaptic weights Wki . (B) Network neurons zk implicitly maintain a 
+Gaussian likelihood function for each input yi in their afferent synaptic 
+weights Wki . The mean ki of the distribution is encoded by the fraction 
+Wki /Wmax = mki /M of active switches in the compound memristive 
+synapse, i.e., stronger synaptic weights Wki correspond to higher mean 
+values ki . Inset: Local implicit graphical model. (C) Illustration of 
+Bayesian inference for two competing network neurons zk , zj and one 
+active input yi (t) = 1. Different means ki , ji encoded in the weights 
+give rise to different values in the likelihood function and shape the 
+posterior distribution according to Bayes rule. 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 5 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+perspective are provided in Methods, see also Habenschuss et al. 
+(2012). 
+2.3. MEMRISTIVE SYNAPSES SUPPORT INFERENCE AND ONLINE 
+LEARNING 
+In this section, we thoroughly analyze the learning effects of 
+STDP in compound memristive synapses in the stochastic WTA 
+network model. For the mathematical analysis, we describe the 
+inputs yi(t) and the stochastic neuron responses sk(t)withthe 
+help of probability theory. To this end, we perceive the spiking 
+activity of the input neurons yi and network neurons zk as sam- 
+ples of random variables (RVs) Yi and Zk respectively. Consistent 
+with the assumption that spikes from input neurons produce 
+voltage pulses of duration τ in the circuit implementation (see 
+Figure 1A), we set Yi = yi(t), i.e., Yi = 1 if input neuron yi spiked 
+within [t τ, t] and Yi = 0 otherwise. The assignment of out- 
+put spikes sk(t)toRVsZk is different: The random variable Zk 
+labels the winner of the WTA network at spike times of network 
+neurons. Hence, the value of Zk is only deﬁned at the moments 
+whenoneoftheK network neurons spikes, i.e., when the spike 
+train sj(t) = 0 for some neuron zj. In this case, Zk encodes which 
+neuron spiked, andwe setZk =1ifk=jandZk =0ifk=j. 
+Using this interpretation of neural activity as realiza- 
+tions of RVs, the network’s stochastic response sk(t)t 
+oa 
+n 
+input conﬁguration y(t) = (y1(t),...,yN (t)) gives rise to a 
+conditional probability distribution pnet(Z Y)o 
+v 
+e 
+rthen 
+e 
+t 
+- 
+work RVs Z := (Z1,...,ZK ) conditioned on the input RVs 
+Y := (Y1 ,...,YN ). In line with the deﬁnition of the RVs Zk , 
+the distribution pnet(Z Y) describes the network response only 
+when one of the network neurons zk ﬁres. The response distribu- 
+tion pnet(Z Y = y(t)) for any ﬁxed input conﬁguration y(t) can 
+directly be calculated from Equations (4) and (5) (note that the 
+probability pnet(Zk = 1 Y = y(t)) for an individual RV Zk to be 
+active is proportional to the ﬁring rate ρk(t)ofneuronzk): 
+pnet(Zk = 1 Y = y(t)) = ρk(t)/rnet = euk(t) uinh(t) 
+=ebk+N 
+i=1Wki yi(t) 
+Kj=1ebj+ N 
+i=1Wji yi(t) . (6) 
+Equation (6) fully characterizes the network response distribu- 
+tion pnet(Z Y ) for any given input Y = y(t). We next turn to 
+the question how the response distribution pnet(Z Y ) can be 
+understood as the result of a meaningful probabilistic compu- 
+tation. Speciﬁcally, we will show that the spike response of the 
+WTA network approximates the Bayesian posterior distribution 
+during inference in a well-deﬁned probabilistic model. This prob- 
+abilistic model is implicitly encoded in the synaptic weights Wki , 
+and synaptic plasticity can thus be perceived as an ongoing reﬁne- 
+ment of the involved probability distributions. Indeed, the STDP 
+rule (3) of the compound memristive synapses turns out to be 
+optimal in the sense that it instantiates generalized Expectation- 
+Maximization in the WTA network, a powerful algorithm for 
+unsupervised learning from machine learning theory. Our ﬁnd- 
+ings build upon theoretical work on synaptic learning in spiking 
+neural networks from Nessler et al. (2009, 2013) and Habenschuss 
+et al. (2012, 2013). 
+The key idea for identifying the response distribu- 
+tion pnet(Z Y) as the result of a Bayesian computation, is 
+to hypothetically reverse the network computation and view 
+the spike response of a network neuron zk as the hidden 
+cause behind the observed input y(t). In this view, the net- 
+work is treated as a generative model that implicitly deﬁnes 
+a prior distribution p(Z) over hidden causes Zk and a set of 
+likelihood distributions p(Y Zk = 1), one for each hidden 
+cause Zk . The shape of the distributions is deﬁned by the 
+parameters of the network, e.g., the synaptic weights Wki.An 
+important property of these implicitly encoded distributions– 
+that also motivates the term “generative model”–is that they 
+give rise to a (hypothetical) distribution over the inputs, 
+p(Y=y(t))= K 
+k=1p(Y=y(t)Zk =1) p(Zk =1). This 
+equation also explains why a RV Zk is called a hidden cause: 
+Ifw 
+eobs 
+e 
+r 
+v 
+ea 
+ninpu 
+tv 
+e 
+c 
+t 
+o 
+ry(t), that has high probability 
+only in one of the likelihood distributions p(Y = y(t) Zk = 1), 
+then we can consider the RV Zk as a likely (but unobservable) 
+cause for the observation according to the generative model. 
+A common objective in machine learning theory, known as 
+Maximum-Likelihood learning, is to ﬁnd parameters that bring 
+the implicit distribution p(Y) of the generative model as close 
+as possible to the distribution of the actually observed input. 
+Then the hidden causes of the generative model are expected 
+to represent important features of the observed input (e.g., 
+some typical input clusters). Leaving the hypothetical generative 
+perspective again, in the network’s real operation an input y(t) 
+is presented to the network and the hidden causes Zk need to 
+be inferred (e.g., the cluster the input y(t)belo 
+ngst 
+o).The 
+mathematically correct result of this inference is given by Bayes 
+rule 
+p(Zk=1 Y=y(t))∝p(Zk=1) p(Y=y(t)Zk=1) (7) 
+which combines the likelihood p(Y = y(t) Zk = 1) with the 
+prior p(Zk = 1). 
+Nessler et al. (2013) showed that in a WTA network archi- 
+tecture, that evolves according to Equations (4) and (5), the 
+synaptic weights Wki can be understood as an implicit neural 
+encoding of likelihood distributions p(Y Zk = 1), and that the 
+network response pnet(Z Y) approximates the posterior distri- 
+bution according to Equation (7). Hence, WTA networks can be 
+regarded as implicit generative models. Furthermore–and even 
+more importantly from a theoretical perspective–Nessler et al. 
+(2013) showed that the implicit likelihood model, that is encoded 
+in the weights Wki, can be optimized in an unsupervised man- 
+ner by a weight-dependent STDP rule. Indeed, there exists a tight 
+link between the type of weight dependence in the STDP rule 
+and the type of implicit likelihood model it optimizes. The expo- 
+nential weight dependence in Nessler’s rule, however, differs from 
+the linear weight dependence we identiﬁed for the plasticity rule 
+in Equation (3). This raises the question what type of implicit 
+likelihood model is encoded and optimized by the compound 
+memristive synapses. 
+An intuition about an appropriate probabilistic interpretation 
+of compound-synapse STDP can be obtained from the equi- 
+librium points of the plasticity rule (3). We ﬁrst observe, that 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 6 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+plasticity is always triggered by a postsynaptic spike, i.e., Zk = 1 
+for some neuron zk. In the spirit of spike-triggered averaging 
+(Simoncelli et al., 2004), we can then study the conditional distri- 
+bution p(Yi = yi(t) Zk = 1) of an input yi at the moment of the 
+network response since the coincidence of pre- and postsynap- 
+tic spiking activity is the driving force behind any weight change 
+in the STDP rule. By assuming that plasticity has converged to 
+a dynamic equilibrium, the average contributions of LTP and 
+LTD cancel each other, i.e., d 
+dtWki p(Yi Zk=1)=0. From this 
+condition, we obtain the following relation between the synaptic 
+weight Wki and the conditional input distribution p(Yi Zk = 1): 
+0! 
+=d 
+dtWki p(Yi Zk=1) 
+= πup Wmax [Yi Wki/Wmax] p(Yi Zk = 1) 
+⇒ Wki=Wmax Yi p(Yi Zk=1). 
+(8) 
+According to this analysis, the synaptic weight Wki represents the 
+e 
+xpe 
+ctedv 
+alu 
+eofinputn 
+e 
+u 
+r 
+o 
+nyi at the moment of a postsy- 
+naptic spike in network neuron zk in a linear manner. In the 
+compound memristive synapse, this expectation is encoded in 
+the M + 1 possible weight states Wki = 0,ω,...,Wmax of the 
+synapse. The linear encoding (8) is compatible with the conver- 
+gence points which we observed previously in the small STDP 
+pairing experiment in Figure 1F. 
+The above analysis only serves as an intuition and is no sub- 
+stitute for a thorough mathematical treatment of the learning 
+process. A rigorous formal derivation that, for instance, also takes 
+into account the dynamically changing response properties of 
+the network neurons due to recurrent interactions and plastic 
+changes in the weights, is provided in Methods. It reveals that 
+the above intuition holds. More precisely, the likelihood dis- 
+tributions p(Y Zk = 1) that are optimized in a WTA circuit 
+with compound-synapse STDP are given by the product of the 
+likelihoods of individual inputs 
+p(Y=y(t)Zk =1)= 
+N 
+i=1p(Yi =yi(t) Zk = 1) , (9) 
+and the likelihood for each individual input channel yi is given by 
+a Gaussian distribution 
+p(Yi=yi(t)Zk =1)= 1 
+√2πσ2 e (yi(t) ki)2 
+2σ2 
+. (10) 
+The mean values ki and the standard deviation σ of the likeli- 
+hood distributions (10) are identiﬁed as 
+ki = Wki/Wmax = mki/M and σ = 1/ (Wmax) .(11) 
+Hence, the mean ki of the distribution for input channel yi 
+is given by the fraction of active constituents in the compound 
+memristive synapse. The width σ = 1/√(Wmax) of the distribu- 
+tion is determined by the maximum weight Wmax = M ω and 
+could, for instance, be controlled by the weight contribution ω of 
+an individual stochastic switch. The resulting probabilistic model 
+of the WTA network is a Mixture-of-Gaussians generative model 
+(see Methods for a formal deﬁnition). 
+In order to illustrate the computational properties of this gen- 
+erative model, the likelihood distribution p(Yi Zk = 1) for a 
+single input yi and a single active hidden cause Zk = 1issketched 
+in Figure 2B. An active hidden cause Zk = 1 assigns probabil- 
+ities to all possible instantiations yi(t)ofYi.Inprin 
+ciple 
+,the 
+Gaussian likelihood distribution supports arbitrary real-valued 
+input instantiations yi(t) ∈ R. We will come back to this obser- 
+vation in the Discussion section where we address possible exten- 
+tions of the WTA network to support more complex input types. 
+In this article, we consider only binary inputs that take on the 
+value 0 (input pulse absent) or 1 (input pulse present), see the 
+presynaptic pulses in Figure 1A. The corresponding likelihood 
+valuesp(Yi=0 Zk=1)andp(Yi=1 Zk=1)aredetermined 
+by the mean ki and the variance σ of the likelihood distribu- 
+tion, see Equations (10) and (11). The task of the network when 
+presented with an input y(t) is to infer the posterior distribu- 
+tion over hidden causes p(Zk = 1 Y = y(t)) and produce spikes 
+according to this distribution. The optimal solution is given by 
+Bayes rule (7) with the likelihood p(Y = y(t) Zk = 1) given by 
+Equations (9) and (10), and an (input independent) a priori prob- 
+ability p(Zk = 1). As we prove in Methods, the response distribu- 
+tion pnet(Z Y = y(t)) of the spiking WTA network implements 
+a close and well-deﬁned variational approximation of this poste- 
+rior distribution. A minimal example of such Bayesian inference 
+is sketched in Figure 2C, where we consider a small WTA network 
+with only one input yi and two network neurons zk and zj.Fora 
+given input instantiation yi(t)thevaluesp(Yi = yi(t) Zk = 1) 
+and p(Yi = yi(t) Zj = 1) measure the likelihoods of the two 
+competing hypotheses that neuron zk or neuron zj is the hidden 
+cause of the observed input yi(t). These likelihood values shape 
+the Bayesian posterior distribution (7) by contributing one factor 
+to the product in Equation (9). 
+As a consequence, a network neuron zk is particularly respon- 
+sive to those input conﬁgurations y(t) that are associated with 
+high likelihood values p(Y = y(t) Zk = 1). The likelihood dis- 
+tributions are determined by the means ki, i.e., by the number 
+mki of active switches in the synapses that change according to the 
+compound-synapse STDP rule. Through this mechanism, synap- 
+tic plasticity governs the emergence of prototypic patterns that 
+the network neurons are most responsive to, and thereby turns 
+each neuron zk into a probabilistic expert for certain input con- 
+ﬁgurations y(t). The aim of learning in the WTA network is to 
+distribute the probabilistic experts zk such that the likelihood 
+of the presented input is (on average) as high as possible. This 
+objective is an equivalent formulation of Maximum-Likelihood 
+learning, and the log-likelihood function, which measures the aver- 
+age (logarithm of the) input likelihood, is a widely-used measure 
+to determine how well a learning system is adapted to the pre- 
+sented input. Formally, the learning process can be described 
+within the framework of generalized Expectation-Maximization 
+(Dempster et al., 1977; Habenschuss et al., 2012; Nessler et al., 
+2013). In Methods we show that the generalized Expectation- 
+Maximization algorithm is implemented in the WTA network via 
+the interplay of the compound-synapse STDP rule (3), that adapts 
+the synaptic weights Wki, and the homeostatic intrinsic plasticity 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 7 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+rule, that regulates the intrinsic excitability bk of the neurons 
+such that each neuron maintains a long-term average ﬁring rate. 
+The interplay of synaptic and intrinsic plasticity achieves the aim 
+of Maximum-Likelihood learning in the WTA network in the 
+following sense: 
+The expected synaptic weight changes d 
+dt Wki of the compound 
+memristive synapses on average increase a lower bound of the log- 
+likelihood function in a Mixture-of-Gaussians generative model 
+during online learning until a (local) optimum is reached. 
+2.4. DEMONSTRATION OF UNSUPERVISED LEARNING 
+We tested the learning capabilities of the compound memristive 
+synapse model in a standard machine learning task for hand- 
+written digit recognition. In a computer simulation, we set up 
+aWTAn 
+etw 
+o 
+rkwithN = 24 × 24 input neurons and K = 10 
+network neurons. Each synaptic weight Wki was composed of 
+M = 10 stochastic bistable switches, each contributing ω = 0.1in 
+its active state. The switching probabilities πup = πdown = 0.001 
+were set to a quite low value. This corresponds to a long inte- 
+gration time for gradual memory formation in order to assess 
+the general ability of the synapse model in online learning tasks. 
+Before training, the stochastic switches were initialized randomly 
+as shown in Figure 3A. The network was then exposed to hand- 
+written digits 0–4 from the MNIST training data set (LeCun 
+et al., 1998). Examples from the data set are shown in Figure 3B. 
+Each pixel was encoded by one input neuron yi. Digits were pre- 
+sented as Poisson spike trains with ﬁring rates depending on 
+pixel intensities. Overall, the network was trained in an unsu- 
+pervised setup for 5000 s with a new digit being presented every 
+100 ms. Figure 3C shows the weight matrix in an early stage of 
+learning at t = 200 s. At this stage, the synapses begin to integrate 
+salient statistical features of the input, such as the generally low 
+activity along the frame. Furthermore, a specialization to cer- 
+tain digit classes becomes apparent for some of the network 
+neurons. 
+Over the course of learning, the synapses continuously 
+improve the network’s implicit generative model of the pre- 
+sented input. This reﬁnement is reﬂected in the log-likelihood 
+function shown in Figure 3D that measures how well the prob- 
+abilistic model is adapted to the input distribution. The ongo- 
+ing reﬁnement also becomes apparent by a more intuitive–and 
+practically more relevant–measure, namely the classiﬁcation per- 
+formance of the network on an independent test set of hand- 
+written digits. The classiﬁcation error (blue in Figure 3D;s 
+e 
+e 
+Methods for details) continuously decreases as training pro- 
+gresses. The improved performance on an independent test set 
+furthermore indicates that the network develops a generally 
+well-suited representation of the input and evades the risk of 
+over-ﬁtting. 
+At the end of training, after t = 5000 s, a set of prototypic 
+digits has emerged in the compound memristive synapses as 
+shown in Figure 3E. The well-adapted synapse array turns each 
+network neuron into a probabilistic expert for a certain digit 
+class. As a consequence, the network has learned to transform 
+the N -dimensional, noisy spike input into a sparse and reliable 
+spike code, as shown in Figure 3F.Typically,exactlyonenetwork 
+neuron zk ﬁres in response to the input. But also the seem- 
+ingly unclear cases, when two neurons respond simultaneously, 
+carry meaningful information in a Bayesian interpretation: 
+Since network spikes approximate the posterior distribu- 
+tion p(Z Y = y(t)) through sampling, an ambiguous spike 
+response encodes the level of uncertainty during probabilistic 
+inference. 
+FIGURE 3 | Learning of hand-written digits. (A) Synaptic weights at 
+time t = 0 s after random initialization. Color intensities show the number 
+mki ∈[0, 10] of active switches for each connection. The indices k of the 
+postsynaptic neurons are indicated in the top-left corners. (B) Examples 
+from the MNIST data set. Pixel intensities of the digits were encoded as 
+Poisson spike trains and presented to the network. Digits 0–4 were 
+presented with a new digit being shown every 100 ms. (C) Weight 
+matrix at time t = 200 s. Memristive synapses start to integrate salient 
+features of the input stream. (D) Over the course of learning the 
+log-likelihood function (red) increases, indicating that the network 
+continuously reﬁnes its implicit statistical model of the presented data. 
+This reﬁnement leads to an improved classiﬁcation performance (blue) on 
+an independent test set. (E) At the end of the learning experiment at 
+t = 5000 s, the synapses have specialized on different prototypes of the 
+presented digits, rendering each network neuron a probabilistic expert for 
+a certain digit. (F) Network response for 1 s at the end of learning. The 
+presented digit is shown at the top. The input is transformed into a 
+sparse and reliable spike code. Some digits invoke a spike response of 
+more than one neuron. This ambiguous response encodes uncertainty in 
+the variational posterior distribution. 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 8 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+2.5. INFLUENCE OF SYNAPTIC RESOLUTION 
+In the previous section, we have demonstated that the compound 
+memristor synapse model is able to learn statistical regulari- 
+ties in the input stream and enables the spiking WTA network 
+to perform probabilistic inference in a well-deﬁned generative 
+model. The demonstration employed compound synapses with 
+M = 10 stochastic switches per synapse. Notably, the number 
+of constituents M is a free parameter of the model and deter- 
+mines the weight resolution of the compound synapse. Increasing 
+the synaptic resolution by recruiting more bistable switches per 
+synapse is generally expected to improve the accuracy of the input 
+representation, but comes at the cost of reduced integration den- 
+sity in a neuromorphic design. In the following, we therefore 
+explore the opposite direction, i.e., unsupervised learning with a 
+low weight resolution. 
+For estimating the inﬂuence of the weight resolution on 
+the learning capabilities of the WTA network, we repeated the 
+above computer simulation for different values of M,while 
+holding the maximum weight Wmax = ω M, and thus the vari- 
+ance σ = 1/√(Wmax) of the implicit generative model, ﬁxed. 
+Figure 4A shows examples of the digits stored in the synapse 
+array after 5000 s of learning for M = 1, 2, 4, and 100 stochastic 
+FIGURE 4 | Inﬂuence of the synaptic resolution. (A) Examples of learned 
+weight matrices with different numbers of constituents M per synapse. 
+Even binary weights with only one stochastic switch learn to maintain a 
+coarse image of prototypic digits. In the limit of large M, compound 
+synapses support a quasi-continuous weight spectrum. (B) Classiﬁcation 
+error for different weight resolutions after 5000 s of learning, based on 20 
+independently trained networks for each value of M. Errorbars: SD among 
+networks. 
+switches per synapse. Even binary synapses with M = 1 success- 
+fully identify noisy archetypes of the input digits. This obser- 
+vation is in line with previous studies on learning with binary 
+weights (Fusi, 2002).Theaccuracyoftherepresentationquickly 
+increases with higher M-values. As an (academic) reference, we 
+also included a simulation with M = 100 switches per synapse 
+which support a quasi-continuous state spectrum. 
+The resulting ability of the WTA network to recognize hand- 
+written digits is shown in Figure 4B in terms of the classiﬁcation 
+error on a test set. Each bar depicts the mean performance of 20 
+independently trained networks per M-value, errorbars show the 
+standard deviation among networks. Taking the academic exam- 
+ple with M = 100 as a reference for the performance achievable 
+by the small WTA network, the computer simulations suggest that 
+as few as M = 4 constituents per synapse may be sufﬁcient for 
+practical applications. While individual weights Wki only store lit- 
+tle information (ca. 2.3bitsincaseofM = 4) about the expected 
+input in channel yi, the partial evidence received from each of the 
+N = 576 input channels is integrated by the network in a statisti- 
+cally correct manner to form a sharply peaked posterior, most of 
+the time. 
+2.6. ROBUSTNESS TO DEVICE VARIATIONS 
+We have demonstrated so far that spiking networks with com- 
+pound memristive synapses can learn a faithful representation 
+of their input when synapses consist of idealized bistable con- 
+stituents. Large-scale physical implementations, however, are 
+likely to exhibit substantial device variabilities and imperfections. 
+Plasticity in the compound synapse model depends on two device 
+properties that are likely to be distorted in physical implementa- 
+tions: the conductance of each individual constituent ω and the 
+switching probabilities πup/πdown . In the following, we address 
+the impact of distortions in these two properties on the WTA 
+network learning capabilities, separately. 
+We ﬁrst turned to the conductance value ω of individual 
+switches and investigated the robustness of learning to two fun- 
+damentally different types of noise in ω, namely spatial noise and 
+temporal noise: 
+• Spatial noise describes device-to-device variations and 
+addresses peculiarities of individual memristors that remain 
+stable over time. 
+• Temporal noise refers to trial-to-trial variations and covers 
+device instabilities over the course of learning. 
+Both types of noise can be suspected to induce serious dis- 
+turbances during learning: In case of spatial noise, although 
+device-to-device variations could average out if many memristors 
+are employed, any remaining deviations give rise to sustained sys- 
+tematic errors that may build up over the course of learning. In 
+case of temporal noise, while trial-to-trial variations could aver- 
+age out over time, any synaptic update rests upon a disturbed 
+instantiation of the weight matrix, i.e., on a noisy (and false) 
+assumption. In computer simulations, we accounted for these 
+types of noise separately by disturbing the active-state weight 
+value ω oftheswitchesassketchedinFigure 5A.Tomodelspa- 
+tial noise, the weight ω was randomly drawn prior to training for 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 9 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+FIGURE 5 | Robustness to spatial and temporal noise. (A) Noise was 
+added by drawing the weight ω of the active state from a normal 
+distribution. Three types of noise were tested: For spatial noise, a 
+value ω ∼N(ω;¯ 
+ω,σ2 
+ω ) was assigned to each switch and maintained 
+throughout the experiment. For temporal noise, the value ω was 
+redrawn after every LTP transition. For spatial + temporal noise, the 
+device speciﬁc spatial weight value determined the mean for 
+redrawing ω after LTP transitions. (B–D) Number mki of active switches 
+after learning at t = 5000 s. Shown are example networks for all three 
+noise types. (E) Classiﬁcation error after learning, based on 20 
+independently trained networks per noise type. Errorbars denote 
+standard deviation among networks. 
+each stochastic switch from a normal distribution N (ω ;¯ 
+ω,σ2 
+ω) 
+with mean ¯ 
+ω and standard deviation σω . To capture the effect 
+of temporal noise, in contrast, the weight ω was redrawn from 
+N(ω;¯ 
+ω,σ2 
+ω) whenever the constituent switched to its active state 
+in an LTP transition. Furthermore, we examined the combined 
+effect of both noise types being present simultaneously. In this 
+combined case, the mean value for temporal noise was deter- 
+mined by the device-speciﬁc spatially perturbed weight value of 
+each constituent. In any case, the range of perturbed weights was 
+truncated to ω ≥ 0 to rule out negative conductances. 
+We repeated the experiment of Figure 3 under each of these 
+noise conditions. The mean ¯ 
+ω = 0.1 was set to the undisturbed 
+weight value of the previous, idealized experiment. The noise level 
+was set to σω = 0.05, i.e., to 50% of the mean. Example cases of 
+weight matrices after learning (shown are the mki’s from individ- 
+ual simulation runs) are presented in Figures 5B–D for the three 
+noise conditions “spatial,” “temporal” and “spatial+temporal,” 
+respectively. Surprisingly, hardly any difference to the idealized 
+setup is observable. Nevertheless, under 20 repetitions of the 
+learning simulation the detrimental inﬂuence of noise becomes 
+visible in the classiﬁcation performance (see Figure 5E) as noise 
+appears to slightly increase the mean of the classiﬁcation error. In 
+summary, these results reveal a remarkable robustness of learn- 
+ing with compound memristive synapses to substantial device 
+variability and severe temporal instability. 
+We next turned to the question how distorted switching 
+probabilities πup and πdown inﬂuence the learning dynamics 
+in the WTA network. In the theory section, we had assumed 
+that πup = πdown , i.e., that the switching probabilities underly- 
+ing LTP and LTD are balanced. This assumption, which could 
+to some extent be achieved in a calibration step, yielded the 
+elegant learning rule (3) and thereby facilitated the theoretical 
+analysis. A physical implementation, however, will likely exhibit 
+unbalanced switching probabilities in the majority of memris- 
+tors. We examined the inﬂuence of unbalanced switching, in two 
+ways. First, we applied spatial noise to the switching probabilities 
+of individual constituents by drawing πup and πdown (separately) 
+from normal distributions with 50% noise level (truncated to 
+0 ≤ πup,πdown ≤ 1). Thus, about half of the stochastic switches 
+w 
+e 
+r 
+em 
+o 
+r 
+er 
+e 
+spo 
+n 
+siv 
+et 
+oL 
+TPpuls 
+e 
+s 
+,theo 
+the 
+rhalfm 
+o 
+r 
+et 
+o 
+LTD pulses; even more, some of the constituents only showed 
+switching in one direction, or were completely unresponsive. 
+Nevertheless, synapses developed a faithful representation of pro- 
+totypic digits in a repetition of the experiment in Figure 3 (data 
+not shown). Also the classiﬁcation performance was only mildly 
+impaired (classiﬁcation error:8.7 ± 2.7% based on 20 networks) 
+compared to ideal, noisefree synapses (classiﬁcation error:7.5 ± 
+1.9%). 
+In a second step, we pursued a slightly different–more 
+principled–approach that permits a theoretical interpretation of 
+how the altered synapse dynamics give rise to a different encoding 
+of the expected input by the synaptic weights. Instead of draw- 
+ing random parameters for each constituent, we systematically 
+chose the LTD switching probability πdown larger (or smaller) 
+than the LTP probability πup throughout the synapse array. This 
+systematic imbalance displays a worst-case scenario during learn- 
+ing since all synapses either favor (or suppress) LTD over LTP. 
+We denote the relative imbalance between πup and πdown by 
+:= (πup πdown)/πup . For instance, 
+= 0.5 means that 
+the probability for LTD transitions is 50% higher than for LTP 
+transitions. Figure 6A shows examples of weight matrices after 
+5000 s of learning in a repetition of the experiment in Figure 3. 
+In the top row, 
+=+0.5, LTP transitions are favored over LTD 
+transitions, resulting in generally stronger weights in compari- 
+son with balanced STDP ( = 0.0, middle row). Conversely, in 
+the bottom row, 
+= 0.5, the systematic strengthening of LTD 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 10 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+FIGURE 6 | Robustness to unbalanced switching probabilities. (A) 
+Examples of learned weight matrices when the switching probabilities πup 
+and πdown are systematically unbalanced. The parameter 
+:= (πup πdown)/πup measures the relative imbalance between LTP and 
+LTD transitions. The top (bottom) row shows weight matrices resulting 
+from a 50% decrease (increase) of the LTD switching probability. The 
+balanced case is shown in the middle row for comparison. (B) Systematic 
+imbalance ( = 0) leads to changed equilibrium points in the STDP rule and 
+can be theoretically understood as a non-linear encoding of the expected 
+input by the synaptic weights. 
+leads to weaker weight patterns. Nevertheless, synaptic weight 
+values converged to a dynamic equilibrium in either case since 
+the STDP rule preserves its general stabilizing weight depen- 
+dence. As can be expected from the prototypic digits that emerged 
+in the weight matrices, the classiﬁcation performance of the 
+WTA networks was not considerably impaired by the unbalanced 
+switching (classiﬁcation errors estimated from 20 networks: 
+6.7 ± 0.8% for =+0.5; 7.5 ± 1.9% for = 0; 11.8 ± 4.0% 
+for = 0.5). Indeed, positive -values even performed slightly 
+(but not signiﬁcantly) better than balanced switching. A con- 
+ceptual understanding of the altered learning dynamics can be 
+obtained from the equilibrium points of the unbalanced STDP 
+rule. The short calculation, that had led to Equation (8) for the 
+balanced case, can be repeated for unbalanced switching proba- 
+bilities. Figure 6B shows the resulting encoding of the expected 
+input value Yi p(Yi Zk =1) by the synaptic weight Wki for differ- 
+ent -values.TheexampledigitsshowninpanelAcorrespond 
+to the red, green and blue graph in panel B, respectively. This 
+analysis illustrates how unbalanced switching probabilities give 
+rise to a non-linear encoding of the input in the WTA network. 
+In particular, it can be seen how the same expected input value 
+Yi p(Yi Zk = 1) leads to stronger weights for >0, and weaker 
+weights for <0. 
+3. DISCUSSION 
+Wehaveproposedthecompoundmemristivesynapsemodelfor 
+neuromorphic architectures that employs multiple memristors in 
+parallel to form a plastic synapse. A fundamental property of the 
+synapse model is that individual memristors exhibit stochastic 
+switching between two stable memristive states rather than obey- 
+ing a deterministic update rule. Yet, the expected weight change of 
+the compound memristive synapse, as it arises from the stochas- 
+tic switching of its constituents, yielded an STDP-type plasticity 
+rule with a stabilizing, linear weight dependence. We exam- 
+ined the computational capabilities of the compound-synapse 
+STDP rule in WTA networks, a common circuit motif in cortical 
+and neuromorphic architectures, by analyzing the network and 
+synapse dynamics from the perspective of probability theory and 
+machine learning. The comprehensive mathematical treatment 
+revealed that compound memristive synapses enable a spiking 
+network to perform Bayesian inference in and autonomous sta- 
+tistical optimization of a Mixture-of-Gaussians generative model 
+via generalized Expectation-Maximization. Accompanying com- 
+puter simulations demonstrated the practical capability of the 
+synapse model to perform unsupervised classiﬁcation tasks and, 
+furthermore, revealed a remarkable robustness of the compound 
+synapses to substantial device variations and imperfections. 
+3.1. COMPREHENSIVE LEARNING THEORY OF MEMRISTIVE 
+PLASTICITY 
+Our work contributes a theoretical foundation for memristive 
+learning in neural networks to the endeavor to employ memris- 
+tors as plastic synapses in self-calibrating systems. Snider (2008); 
+Querlioz et al. (2011),andSerrano-Gotarredona et al. (2013) have 
+investigated how different pre- and postsynaptic waveforms can 
+shape a memristive STDP learning window. Jo et al. (2010) and 
+Mayr et al. (2012) have demonstrated STDP-type plasticity in 
+Ag/Si and BiFeO3 memristors. Yu et al. (2013) reported stochas- 
+tic switching between stable states in oxide-based memristive 
+synapses. Gaba et al. (2013) studied the parameter dependence 
+of switching probabilities in metal ﬁlament based memristors, 
+indicating a renewal process that is independent of the overall net- 
+work ﬁring rate. A strategy for integrating nanoscale memristive 
+synapses into a hybrid memristor-CMOS network architecture 
+was proposed by Indiveri et al. (2013). The beneﬁcial contri- 
+bution of stochasticity to learning with CMOS synapse circuits 
+was explored by Chicca et al. (2014).Herewehaveestablisheda 
+ﬁrm link between the emergent synapse conﬁgurations observed 
+in such architectures (see e.g., Querlioz et al., 2011)andarig- 
+orous mathematical description of memristive learning on the 
+system level using machine learning theory. Our ﬁndings on 
+memristive learning from a Bayesian perspective build upon a 
+series of theoretical contributions on synaptic learning in spiking 
+neural networks: Nessler et al. (2009, 2013) identiﬁed a gen- 
+eral link between STDP-type synaptic plasticity and statistical 
+model optimization for probabilistic inference in WTA networks. 
+Habenschuss et al. (2012) extended this work to incorporate also 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 11 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+homeostatic intrinsic plasticity, thereby overcoming several limit- 
+ing assumptions on the input presentation. Finally, Habenschuss 
+et al. (2013) investigated how the learning framework can be 
+generalized to support a broad class of probability distributions. 
+We expect that utilizing machine learning theory for describing 
+the effects of speciﬁc memristor synapse models can signiﬁ- 
+cantly promote our understanding of memristive learning and its 
+computational prospects. 
+3.2. HEADING FOR A FULL HARDWARE INTEGRATION 
+Plasticity in the compound memristor synapse model relies on 
+stochastic transitions between two stable states. Such bistable 
+devices–or more generally, devices with a clearly discrete state 
+spectrum–were reported to exhibit a high degree of uniformity 
+(Lee et al., 2006a; Fang et al., 2011) and temporal stability 
+(Indiveri et al., 2013). Notably, the theoretical approach we have 
+persued in this work could likely be extended to cover memristors 
+with more than two stable states and to support more complex 
+input and plasticity mechanisms. For instance, the Gaussian like- 
+lihood distributions p(Y Z) identiﬁed in the present study, in 
+principle support inference over arbitrary real-valued input states 
+y(t). Such states could arise if the input is presented in the form of 
+exponentially decaying or additive postsynaptic potentials. Such 
+more complex input types could afford more versatile STDP puls- 
+ing schemes, and the resulting memristor plasticity rules could 
+likely be incorporated in an adapted model of statistical learn- 
+ing. The reason we restricted the input to binary values yi(t)is 
+found in the STDP pulsing scheme that employs binary presy- 
+naptic waveforms. In this case, the theoretically derived generative 
+model reveals how active and inactive inputs contribute to the 
+network’s spike response by means of a Gaussian likelihood dis- 
+tribution p(Yi = yi(t) Zk = 1) that is sampled only at yi(t) = 0 
+and yi(t) = 1. 
+In this article, we have employed a simple model for stochas- 
+tic switching in memristive devices where switching occurs with 
+probabilities πup,πdown which depend on the applied voltage dif- 
+ference across the memristor terminals. This phenomenological 
+model captures the most salient aspects of switching in real mem- 
+ristive materials (Jo et al., 2009b; Gaba et al., 2013)andwasused 
+as an abstraction of memristive switching in a recent experimental 
+study (Suri et al., 2013). In future research, it will be important to 
+evaluate the effectiveness of this model either with physical mem- 
+ristors or in simulations based on detailed memristor models. 
+The authors of Suri et al. (2013) raised the concern that the pre- 
+cise switching probabilities of individual devices are potentially 
+hard to control in large-scale systems. In this regard, our simu- 
+lation results indicate that learning with compound memristive 
+synapses tolerates signiﬁcant noise levels in the switching prob- 
+abilities. We expect the origin for the observed robustness to be 
+twofold: Firstly, imbalances in πup,πdown between different con- 
+stituents are expected to partly average out in compound synapses 
+according to the central limit theorem; secondly, the stabiliz- 
+ing weight dependence of compound-synapse STDP ensures that 
+even unbalanced switching leads to stable weight conﬁgurations, 
+albeit with slightly shifted convergence points. 
+Another potential issue for learning with compound memris- 
+tive synapses is the absolute value of the switching probability. 
+The product πup Wmax can be linked to a learning rate in the 
+theory domain (see Ta b l e 1 ) which controls how many samples 
+from the input history are integrated into the implicit genera- 
+tive model during online learning. A slow and gradual memory 
+formation, which is desirable for developing a representation of 
+large and complex input data sets, relies on small learning rates, 
+i.e., on small switching probabilities. It has to be seen if memris- 
+tive materials that exhibit stochastic switching provide sufﬁciently 
+small switching probabilities. A possible remedy in a hardware 
+integration could be to multiplex the back-propagating signals 
+from network neurons such that only a random subset of the 
+memristors is notiﬁed of a network spike at a time (Fusi, 2002). 
+Regarding the physical model neurons of a hybrid memristor- 
+CMOS architecture, two types of currents occur in the WTA 
+network. The input integration via forward-synapses is spike 
+based and could be realized with standard leaky integrators (see 
+Methods). Lateral inhibition, in contrast, depends on the neu- 
+ronal membrane potentials, and the involved inhibitory circuits 
+should ideally transmit potentials instead of spikes. Alternatively, 
+the effect of lateral inhibition could be approximated in a spike- 
+based manner by populations of inhibitory neurons. Independent 
+of the speciﬁc implementation of lateral inhibition, the result- 
+ing potential uk uinh controls the stochastic response of the 
+WTA neurons that could either be implemented genuinely with 
+a stochastic ﬁring mechanism or be emulated with integrate-and- 
+ﬁre neurons (Petrovici et al., 2013). 
+3.3. INHERENTLY STOCHASTIC NATURE OF COMPOUND-SYNAPSE 
+STDP 
+The spiking WTA network architecture with compound memris- 
+tive synapses exploits stochasticity in various ways, in that the 
+stochastic ﬁring of network neurons in response to a transient 
+input trajectory triggers stochastic STDP updates in the synaptic 
+weights. From a learning perspective, the high degree of stochas- 
+ticity contributes to the network’s ongoing exploration for poten- 
+tial improvements in the parameter space. While the learning the- 
+ory only guarantees convergence to a local optimum of the weight 
+conﬁguration, the stochastic nature of the ongoing exploration 
+enables the network to evade small local optima in the param- 
+eter landscape, and thereby improves the robustness of learning 
+(compared to traditional batch Expectation-Maximization). 
+For the derivation of the learning algorithm, we have focused 
+on the weight-dependent STDP rule (3) which describes the 
+expected temporal weight change d 
+dt Wki of the compound 
+synapse. The stochasticity of memristive switching, however, 
+gives rise to a probability distribution over the weights, as well. 
+Table 1 | Correspondence of synapse parameters between the 
+hardware and theory domain. 
+Parameter name 
+Hardware 
+Theory 
+Learning rate 
+πup Wmax 
+ηW 
+Max. weight Wmax 
+ωM 
+1/σ 2 
+Likelihood mean ki 
+mki /M 
+σ2 Wki 
+Synaptic resolution 
+ω 
+1/(M σ 2) 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 12 
+
+/*** End Page =11= ***/
+/*** Page =12= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+Indeed,inequilibriumweexpectthatthenumberofactivecon- 
+stituents mki follows a binomial-type weight distribution. This 
+points to a potential knob for adjusting the amount of stochas- 
+ticity used during online learning: when many memristors are 
+recruited per synapse, i.e., for large M,w 
+ee 
+xpe 
+c 
+tar 
+edu 
+c 
+ed 
+variance in the weight distribution. 
+Besides the level of stochasticity, the parameter M also con- 
+trols the weight resolution of the compound synapse. In Figure 4, 
+we have investigated the impact of the weight resolution on the 
+learning capabilities of the WTA network. Notably, we observed 
+that even with M = 4, i.e., with synapses that feature only 5 
+weight levels, the network performed reasonably well in the hand- 
+written digit recognition task. The observation that even a low 
+synaptic weight resolution can yield a satisfactory performance 
+has important practical implications for nanoscale circuit designs, 
+where integration density and power consumption impose crucial 
+constraints, since the area allocated by the synapse array grows 
+linearly in the synaptic size M. For instance, SRAM cells can be 
+fabricated with a cell size of 0.127 m2 (Wu et al., 2009), cor- 
+responding to a memory density of 1Gb/cm2. Importantly, 
+this estimate does not include any additional plasticity circuits for 
+implementing STDP or similar plasticity mechanisms. Functional 
+Ag/Si memristive crossbars with 2 Gb/cm2 memory density were 
+demonstrated by Jo et al. (2009a), with densities up to 10 Gb/cm2 
+being envisioned (Jo et al., 2009a,b). In the long term, memris- 
+tive crossbars are expected to combine the advantages of SRAM 
+and Flash memory regarding energy efﬁciency, non-volatility and 
+integration density (Yang et al., 2013). 
+3.4. GENERALIZATION TO OTHER MATERIALS AND FUTURE RESEARCH 
+In recent years, a plethora of (in a broader sense) memris- 
+tive materials has been discovered, and the characterization and 
+reﬁnement of their switching dynamics is evolving rapidly. At 
+least four types of stochastically switching memristive devices can 
+be distinguished: Switching in (1) anion-based (e.g., HfOx/TiOx 
+Yu et al., 2013) and (2) cation-based (e.g., Ag/GeS2 Suri et al., 
+2013) devices mainly originates from conductive ﬁlament for- 
+mation (Yang et al., 2013). In contrast, (3) single-electron latch- 
+ing switches [e.g., CMOS/MOLecular (CMOL) CrossNets Lee 
+et al., 2006b] rely on electronic tunneling effects and, thus, their 
+stochastic switching dynamics arise directly from the underly- 
+ing physical process. Similarly, (4) magnetoresistive devices (e.g., 
+spin-transfer torque magnetic memory (STT-MRAM) Vincent 
+et al., 2014) can inherit stochastic switching dynamics from 
+fundamental physical properties. Some manufacturing processes 
+related to these ideas (like conductive-bridging RAM and STT- 
+MRAM) reached already an early industrial stage, others are still 
+primarily subject of academic research. While the microscopic 
+origins of plasticity in these memristor types are fundamentally 
+different, they all share stochastic, persistent switching between 
+bistable memory states on a phenomenological level. We therefore 
+believe that the compound memristive synapse model displays a 
+promising concept for future work in diverse research ﬁelds. 
+Independent of the underlying switching mechanism, any 
+nanoscale synaptic crossbar will likely exhibit imperfections and 
+imbalances due to process variations. Here, we have investi- 
+gated spatial and temporal noise in the weight values as well as 
+deviations in the switching probabilities under unbiased, uni- 
+form conditions. However, physical implementations can be 
+expected to also suffer from more systematic imperfections, such 
+as structural imbalances (e.g., one corner of the array being more 
+reactive) or crosstalk between neighboring devices. While our 
+computer simulations indicate a remarkable general robustness 
+against device variations of various types, additional research 
+is required to estimate the inﬂuence of such systematic, and 
+potentially coupled, deviations. 
+3.5. CONCLUSIONS 
+In this article, we have introduced the compound memris- 
+tive synapse model together with the compound-synapse STDP 
+rule for weight adaptation. Compound-synapse STDP, a stabi- 
+lizing weight-dependent plasticity rule, naturally emerges under 
+a standard STDP pulsing scheme. In addition, by employing 
+memristors with bistable memristive states, compound memris- 
+tive synapses may circumvent practical challenges in the design 
+of reliable nanoscale memristive materials. Both, our theo- 
+retical analysis and our computer simulations conﬁrmed that 
+compound-synapse STDP endows networks of spiking neurons 
+with powerful learning capabilities. Hence, the compound mem- 
+ristive synapse model may provide a synaptic design principle for 
+future neuromorphic hardware architectures. 
+4. METHODS 
+4.1. PROBABILISTIC MODEL DEFINITION 
+The probabilistic model that corresponds to the spiking network 
+is a mixture model with K mixture components and Gaussian 
+likelihood function. Formally, we deﬁne a joint distribution 
+p(Y = y(t), Z = z(t) θ )overK hidden binary random variables 
+Z = (Z1,...,ZK )T with values zk(t) ∈ 0, 1 ,andN real-valued 
+visible random variables Y = (Y1,...,YN )T with values yi(t) ∈ 
+R.Theparametersetθ = ˆb, W consists of a real-valued bias 
+vector ˆb = (ˆb1,..., ˆbK )T and a real-valued K × N weight matrix 
+W . The hidden RVs Zk display an unrolled representation of 
+a multinomial RV ˜Z ∈ 1,...,K that enumerates the mixture 
+components, and we identify ˜Z = k ⇔ Zk = 1, i.e., exactly one 
+binary RV Zk is active in the random vector Z.Inthefollowing, 
+we stick to the unrolled vector notation Z, and, for readability, 
+omit the time-dependent notation and further shorten the nota- 
+tion by identifying the RVs with their values, e.g., we write p(z θ ) 
+for p(Z = z(t) θ). 
+The likelihood distribution fulﬁlls the naïve Bayes property, 
+i.e., all statistical dependencies between visible RVs yi, yj are 
+explained by the hidden state z.Mo 
+r 
+epr 
+e 
+cis 
+ely,thege 
+n 
+e 
+r 
+ativ 
+e 
+model has the following structure: 
+p(y,z θ)=p(z θ) K 
+k=1 
+N 
+i=1pyizk=1,θzk , (12) 
+with the prior 
+p(z θ)= ezTˆb 
+Kj=1 eˆbj 
+(13) 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 13 
+
+/*** End Page =12= ***/
+/*** Page =13= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+and the likelihood 
+pyizk=1,θ= 1 
+√2πσ2 e (yi ki)2 
+2σ2 , (14) 
+with σ 2 denoting an arbitrary (but ﬁxed) variance which displays 
+a constant in the model. Equation (14) deﬁnes a Gaussian likeli- 
+hood model for each input RV yi with mean ki which is selected 
+by the active hidden cause zk = 1 in Equation (12). For theoret- 
+ical considerations, it is convenient to reorganize Equation (14) 
+according to its dependency structure: 
+pyizk=1,θ=ey2i/(2σ2) 
+√2πσ2 e ki 
+σ2 yi e 2ki/(2σ2) (15) 
+=:h(yi)eWki yi e Aki , 
+(16) 
+where we set Wki = ki/σ2 and Aki = 2ki/(2σ2)= σ2W2 
+ki/2. 
+The ﬁrst factor does neither depend on the hidden causes zk 
+nor on the weight Wki and will play no role during inference 
+and learning. The second factor describes the coupling between 
+the visible RV yi and the active latent RV zk through the mean 
+Wki = ki/σ 2. Finally, the third factor solely depends on the 
+weight Wki (and not on yi) and ensures correct normalization of 
+the distribution. 
+4.2. INFERENCE 
+The posterior distribution given an observation y follows directly 
+from Bayes rule: 
+pzy,θ=p(zθ)pyz,θ/Norm. 
+(17) 
+= ezTˆb K 
+k=1 
+N 
+i = 1 h(yi)zk 
+ezk Wki yi e zk Aki/Norm. 
+(18) 
+=ezTˆbA+Wy N 
+i=1h(yi)/Norm. (19) 
+with A := (A1,...,Ak,...,AK )T and Ak := N 
+i = 1 Aki.Weeval- 
+uate the posterior for a speciﬁc hidden RV zk to be active and 
+provide the normalization constant explicitly: 
+pzk=1y,θ= eˆbkAk+ N 
+i=1Wkiyi 
+N 
+i=1h(yi) 
+Kj=1eˆbj Aj+ N 
+i=1Wji yi N 
+i=1 h(yi)(20) 
+=eˆ 
+uk 
+Kj=1eˆ 
+uj 
+(21) 
+where we deﬁned ˆ 
+uk= ˆbk Ak+ N 
+i = 1 Wki yi.Thequ 
+a 
+n 
+ti- 
+ties ˆ 
+uk are reminiscent of neuronal membrane potentials which 
+consist of bias terms ˆbk Ak and synaptic input N 
+i=1Wkiyi. 
+However, implicitly the bias terms depend on all afferent synaptic 
+weights since ˆbk Ak = ˆbk σ 2 
+2 iW2 
+ki and, thus, rely on infor- 
+mation not locally available to the neurons. This issue will be 
+resolved in the context of learning: We will identify update rules 
+for both biases and synapses which only use information avail- 
+able locally and thereby make a neural network implementation 
+feasible. 
+4.3. LEARNING VIA GENERALIZED EXPECTATION-MAXIMIZATION 
+We investigate unsupervised learning of the probabilistic model 
+based on generalized online Expectation-Maximization (EM) 
+(Dempster et al., 1977), an optimization algorithm from machine 
+learning theory. To this end, we impose additional constraints on 
+the posterior distribution (Graça et al., 2007) which will enable a 
+neural network implementation via homeostatic intrinsic plastic- 
+ity (Habenschuss et al., 2012) and STDP-type synaptic plasticity 
+(Habenschuss et al., 2013; Nessler et al., 2013). Since the deriva- 
+tion is almost identical to Habenschuss et al. (2012),w 
+eo 
+nly 
+outlinethekeystepsandmainresultsinthefollowingandrefer 
+to Habenschuss et al. (2012) for a the details. 
+The algorithmic approach rests upon the generalized EM 
+decomposition: 
+F(W,q(z y)) = L(θ) DKL q(z y) p(z y,θ p∗(y) 
+→ E-step 
+(22) 
+= log p(y, z θ) p∗(y)q(z y) + H(q(z y)) p∗(y) 
+→ M-step 
+(23) 
+with the log-likelihood L(θ) = log p(y θ) p∗(y), the Kullback- 
+Leibler divergence DKL q(z) p(z) = z q(z) log q(z)/p(z) 
+and the entropy H(q(z)) = 
+z q(z) log q(z). The distribu- 
+tion p∗(y) denotes the input distribution actually presented to 
+the system. The distribution p( θ ) is the probabilistic model 
+deﬁned above. The distribution q(z y) is called variational poste- 
+rior and will ultimately be implemented by the spiking network. 
+The short hand notation p∗(y)q(z y) denotes the concatenated 
+average 
+q(z y) p∗(y) with respect to the input distribution and 
+the resulting variational posterior. In principle, the above decom- 
+position holds for any choice of q, and since the Kullback-Leibler 
+divergence in Equation (22) is strictly non-negative, the objective 
+function F is a lower bound of the log-likelihood L. During opti- 
+mization the algorithm will persue two goals: to increase L, i.e., 
+to better adapt the probabilistic model to the data, and to keep 
+DKL q p small, i.e., to maintain a reliable approximation 
+q(zy)ofthe exactposteriorp z y,θ . 
+We ﬁrst impose a homeostatic constraint on the variational 
+posterior q(z y), namely that the long term average activation 
+of any hidden RV zk matches a predeﬁned target value ck (with 
+k ck = 1). Formally, we deﬁne a set of constrained distribu- 
+tionsQ=q: zk p∗(y)q(zy)=ck ∀1≤k≤K anddemand 
+q(z y) ∈ Q. The optimization algorithm then relies on the joint 
+application of an E(expectation)-step and an M(aximization)- 
+step: During the E-step, we aim to minimize the Kullback-Leibler 
+divergence with respect to q ∈ Q in Equation (22); during the M- 
+step, we perform gradient ascent on log p(y, z θ ) with respect 
+to the weights Wki in Equation (23). The E- and M-step will be 
+discussed separately. 
+The E-step is a constrained optimization problem, namely 
+the minimization of DKL q p such that q ∈ Q, that can be 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 14 
+
+/*** End Page =13= ***/
+/*** Page =14= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+solved through Lagrange multipliers. Since we imposed K con- 
+straints (one per RV zk), we need K Lagrange multipliers βk.It 
+turns out that the solution to this optimization problem simply 
+adds the multipliers βk to the biases ˆbk Ak in Equation (20). 
+This convenient result gives rise to the deﬁnition of intrinsic 
+excitabilities bk := ˆbk Ak + βk which unify biases and multipli- 
+ers in a single quantity. Furthermore, it turns out that the optimal 
+values of the βk’s (and thus the bk’s) can be determined via itera- 
+tive update rules that solely rely on the hidden RVs zk under the 
+variational response q(z y) and overwrite the non-local terms Ak. 
+In summary, we obtain the variational posterior distribution q 
+that solves the E-step: 
+q(zy)= euk 
+Kj=1euj with uk=bk+ N 
+i=1Wki yi (24) 
+bk∝ ck zk p∗(y)q(zy) . 
+(25) 
+The variational posterior in Equation (24) is described in terms of 
+membrane potentials uk which consist of synaptic input i Wki yi 
+and intrinsic excitabilities bk. Equation (25) regulates the intrin- 
+sic excitabilities bk in a homeostatic fashion: When the average 
+response exceeds the target ck, the excitability is reduced, and vice 
+versa. 
+The M-step can be solved via gradient ascent on F with 
+respect to the weights Wki. The variational posterior q is a 
+constant during the M-step in EM, and thus the log-joint distri- 
+bution log p(y, z θ ) remains as the only Wki-dependent term in 
+Equation (23). By taking the derivative of the log-joint deﬁned by 
+Equation (12), (13), and (16) with respect to Wki , we obtain: 
+dF 
+dWki = ∂Wki log p(y, z θ) p∗(y)q(z y) 
+(26) 
+= ∂Wkizk logp yi zk =1,θ p∗(y)q(zy) (27) 
+= zk (yi σ2 Wki) p∗(y)q(zy) . 
+(28) 
+The gradient with respect to the weights Wki yields Hebbian-type 
+update rules that use pre-(yi) and post-(zk)synapticactivityand 
+the current weight Wki given the input p∗(y) and the variational 
+response q(z y). Importantly, only local information is required 
+during the E- and M-step. 
+4.4. SPIKING NETWORK IMPLEMENTATION 
+The spiking neural network model instantiates Equation (24), 
+(25), and (28), i.e., it represents the variational posterior q(z y) 
+for probabilistic inference through its spike response and imple- 
+ments the derived update rules for generalized online EM learning 
+through intrinsic and synaptic plasticity. 
+Each of the RVs zk is represented by one of the K network 
+neurons, and each spike in the network is a sample from the vari- 
+ational posterior q(z y) by identifying zk = 1 for a spike of the 
+k-th network neuron. By setting the instantaneous ﬁring rate ρk 
+to be 
+ρk=lim 
+δt → 0 p(spike in[t, t + δt])/δt = rnet euk uinh (29) 
+with uinh := log Kj = 1 exp (uj) the network thus implements 
+Equation (24) for any choice of rnet , i.e., pnet = q. 
+The learning rules (25) and (28) rely on expected values 
+p∗(y)q(z y). The expectations can be approximated from input 
+samples y ∼ p∗(y) and posterior samples z ∼ q(z y) in response 
+to this input. The input vector y is deﬁned at any time t in the 
+network as it measures the instantaneous presence or absence of 
+rectangular input pulses. Samples of the latent variable z,incon- 
+trast, are only deﬁned at the spike times of the network. Hence 
+integrating expected values zk from the spike response can be 
+expressed most conveniently in terms of the spike train func- 
+tion sk(t) = f δ(t tfk ) of the network neurons. We obtain the 
+following plasticity rules: 
+dbk 
+dt = ηb [rnet ck sk(t)] 
+(30) 
+dWki 
+dt =ηW sk(t) yi σ2 Wki 
+(31) 
+with small learning rates ηb and ηW . The homeostatic rule (30) 
+regulates the intrinsic excitabilities bk such that the average tar- 
+get activations zk(t) ≈ck are maintained over the presentation 
+of many different input patterns y(t) ∼ p∗(y) in accordance with 
+Equation (25), and thereby implements the E-step. Building 
+on the network response shaped by the E-step, the synaptic 
+rule (31) on average increases the objective function F since 
+synaptic changes d 
+dt Wki on average point in the direction of the 
+W -gradient of F given by Equation (28), thereby implement- 
+ing the M-step. Since synaptic updates rely on a (sufﬁciently) 
+precise E-step which, in turn, needs to integrate any changes 
+in the network response due to synaptic plasticity, homeostatic 
+intrinsic plasticity is required to act on faster time scales than 
+synaptic plasticity. As a consequence, the learning rate ηb will 
+typically exceed the learning rate ηW in the spiking network 
+implementation. 
+The homeostatic intrinsic plasticity rule (30) can readily be 
+implemented by the spiking neurons: The intrinsic excitability 
+bk of each neuron increases linearly in time with a slow drift 
+ηb rnet ck and is lowered abruptly by ηb at the spike times of 
+neuron zk. Similarly, mapping the synaptic plasticity rule (31) to 
+the compound-synapse STDP rule (3) is straight-forward due to 
+the structural equivalence of Equations (3) and (31): The learn- 
+ing rate ηW in the theory domain corresponds to πup Wmax in 
+the hardware domain, e.g., high jumping probabilities πup and 
+large weight contributions ω = Wmax/M of individual stochastic 
+switches lead to high learning rates ηW . Furthermore, the max- 
+imum weight Wmax can directly be identiﬁed with the precision 
+1/σ 2 of the likelihood distribution (14). In the theory domain, we 
+know that ki = σ 2 Wki, and hence, ki = Wki/Wmax = mki/M 
+for the compound synapses. Finally, due to the structural equiv- 
+alence of Equations (3) and (31) we ﬁnd that the compound 
+memristor plasticity rule (3) inherits the convergence prop- 
+erties from the theoretically derived plasticity rule (31) dur- 
+ing online learning. The resulting translation of memristor 
+synapse parameters to the abstract model is summarized in 
+Table 1. 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 15 
+
+/*** End Page =14= ***/
+/*** Page =15= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+4.5. COMPUTER SIMULATIONS 
+All computer simulations were performed with customized 
+Python scripts. For the computer simulations, we employed 
+a network architecture with K = 10 network neurons and 
+N = 24 24 = 576 inputs. The simulation time step was 
+δt = 1 ms and the PSP time constant τ = 10 ms. The overall net- 
+work ﬁring rate was set to rnet = 100 Hz, the homeostatic target 
+activation uniformly to ck = 1/K. Synapses were composed of 
+M = 10 constituents with weight ω = 0.1 each. Switching prob- 
+abilities were set to πup = πdown = 10 3. This corresponds to 
+a Gaussian likelihood model with variance σ 2 = 1 and learning 
+rate ηW = 10 3. The learning rate for homeostatic intrinsic plas- 
+ticity was set to ηb = 20 ηW . For the simulations in Figures 4–6, 
+certain parameters deviated from the above, depending on 
+the simulation setup. For Figure 6, the switching probability 
+πup = 10 3 was kept ﬁxed, and πdown was adapted for different 
+-values. All other changes are described directly in the Results 
+section. 
+For learning experiments, digits 0, 1, 2, 3, 4w 
+e 
+r 
+ee 
+x 
+t 
+r 
+a 
+c 
+t 
+ed 
+in equal proportion from the MNIST training data set (LeCun 
+et al., 1998). A frame of two pixels width was removed, leaving 
+images of size 24 × 24. The images (indexed by s) were scaled 
+linearly to activity patterns xsi ∈[0.05, 0.9],withi = 1,...,N, 
+which were presented to the network as follows. For given activity 
+pattern xs = (xs1,...,xsN ), each input i spiked with probabil- 
+ity pspike 
+i = 1 1 xsi δt/τ per time step δt. During training, 
+a new activity pattern xs was randomly drawn from the train- 
+ing set every 100 ms. Each network was trained for 5000 s. To 
+obtain the unweighted PSP values yi, the resulting spike patterns 
+were convolved with a box kernel of duration τ and ampli- 
+tude 1, and then clipped to values [0, 1]. This deﬁned the input 
+y(t), and thus (implicitly) the data distribution y(t) ∼ p∗(y). 
+Notably, the spiking probability pspike 
+i is chosen such that 
+yi =xsi . 
+The estimate of the log-likelihood in Figure 3D was based on 
+5000 input samples y(t), which were randomly drawn from the 
+training data, and assumed a uniform prior p(zk = 1 θ ) = 1/K 
+in accordance with the homeostatic target activation. The clas- 
+siﬁcation performance in Figures 3D, 4B, 5E was determined 
+as follows. For given conﬁguration of the synapses and intrin- 
+sic excitabilities, 100 versions of each digit from the train- 
+ing data set were presented to the network for 1 s each. Each 
+neuron was labeled to be tuned to the digit class it was 
+most responsive to. Then 500 versions of each digit from the 
+MNIST test data set were presented to the network for 1 s 
+each. The network neuron that spiked most during the 1 s 
+period determined the network’s classiﬁcation of the input digit. 
+The classiﬁcation error is the fraction of wrongly classiﬁed 
+digits. 
+4.6. IMPLEMENTATION WITH LEAKY INTEGRATOR NEURONS 
+The idealized stochastic neurons in the WTA network model 
+feature abstact membrane potentials uk that integrate the input 
+y(t) through the weights Wki linearly. In a hardware integra- 
+tion, however, synaptic weights arise from the conductance of 
+memristors, and neurons are physical implementations based on 
+capacitors and various other circuit elements. Here, we outline 
+one possible hardware integration and consider a leaky integrator 
+with membrane potential Uk that obeys the following dynamics: 
+τm dUk 
+dt = (Uk Bk)+Ik/GL , 
+(32) 
+with membrane time constant τm , leak conductance GL,r 
+e 
+st- 
+ing potential Bk and synaptic input current Ik . In the setup 
+of Figure 1A, input spikes trigger a rectangular voltage pulse 
+of duration τ and with amplitude Upre . Denoting the conduc- 
+tance of the memristive synapse by G, this generates a synaptic 
+current I = Upre G. The equilibrium membrane potential (i.e., 
+d 
+dt Uk = 0) under this current is Uk = Bk + (Upre/GL) G.Fo 
+r 
+small membrane time constant τm → 0, e.g., for a small neuron 
+capacitance, the fast membrane will closely resemble the rectan- 
+gular presynaptic pulse shape, and the PSP amplitude (Uk Bk) 
+will be proportional to the weight G. This linear integration prop- 
+erty of Uk also holds in case of multiple memristive synapses 
+acting in parallel, and we ﬁnd 
+Uk=Bk+Upre 
+GL iGkiyi. 
+(33) 
+Consequently, the membrane potential Uk of the leaky integra- 
+tor matches the idealized membrane potential uk employed in the 
+Results section up to a linear function that serves to translate the 
+voltage-based potential Uk to the unitless potential uk.Usingthe 
+membrane potential Uk , the exponential ﬁring behavior (29) of 
+the neurons could either be realized with an inherently stochastic 
+ﬁring mechanism. Alternatively, deterministic leaky integrate- 
+and-ﬁre neurons could be operated in a stochastic regime by 
+adapting, for instance, the approach taken in Petrovici et al. 
+(2013). 
+AUTHOR CONTRIBUTIONS 
+Johannes Bill and Robert Legenstein conceived the study, 
+designed the experiments and wrote the manuscript. Johannes 
+Bill developed the theory and performed the computer 
+simulations. 
+FUNDING 
+Written under partial support of CHIST-ERA ERA-Net (Project 
+FWF #I753-N23, PNEUMA) (Johannes Bill, Robert Legenstein) 
+and the European Union project #604102 The Human Brain 
+Project (HBP) (Robert Legenstein). 
+ACKNOWLEDGMENTS 
+We thank Radu Berdan, Alex Serb and Themis Prodromakis for 
+valuable discussions on memristors, Giacomo Indiveri for initial 
+discussions on the compound memristive synapse model, Georg 
+Goeri for preparatory studies on robustness to device variability, 
+and David Kappel as well as two anonymous reviewers for help- 
+ful comments on the manuscript. Johannes Bill thanks Bernhard 
+Nessler and Stefan Habenschuss for all the fruitful discussions on 
+the SEM theory and statistical learning in general. 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 16 
+
+/*** End Page =15= ***/
+/*** Page =16= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+REFERENCES 
+Bi, G.-Q., and Poo, M.-M. (1998). Synaptic modiﬁcations in cultured hippocampal 
+neurons: dependence on spike timing, synaptic strength, and postsynaptic cell 
+type. J. Neurosci. 18, 10464–10472. 
+Caporale, N., and Dan, Y. (2008). Spike timing-dependent plastic- 
+ity: a hebbian learning rule. Annu. Rev. Neurosci. 31, 25–46. doi: 
+10.1146/annurev.neuro.31.060407.125639 
+Chicca, E., Stefanini, F., Bartolozzi, C., and Indiveri, G. (2014). Neuromorphic 
+electronic circuits for building autonomous cognitive systems. Proc. IEEE 102, 
+1367–1388. doi: 10.1109/JPROC.2014.2313954 
+Choi, H., Jung, H., Lee, J., Yoon, J., Park, J., Seong, D.-J., et al. (2009). An electri- 
+cally modiﬁable synapse array of resistive switching memory. Nanotechnology 
+20:345201. doi: 10.1088/0957-4484/20/34/345201 
+Dempster, A. P., Laird, N. M., and Rubin, D. B. (1977). Maximum likelihood from 
+incomplete data via the em algorithm. J. R. Stat. Soc. B 39, 1–38. 
+Douglas, R. J., and Martin, K. A. (2004). Neuronal circuits of the neocortex. Annu. 
+Rev. Neurosci. 27, 419–451. doi: 10.1146/annurev.neuro.27.070203.144152 
+Fang, Z., Yu, H., Li, X., Singh, N., Lo, G., and Kwong, D. (2011). Hfox/tiox/hfox/tiox 
+multilayer-based forming-free rram devices with excellent uniformity. IEEE 
+Elexctron Device Lett. 32, 566–568. doi: 10.1109/LED.2011.2109033 
+Fusi, S. (2002). Hebbian spike-driven synaptic plasticity for learning patterns of 
+mean ﬁring rates. Biol. Cybern. 87, 459–470. doi: 10.1007/s00422-002-0356-8 
+Gaba, S., Sheridan, P., Zhou, J., Choi, S., and Lu, W. (2013). Stochastic memristive 
+devices for computing and neuromorphic applications. Nanoscale 5, 5872–5878. 
+doi: 10.1039/c3nr01176c 
+Gerstner, W., and Kistler, W. M. (2002). Spiking Neuron Models: Single 
+Neurons, Populations, Plasticity. Cambridge: Cambridge University Press. doi: 
+10.1017/CBO9780511815706 
+Graça, J. V., Ganchev, K., and Taskar, B. (2007). “Expectation maximization and 
+posterior constraints,” in Advances in Neural Information Processing Systems 
+(Vancouver). 
+Habenschuss, S., Bill, J., and Nessler, B. (2012). “Homeostatic plasticity in bayesian 
+spiking networks as expectation maximization with posterior constraints,” in 
+Advances in Neural Information Processing Systems (Lake Tahoe), 773–781. 
+Habenschuss, S., Puhr, H., and Maass, W. (2013). Emergence of optimal decod- 
+ing of population codes through stdp. Neural Comput. 25, 1371–1407. doi: 
+10.1162/NECO-a-00446 
+Indiveri, G. (2000). Modeling selective attention using a neuromorphic analog vlsi 
+device. Neural Comput. 12, 2857–2880. doi: 10.1162/089976600300014755 
+Indiveri, G., Linares-Barranco, B., Legenstein, R., Deligeorgis, G., and Prodromakis, 
+T. (2013). Integration of nanoscale memristor synapses in neuromor- 
+phic computing architectures. Nanotechnology 24:384010. doi: 10.1088/0957- 
+4484/24/38/384010 
+Jo, S. H., Chang, T., Ebong, I., Bhadviya, B. B., Mazumder, P., and Lu, W. (2010). 
+Nanoscale memristor device as synapse in neuromorphic systems. Nano Lett. 
+10, 1297–1301. doi: 10.1021/nl904092h 
+Jo, S. H., Kim, K.-H., and Lu, W. (2009a). High-density crossbar arrays based on a 
+si memristive system. Nano Lett. 9, 870–874. doi: 10.1021/nl8037689 
+Jo, S. H., Kim, K.-H., and Lu, W. (2009b). Programmable resistance switching in 
+nanoscale two-terminal devices. Nano Lett. 9, 496–500. doi: 10.1021/nl803669s 
+Jolivet, R., Rauch, A., Lüscher, H.-R., and Gerstner, W. (2006). Predicting spike tim- 
+ing of neocortical pyramidal neurons by simple threshold models. J. Comput. 
+Neurosci. 21, 35–49. doi: 10.1007/s10827-006-7074-5 
+Kappel, D., Nessler, B., and Maass, W. (2014). Stdp installs in winner-take-all cir- 
+cuits an online approximation to hidden markov model learning. PLoS Comput. 
+Biol. 10:e1003511. doi: 10.1371/journal.pcbi.1003511 
+Keck, C., Savin, C., and Lücke, J. (2012). Feedforward inhibition and synap- 
+tic scaling–two sides of the same coin? PLoS Comput. Biol. 8:e1002432. doi: 
+10.1371/journal.pcbi.1002432 
+Kuzum, D., Jeyasingh, R. G., Lee, B., and Wong, H.-S. P. (2011). Nanoelectronic 
+programmable synapses based on phase change materials for brain-inspired 
+computing. Nano Lett. 12, 2179–2186. doi: 10.1371/journal.pcbi.1002432 
+Lansner, A. (2009). Associative memory models: from the cell-assembly theory 
+to biophysically detailed cortex simulations. Tr e n d s Ne u r o s c i . 32, 178–186. doi: 
+10.1016/j.tins.2008.12.002 
+LeCun, Y., Bottou, L., Bengio, Y., and Haffner, P. (1998). Gradient-based 
+learning applied to document recognition. Proc. IEEE 86, 2278–2324. doi: 
+10.1109/5.726791 
+Lee, D., Seong, D.-J., Jung Choi, H., Jo, I., Dong, R., Xiang, W., et al. (2006a). 
+“Excellent uniformity and reproducible resistance switching characteristics of 
+doped binary metal oxides for non-volatile resistance memory applications,” in 
+Electron Devices Meeting, 2006. IEDM’06. International (San Francisco: IEEE), 
+1–4. 
+Lee, J. H., Ma, X., and Likharev, K. (2006b). Cmol crossnets: possible neuromorphic 
+nanoelectronic circuits. Adv. Neural Inf. Process. Syst. 18:755. 
+Malenka, R. C., and Bear, M. F. (2004). Ltp and ltd: an embarrassment of riches. 
+Neuron 44, 5–21. doi: 10.1016/j.neuron.2004.09.012 
+Markram 
+,H. 
+,Ger 
+stne 
+r 
+,W. 
+,a 
+ndSj¨öström, P. J. (2012). Spike-timing-dependent 
+plasticity: a comprehensive overview. Front. Synaptic Neurosci. 4:2. doi: 
+10.3389/fnsyn.2012.00002 
+Markram, H., Lübke, J., Frotscher, M., and Sakmann, B. (1997). Regulation of 
+synaptic efﬁcacy by coincidence of postsynaptic aps and epsps. Science 275, 
+213–215. doi: 10.1126/science.275.5297.213 
+Mayr, C., Stärke, P., Partzsch, J., Cederstroem, L., Schüffny, R., Shuai, Y., et al. 
+(2012). “Waveform driven plasticity in bifeo3 memristive devices: model and 
+implementation,” in Advances in Neural Information Processing Systems (Lake 
+Tahoe), 1700–1708. 
+Mead, C., and Ismail, M. (1989). Analog VLSI Implementation of Neural Systems. 
+Norwell, MA: Springer. doi: 10.1007/978-1-4613-1639-8 
+Morrison, A., Aertsen, A., and Diesmann, M. (2007). Spike-timing-dependent 
+plasticity in balanced random networks. Neural Comput. 19, 1437–1467. doi: 
+10.1162/neco.2007.19.6.1437 
+Nessler, B., Pfeiffer, M., Buesing, L., and Maass, W. (2013). Bayesian com- 
+putation emerges in generic cortical microcircuits through spike-timing- 
+dependent plasticity. PLoS Comput. Biol. 9:e1003037. doi: 10.1371/journal.pcbi. 
+1003037 
+Nessler, B., Pfeiffer, M., and Maass, W. (2009). “Stdp enables spiking neurons 
+to detect hidden causes of their inputs,” in Advances in Neural Information 
+Processing Systems (Vancouver), 1357–1365. 
+Petrovici, M. A., Bill, J., Bytschok, I., Schemmel, J., and Meier, K. (2013). Stochastic 
+inference with deterministic spiking neurons. arXiv preprint arXiv:1311.3211. 
+Querlioz, D., Bichler, O., and Gamrat, C. (2011). “Simulation of a memristor- 
+based spiking neural network immune to device variations,” in Neural 
+Networks (IJCNN), The 2011 International Joint Conference on (IEEE), 
+1775–1781. 
+Schemmel, J., Fieres, J., and Meier, K. (2008). “Wafer-scale integration of analog 
+neural networks,” in Neural Networks, 2008. IJCNN 2008 (IEEE World Congress 
+on Computational Intelligence). IEEE International Joint Conference on (Hong 
+Kong: IEEE), 431–438. 
+Serrano-Gotarredona, T., Masquelier, T., Prodromakis, T., Indiveri, G., and Linares- 
+Barranco, B. (2013). Stdp and stdp variations with memristors for spiking neu- 
+romorphic learning systems. Front. Neurosci. 7:2. doi: 10.3389/fnins.2013.00002 
+Simoncelli, E. P., Paninski, L., Pillow, J., and Schwartz, O. (2004). Characterization 
+of neural responses with stochastic stimuli. Cogn. Neurosci. 3, 327–338. 
+Snider, G. S. (2008). “Spike-timing-dependent learning in memristive nanode- 
+vices,” in Nanoscale Architectures, 2008. NANOARCH 2008. IEEE International 
+Symposium (Anaheim, CA: IEEE), 85–92. 
+Suri, M., Querlioz, D., Bichler, O., Palma, G., Vianello, E., Vuillaume, 
+D., et al. (2013). Bio-inspired stochastic computing using binary cbram 
+synapses. Elect. Devices IEEE Trans. 60, 2402–2409. doi: 10.1109/TED.2013. 
+2263000 
+Van Rossum, M. C., Bi, G. Q., and Turrigiano, G. G. (2000). Stable hebbian learning 
+from spike timing-dependent plasticity. J. Neurosci. 20, 8812–8821. 
+Vincent, A., Larroque, J., Zhao, W., Romdhane, N. B., Bichler, O., Gamrat, C., 
+et al. (2014). “Spin-transfer torque magnetic memory as a stochastic memristive 
+synapse,” in Circuits and Systems (ISCAS), 2014 IEEE International Symposium 
+(Melbourne: IEEE), 1074–1077. 
+Wu, S.-Y., Liaw, J., Lin, C., Chiang, M., Yang, C., Cheng, J., et al. (2009). “A highly 
+manufacturable 28nm cmos low power platform technology with fully func- 
+tional 64mb sram using dual/tripe gate oxide process,” in VLSI Technology, 2009 
+Symposium on (IEEE), 210–211. 
+Yang, J. J., Strukov, D. B., and Stewart, D. R. (2013). Memristive devices for 
+computing. Nat. Nanotechnol. 8, 13–24. doi: 10.1038/nnano.2012.240 
+Yu, S., Gao, B., Fang, Z., Yu, H., Kang, J., and Wong, H.-S. P. (2013). Stochastic 
+learning in oxide binary synaptic device for neuromorphic computing. Front. 
+Neurosci. 7:186. doi: 10.3389/fnins.2013.00186 
+www.frontiersin.org 
+December 2014 | Volume 8 | Article 412 | 17 
+
+/*** End Page =16= ***/
+/*** Page =17= ***/
+Bill and Legenstein 
+Compound-memristor STDP 
+Zamarreño-Ramos, C., Camuñas-Mesa, L. A., Pérez-Carrasco, J. A., Masquelier, 
+T., Serrano-Gotarredona, T., and Linares-Barranco, B. (2011). On 
+spike-timing-dependent-plasticity, memristive devices, and building a 
+self-learning visual cortex. Front. Neurosci. 5:26. doi: 10.3389/fnins.2011. 
+00026 
+Conﬂict of Interest Statement: The authors declare that the research was con- 
+ducted in the absence of any commercial or ﬁnancial relationships that could be 
+construed as a potential conﬂict of interest. 
+Received: 30 September 2014; accepted: 24 November 2014; published online: 16 
+December 2014. 
+Citation: Bill J and Legenstein R (2014) A compound memristive synapse model for 
+statistical learning through STDP in spiking neural networks. Front. Neurosci. 8:412. 
+doi: 10.3389/fnins.2014.00412 
+This article was submitted to Neuromorphic Engineering, a section of the journal 
+Frontiers in Neuroscience. 
+Copyright © 2014 Bill and Legenstein. This is an open-access article dis- 
+tributed under the terms of the Creative Commons Attribution License (CC BY). 
+The use, distribution or reproduction in other forums is permitted, provided 
+the original author(s) or licensor are credited and that the original publica- 
+tion in this journal is cited, in accordance with accepted academic practice. No 
+use, distribution or reproduction is permitted which does not comply with these 
+terms. 
+Frontiers in Neuroscience | Neuromorphic Engineering 
+December 2014 | Volume 8 | Article 412 | 18 
+
+/*** End Page =17= ***/

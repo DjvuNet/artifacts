@@ -1,0 +1,866 @@
+/*** Page =0= ***/
+Asymmetric numeral systems 
+as close to capacity low state entropy coders 
+Jarek Duda 
+Center for Science of Information, Purdue University, W. Lafayette, IN 47907, U.S.A. 
+email: dudaj@purdue.edu 
+Abstract 
+Imagine a basic situation: we have a source of symbols of known probability 
+distribution and we would like to design an entropy coder transforming it into a bit 
+sequence, which would be simple and very close to the capacity (Shannon entropy). 
+Preﬁx codes are the basic method, deﬁning ”symbol→bit sequence” set of rules, 
+usually found using Huﬀman algorithm. They theoretically allow to reduce the dis- 
+tance from the capacity (∆H) down to zero, but the cost grows rapidly. We will 
+discuss improving it by replacing this memoryless coder with an automate having 
+some small set of internal states: deﬁned by ”(symbol, state)→(bit sequence, new 
+state)” set of rules. The natural question is the minimal number of states to achieve 
+given performance, what is especially important for simple high throughput hard- 
+ware coders. Arithmetic coding can be seen this way, but it requires relatively large 
+number of states (possible ranges). We will discuss asymmetric numeral systems 
+(ANS) for this purpose, which can be seen as asymmetrization of numeral systems. 
+Less than 20 states will be usually suﬃcient to achieve ∆H ≈ 0.001 bits/symbol 
+for a small alphabet. ∆H generally generally decreases approximately like 1/(the 
+number of states)2 and increases proportionally the size of alphabet. Huge freedom 
+of choosing the exact coding and chaotic behavior of state make it also perfect to 
+simultaneously encrypt the data. 
+1 Introduction 
+Electronics we use is usually based on the binary numeral system, which is perfect for 
+handling integer number of bits of information. However, generally event/symbol of prob- 
+ability p contains lg(1/p) bits of information (lg ≡ log2), which is not necessarily integer 
+in real applications. If all probabilities would be integer powers of 3 instead, we could 
+optimally use base 3 numeral system and analogously for larger bases. In more com- 
+plex situations we need to use more sophisticated methods: entropy coders, translating 
+between symbol sequence of some probability distribution and bit sequence. For ﬁxed 
+numbers of diﬀerent symbols in the sequence, we can enumerate all possibilities (combi- 
+nations) and encode given one by its number - this approach is called enumerative coding 
+[1]. More practical are preﬁx codes, like Huﬀman coding [5], which is computationally 
+1 
+arXiv:1311.2540v1 [cs.IT] 11 Nov 2013
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+1 INTRODUCTION 
+2 
+Figure 1: Left: construction of Huﬀman coding while grouping two symbols from 
+(1, 1, 1)/3 probability distribution: we have 9 equiprobable possibilities. This group- 
+ing reduces distance from the Shannon entropy: ∆H. Standard base 3 numeral system 
+would give ∆H = 0 here. Right: ∆H for grouping m symbols. For example operating on 
+310 = 59049 possibilities allows to get loss ∆H ≈ 0.003 bits/symbol. In comparison, ∆H 
+for ANS using just 16 or 17 states for the last four cases is correspondingly: ≈ 0.00065, 
+0.00122, 0.00147, 0.00121 bits/symbol. 
+inexpensive, but approximates probabilities with powers of 2, what reduces the capacity. 
+We can improve it by grouping a few symbols together, but as we can see in Fig. 1, it is 
+relatively expensive to get really close to the capacity (Shannon entropy). Precise analysis 
+can be found in [9]. 
+Encoding of a preﬁx code can be realized by memoryless automate using ”symbol→bit 
+sequence” set of rules. We will discuss improving its performance by adding some number 
+of internal states to the automate, such that it can be deﬁned for example by ”(symbol, 
+state)→(bit sequence, new state)” set of rules, which allow for unique decoding, like 
+in Fig. 2. Intuitively, this state can be seen as a buﬀer storing noninteger number of 
+bits (lg x ∈ [2, 3) bits in this ﬁgure) - producing complete bits when they accumulate. 
+Arithmetic/range coding ([6], [8]), which currently replaces Huﬀman coding due to better 
+performance, can be seen this way. We usually use this coding by performing arithmetic 
+calculations in every step (multiplication, division), which are more costly for hardware 
+implementation than a few state automate with a ﬁxed set of rules. We could put behavior 
+of such coder working in a small discrete range into a lookup table, which could be used 
+to construct an automate. The cost would be using rough approximation of probabilities. 
+Generally, if the we are using a coder which encodes perfectly (qs) symbol distribution 
+to encode (ps) symbol sequence, we would use on average s ps lg(1/qs) bits per symbol, 
+while there is only Shannon entropy needed: s ps lg(1/ps). The diﬀerence between them 
+is called Kullback - Leiber distance: 
+∆H= 
+s pslg ps 
+qs≈ 
+s 
+−ps 
+ln(2) 1−qs 
+ps 
+−1 
+2 1−qs 
+ps 
+2 
+≈ 0.72 s (ǫs)2 
+ps (1) 
+where ǫs = qs − ps will be referred as impreciseness. 
+For range/arithmetic coding we approximate probabilities with proportions of lengths 
+of subranges in succeeding steps. Restricting to a ﬁnite range, impreciseness of such 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+1 INTRODUCTION 
+3 
+Figure 2: Some 4 state encoding and decoding automate for ANS with Pr(a) = 
+3/4, Pr(b) = 1/4 probability distribution. Upper edges of encoding picture are tran- 
+sitions for symbol ”a”, lower for symbol ”b”. Some edges contain digits produced while 
+corresponding transition. Intuitively, x is a buﬀer containing lg(x) ∈ [2, 3) bits of informa- 
+tion - symbol ”b” always produces 2 bits, while ”a” accumulates in the buﬀer. Decoding 
+is unique because each state corresponds to a ﬁxed symbol and number of digits to pro- 
+cess: 1 for state 4, 2 for state 5, none for 6, 7. There is written stationary probability 
+distribution for i.i.d. source, which allows to ﬁnd average number of used bits per sym- 
+bol: ≈ 2 · 1/4 + 1 · 3/4 · (0.241 + 0.188) ≈ 0.82, what is larger than Shannon entropy 
+by ∆H ≈ 0.01 bits/symbol. Increasing the number of states to 8 allows to reduce it to 
+∆H ≈ 0.0018 bits/symbol. 
+approximation should generally decrease inversely proportional to the size of this range. 
+A state of such an automate would be a subrange, so the number of possible states would 
+grow like square of size of the range we operate on. This number of states is relatively 
+large and should grow like 1/∆H if we would like to get very close to the capacity. 
+The number of states would improve to ∝ 1/√∆H if the state would be a single 
+number in the range instead of two (deﬁning a subrange). While symbol of probability 
+p contains lg(1/p) bits of information, we can imagine that a natural number (state) x 
+contains lg(x) bits of information. So if we would like to store both information in a state 
+x′ ∈ N, we should have lg(x′) ≈ lg(x) + lg(1/p) = lg(x/p) and so x′ ≈ x/p. Observe 
+that this relation is fulﬁlled in the binary numeral system, optimal for symmetric Pr(0) = 
+Pr(1) = 1/2 probability distribution: while adding information from bit s = 0, 1 to the 
+least signiﬁcant position of x, we have x → 2x+s ≈ x/ Pr(s). Recent asymmetric numeral 
+systems (ANS) ([2], [3]) asymmetrizes this method to general distributions. Arithmetic 
+coding can be also seen as such asymmetriztion, but for adding information in the most 
+signiﬁcant position - Fig. 3 compares these two approaches. 
+While using x → 2x + s formula to add information from s to x, we are choosing 
+between x-th appearances of two subsets of N: between even (s = 0) and odd numbers 
+(s = 1). For a general distribution we need to redeﬁne these subsets, such that they should 
+still cover N in nearly uniform way, but have densities close to the assumed probability 
+distribution. Now to add information from a given symbol to information stored in x, 
+we will change x into x-th element of the subset corresponding to this symbol - it should 
+have approximately x/p position. We will introduce the basic formalism and ﬁnd analytic 
+formulas for the binary case (ABS) in Section 2. 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+1 INTRODUCTION 
+4 
+Figure 3: Two ways of asymmetrization of binary numeral system. Having some infor- 
+mation stored in a natural number x, to attach information from 0/1 symbol s, we can 
+add it in the most signiﬁcant position (x′ = x + s2m), where s chooses between ranges, 
+or in the least signiﬁcant (x′ = 2x + s) position, where s chooses between even and odd 
+numbers. The former asymmetrizes to arithmetic/range coding by changing range pro- 
+portions. The latter asymmetrizes to ABS by redeﬁning even/odd numbers, such that 
+they are still uniformly distributed, but with diﬀerent density. Now x′ is x-th element of 
+the s-th subset. 
+While using pure arithmetic coding, we would need to operate with precision growing 
+to inﬁnity - to prevent that, we need some mechanism extracting bits of information as 
+they accumulate, such that we remain in given precision (range of natural numbers in 
+range coding). Here we also need this kind of mechanism - this time because x would 
+grow to inﬁnite. Section 3 discusses such stream version of ABS/ANS, enforcing x to stay 
+in some chosen range I = {l, .., 2l − 1}. So before encoding succeeding symbol, we will 
+ﬁrst send some of the least signiﬁcant bits of x to the data stream, such that encoding this 
+symbol from such reduced state takes us back to I . While stream decoding, the current 
+state deﬁnes the succeeding symbol, reducing the state - we should take some bits from 
+the stream to take it back to I . 
+We can see I as the set of states of our encoding/decoding automate, like I = 
+{4, 5, 6, 7} in Fig. 2. To calculate the expected number of bits per symbol for a preﬁx 
+code, we just sum probability of using given symbol times the number of bits it corre- 
+sponds to, like in Fig. 1. While using automate with a state, it is a bit more complicated. 
+First we need to ﬁnd the stationary probability distribution of states it uses. We will 
+assume i.i.d. input source here for analyzing given automate - the stationary probability 
+is normalized dominant eigenvector of stochastic process of jumping on this graph. For 
+example in Fig. 2, we can get to state 7 only if starting from state 5 and getting symbol 
+a: Pr(7) = Pr(5) · Pr(a). We will see that this distribution should be approximately 
+Pr(x) ∝ 1/x. It is changed a bit if the source is correlated. We will ﬁnd an upper bound 
+for ∆H ∝ 1/l2 which is independent from the exact distribution, and compare the formula 
+with numerical results 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+2 BASIC CONCEPTS AND ASYMMETRIC BINARY SYSTEMS 
+5 
+A useful analytic formula is probably not known for larger than binary alphabet, but 
+for given I we can directly generate the behavior to put into lookup tables - it will be 
+discussed in Section 4. For this purpose we will distribute ls ≈ lps appearances of symbol 
+s on this range I , so we get the best behavior if lps are all natural: we should choose l to 
+be a good denominator to approximate given distribution with fractions. The ∆H will 
+approximately grow proportionally to the size of alphabet. 
+There is exponentially large number of ways to distribute symbols over I and each 
+of them deﬁnes a concrete coder. We can use this freedom to choose the exact coder 
+by a pseudorandom number generator initialized with a cryptographic key. This way, 
+using larger number of states, we can simultaneously encrypt the data. We will discuss 
+three reasons of chaotic behavior of internal state of encoder: asymmetry, ergodicity and 
+diﬀusion, making tracing the state with incomplete knowledge extremely diﬃcult. 
+There are available some implementations of ABS, for example of Matt Mahoney [7]. 
+There is also available interactive demonstration of ANS based encoder [4]. 
+2 Basic concepts and asymmetric binary systems 
+We will now introduce basic concepts for encoding information in natural numbers and 
+ﬁnd analytic formulas for the binary case: asymmetric binary systems (ABS). 
+2.1 Basic concepts 
+There is given an alphabet A = {0, .., n − 1} (in some examples we will use letters instead) 
+and assumed probability distribution {ps}s∈A, 
+s ps = 1. The state of automate, denoted 
+as x ∈ N, in this section will contain already processed symbol sequence. 
+We need to ﬁnd encoding (C) and decoding (D) functions. The former takes the 
+state x ∈ N and a symbol s ∈ A, and transforms them into x′ ∈ N storing information 
+from both of them. Seeing x as a possibility of choosing a number from {0, 1, .., x − 1} 
+interval, it contains lg(x) bits of information. Symbol of probability ps contains lg(1/ps) 
+bits of information, so x′ should contain approximately lg(x) + lg(1/ps) = lg(x/ps) bits 
+of information: x′ should be approximately x/ps , allowing to choose a value from a larger 
+interval {0, 1, .., x′ − 1}. Finally we will have functions deﬁning single steps: 
+C(s,x)= x′, D(x′)=(s,x) : D(C(s,x))=(s,x), C(D(x′))= x′, x′ ≈ x/ps 
+For standard binary system we have C(s, x) = 2x + s, D(x′) = (x − 2⌊x/2⌋, ⌊x/2⌋) 
+and we can see s as choosing between even and odd number. If we imagine that x chooses 
+between even (or odd) numbers in some interval, x′ = 2x + s chooses between all numbers 
+in this interval. 
+For the general case, we will have to redeﬁne the subsets corresponding to diﬀerent s: 
+like even/odd numbers they should still uniformly cover N, but this time with diﬀerent 
+densities: {ps}s∈A. We can deﬁne this split of N by a symbol distribution s : N → A 
+{0,1, ..,x′ −1}= 
+s{x∈{0,1, ..,x′ −1}: s(x)= s} 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+2 BASIC CONCEPTS AND ASYMMETRIC BINARY SYSTEMS 
+6 
+While in standard binary system x′ is x-th appearance of even/odd number, this time it 
+will be x-th appearance of s-th subset. So the decoding function will be 
+D(x) = (s(x), xs(x)) where 
+xs :=|{y∈{0,1,..,x−1}: s(y)= s}| (2) 
+and C(s, xs) = x is its inversion. Obviously we have x = 
+s xs. 
+As x/xs is the number of bits we currently use to encode symbol s, to reduce 
+impreciseness and so ∆H , we would like that xs ≈ xps approximation is as close as 
+possible - what intuitively means that symbols are nearly uniformly distributed with 
+{ps} density. We will now ﬁnd formulas for the binary case by just taking x1 := ⌈xp⌉ 
+and in Section 4 we will focus on ﬁnding such nearly uniform distributions on a ﬁxed 
+interval for larger alphabets. 
+We can imagine that x is a stack of symbols, C is push operation, D is pop operation. 
+The current encoding algorithm would be: start with e.g. x = 1 and then use C with 
+succeeding symbols. It would lead to a large natural number, from which we can extract 
+all the symbols in reversed order using D. To prevent inconvenient operations on large 
+numbers, in the next section we will discuss stream version, in which complete cumulated 
+bits will be extracted to make that x remains in a ﬁxed interval. 
+2.2 Asymmetric binary systems (ABS) 
+We will now ﬁnd some explicit formulas for the binary case: A = {0, 1}. 
+Denote p := p1, ˜ 
+p:=1−p=p0.To obtainxs ≈x·ps wecanforexamplechoose 
+x1 := ⌈xp⌉ 
+(or alternatively x1 := ⌊xp⌋) 
+(3) 
+x0=x−x1=x−⌈xp⌉ 
+(or x0 = x −⌊xp⌋) 
+(4) 
+Now s(x) = 1 if there is a jump of ⌈xq⌉ in the succeeding position: 
+s :=⌈(x+1)p⌉−⌈xp⌉ 
+(or s :=⌊(x+1)p⌋−⌊xq⌋) 
+(5) 
+This way we have found some decoding function: D(x) = (s, xs). 
+We will now ﬁnd the corresponding encoding function: for given s and xs we want to 
+ﬁndx. Denote r :=⌈xq⌉−xq∈[0,1) 
+s(x)= s =⌈(x+1)p⌉−⌈xp⌉=⌈(x+1)q−⌈xq⌉⌉=⌈(x+1)p−r−xq⌉=⌈p−r⌉ (6) 
+s=1⇔r<p 
+• s=1: x1=⌈xp⌉=xp+r 
+x=x1−r 
+p=x1 
+p 
+asitis a naturalnumberand0≤r<p. 
+•s=0:p≤r<1so˜ 
+p≥1−r>0 
+x0=x−⌈xp⌉=x−xp−r=x˜ 
+p−r 
+x=x0+r 
+˜ 
+p =x0+1 
+˜ 
+p −1−r 
+˜ 
+p=x0+1 
+˜ 
+p−1 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+3 STREAM VERSION - ENCODING FINITE-STATE AUTOMATE 
+7 
+Finally encoding is: 
+C(s, x) = 
+ 
+x+1 
+1−p −1 ifs=0 
+x 
+p 
+ifs=1 or = 
+ 
+x 
+1−p ifs=0 
+x+1 
+p −1 ifs=1(7) 
+For p = 1/2 it is the standard binary numeral system with switched digits. 
+The starting values for this formula and p = 0.3 are presented in bottom-right of Fig. 
+3. Here is an example of encoding process by inserting succeeding symbols: 
+11 
+→30 
+→50 
+→81 
+→260 
+→381 
+→1280 
+→1840 
+→ 264... 
+(8) 
+We could directly encode the ﬁnal x using ⌊lg(x)⌋ + 1 bits. Let us look at the growth 
+of lg(x) while encoding: symbol s transforms state from xs to x: 
+−lg xs 
+x = −lg(ps+ǫs(x))= −lg(ps)− ǫs(x) 
+ps ln(2) + O((ǫs(x))2) 
+where 
+ǫs(x) = xs/x − ps 
+describes impreciseness. 
+In the found coding we have |xs − xps| < 1 and so |ǫs(x)| < 1/x. While encoding symbol 
+sequence of {ps}s∈A probability distribution, the sum of above expansion says that we 
+need on average H = − 
+s ps lg(ps) bits/symbol plus higher order terms. As x grows 
+exponentially while encoding, |ǫs(x)| < 1/x, so these corrections are O(1) for the whole 
+sequence. 
+3 Stream version - encoding ﬁnite-state automate 
+Using arithmetic coding to directly encode a long sequence would require growing precision 
+of arithmetics and so cost increasing to inﬁnity. ABS has the same issue, as x would grow 
+exponentially. To handle this issue, we will enforce x to remain in some chosen range 
+I={l,..,2l−1}, so x canbe seen as abuﬀer containingbetweenlandl+1bits of 
+information. While we operate on symbols containing non-integer number of bits, as they 
+accumulate, we can extract complete bits of information to remain in the buﬀer size, and 
+send them to the data stream. Finally the situation will intuitively look like in Fig. 4. 
+3.1 Algorithm 
+To make these considerations more general, we will extract digits in base 2 ≤ b ∈ N 
+numeral system. Usually we will use bits: b = 2, but sometimes using a larger b could be 
+more convenient, for example b = 2k allows to extract k bits at once. Extracting the least 
+signiﬁcant base b digit means: x → ⌊x/b⌋ and x − b⌊x/b⌋ goes to the stream. 
+Observe that taking interval in form (l ∈ N): 
+I:={l,l+1,..,lb−1} 
+(9) 
+for any x ∈ N we have exactly one of three cases: 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+3 STREAM VERSION - ENCODING FINITE-STATE AUTOMATE 
+8 
+•x∈Ior 
+• x>lb−1,then∃!k∈N⌊x/bk⌋∈Ior 
+• x < l, then ∀(di)i∈{0,..,b−1}N ∃!k∈N xbk + d1bk−1 + .. + dk ∈ I. 
+We will refer to this kind of interval as b-unique as eventually inserting (x → bx + d) or 
+removing (x → ⌊x/b⌋) some of the the least signiﬁcant digits of x, we will always ﬁnally 
+get to I in a unique way. Let us also deﬁne 
+Is ={x:C(s,x)∈I} so I= 
+s C(s, Is) 
+(10) 
+We can now deﬁne single steps for stream decoding: use D function and then get the 
+least signiﬁcant digits from the steam until we get back to I , and encoding: send the 
+least signiﬁcant digits to the stream, until we can use the C function: 
+Stream decoding: 
+Stream encoding(s): 
+{(s, x) = D(x); 
+{while(x /∈ Is) 
+use s; (e.g. to generate symbol) {put mod(x, b) to output; x = ⌊x/b⌋} 
+while(x /∈ I) 
+x=C(s,x) 
+x = xb+’digit from input’ } 
+} 
+These functions are inverse of each other if only Is are also b-unique: there exists 
+{ls}s∈A such that 
+Is ={ls, ...,lsb−1} 
+(11) 
+We need to ensure that this necessary condition is fulﬁlled, what is not automatically true 
+as we will see in the example. In Section 3.3 we ﬁnd its more compact form for the ABS 
+formulas and for larger alphabets we will directly enforce its fulﬁllment in Section 4. 
+Figure 4: Schematic picture of stream encoding/decoding: encoder travels right, trans- 
+forming symbols containing lg(1/ps) bits of information, into digits containing lg(d) bits 
+each. When information accumulates in buﬀer x, digits are produced to make that x 
+remain in I = l, .., bl − 1. Decoder analogously travels left. 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+3 STREAM VERSION - ENCODING FINITE-STATE AUTOMATE 
+9 
+3.2 Example 
+Taking ABS for p = 0.3 as in Fig. 3, let us transform it to stream version for b = 2 (we 
+transfer single least signiﬁcant bits). Choosing l = 8, we have x ∈ I = {8, .., 15}. We can 
+see from this ﬁgure that I0 = {5, .., 10}, I1 = {3, 4} are the ranges from which we get to 
+I after encoding corresponding 0 or 1. These ranges are not b-unique, so for example if 
+we would like to encode s = 1 from x = 10, while transferring the least signiﬁcant bits we 
+would ﬁrst reduce it to x = 5 and then to x = 2, not getting into the I1 range. 
+However, if we choose l =9, I ={9, ..,17}, we get I0 ={6, ..,11}and I1 ={3,4,5} 
+which are b-unique. Here is the encoding process for s = 0, 1: ﬁrst we transfer some of 
+the least signiﬁcant bits to the stream, until we reduce x to Is range. Then we use ABS 
+formula (like in Fig. 3): 
+x∈I 
+91011121314151617 
+bittransferfors=0 - 
+- 
+-010101 
+reducedx′∈I0 91011667788 
+C(0,x)=C(0,x′) 14 15 17 9 9 11 11 12 12 
+bittransferfors=1 1 0 1 0,0 1,0 0,1 1,1 0,0 1,0 
+reducedx′∈I1455333344 
+C(1,x)=C(1,x′) 13 16 16 10 10 10 10 13 13 
+Here is an example of evolution of (state, bit sequence) while using this table: 
+(9,−)1 
+→(13,1) 0 
+→(9,11) 0 
+→(14,11) 1 
+→ (10, 1101) 0 
+→ (15, 1101) 1 
+→ (10, 110111)... 
+The decoder will ﬁrst use D(x) to get symbol and reduced x′ , then add the least 
+signiﬁcant bits from stream (in reversed order). 
+To ﬁnd the expected number of bits/symbol used by such process, let us ﬁrst ﬁnd its 
+stationary probability distribution assuming i.i.d. input source. Denoting by C(s, x) the 
+state to which we go from state x due to symbol s (like in the table above), this stationary 
+probability distribution have to fulﬁll: 
+Pr(x) = 
+s,y:C(s,y)=x Pr(y)ps 
+(12) 
+equation, being the dominant eigenvector of corresponding stochastic matrix. Such 
+numerically found distribution is written in Fig. 2. Here is approximated distribution 
+for currently considered automate and comparison with close Pr(x) ∝ 1/x distribution, 
+what will be motivated in Section 3.5: 
+x 
+9 
+10 
+11 
+12 
+13 
+14 
+15 
+16 
+17 
+Pr(x) 0.1534 0.1240 0.1360 0.1212 0.0980 0.1074 0.0868 0.0780 0.0952 
+1.3856/x 0.1540 0.1386 0.1260 0.1155 0.1066 0.0990 0.0924 0.0866 0.0815 
+We can now ﬁnd the expected number of bits/symbol used by this automate by sum- 
+ming the number of bits used in encoding table: 
+17 
+x=12 Pr(x) p0 + Pr(9) + Pr(10) + Pr(11) + 2 17 
+x=12 Pr(x) p1 ≈ 0.88658 bits/symbol 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+3 STREAM VERSION - ENCODING FINITE-STATE AUTOMATE 
+10 
+For comparison, Shannon entropy is h(p) = −p lg(p) − (1 − p) lg(1 − p) ≈ 0.88129 
+bits/symbol. So this automate uses about ∆H ≈ 0.00529 bits/symbol more than 
+required. 
+The found encoding table fully determines the encoding process and analogously we 
+can generate the table for decoding process, deﬁning automate like in Fig. 2. 
+Observe that having a few such encoders operating on the same range I , we can use 
+them consecutively in some order - if decoder will use them in reversed order, it will 
+still retrieve the encoded message. Such combination of multiple diﬀerent encoder can be 
+useful for example when probability distribution varies, or for cryptographic purposes. 
+3.3 Necessary condition and remarks for stream ABS 
+For unique decoding we need that all Is are b-unique, what is not always true as we have 
+seen in the example above. In the next section we will enforce it by construction for larger 
+alphabet. We will now check when the ABS formula fulﬁlls this condition. 
+In the binary case we need to ensure that both I0 and I1 are b-absorbing: denoting 
+Is = {ls , .., us}, we need to check that 
+us =bls −1 
+fors=0,1 
+Wehavels =|{x<l:s(x)=s}|,us =|{x<bl:s(x)=s}|−1,so sls =l, 
+s us = bl − 2. It means that fulﬁlling one of these condition implies the second one. 
+Let us check when u1 = bl1 −1. We have l1 =⌈lp⌉, u1 =⌈blp⌉−1, so the condition is: 
+Condition: Stream ABS can be used when 
+b⌈lp⌉ = ⌈blp⌉. 
+(13) 
+The basic situation this condition is fulﬁlled is when lp ∈ N, what means that p is deﬁned 
+with 1/l precision. 
+While using ABS there are two basic possibilities ([7] implementation fpaqa, fpaqc): 
+• use the formulas directly for example in 32 bit arithmetics (fpaqc) - as l > 220, 
+impreciseness becomes negligible, we can use large b to extract a few bits at once. 
+However, the arithmetic operation can make it a bit slower, 
+• store behavior on some chosen range (fpaqa) - it is less precise, but can be a bit 
+faster and leaves freedom to choose exact encoding - we will explore this possibility 
+with ANS. 
+If probability varies, in the former case we just use the formulas for the current p, while 
+in the latter case we should have prepared tables for diﬀernt probability distributions we 
+could use for approximation. Such varying of p is allowed as long l and b remain ﬁxed. 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+3 STREAM VERSION - ENCODING FINITE-STATE AUTOMATE 
+11 
+3.4 Analysis of a single step 
+Let us now look closer at a single step of stream encoding and decoding. Observe that 
+the number of digits to transfer to get from x to Is = {ls , .., bls − 1} is k = ⌊logb(x/ls)⌋, 
+so the (new symbol, digit sequence) while stream coding is: 
+xs 
+→ C(s, ⌊x/bk⌋), x − b⌊x/bk⌋ 
+where k = ⌊logb(x/ls)⌋ (14) 
+this x − b⌊x/bk⌋ is the information lost from x while digit transfer - this value is being 
+sent to the stream in base d numeral system. The original algorithm produces these digits 
+in reversed order: from less to more signiﬁcant. 
+Observe that for given symbol s, the number of digits to transfer can obtain one of 
+two values: ks − 1 or ks for ks := ⌊logb(x/ls)⌋ + 1. The smallest x requiring to transfer 
+ks digits is Xs := lbks . So ﬁnally the number of bits to transfer while encoding is ks − 1 
+for x∈{l,..,Xs −1}andksfor x∈{Xs,..,lb−1},likeinFig. 5. 
+While stream decoding, the current state x deﬁnes currently produced symbol s. In 
+example in Fig. 2, the state also deﬁned the number of digits to take: 1 for x = 4, 2 for 
+x=5and0forx=6,7. 
+However, in example from this section, state x = 13 is an exception: it is decoded to 
+s=1andx′ =4.Nowiftheﬁrstdigitis1,thestatebecamex=2·4+1=9∈I.But 
+if the ﬁrst digit is 0, it became 2 · 4 = 8 /∈ I and so we need to take another digit, ﬁnally 
+getting to x = 16 or 17. We can also see such situation in Fig. 5. 
+This issue - that decoding from a given state may require ks − 1 or ks digits to transfer, 
+meansthatfor some x∈Nwehave:bx<l, whilebx+b−1≥l.Itispossible onlyifb 
+does not divide l. 
+To summarize: if b divides l, decoding requires to transfer a number of digits which is 
+ﬁxed for every state x. So we can treat these digits (x − b⌊x/bk⌋) as blocks and store them 
+in forward or backward order. However, if b does not divide l, sometimes state alone does 
+not determine the number of digits: we should ﬁrst add ks − 1 ﬁrst digits, and if we are 
+still not in I , add one more. We see that in this case, it is essential that digits are in the 
+Figure 5: Example of stream coding/decoding step for b = 2, ks = 3, ls = 13, l = 
+9·4+3·8+6=66, ps =13/66, x=19, bks−1x+3=79=66+2+2·4+3. 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+3 STREAM VERSION - ENCODING FINITE-STATE AUTOMATE 
+12 
+proper order (reversed): from the least to the most signiﬁcant. 
+3.5 Stationary probability distribution of states 
+In Section 3.2 there was mentioned ﬁnding the stationary probability distribution of 
+states used while encoding (and so also while decoding) - fulﬁlling (12) condition. We 
+will now motivate that this distribution is approximately Pr(x) ∝ 1/x. 
+Let us transform I range into [0, 1): 
+y =logb(x/l)∈[0,1) 
+(15) 
+Encoding symbol of probability ps increases y by approximately logb(1/ps). However, to 
+remain in the range, sometimes we need to transfer some number of digits before. Each 
+digit transfer reduces x to ⌊x/d⌋ and so y by approximately 1: 
+ys 
+→ ≈ {y + logb(1/ps)} 
+where {a} = a − ⌊a⌋ denotes the fractional part. 
+While neighboring values in arithmetic coding remain close to each other when adding 
+succeeding symbols (ranges are further compressed), here we have much more chaotic 
+behavior, making it more appropriate for cryptographic applications. There are three 
+sources of its chaosity, visualized in Fig. 6: 
+• asymmetry : diﬀerent symbols can have diﬀerent probability and so diﬀerent shift, 
+• ergodicity : logb(1/ps) is usually irrational, so even a single symbol should lead to 
+uniform covering of the range, 
+• diﬀusion : logb(1/ps) only approximates the exact shift and this approximation varies 
+with position - leading to pseudorandom diﬀusion around the expected position. 
+These reasons strongly suggest that probability distribution while encoding is nearly 
+uniform for y variable: Pr(y ≤ a) ≈ a ∈ [0, 1] , what is conﬁrmed by numerical results. 
+Transforming it back to x variable, probability of using x ∈ I state is approximately 
+proportional to 1/x 
+Pr(x) ∝ 1/x 
+(16) 
+Figure 6: Three sources of chaotic behavior of y = logb(x/l), leading to nearly uniform 
+distribution on the [0, 1] range. 
+
+/*** End Page =11= ***/
+/*** Page =12= ***/
+3 STREAM VERSION - ENCODING FINITE-STATE AUTOMATE 
+13 
+Figure 7: Left: ∆H for p = 0.3 and diﬀerent l being multiplicities of 10. The red line 
+is formula (17). Additionally, the irregular yellow line is situation in these l when we 
+approximate some irrational number using fractions with denominator l. Right: situation 
+for ﬁxed l = 100 and p = i/100 for i = 1,2, ..,99. Discontinuity for i = 50 is because 
+∆H = 0 there. 
+3.6 Bound for ∆H 
+We will now ﬁnd some upper bound for the distance from Shannon entropy ∆H . As 
+ﬁnding the exact stationary probability is a complex task and this distribution can be 
+disturbed by eventual correlations, we will use the fact that impreciseness |ǫs(x)| ≤ 1/x 
+for ABS to ﬁnd a bound which is independent from this distribution. 
+Generally, assuming that the probability distribution is indeed {ps}, but we pay 
+lg(1/qs) bits per symbol s, the cost of impreciseness is Kullback-Leiber distance: 
+∆H= 
+s ps lg(1/qs) − 
+s ps lg(1/ps) = − 
+s pslg 1− 1−qs 
+ps 
+= 
+= 
+s 
+ps 
+ln(2) 1−qs 
+ps +1 
+2 1−qs 
+ps 
+2+O 1−qs 
+ps 
+3 
+≈ 
+s (ps −qs)2 
+ps ln(4) 
+In our case we use lg(x/xs) bits to encode symbol s from state xs , so (ps − qs)2 corresponds 
+to |ǫs(x)|2 < 1/l2 for x ∈ I = {l, .., lb − 1}. The above sum should also average over the 
+encoder state, but as we are using a general upper bound for ǫ, we can bound the expected 
+capacity loss of ABS on I = {l, .., bl − 1} range to at most: 
+∆H≤ 1 
+l2 ln(4) s=0,1 
+1 
+ps + O(l−3) bits/symbol 
+(17) 
+From Fig. 7 we see that it is a rough bound, but it reﬂects well the general behavior. 
+3.7 Direction of encoding/decoding 
+Encoding and decoding in discussed method are in reversed direction - which is perfect 
+if we need a stack for symbols, but generally may be an inconvenience. One issue is the 
+need of storing the ﬁnal state of encoding, which will be required to start decoding - the 
+cost is a few bits of information for every frame of data, which length is not bounded. 
+
+/*** End Page =12= ***/
+/*** Page =13= ***/
+4 ASYMMETRIC NUMERAL SYSTEMS (ANS) 
+14 
+Figure 8: Example of encoding (left) and decoding (right) in reversed direction for encoder 
+from Section 3.2 - it is much more costly, but still possible. We ﬁnd some output sequence, 
+such that later correspondingly decoding or encoding in the same direction will produce 
+the input sequence. While reversed encoding we can start with all possible states, then 
+in every step remove those not corresponding to given symbol and make a step for every 
+possible digits. While reversed decoding, here from a single state, we try to encode all 
+possible symbols from given state (arrow up: a, arrow down: b) and check if the input 
+bits agree with the least signiﬁcant bits. The written small numbers are after removing 
+this least signiﬁcant bit. Finally, in both cases we choose a single path. There is always 
+such a path as we could perform this encoding/decoding in standard direction starting 
+with any state. 
+Another issue is when probabilities depend on already processed data - in this case 
+we can encode the data in backward direction, using information available while later 
+decoding in forward direction. For example for Markov source of s1..sm symbols, we 
+would encode in backward direction: from m-th to the 1-st, but the probability of sk 
+would depend on sk−1. For adaptive encoding, we would need to process the whole data 
+frame in forward direction, assigning to each position probability used while decoding, 
+then encode in backward direction using theses probabilities. Thanks of that, we can 
+later use standard Markov or adaptive forward decoding. 
+However, if it is really necessary to encode and decode in the same direction, it is 
+possible to change direction of encoding or decoding, but it is much more costly. We can 
+see example of a few steps of such process in Fig. 8. 
+It is an interesting research question to ﬁnd low state entropy coders which can directly 
+encode and decode in the same direction, maybe as a subfamily of presented method, or 
+some reduction of arithmetic coding approach, or maybe some completely new approach. 
+4 Asymmetric numeral systems (ANS) 
+While practical formulas for binary alphabet were derived in Section 2.2, for larger alpha- 
+bet situation seems to be more complex. However, we can directly generate tables used to 
+encoding/decoding, like in example from Section 3.2. Generally, large alphabets can be 
+
+/*** End Page =13= ***/
+/*** Page =14= ***/
+4 ASYMMETRIC NUMERAL SYSTEMS (ANS) 
+15 
+processed by splitting it into a few binary choices - the advantage of directly using large 
+alphabet, for example obtained by grouping a few symbols, is both speed and simplicity: 
+we can process many bits in a single cycle using simple automate. The cost is that ∆H 
+grows in approximately linear way with the size of alphabet. 
+There is a large freedom of generating such table fulﬁlling approximate relation xs/x ≈ 
+ps . We will now focus on doing it in a very precise way to get very close the Shannon 
+entropy. However, this process can be for example disturbed in pseudorandom way using 
+a cryptographic key to additionally encrypt the message. 
+4.1 Algorithm 
+Assume we have given l, b and probability distribution of n symbols: 0 < p1, .., pn < 1, 
+s ps = 1. For simplicity, let us assume that probabilities are deﬁned with 1/l precision: 
+ls:=lps∈N 
+(18) 
+The encoding is deﬁned by distributing symbols in nearly uniform way on the 
+I = {l, .., bl − 1} range: (b − 1)ls appearances of symbol s. Then for every symbol s we 
+enumerate its appearances by succeeding numbers from Is = {ls , .., bls − 1} range, like in 
+Fig. 9. 
+Unfortunately, ﬁnding the optimal symbol distribution is not an easy task. We can do 
+it by checking all symbol distributions and ﬁnding ∆H for each of them - for example for 
+l1=10,l2=5,l3=2thereare 17 
+2,5 = 408408 ways to distribute the symbols and each of 
+them corresponds to a diﬀered coding. Surprisingly, while checking all these possibilities 
+it turns out that the minimal value of ∆H among them: ∆H ≈ 0.00121 bits/symbol, is 
+obtained by 32 diﬀerent distributions - they are presented in the right hand side part of 
+Fig. 9. They can be obtained by switching pairs of neighboring nodes on some 5 positions 
+(marked with thick lines). 
+We will now introduce and analyze a heuristic algorithm which directly chooses a 
+symbol distribution in nearly uniform way. Example of its application is presented 
+in Fig. 9. In this case it ﬁnds one of the optimal distributions, but it is not always 
+true - sometimes there are a bit better distributions than the generated one. So if 
+the capacity is a top priority while designing a coder, it can be reasonable to check 
+all symbol distributions and generally we should search for a better distributing algorithm. 
+To formulate the heuristic algorithm, let us ﬁrst deﬁne: 
+Ns:= 1 
+2ps+i 
+ps:i∈N 
+(19) 
+These n sets are uniformly distributed with required densities, but they get out of 
+natural numbers - to deﬁne ANS we need to shift them there, like in Fig. 9. Speciﬁcally, 
+to choose a symbol for the succeeding position, we can take the smallest not used 
+element from N1, .., Nn sets. This simple algorithm requires a priority queue to retrieve 
+the smallest of currently considered n values. Beside initialization, this queue needs 
+
+/*** End Page =14= ***/
+/*** Page =15= ***/
+4 ASYMMETRIC NUMERAL SYSTEMS (ANS) 
+16 
+two instructions: let put((v, s)) insert pair (v, s) with value v ∈ Ns pointing expected 
+succeeding position for symbol s. The second instruction: getmin removes and returns 
+pair which is the smallest for (v, s) ≤ (v′ , s′) ⇔ v ≤ v′ relation. Finally the algorithm is: 
+Precise initialization of encoding or decoding function: 
+For s=0 to n−1 do{put((0.5/ps,s)); xs =ls}; 
+Forx=ltobl−1do 
+{(v, s)=getmin; put((v + 1/ps , s)); 
+D[x]=(s,xs)orC[s,xs]= x 
+xs++} 
+There has remained a question which symbol should be chosen if two of them have 
+the same position. Experiments suggest to choose the least probable symbol among them 
+ﬁrst, like in example in Fig. 9 (it can be realized for example by adding some small 
+values to Ns). However, there can be found examples when opposite approach: the most 
+probable ﬁrst, brings a bit smaller ∆H . 
+Figure 9: Left from top: precise algorithm initialization for (10, 5, 2)/17 probability dis- 
+tribution, corresponding encoding table and stationary probability distributions. Right: 
+among 17 
+2,5 possibilities to choose symbol distribution here, the minimal ∆H turns out 
+to be obtained by 32 of them - presented in graphical form. The sixth from the top is the 
+one generated by our algorithm. These 32 possibilities turn out to diﬀer by switching two 
+neighboring positions in 5 locations (25 = 32) - these pairs are marked by thick lines. We 
+can see that these 5 positions correspond to the largest deviations from ∝ 1/x expected 
+behavior of stationary probability distribution. 
+
+/*** End Page =15= ***/
+/*** Page =16= ***/
+4 ASYMMETRIC NUMERAL SYSTEMS (ANS) 
+17 
+4.2 Impreciseness bound 
+Let us now ﬁnd some bound for impreciseness ǫ for this algorithm to get an upper bound 
+for ∆H . Observe that the symbol sequence it produces has period l, so for simplicity we 
+us can imagine that it starts with x = 0 instead of x = l. 
+From deﬁnition, #(Ns ∩ [0, x − 1/(2ps)]) = ⌊xps⌋. As ⌊xps⌋ ≤ xps ≤ ⌊xps + 1⌋ and 
+sps =1, wehave also s⌊xps⌋≤x≤ s⌊xps+1⌋. Deﬁningp= minsps, we can check 
+that in [0, x − 1/(2p)] range there is at most x symbols in all Ns and in [0, x + 1/(2p)] 
+range there is at least x symbols: 
+s#Ns∩0,x−1 
+2p ≤s#Ns∩0,x−1 
+2ps 
+= 
+s⌊xps⌋≤x 
+x≤ s⌊xps+1⌋= 
+s#Ns∩0,x+1 
+2ps ≤s#Ns∩0,x+1 
+2p 
+So x-th symbol found by the algorithm had to be chosen from [x − 1/(2p), x + 1/(2p)] ∩ 
+s Ns . From deﬁnition, the xs -th value of Ns is 1/(2ps) + xs/ps . If this value corresponds 
+to x, it had to be in the [x − 1/(2p), x + 1/(2p)] range: 
+1 
+2ps+xs 
+ps 
+−x≤1 
+2p 
+⇒ 
+1 
+2x+xs 
+x−ps≤ps 
+2xp 
+|ǫs(x)| = xs 
+x−ps≤ps 
+2p+1 
+2/x 
+(20) 
+Finally in analogy to (17) we get: 
+∆H≤ 1 
+l2 ln(4) s 
+1 
+ps 
+ps 
+2mins′ps′ +1 
+2 
+2 + O(l−3) bits/symbol (21) 
+Figure 10: Left: numerical values and comparison with the (21) formula for (0.1, 0.4, 0.5) 
+probability distribution and l being a multiplicity of 10. Right: comparison for larger 
+alphabet: of size m. The probability distribution is (1, 2, .., m)/l, where l = 
+m 
+i=1i = 
+m(m + 1)/2. 
+
+/*** End Page =16= ***/
+/*** Page =17= ***/
+4 ASYMMETRIC NUMERAL SYSTEMS (ANS) 
+18 
+In Fig. 10 we see that it is a very rough bound. We would expect that ∆H grows 
+approximately in linear way with respect to the size of alphabet, while in fact it seems to 
+have a better behavior. 
+4.3 Combining with encryption 
+We will now brieﬂy discuss using ANS to simultaneously encrypt the data or as a part 
+of a cryptosystem. While standard cryptography usually operates on constant length bit 
+blocks, encryption based on entropy coder has advantage of using blocks which lengths 
+vary in a pseudorandom way. The inability to directly divide the bit sequence into blocks 
+used in single steps makes cryptoanalysis much more diﬃcult. 
+As it was mentioned in Section 3.5, the behavior of the ANS state is chaotic - if someone 
+does not know the exact decoding tables, he would quickly loose the information about the 
+current state. While decoding from some two neighboring states, they often correspond 
+to a diﬀerent symbol and so their further behavior will be very diﬀerent (asymmetry). In 
+comparison, in arithmetic coding nearby values are compressed further - remain nearby. 
+The crucial property making ANS perfect for cryptographic applications is that, in 
+contrast to arithmetic coding, it has huge freedom of choice for the exact coding - every 
+symbol distribution deﬁnes a diﬀerent encoding. We can use a pseudorandom number 
+generator (PRNG) initialized with a cryptographic key to choose the exact distribution, 
+for example by disturbing the precise initialization algorithm. One way could be instead 
+of choosing the pair with the smallest v by getmin operation, use the PRNG to choose 
+between s which would be originally chosen and the second one in this order. This way 
+we would get a bit worse precision and so ∆H , but we have 2l(b−1) diﬀerent possibilities 
+among which we choose the encoding accordingly to the cryptographic key. 
+This philosophy of encryption uses the cryptographic key to generate a table which 
+will be later used for coding. Observe that if we would make the generation of this 
+table more computationally demanding, such approach would be more resistant to 
+brute force attacks. Speciﬁcally, in standard cryptography the attacker can just start 
+decryption with succeeding key to check if this key is the correct one. If we enforce some 
+computationally demanding task to generate decoding tables (requiring for example 1ms 
+of calculations), while decoding itself can be faster as we mainly use the table, checking 
+large number of cryptographic keys becomes much more computationally demanding - 
+this encryption philosophy can be made more resistant to unavoidable: brute force attacks. 
+The safeness of using ANS based cryptography depends on the way we would use it 
+and the concrete scenario. Having access to both input and output of discussed auto- 
+mates, one usually could deduce the used encoding tables - there would be needed some 
+additional protection to prevent that. However, if there was a safe PRNG used to gen- 
+erate them, obtaining the tables does not compromise the key. So initializing PRNG 
+with the cryptographic key and additionally some number, would allow to choose many 
+independent encodings for this key. 
+Beside combining entropy coding with encryption, ANS can be also seen as a cheap 
+and simple building block for stronger cryptographic systems, like a replacement for the 
+S-box. Example of such cryptography can be: use the PRNG to choose an intermediate 
+
+/*** End Page =17= ***/
+/*** Page =18= ***/
+5 CONCLUSIONS 
+19 
+symbol probability distribution and two ANS coders for this distribution. Encoding of a 
+bit sequence would be using the ﬁrst encoder to produce a symbol in this distribution, 
+and immediately use the second decoder to get a new bit sequence. 
+5 Conclusions 
+There was presented a way to improve memoryless preﬁx codes by adding some memory 
+to create low state entropy coding automates. Their distance from Shannon entropy (∆H) 
+generally decreases like 1/l2 and increases linearly with the size of alphabet. 
+It is a general tool which main advantages while comparing with Huﬀman and arith- 
+metic coding are: 
+• simple low state entropy coders, extremely close to the capacity - perfect for cheap 
+and high throughput hardware implementations, 
+• switching encoder and decoder, we can encode a bit message into symbol sequence 
+of chosen probability distribution, what might be required by some constrained 
+channels, 
+• for larger number of states, such automate can process a symbol from large alphabet 
+per cycle (table use) - for high throughput applications, 
+• the huge freedom of choosing the exact encoder and chaotic state behavior makes it 
+perfect to simultaneously encrypt the data or as an inexpensive nonlinear building 
+block of cryptosytems. 
+The disadvantages are: 
+• while directly using alphabet larger than 2, it requires initialization process for as- 
+sumed probability distribution. The memory and computational cost is proportion- 
+ally to the number of states. If distribution varies, this process has to be repeated, 
+• the decoding is in opposite direction to encoding, what needs storing the ﬁnal state 
+and can be an inconvenience, especially while adaptive applications. 
+There have remained many questions regarding this method, like how to optimally choose 
+symbol distribution, ﬁnding better general formula for ∆H , analyzing situation after 
+adding correlations to the source. Another research questions are related with its crypto- 
+graphic capabilities - to understand how to use it, combine with other methods to obtain 
+required level of cryptographic security. 
+Finally we should understand fundamental questions like if this method is opti- 
+mal while using ﬁnite state automate for entropy coding, maybe ﬁnd other low state 
+entropy coders. Especially those able to encode and decode in the same direction - 
+range/arithmetic coding is able to do it and can be seen as ﬁnite state automate, so the 
+natural question is if it can be done better? 
+
+/*** End Page =18= ***/
+/*** Page =19= ***/
+REFERENCES 
+20 
+References 
+[1] T.M. Cover, Enumerative source encoding, IEEE Trans. Inf. Theory, vol. IT-19, pp. 
+73-77, Jan. 1973, 
+[2] J. Duda, Optimal encoding on discrete lattice with translational invariant constrains 
+using statistical algorithms, arXiv:0710.3861, 
+[3] J. Duda, Asymmetric numerical systems, arXiv:0902.0271, 
+[4] J. Duda, Data Compression Using Asymmetric Numeral Systems, Wolfram Demon- 
+stration Project, 
+http://demonstrations.wolfram.com/author.html?author=Jarek+Duda , 
+[5] D.A. Huﬀman, A Method for the Construction of Minimum-Redundancy Codes, Pro- 
+ceedings of the I.R.E., September 1952, pp 1098-1102, 
+[6] J.J. Rissanen, Generalized Kraft inequality and arithmetic coding, IBM J. Res. De- 
+velop., vol. 20, no. 3, pp. 198-203, May 1976, 
+[7] M. Mahoney, Data Compression Programs website, http://mattmahoney.net/dc/ , 
+[8] G.N.N. Martin, Range encoding: an algorithm for removing redundancy from a digi- 
+tized message, Video and Data Recording Conf., Southampton, England, July 1979, 
+[9] W. Szpankowski, Asymptotic Average Redundancy of Huﬀman (and Other) Block 
+Codes, IEEE Trans. Information Theory, 46 (7) (2000) 2434-2443. 
+
+/*** End Page =19= ***/

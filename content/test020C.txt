@@ -1,0 +1,1436 @@
+/*** Page =0= ***/
+ORIGINAL RESEARCH 
+published: 24 December 2015 
+doi: 10.3389/fncom.2015.00150 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+1 
+December 2015 | Volume 9 | Article 150 
+Edited by: 
+Nicolas Brunel, 
+University of Chicago, USA 
+Reviewed by: 
+Egidio D’Angelo, 
+University of Pavia, Italy 
+Paul Dean, 
+University of Shefﬁeld, UK 
+*Correspondence: 
+William Lennon 
+william.c.lennon@gmail.com 
+Received: 08 July 2015 
+Accepted: 03 December 2015 
+Published: 24 December 2015 
+Citation: 
+Lennon W, Yamazaki T and 
+Hecht-Nielsen R (2015) A Model of In 
+vitro Plasticity at the Parallel 
+Fiber—Molecular Layer Interneuron 
+Synapses. 
+Front. Comput. Neurosci. 9:150. 
+doi: 10.3389/fncom.2015.00150 
+A Model of In vitro Plasticity at the 
+Parallel Fiber—Molecular Layer 
+Interneuron Synapses 
+William Lennon 1*, Tadashi Yamazaki 2 and Robert Hecht-Nielsen 1 
+1 Department of Electrical and Computer Engineering, University of California, San Diego, La Jolla, CA, USA, 2 Graduate 
+School of Informatics and Engineering, The University of Electro-Communications, Chofu, Japan 
+Theoretical and computational models of the cerebellum typically focus on the role of 
+parallel ﬁber (PF)—Purkinje cell (PKJ) synapses for learned behavior, but few emphasize 
+the role of the molecular layer interneurons (MLIs)—the stellate and basket cells. A 
+number of recent experimental results suggest the role of MLIs is more important than 
+previous models put forth. We investigate learning at PF—MLI synapses and propose 
+a mathematical model to describe plasticity at this synapse. We perform computer 
+simulations with this form of learning using a spiking neuron model of the MLI and show 
+that it reproduces six in vitro experimental results in addition to simulating four novel 
+protocols. Further, we show how this plasticity model can predict the results of other 
+experimental protocols that are not simulated. Finally, we hypothesize what the biological 
+mechanisms are for changes in synaptic efﬁcacy that embody the phenomenological 
+model proposed here. 
+Keywords: molecular layer interneurons, parallel ﬁbers, plasticity, cerebellum, gated steepest descent 
+INTRODUCTION 
+The parallel ﬁber (PF)—Purkinje cell (PKJ) excitatory synapse has historically been considered 
+the locus of learning and memory in the cerebellar cortex, driven by climbing ﬁber (CF) inputs 
+(Grossberg, 1969; Marr, 1969; Albus, 1971; Ito et al., 2014). While the number of PF-PKJ synapses 
+formed and capacity for information storage is massive (Brunel et al., 2004; Ito, 2006), excitatory 
+inputs to PKJs alone do not account for decreases in PKJ activity observed during behavior 
+(Miyashita and Nagao, 1984; Jirenhed et al., 2007) since PKJs ﬁre spontaneously in absence of 
+excitatory inputs (Häusser and Clark, 1997; Cerminara and Rawson, 2004). The molecular layer 
+interneurons (MLI)—stellate and basket cells—also receive PF inputs and provide feedforward 
+inhibitory inputs to the PKJs in addition to the recurrent inhibitory inputs they form with other 
+MLIs (Eccles et al., 1967; Palay and Chan-Palay, 1974). Learned changes to PF-MLI and MLI-PKJ 
+synapses are postulated to increase the information capacity of the MLI-PKJ network and richness 
+of PKJ output dynamics (Albus, 1971; Dean et al., 2010), however relatively little is known about 
+plasticity at these synapses. 
+There is mounting experimental evidence that MLIs play an important role in cerebellar 
+function. Genetically modiﬁed mice lacking PKJ gamma-aminobutyric acid A (GABAA) receptors 
+exhibit signiﬁcant motor learning deﬁcits (Wulﬀ et al., 2009), suggesting a signiﬁcant functional 
+role for MLI feedforward inhibition in motor learning. Further, using optogenetics to selectively 
+modulate the ﬁring rates of MLIs via photostimulation elicits movement and controls movement 
+kinematics in awake mice (Heiney et al., 2014). Thus, orchestrated MLI activity is functionally 
+
+/*** End Page =0= ***/
+/*** Page =1= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+capable of controlling the gain and timing of movement 
+components. Understanding the learned changes in MLI 
+feedforward inhibition onto PKJs is crucial to understanding the 
+learned output of the cerebellar cortex. 
+Previous in vivo studies showing CF driven changes to 
+the PF-MLI receptive ﬁelds (RF) led to the hypothesis that 
+concomitant PF and CF activation strengthens PF-MLI synapses 
+and PF stimulation alone weakens them (Jörntell and Ekerot, 
+2002, 2003, 2011). Thus, this form of learning is said to be 
+complementary and synergistic to PF-PKJ learning (Gao et al., 
+2012), but the mechanisms governing these receptive ﬁeld 
+changes are not understood. There is, however, a diverse body of 
+in vitro experimental evidence where the mechanisms governing 
+plasticity have been directly investigated and these results suggest 
+that bidirectional changes in synaptic eﬃcacy can occur in 
+absence of CF activity (Liu and Cull-Candy, 2000; Rancillac and 
+Crépel, 2004; Smith and Otis, 2005; Sun and June Liu, 2007; Kelly 
+et al., 2009). 
+In this study, we propose a mathematical model of learning at 
+PF-MLI synapses that is consistent with in vitro experimental 
+ﬁndings. We choose to model plasticity at a single synapse 
+based on the in vitro evidence since there is a larger and 
+more diverse body of data that informs the model of the 
+mechanisms involved. The model is developed with the in vivo 
+evidence in mind and possible extensions to the model are 
+proposed that could bridge the gap between synaptic and 
+receptive ﬁeld changes. It is worth cautioning that in vitro 
+results may not hold under in vivo conditions and the model 
+should be considered carefully until validated in vivo. We 
+perform computer simulations using this model of plasticity and 
+spiking neuron models to reproduce six in vitro experimental 
+results and simulate four novel protocols. Finally, we hypothesize 
+what the biological mechanisms underlying this model are and 
+interpret the experimental results in terms of the model and 
+mechanisms. 
+METHODS 
+Neuron Model 
+The MLI neuron model is similar to the neuron model we 
+used in our previous simulations (Lennon et al., 2014) except 
+that it excludes inhibitory synaptic conductances and includes 
+excitatory synaptic conductances described below. Brieﬂy, the 
+MLI is modeled as a conductance-based leaky integrate-and- 
+ﬁre neuron model (Gerstner and Kistler, 2002) with α-Amino- 
+3-hydroxy-5-methyl-4-isoxazolepropionic acid (AMPA) and N- 
+Methyl-D-aspartic acid (NMDA) conductances and an intrinsic 
+depolarizing current which is drawn from a gamma distribution, 
+Ispont(t) ∼ Ŵ(κ β) (in units nA), that causes the neuron 
+to ﬁre spontaneously. When the membrane potential of the 
+neuron reaches Vthreshold , the neuron emits a spike and an 
+after-hyperpolarization conductance, gahp(t), is activated. gahp(t) 
+is modeled according to Equation (2), where tspiked is the 
+time the neuron last spiked and τahp is the conductance 
+time constant. Actual parameters used are summarized in 
+Table 1. 
+TABLE 1 | Summary of simulation parameters. 
+MLI neuron parameters 
+Value 
+Vthreshold (mV) 
+-53.0 
+C (pF) 
+14.6 
+¯gleak (nS) 
+1.6 
+Eleak (mV) 
+-68.0 
+¯gAMPA (nS) 
+3.0 
+Eexc (mV) 
+0.0 
+τfast (ms) 
+0.8 
+τslow (ms) 
+18.0 
+αfast 
+0.8 
+αslow 
+0.2 
+¯gNMDA (nS) 
+1.0 
+τrise (ms) 
+3.0 
+τdecay (ms) 
+40.0 
+τn (ms) 
+10.0 
+¯gAHP (nS) 
+50.0 
+EAHP (mV) 
+-82.0 
+τAHP (msec) 
+2.5 
+κ 
+3.966333 
+β 
+0.006653 
+MLI biophysical parameters (Midtgaard, 1992; Häusser and Clark, 1997; Carter and 
+Regehr, 2002; Lachamp et al., 2009) AMPA receptor parameters (Carter and Regehr, 
+2002; Satake et al., 2012); NMDA receptor parameters (Gabbiani et al., 1994); τn derived 
+by hand to match (Carter and Regehr, 2002); κ , β from (Lennon et al., 2014). 
+CdV 
+dt −gleak(V(t) − Eleak) − gahp(t)(V(t) − Eahp) − (gAMPA(t) 
+gNMDA(t))(V(t) − Eexc) Ispont(t) 
+(1) 
+gahp(t − tspiked) exp −(t − tspiked) 
+τahp 
+(2) 
+Granule cells were not modeled directly and instead we simulated 
+the arrival of PF spikes to PF-MLI synapses according to Poisson 
+statistics with variable rate λ t which is controlled during 
+simulations. 
+Synaptic Conductances 
+Model PF-MLI synapses contain both AMPA and NMDA 
+receptor conductances. Total AMPA synaptic conductances are 
+computed according to Equation (3), where ¯gsyn is the maximal 
+synaptic conductance, wi is the synaptic weight, α(t) is the 
+synaptic conductance kinetics function, and δi(t) is a Dirac delta 
+function for the ith synapse onto the target neuron, indicating 
+whether the pre-synaptic neuron has spiked at time t. We use 
+the terms “synaptic weight,” “synaptic eﬃcacy,” and “synaptic 
+strength” interchangeably. PF-MLI AMPAR conductance rise 
+times are modeled as instantaneous increases whereas decay 
+times are modeled as double exponentials to approximately ﬁt the 
+prolonged conductances at these synapses (Carter and Regehr, 
+2000; Equation 4). 
+gAMPA (t) ¯gAMPA i 
+wi 
+t 
+−∞ αAMPA(t − s)δi(s)ds (3) 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+2 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =1= ***/
+/*** Page =2= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+TABLE 2 | Learning rule parameters. 
+Neuron trace and weight 
+update parameters 
+MLI 
+PF 
+τψ (ms) 
+60.0 
+10.0 
+νψ (ms) 
+15.0 
+2.0 
+fmax(Hz) 
+150 
+300 
+η 
+0.001 
+w0 
+0.2 
+αAMPA t αfast exp − t 
+τfast 
+αslow exp − t 
+τslow (4) 
+PF-MLI synaptic weights are modeled with a ﬁxed minimum 
+value, w0 ∈ (0 1) and a variable component, wi ∈ [0 1] that 
+changes according to the weight update equation described in 
+the next section. Table 2 shows actual value of w0 used. Equation 
+(5) ensures the eﬀective synaptic weight, wi, lies within the range 
+[w0 1]. 
+wi w0 (1−w0)ˆ 
+wi 
+(5) 
+Voltage sensitive NMDAR conductances are modeled in 
+accordance with Equations (6)–(8) which roughly capture the 
+neurotransmitter availability in the synaptic cleft and the opening 
+and closing kinetics of NMDA receptors, respectively. Where 
+ρ (3.57 mM)−1 , [Mg2 ]o 1.2 mM is the extracellular 
+magnesium concentration, and σ 
+(−0.062 mV)−1 
+(McCormick et al., 1993; Gabbiani et al., 1994). The logarithm of 
+n t in Equation (7) is used for numerical stability. 
+nt 
+t 
+−∞exp −t−s 
+τn δsds 
+(6) 
+dR 
+dt 
+lognt 11−R 
+τrise 
+− R/τdecay (7) 
+gNMDA t gNMDA R(1 ρ[Mg2 ]o eσ V)−1 
+(8) 
+Neuron Traces 
+A trace of the neuron spiking activity is calculated every time 
+step of the simulation and used to compute a smooth measure 
+of the instantaneous neuron ﬁring rate that is normalized using a 
+neuron speciﬁc maximum ﬁring rate, fmax (Table 2). If the actual 
+ﬁring rate of the neuron exceeded fmax , the trace is truncated 
+to fmax . This results in a unitless measure of the neuron ﬁring 
+activity bounded by zero and one, i.e., xi t ∈ [0 1]. Throughout 
+the paper we refer to this as the neuron “activity trace” or “ﬁring 
+trace.” In several ﬁgures we plot the non-normalized “ﬁring rate 
+trace” (in units Hz) as well. 
+ψ(t): e 
+−t 
+τψ −e 
+−t 
+νψ 
+τψ−νψ 
+(9) 
+xit 
+1 
+fmax 
+t 
+−∞ψt−sδisds 
+(10) 
+Synapse Learning Rule 
+Synapses are updated according to the gated steepest descent 
+learning rule (Chen, 2007). The weight update is correlative 
+based on the activity of the pre-synaptic neuron, PFi t , and 
+the diﬀerence between the post-synaptic activity, MLIj t , and 
+a measure of the synaptic strength, wi j · η is the learning rate 
+parameter, and γ is a free parameter that is adjusted during 
+certain experiments, but is otherwise set to one. A biological 
+interpretation of the learning rule can be found in the Discussion. 
+dˆ 
+wij 
+dt ηPFit[MLIjt −γˆ 
+wi j] 
+(11) 
+Software and Data Analysis 
+Simulations were performed in Python using BRIAN simulator— 
+a spiking neural network framework (Goodman and Brette, 
+2009). All simulations are performed with a time step of 
+0.25 ms using Euler’s method for integration of diﬀerential 
+equations to ensure numerical stability. Data was analyzed 
+and plotted using BRIAN Simulator, SciPy, Numpy, Matplotlib, 
+Seaborn, and homemade software written in Python. Action 
+potentials are drawn in plots by inserting a value of 0 mV in 
+recordings of neuron model membrane potentials immediately 
+after the model neuron reaches threshold. The source code 
+for all experiments will be made freely available online upon 
+publication. 
+RESULTS 
+Model of Synaptic Plasticity 
+Plasticity at the PF-MLI synapses involves several mechanisms 
+that produce both pre- and post-synaptic changes (Liu and 
+Cull-Candy, 2000; Rancillac and Crépel, 2004; Smith and Otis, 
+2005; Soler-Llavina and Sabatini, 2006; Sun and June Liu, 2007; 
+Bender et al., 2009; Kelly et al., 2009). Here, we present a 
+phenomenological model of PF-MLI plasticity that is a function 
+of PF and MLI activity and a measure of the synaptic eﬃcacy, w. 
+While we mainly focus on evidence for post-synaptic plasticity, it 
+is expected that this model also accounts for pre-synaptic changes 
+in synaptic eﬃcacy in physiologically realistic conditions. Post- 
+synaptic plasticity involves changes in the AMPA receptor 
+phenotype composition (Liu and Cull-Candy, 2000, 2002; Liu 
+and Savtchouk, 2012). Both LTP and LTD are observed and 
+dependent on post-synaptic calcium signaling (Liu and Cull- 
+Candy, 2000; Rancillac and Crépel, 2004; Smith and Otis, 
+2005). 
+We hypothesize that activity-dependent post-synaptic Ca2 
+transients induce changes in post-synaptic plasticity. These 
+transients can induce both LTD and LTP, dependent on a 
+dynamic cytosolic Ca2 threshold. We roughly capture the 
+eﬀects of activity dependent calcium transients as unit-less 
+traces of the pre- (PF t ) and post-synaptic activities (MLI t ), 
+and the dynamic threshold as a variable synaptic strength, w, 
+multiplied by a variable scaling factor γ . For the purpose of these 
+simulations, γ 1 unless otherwise stated. η serves as a learning 
+rate and is typically small, η 0.001. This learning rule is also 
+known as gated steepest descent (Chen, 2007) and is similar to 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+3 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =2= ***/
+/*** Page =3= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+the BCM learning rule (Bienenstock et al., 1982) and mechanistic 
+models of calcium-dependent synaptic plasticity (Shouval et al., 
+2002). 
+dw 
+dt ηPFt[MLIt−γw] 
+(12) 
+Due to w serving as a dynamic threshold for plasticity, this 
+learning rule exhibits LTP when PF(t) > 0 and MLI(t) > γ w, 
+and LTD when PF(t) > 0 and MLI(t) < γ w and is self-stabilizing 
+so that synaptic weights do not “blow up.” The eﬀect of this 
+learning rule can be seen as w “chasing” the value of MLI(t), when 
+the pre-synaptic activity is non-zero, i.e., PF(t) > 0, and the pre- 
+synaptic activity serves as a dynamic learning rate. The learning 
+rule is Hebbian in the sense that it is the sum of a correlative term, 
+PF(t)MLI(t), and a weight decay term, −γ PF(t)w, which can 
+be seen by multiplying the pre-synaptic activity term through. 
+The model of synaptic eﬃcacy implemented for the simulations 
+described next has a ﬁxed component to simulate a minimal 
+synaptic eﬃcacy and a variable component that is governed by 
+Equation (12). 
+Simulation of In vitro Experiments 
+In this section, we present the results of computer simulations 
+implementing this learning rule at PF-MLI synapses. The 
+simulations consist of a single MLI spontaneously ﬁring at about 
+30 Hz (simulating isolation from all inhibitory synaptic currents) 
+with either a single PF or a bundle of 8 PFs forming synapses 
+onto the MLI. Input spikes from PFs are modeled according to 
+Poisson statistics with a variable rate which is controlled during 
+the simulation. PF spikes produce both AMPA and NMDA 
+conductances (described in Methods) in the MLI. In simulations 
+I–IV, we simulate novel protocols to demonstrate the variety of 
+synaptic weight changes depending on pre- and post-synaptic 
+activities. In these simulations the simulated MLI receives only 
+one PF input. In simulations V–X, we attempt to replicate 
+the plasticity inducing protocols from a number of in vitro 
+experiments and show that the simulations reproduce similar 
+changes in synaptic eﬃcacy. Table 3 summarizes the simulation 
+protocols and results. 
+Simulation I: High-Frequency PF Bursts Induce LTP in 
+Spontaneously Firing MLIs 
+Simulation I investigates the eﬀects of PF burst stimulation 
+on the ﬁring rate of a spontaneously ﬁring isolated MLI and 
+the consequent changes to synaptic eﬃcacy. The simulation 
+begins with a 5 s baseline period where the MLI and PF 
+ﬁre spontaneously at their baseline rates of 30 and 0.33 Hz 
+respectively (Figure 1). After 5 s, the PF is then stimulated to 
+ﬁre approximately 100 Hz bursts (according to Poisson statistics) 
+for 100 ms every 1 s. Each 1 s period starting after the baseline 
+period constitutes one trial and 60 trials are simulated for a total 
+simulation time of 65 s. The simulation is repeated independently 
+10 times (n 10); Figure 1 shows the ﬁrst 10 s of an example of 
+one simulation. A recording of the MLI voltage is shown in the 
+top panel (red) and a non-normalized ﬁring rate trace is shown in 
+the middle panel below (red). This ﬁring rate trace is divided by 
+a maximum ﬁring rate parameter to normalize its value between 
+[0,1] yielding MLI(t) which is used in the weight update equation 
+(described in Methods). A non-normalized trace of the PF ﬁring 
+rate is shown in the bottom panel (blue). The value of the synaptic 
+strength, w, starts near its equilibrium value (where w ≈ MLI(t) 
+when PF stimulation is low but non-zero) and is plotted in the 
+bottom panel (green). PF bursts increase the MLI ﬁring rate 
+above its baseline value. As the synaptic strength increases, we 
+would expect a corresponding increase in the peak MLI ﬁring rate 
+during PF activation across trials. This is not always reﬂected in 
+the ﬁrst 10 s of the example simulation (e.g., Figure 1) since the 
+PF burst is modeled as a Poisson spike train where the number 
+and frequency of spikes varies slightly by trial. 
+During periods where PF activity is non-zero and where the 
+normalized MLI ﬁring activity (not shown) is greater than the 
+variable weight component, w, the synapse strengthens. The PF 
+activity serves two functions: ﬁrst to increase the MLI ﬁring 
+rate, and second to gate plasticity. The trajectory of the synaptic 
+weight across trials and averaged over independent simulations 
+is shown in Figure 2. One important feature of this learning 
+rule is that the synaptic weight asymptotes instead of “blowing 
+up” and is thus stable compared to a purely Hebbian rule. The 
+asymptote is the result of the synaptic weight catching up to the 
+MLI activity—as it gets closer, the change in synaptic eﬃcacy is 
+smaller. 
+TABLE 3 | Summary of simulations. 
+Simulation Simulation protocol 
+Result Figure(s) 
+I 
+Single PF bursts at 100 Hz, isolated MLI ﬁres spontaneously at baseline. n 10 
+LTP 
+1,2 
+II 
+Single PF ﬁres continuously at 10 Hz with a depolarizing current injected into an isolated MLI. n 10 
+LTP 
+2, S1 
+III 
+Single PF ﬁres continuously at 10 Hz with a hyperpolarizing current injected into an isolated MLI. n 10 
+LTD 
+2, S2 
+IV 
+Single PF ﬁres continuously at 2 Hz, isolated MLI ﬁres spontaneously at baseline. n 10 
+— 
+2, S3 
+V 
+A bundle of 8 PFs ﬁres at 50 Hz while the target MLI is voltage clamped to −60 mV. 
+LTD 
+3,5 
+VI 
+A bundle of 8 PFs ﬁres 100 Hz bursts while the target MLI is current clamped to −80 mV. 
+LTP 
+4,5 
+VII 
+A bundle of 8 PFs ﬁres at 1 Hz while the target MLI is current clamped to −80 mV. 
+LTD 
+5, S4 
+VIII 
+A bundle of 8 PFs ﬁres at 2 Hz while the target MLI is injected with a depolarizing current. 
+LTP 
+5, S5 
+IX 
+A bundle of 8 PFs ﬁres at 1 Hz while the MLI ﬁres spontaneously and the weight update parameter γ is increased to γ 1.5. 
+LTD 
+5,S6 
+X 
+A bundle of 8 PFs ﬁres at 1 Hz while the MLI ﬁres spontaneously and the weight update parameter γ is decreased to γ 0.5. LTP 
+5, S7 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+4 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =3= ***/
+/*** Page =4= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+FIGURE 1 | Simulation I: PF-driven long term potentiation. An example of one simulation run with an isolated MLI ﬁring spontaneously (red traces; top panel: 
+membrane potential; middle panel: ﬁring rate trace) which receives one PF input (blue trace the activity trace of a granule cell (GR) providing PF input). Only the ﬁrst 
+10 s of the simulation are shown. The value of the synaptic strength, w, is shown in green in the lower panel and begins near its equilibrium value. During the ﬁrst 5 s 
+both PF and MLI ﬁring at baseline at about 0.33 and 30 Hz, respectively. After 5 s, the PF ﬁres 100 Hz bursts for 100 ms every 1 s. Starting at 5 s, each 1 s interval is 
+considered a trial. The increased PF ﬁring causes the MLI to increase its ﬁring rate; at the same time, the synaptic weight, w, increases to compensate for the 
+difference between the normalized MLI ﬁring rate and the current value of w. 
+Simulation II: Continuous 10 Hz PF Firing with Paired 
+MLI Hyperpolarizing Current Injection Induces LTD 
+Simulation II investigates the eﬀects of a continuous 10 Hz 
+stimulation of the PF with a paired hyperpolarizing current 
+injected into the MLI to reduce its ﬁring rate to approximately 
+10 Hz. The simulation begins with a 2.5 s baseline period 
+where both PF and MLI ﬁre spontaneously. Starting at 2.5 s, a 
+hyperpolarizing current is injected into the MLI to reduce its 
+ﬁring rate to 10 Hz. Beginning at 5 s, the PF is continuously 
+stimulated to ﬁre at approximately 10 Hz (according to 
+Poisson statistics) for the remainder of the simulation, 60 s 
+(Supplementary Figure 1, analogous to Figure 1). Thus, the 
+total simulation time is 65 s and we again refer to the 1 s 
+periods beginning at 5 s as trials. During this period, where non- 
+zero PF activity gates plasticity, the synaptic weight decreases 
+since the MLI activity is below the synaptic weight value 
+(Figure 2). 
+Simulation III: Continuous 10 Hz PF Firing with Paired 
+MLI Depolarizing Current Injection Induces LTP 
+Simulation III is identical to Simulation II except that a 
+depolarizing current is injected into the MLI. Beginning at 2.5 s 
+the MLI is injected with a constant depolarizing current suﬃcient 
+to increase the MLI ﬁring rate to approximately 40 Hz. Beginning 
+at 5 s, the PF is continuously stimulated to ﬁre at approximately 
+10 Hz (according to Poisson statistics) for the remainder of the 
+simulation, 60 s (Supplementary Figure 2). Because the PF ﬁring 
+rate is non-zero and the MLI ﬁring rate increases above baseline, 
+the synaptic weight increases (Figure 2). 
+Simulation IV: Low-Frequency PF Stimulation with 
+Spontaneous MLI Firing Results in Unremarkable 
+Changes in Synaptic Efﬁcacy 
+Simulation IV investigates the eﬀect of a constant low 
+frequency stimulation of the PF (2 Hz) while the MLI ﬁres 
+spontaneously at its baseline rate of 30 Hz. Similar to simulation 
+I, a 5 s baseline period is simulated where the PF and 
+MLI ﬁre at 0.33 Hz and 30 Hz, respectively. After 5 s, for 
+another 60 s, the PF ﬁres at 2 Hz (according to Poisson 
+statistics). Since this PF ﬁring rate does not suﬃciently 
+change the MLI ﬁring rate and the weight value begins near 
+equilibrium for baseline PF and MLI rates, the synaptic weight 
+value does not change remarkably (Figure 2, Supplementary 
+Figure 3). 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+5 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =4= ***/
+/*** Page =5= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+FIGURE 2 | Summary of Simulations I–IV. The left panel shows the mean (solid lines) and range (shaded regions) percent change of synapse weight from starting 
+values at the end of each trial across all simulated neurons (n 10) for a particular simulation. For simulation I where the PF is stimulated to ﬁre 100 Hz bursts for 
+100 ms every 1 s (i.e., 1 s trials), the synapse weights reach an equilibrium value of about 20% greater than starting values. The right panel shows the ﬁnal mean (bar 
+height) and range (black error bar) of weight values normalized to their starting values for each simulation. 
+Simulation V: PF Bundle Stimulation at 50 Hz with 
+Paired MLI Voltage Clamp Induces LTD 
+Simulation V emulates the experimental conditions from Liu and 
+Cull-Candy (2000) used to induce PF-MLI LTD. The simulation 
+models a single isolated MLI with eight PF inputs to emulate the 
+eﬀect of stimulating a bundle of PFs with an electrode in vitro. 
+The simulation begins with a 2.5 s baseline period where the PFs 
+and MLI ﬁre at baseline rates of 0.33 Hz and 30 Hz, respectively 
+(Figure 3). At 2.5 s, the MLI is then voltage clamped to −60 mV. 
+At 5 s, the PFs are stimulated to individually ﬁre at approximately 
+50 Hz (according to Poisson statistics) which continues for 60 s. 
+As before, each 1 s interval starting at 5 s is considered a trial 
+to allow comparison among simulations. Concomitant with the 
+activation of PFs, the synaptic weights decrease since the MLI 
+ﬁring activity is eﬀectively zero, below the value of the synapse 
+weight. Figure 3 depicts these changes, where ﬁgure conventions 
+are the same as before except that the weight trace is the mean 
+weight of all PF synapses impinging on the MLI and only one 
+example PF trace is shown. The trajectory of the mean and range 
+of synaptic weights onto this MLI is summarized in Figure 5. 
+The synaptic weight asymptotically decreases to the minimum 
+weight value, w0. The synaptic weight decrease in the simulation 
+is consistent with the observed decrease in synaptic eﬃcacy by 
+Liu and Cull-Candy (2000). 
+Simulation VI: PF Bundle Burst Stimulation with 
+Paired MLI Current Clamp Induces LTP 
+Simulation VI models the experimental protocol used by Smith 
+and Otis (2005) to induce PF-driven LTP at PF-MLI synapses. 
+A single isolated, spontaneously ﬁring MLI receiving eight PF 
+inputs is simulated. The simulation begins with the MLI and 
+PFs ﬁring at their baseline rates of 30 and 0.33 Hz, respectively 
+(Figure 4). After 2.5 s, a constant current is injected into the MLI 
+to hold it near −80 mV. Beginning at 5 s, each PF is stimulated 
+to ﬁre at 100 Hz (according to Poisson statistics) for 100 ms 
+every 1 s and continues for 60 s. Despite being injected with a 
+hyperpolarizing current, the cumulative PF input is suﬃcient to 
+cause the MLI to depolarize and ﬁre action potentials, raising the 
+MLI activity trace from near zero to above the original weight 
+equilibrium values when both PF and MLI ﬁre spontaneously. 
+Thus, the synaptic weights increase during these periods of PF 
+activity and results in a cumulative LTP (Figure 5). Although not 
+apparent in Figure 4, the peak ﬁring rates of MLIs increase along 
+with synaptic weight increases (Supplementary Figure 8). 
+Simulation VII: PF Bundle Low-Frequency Stimulation 
+with Paired MLI Current Clamp Induces LTD 
+Simulation VII models a diﬀerent experimental protocol used 
+by Smith and Otis (2005) which was shown to induce PF-MLI 
+LTD. The simulation protocol is identical to the one described 
+for simulation VI except that each PF is stimulated to produce 
+2 Hz ﬁring continuously (Supplementary Figure 4) beginning at 
+5 s. The low frequency spike inputs from all 8 simulated PFs 
+is insuﬃcient to regularly depolarize the MLI. Thus, the MLI 
+activity trace remains zero while the PF activity trace is brieﬂy 
+greater than zero for short periods of time. The cumulative eﬀect 
+is a decrease in the mean PF-MLI synaptic strength, i.e., LTD 
+(Figure 5). 
+Simulation VIII: PF Bundle Low-Frequency 
+Stimulation with Paired MLI Depolarizing Current 
+Injection Induces LTP 
+Simulation VIII models one of the experimental protocols 
+used by Rancillac and Crépel (2004) which results in PF-MLI 
+LTP. The protocol consists of an induction period of low- 
+frequency (0.33 Hz) stimulation of the PF bundle for 8 min while 
+simultaneously holding the MLI in voltage clamp at −60 mV. 
+After the induction period, the PFs are stimulated to ﬁre at 2 Hz 
+while the MLI is depolarized to 0 mV for 60 s. We hypothesized 
+that during this induction period the synaptic eﬃcacy would 
+decrease from its previous equilibrium value since the PF is 
+somewhat active and the MLI is in voltage clamp. To investigate 
+this in the simulation, we begin the simulation with the MLI in 
+voltage clamp at −60 mV and the synaptic weight at a lower value 
+than previous experiments. The MLI is held in voltage clamp for 
+the ﬁrst 5 s of the simulation while the PFs ﬁre spontaneously 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+6 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =5= ***/
+/*** Page =6= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+FIGURE 3 | Simulation V: Voltage clamping MLI induces PF-MLI LTD. An isolated MLI ﬁres spontaneously for the ﬁrst 2.5 s of the simulation and is then voltage 
+clamped to −60 mV for the remainder of the simulation. Starting at 5 s, each PF in the bundle ﬁres at 50 Hz. Figure conventions are the same as Figure 1 except that 
+the mean synaptic weight value across all PF synapses converging onto this MLI is shown (green) and only one sample PF trace is shown (blue). Between 2.5 and 5 s, 
+the synaptic weights do not change signiﬁcantly since the PFs are ﬁring at a low 0.33 Hz. However, once the PFs begin ﬁring at 50 Hz, the synaptic weight decreases 
+rapidly since the normalized value of MLI ﬁring is effectively 0 and below the synaptic weight value. This simulation attempts to reproduce the experimental results of 
+Liu and Cull-Candy (2000). 
+around 0.33 Hz (Supplementary Figure 5). After 5 s, the MLI is 
+injected with current to ﬁre at 50 Hz. Since holding the simulated 
+MLI at 0 mV would not result in spiking and thus a zero value 
+for the activity trace, we chose to inject current to depolarize the 
+neuron to ﬁre at 50 Hz and produce a non-zero activity trace as 
+a surrogate. The result of the simulated protocol is that the MLI 
+activity trace value is greater than the synaptic weight and thus a 
+strengthening of the synapse occurs (Figure 5). This is consistent 
+with the result of Rancillac and Crépel (2004). 
+Simulations IX and X: Simulating Changes in “Basal 
+Tone” Induces Bidirectional Changes in Synaptic 
+Efﬁcacy 
+Metabotropic 1 glutamate receptors (mGluR1) and gamma- 
+aminobutyric acid B receptors (GABABR) found in MLIs are 
+tonically active and their level of activity sets the “basal tone” for 
+PF-MLI EPSC amplitude in vitro (Kelly et al., 2009). Simulations 
+IX and X reproduce the eﬀects of modulating the activity of 
+these metabotropic receptors in vitro using chemical agonists 
+and antagonists by modifying γ in the synaptic weight update 
+rule. By increasing γ , the MLI activity level needed to surpass 
+the γ w threshold for LTP is increased. Thus, if w begins near 
+its equilibrium value for baseline PF and MLI activity and γ 
+is increased, w will decrease to reach a new equilibrium. In 
+Simulation IX, 8 PFs connected to a MLI all ﬁre spontaneously at 
+baseline rates of 0.33 Hz and 30 Hz, respectively, and the synaptic 
+weights begin near their equilibrium values (Supplementary 
+Figure 6). Starting a 5 s, and continuing for 10 min, γ is raised 
+from γ 1.0 to γ 1.5. The result is a gradual decay in 
+the synaptic weight (Figure 5) which is consistent with observed 
+LTD when applying mGluR1 and GABABR agonists in vitro 
+(Kelly et al., 2009). Conversely, in Simulation X, by decreasing γ 
+from γ 1.0 to γ 0.5w increases to reach a new equilibrium, 
+reproducing the eﬀects of applying chemical antagonists of 
+applying mGluR1 and GABABR antagonists in vitro (Kelly et al., 
+2009) (Supplementary Figure 7). 
+DISCUSSION 
+In this study, we present a mathematical model of plasticity 
+at PF-MLI synapses that describes bidirectional changes in 
+synaptic eﬃcacy as observed in vitro. The current model 
+depends only on the pre- and post-synaptic neuronal activity 
+and a dynamic threshold partly determined by a measure of 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+7 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =6= ***/
+/*** Page =7= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+FIGURE 4 | Simulation VI: Current clamping MLI with PF bursting results in LTP. An isolated MLI ﬁres spontaneously for the ﬁrst 2.5 s of the simulation and is 
+then injected with a constant current to keep the membrane potential near −80 mV for the remainder of the simulation. Starting at 5 s, each PF in the bundle ﬁres 
+100 Hz bursts for 100 ms every 1 s. Figure conventions are the same as Figure 3. Synchronous PF burst ﬁring is sufﬁcient to depolarize the MLI and cause it to ﬁre. 
+During periods where the PFs are active, the MLI ﬁring rate trace rises above the value of the synaptic weight and thus results in an increase in the synaptic weight, 
+i.e., LTP. This simulation attempts to reproduce the experimental results of Smith and Otis (2005). 
+synaptic eﬃcacy. The dynamic threshold enables bidirectional 
+changes in eﬃcacy and is inherently self-stabilizing. We show 
+via computer simulations that the model reproduces similar 
+changes in synaptic eﬃcacy as observed in a variety experimental 
+results. In addition, we simulate novel protocols which serve as 
+predictions to be validated by future experimental investigation. 
+Biological Mechanisms of the Model 
+The model presented in this study is a phenomenological 
+description of plasticity that is a function of PF and MLI spiking 
+activity and a measure of synaptic eﬃcacy. This model serves as 
+a high-level surrogate for describing plasticity until the detailed 
+biological mechanisms are modeled directly. In this section, we 
+speculate on what the underlying mechanisms are which give rise 
+to this phenomenological description. 
+Plasticity at the PF-MLI synapses involves several mechanisms 
+that produce both pre- and post-synaptic changes (Liu and Cull- 
+Candy, 2000; Rancillac and Crépel, 2004; Bender et al., 2009). 
+While we mainly focus on evidence for post-synaptic plasticity, it 
+is expected that this model also accounts for pre-synaptic changes 
+in synaptic eﬃcacy in physiologically realistic conditions. Post- 
+synaptic PF-MLI plasticity involves changes in the AMPA 
+receptor (AMPAR) phenotype composition (Liu and Cull- 
+Candy, 2000). Stellate-type MLIs, and presumably basket-type 
+MLIs, express glutamate receptor 2 (GluR2) lacking calcium- 
+permeable AMPARs (CP-AMPARS) and GluR2-containing 
+calcium-impermeable AMPARs (CI-AMPAR) and have been 
+shown to make an activity dependent switch from CP- to CI- 
+AMPARs (Liu and Cull-Candy, 2000, 2002; Kelly et al., 2009). 
+CP-AMPARs admit more charge at negative potentials (Liu 
+and Cull-Candy, 2000) so a switch from CP- to CI-AMPARs 
+results in a functional decrease in the strength of this synapse. 
+Thus, the mixture of CP/CI-AMPARs at the post-synaptic 
+density determines the excitatory post-synaptic potential (EPSC) 
+amplitude, or “basal tone,” of the synapse. Additionally, the level 
+of tonic activation of mGluR1 and GABAB receptors inﬂuence 
+the basal tone of the synapse (Kelly et al., 2009). Both activity 
+dependent LTP and LTD at this synapse are observed and are 
+post-synaptic calcium signaling dependent (Liu and Cull-Candy, 
+2000; Rancillac and Crépel, 2004; Smith and Otis, 2005; Sun and 
+June Liu, 2007). 
+We hypothesize that activity-dependent post-synaptic Ca2 
+transients initiate changes in synaptic eﬃcacy. These transients 
+could induce both LTD and LTP dependent on a dynamic 
+cytosolic Ca2 threshold which could be reﬂected in the level 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+8 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =7= ***/
+/*** Page =8= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+FIGURE 5 | Summary of Simulations V–X. Top panel depicts the mean 
+(solid lines) and range (shaded) percent weight change of synaptic weights 
+converging onto the MLI at the end of each trial for simulations V–VIII. Middle 
+panel shows the mean (solid lines) and range (shaded) percent weight change 
+of synaptic weights converging onto the MLI at the end of each minute of 
+simulation time for simulations IX and X. The bottom panel compares the ﬁnal 
+mean normalized synaptic weights at the end of the simulation for each 
+simulation (bar height) and range of values (black error bars). 
+of intracellular calcium stores. In the model proposed here, the 
+dynamic threshold is captured by γ w, where w captures the 
+strength of the synapse in terms of CP- and CI-AMPAR makeup, 
+and γ captures the eﬀects of basal activity levels of metabotropic 
+receptors involved in AMPAR phenotype composition. CP- 
+AMPARs are one source of calcium inﬂux. Indeed, the change in 
+AMPAR phenotype composition could provide one mechanism 
+for governing bidirectional changes in plasticity. The upper 
+limit on synaptic eﬃcacy could be governed by the dependence 
+on suﬃcient amounts of calcium inﬂux simply to maintain 
+the phenotype composition of the synapse since stronger 
+synapses may require increasingly greater post-synaptic calcium 
+concentrations simply to maintain or increase the strength of the 
+synapse during periods of PF activation. This limit may be further 
+enhanced by partial block of calcium inﬂux through CP-AMPARs 
+during physiologic activation due to intracellular polyamines 
+(Bats et al., 2013). The lower limit on synaptic eﬃcacy could be 
+governed by the dependence of the CP- to CI-AMPAR switch on 
+calcium inﬂux through CP-AMPARs (Liu and Cull-Candy, 2000, 
+2005; Gardner et al., 2005). 
+NMDARs are another source of calcium inﬂux for signaling 
+changes in plasticity which are MLI activity dependent. Indeed, 
+blocking NMDARs prevents LTP and even uncovers some LTD 
+during PF stimulation in vitro (Rancillac and Crépel, 2004; Smith 
+and Otis, 2005). MLI NMDARs are located extrasynaptically 
+(Clark and Cull-Candy, 2002) and can be activated by a single 
+PF ﬁring at a suﬃciently high frequency (Nahir and Jahr, 2013). 
+Since PFs ﬁre high-frequency bursts in physiologically realistic 
+conditions (Chadderton et al., 2004; van Beugen et al., 2013), PFs 
+likely activity NMDARs in vivo when ﬁring bursts. Furthermore, 
+climbing ﬁbers (CFs) activate MLIs exclusively via glutamate 
+spillover (Szapiro and Barbour, 2007) and CF mediated EPSCs 
+have a signiﬁcant NMDAR-mediated component (Coddington 
+et al., 2013). Thus, CFs may play a special role in gating calcium 
+inﬂux and biasing plasticity toward LTP in vivo. This is consistent 
+with adaptive ﬁlter models of cerebellar learning which require 
+correlated PF and CF ﬁring to induce LTP at these synapses 
+(Dean et al., 2010). 
+The proposed model is also a function of PF and MLI activity 
+which is a normalized, unit-less trace of the spiking activity of 
+these neurons. Calcium signals could be the common mechanism 
+of conveying this activity. MLI somatic calcium concentrations 
+change slowly as a function of the ﬁring rate of these neurons 
+(Franconville et al., 2011) and dendritic calcium concentrations 
+are regulated by somatic spikes (Myoga et al., 2009). Thus, the 
+ﬁring rate of MLIs could produce a global time-varying calcium 
+concentration in the dendrites of MLIs. Similarly, PF traces could 
+be implemented using calcium signals since physiological PF 
+ﬁring results in prolonged glutamate conductances, and thus 
+calcium inﬂux, at MLI synapses (Carter and Regehr, 2000). 
+Furthermore, changes in PF-MLI synapses are input-speciﬁc due 
+to localized synaptic Ca2 signaling in MLI dendrites (Soler- 
+Llavina and Sabatini, 2006). Thus, a synapse speciﬁc trace of PF 
+activity may use a sustained level of glutamate at the synapse and 
+local calcium concentrations in the post-synaptic membrane. 
+Limitations of the Model 
+The model is limited to describing plasticity at the level 
+of pre- and post-synaptic activities and is thus unable to 
+simulate certain physiological conditions from past experimental 
+protocols. In particular, calcium currents from AMPARs and 
+NMDARs are not directly accounted for in this model and their 
+inﬂuence is based on their collective ability to depolarize the 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+9 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =8= ***/
+/*** Page =9= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+MLI. This makes simulating chemical NMDA channel block 
+and voltage-dependent calcium conductances, such as holding 
+the MLI in voltage clamp at 0 mV, (as in Simulation VIII) 
+impossible. In addition, the eﬀect of modulating metabotropic 
+receptor activities and their downstream eﬀects cannot be 
+modeled directly. The model is also unrealistic in that changes 
+in synaptic eﬃcacy happen instantaneously whereas changes 
+in vitro and in vivo continue to take place for several minutes 
+after stimulation (Rancillac and Crépel, 2004; Smith and Otis, 
+2005). 
+Related Models of Plasticity 
+BCM theory (Bienenstock et al., 1982) is a model of plasticity 
+used to describe activity dependent synaptic changes in the 
+visual cortex which also employs a dynamic threshold to induce 
+bidirectional changes in synaptic eﬃcacy. Using the BCM model 
+in lieu of the gated steepest descent model would not reproduce 
+all of the experimental results described here. This can be seen 
+using Simulation V as an example. Using a trace of MLI spiking 
+for the post-synaptic activity in the BCM weight update equation 
+would result in no weight change when the MLI is held in current 
+clamp since this trace is eﬀectively zero and all other terms of the 
+weight update equation are multiplied by this term. 
+A number of other models of cerebellar learning have either 
+explicitly or implicitly modeled learning at PF-MLI synapses, but 
+most of these models were proposed before any experimental 
+evidence describing plasticity at this synapse existed. Kenyon 
+(1997) proposed a model where changes in PF-PKJ synapses are 
+consolidated into long-term memories at PF-MLI synapses, but 
+the weight update equation used doesn’t appear to be consistent 
+with experimental evidence. Albus (1971) also predicted learned 
+changes to PF-MLI synapses but suggested that CF inputs act to 
+weaken PF-MLI synapses, similar to PF-PKJ synapses. Adaptive 
+ﬁlter models of cerebellar learning have been proposed that use 
+positive and negative values for adaptive weights which implicitly 
+deﬁnes plasticity at MLI synapses that is complementary and 
+synergistic to PF-PKJ learning (Dean et al., 2010). 
+Finally, a modiﬁed gated steepest descent learning rule has 
+also been used to model plasticity at the synapses formed by 
+mossy ﬁbers onto neurons in the deep cerebellar nuclei/vestibular 
+(Yamazaki et al., 2015, Supplementary Information, Equation 9). 
+Simulations using this model reproduce post-training memory 
+consolidation in learned gain changes of the optokinetic 
+response. 
+Extending the Model 
+Concomitant PF and climbing ﬁber (CF) activation leads to 
+a drastic increase in the PF-MLI receptive ﬁeld (RF) and 
+subsequent PF stimulation alone leads to a decrease in the PF- 
+MLI RF (Jörntell and Ekerot, 2002, 2003, 2011). The increased RF 
+could be due to activation of electrically silent synapses, however 
+the mechanisms governing this process are not understood. 
+Assuming this in vitro model holds under in vivo conditions, 
+one way to augment the current model is to include a separate 
+equation for plasticity at electrically silent synapses that requires 
+concomitant activation of PF and CF input in order for a synapse 
+to become electrically active. In simulations, this would result in 
+an increase in the number of synapses that depolarize the target 
+MLI and an eﬀective increase in the RF size. 
+CFs may also inﬂuence plasticity at active synapses in two 
+ways: indirectly, by increasing MLI ﬁring rates thus favoring 
+LTP, and directly, by modulating the threshold for plasticity 
+through γ —capturing the eﬀects of glutamate spillover and 
+changes in post-synaptic calcium concentration due to activation 
+of NMDARs and CP-AMPARs. Note that this would be a separate 
+mechanism than modulating metabotropic receptors to modulate 
+γ . This could be implemented where γ is a function of the 
+activity of CFs or the spillover of glutamate from CF inputs 
+to the MLI. When CFs are inactive (active) or the volume of 
+glutamate spillover is low (high), γ would be high (low). This 
+mechanism would bias PF-MLI synapses with concomitant PF 
+and CF activation toward potentiation by lowering the threshold 
+in favor of LTP. Subsequently, if the PF were active without 
+concomitant CF activation, the synapse might weaken since γ 
+and thus γ w is higher than before. This could be one mechanism 
+for observing decreases in PF receptive ﬁeld sizes with PF 
+stimulation subsequent to a PF+CF protocol which results in PF 
+receptive ﬁeld increases (Jörntell and Ekerot, 2002). Homeostatic 
+plasticity (Turrigiano, 2012) such as synaptic scaling may be 
+another mechanism that reduces receptive ﬁeld sizes over time 
+or causes electrically active synapses to become inactive. Taken 
+together, we predict that the extended model would reproduce 
+the RF changes observed in the in vivo experiments performed 
+by Jorntell and Ekerot. 
+The model can also be extended to model calcium 
+concentrations directly. Similar models based on BCM theory 
+(Bienenstock et al., 1982) have been extended to model plasticity 
+as a function of calcium concentrations which include inﬂuences 
+from both AMPARs, NMDARs and action potentials (Shouval 
+et al., 2002; Yeung et al., 2004). Indeed, the form of the equations 
+governing plasticity as a function of calcium concentrations in 
+these models is similar to the model presented here. The model 
+presented in Shouval et al. (2002) could be modiﬁed in the 
+following ways to capture synaptic plasticity at PF-MLI synapses. 
+The calcium inﬂux would be a function of the proportion of 
+CP-AMPARs which changes with the synaptic strength as well 
+as a function of spillover glutamate from high frequency PF 
+bursts and CF volumergic transmission separately. In addition, 
+the glutamate binding dynamics from PFs would be modeled 
+which results in prolonged calcium inﬂux. “Assumption 3” of 
+Shouval et al. (2002) is similar to the slowly changing calcium 
+concentrations in MLIs due to spiking activity (Myoga et al., 
+2009; Franconville et al., 2011). The model would have to be 
+further augmented to capture the eﬀect of metabotropic receptors 
+on plasticity. A simulation of the described model should reﬂect 
+predictions made by our model, but with more physiological 
+detail and will allow for more direct simulation of NMDA 
+channel block and voltage-dependent calcium currents under 
+voltage-clamp conditions. 
+Implications of the Model 
+Historically, network models of the cerebellum have focused on 
+PF-PKJ synapses as the locus of learning and memory in the 
+cerebellar cortex. However, eﬀective cerebellar learning is likely 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+10 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =9= ***/
+/*** Page =10= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+the result of distributed plasticity across synapse types in the 
+cerebellum (Gao et al., 2012; Mapelli et al., 2015). MLI synapses 
+have been previously suggested as one such location (Jörntell 
+et al., 2010; D’Angelo, 2014). 
+The learning rule for PF-MLI synapses presented here takes 
+the form of Grossberg’s outstar learning rule (Grossberg, 1968). 
+In accordance with this learning rule, granule cells (GRs) will 
+“sample” the responses of their MLI targets and adjust their 
+synaptic weights to “track” the normalized MLI activity values 
+when PF synapses are active. If a distributed pattern of activity 
+across the MLI population is repeatedly present concomitant 
+with a GR encoded pattern of some stimulus, the PFs will adapt 
+their weights so that the GR activity pattern alone will reproduce 
+the MLI activity pattern. Thus, it may be the role of the CF 
+inputs to the MLIs to act as a supervised learning signal and to 
+initialize the distributed pattern of activity across the MLIs and 
+to bias synaptic changes toward strengthening. Subsequently, the 
+PF-MLI response will be learned and reproduced associatively. 
+The role of MLI-MLI plasticity may be to normalize 
+and contrast enhance the MLI population response and to 
+induce competition among MLIs in the distributed pattern of 
+activity across the local MLI population. Furthermore, MLI-PKJ 
+plasticity would enable learning combinations of MLI activity 
+patterns to produce appropriate PKJ responses. Finally, PF-PKJ 
+plasticity may act synergistically with changes in feedforward 
+inhibition from MLIs, although the two inputs could have 
+diﬀerent time courses for aﬀecting PKJ responses. Extending the 
+model to account for the interplay between CFs and PF-MLI 
+plasticity may be necessary before network simulations of the 
+cerebellum using this model of plasticity would be illuminating. 
+Interpretation of Experimental Results 
+A number of in vitro experimental protocols used to induce 
+plasticity at PF-MLI synapses can be described in terms of the 
+model presented in this study which also correctly predicts 
+the experimental results. We present this interpretation and 
+speculate on some of the biological mechanisms responsible for 
+plasticity in each case. Table 4 summarizes selected experiments 
+and their interpretations in terms of this model. 
+Early on, it was shown that high frequency stimulation of PFs 
+while holding the MLI in voltage clamp at −60 mV induces a 
+switch from CP- to CI-AMPARs (Liu and Cull-Candy, 2000), 
+i.e., LTD. This result is predicted by the model since holding the 
+MLI in voltage clamp decreases its activity relative to baseline 
+(↓ MLI(t)), and stimulating PFs increases their activity relative 
+to baseline (↑ PF(t)); i.e., w ∝↑ PF(t) ↓ MLI(t) − γ w < 0 
+where MLI(t) < γ w. Chelating post-synaptic Ca2 prevented 
+the switch in AMPAR phenotype and resulted in no change in 
+synaptic eﬃcacy, supporting the idea that the mechanism of 
+plasticity is calcium signaling dependent. Similarly, a separate 
+study showed that a 30 Hz PF stimulation with the MLI held in 
+voltage clamp leads to pre-synaptic LTD that is also dependent 
+on post-synaptic Ca2 inﬂux (Soler-Llavina and Sabatini, 2006), 
+suggesting a complementary form of LTD. While this is a 
+diﬀerent mechanism, it is consistent with the model prediction 
+by the same reasoning. 
+In somewhat more realistic physiological conditions, high 
+frequency PF burst stimulation was shown to induce LTP in vitro 
+(Smith and Otis, 2005). This was demonstrated in two ways. In 
+the ﬁrst method, MLIs were held in current clamp at −80 mV 
+while PFs were stimulated to ﬁre brief high frequency bursts 
+at 100 Hz. The bath contained picrotoxin to block inhibitory 
+currents into the MLI. Following the plasticity protocol, LTP 
+was measured directly by observing an increase in MLI spike 
+ﬁring in response to PF input compared to control conditions. 
+In the second method, synaptic changes were induced indirectly 
+by stimulating the PFs according to the same protocol but in a 
+bath without picrotoxin and then recording responses from PKJs. 
+After the protocol, PKJs initially had a higher ﬁring rate due to 
+PF-PKJ LTP, followed by a period of spike depression caused 
+by inhibition, presumably from increased MLI feedforward 
+inhibition. Additional experimental evidence suggests increased 
+depression appears to be due to PF-MLI potentiation and not 
+from MLI-PKJ potentiation. The model predicts LTP in these 
+experiments by w ∝↑ PF(t) ↑ MLI(t) − γ w > 0 with 
+MLI(t) > γ w since the membrane potential of the MLI is able to 
+ﬂuctuate during PF stimulation in contrast to the protocol used 
+in Liu and Cull-Candy (2000) where it is voltage clamped. Using 
+the same LTP-inducing protocol in the presence of NMDAR 
+antagonists, LTP is abolished and some LTD is uncovered (Smith 
+and Otis, 2005). NMDARs are located extrasynaptically and 
+can be activated by a high frequency train of PF stimulation 
+(Carter and Regehr, 2000; Clark and Cull-Candy, 2002). This 
+suggests the 100 Hz stimulation caused spillover activation of 
+NMDARs and that this is important for LTP, presumably due 
+to Ca2 inﬂux since chelating post-synaptic Ca2 also blocked 
+LTP (Smith and Otis, 2005). Using a low frequency stimulation 
+protocol consisting of PF stimulation at 1 Hz for 5 min, PF-MLI 
+LTD is observed both directly and indirectly (Smith and Otis, 
+2005). In the indirect case when the MLI is held in current 
+clamp, the stimulus may be insuﬃcient to perturb the MLI 
+membrane potential signiﬁcantly or to activate extrasynaptic 
+NMDARs, thus the current clamp acts similar to voltage clamp 
+as in previous experiments. The model also predicts LTD, i.e., 
+w∝↑PF(t) ↓MLI(t)−γw <0. 
+Sun and June Liu (2007) investigated the role of NMDARs 
+in the CP- to CI-AMPAR switch. To induce this change, MLIs 
+were held in voltage clamp at −60 mV while chemically blocking 
+AMPARs; PFs were stimulated to produce high frequency 
+bursts that activated NMDARs and were paired with fast, 1 ms, 
+MLI depolarizations to 0 mV to release NMDAR Mg2 block. 
+A Ca2 dependent CP- to CI-AMPAR switch was observed, 
+suggesting that Ca2 entry through NMDARs provide an 
+additional pathway to induce plasticity at the synapse. While 
+Ca2 enters through NMDARs during the brief depolarization, 
+it is insuﬃcient to signal LTP since the normal spiking activity 
+of the MLI, and thus cytosolic calcium concentration, is reduced 
+by voltage clamp. The model would reﬂect this as w ∝↑ 
+PF(t) ↓MLI(t)−γw <0whereMLI(t)<γw. 
+Rancillac and Crépel (2004) found that holding the MLI 
+in voltage clamp at −60 mV and stimulating PFs at 2 Hz 
+resulted in a mix of LTP and LTD at the PF-MLI synapse. 
+One explanation for the mix of LTP/LTD may be the result 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+11 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =10= ***/
+/*** Page =11= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+TABLE 4 | Summary of experimental results. 
+Simulation 
+References 
+Experimental protocol 
+Result 
+Interpretation 
+V 
+Liu and 
+Cull-Candy, 2000 
+In vitro, MLI voltage clamped at −60 mV. 300 
+PF stimuli delivered @ 50 Hz. Bicuculline, 
+picrotoxin, D-APV5. 
+LTD 
+Holding the MLI in voltage clamp prevents its 
+spontaneous activity and prevents inward Ca2 currents 
+(↓MLI). PF stimulation at 50 Hz increases PF activity 
+above baseline (↑PF). 
+w = ↑PF(↓MLI-w) < 0 
+VI 
+Smith and Otis, 
+2005 
+In vitro, MLI current clamped at −80 mV. PFs 
+stimulated (3–10 PFs) with 10 pulses at 100 Hz 
+every 3 s for 5 min. Picrotoxin in bath. 
+LTP 
+Sufﬁcient PF stimulation (↑PF) increases MLI activity 
+(↑MLI) since current clamp allows the membrane 
+potential to ﬂuctuate. 
+w ↑PF(↑MLI-w) > 0 
+VII 
+Smith and Otis, 
+2005 
+In vitro, MLI current clamped at −80 mV. PFs 
+stimulated (3–10 PFs) with at 1 Hz for 5 min. 
+Picrotoxin in bath. 
+LTD 
+Low frequency PF stimulation is a slight increase in PF 
+activity (↑PF) but insufﬁcient to increase MLI activity 
+which is held in current clamp (↓MLI) 
+w ↑PF(↓MLI-w) < 0 
+Similar to IV 
+Rancillac and 
+Crépel, 2004 
+In vitro, MLI voltage clamp at −60 mV. 
+Bicuculline in bath. Induction protocol of PF 
+stimulation at 0.33 Hz for 8 min, then PF 
+stimulated at 2 Hz for 60 s. 
+LTP/-/LTD The induction protocol initially shifts ↓w to a new value 
+w* since ↓MLI. The plasticity protocol then increases PF 
+activity (↑PF). 
+w ↑PF(MLI-w*) ≈ 0 
+VIII 
+Rancillac and 
+Crépel, 2004 
+In vitro, MLI voltage clamp at −60 mV. 
+Bicuculline in bath. Induction protocol of PF 
+stimulation at 0.33 Hz for 8 min, then PF 
+stimulated at 2 Hz for 60 s with a paired MLI 
+depolarization at 0 mV 
+LTP/- 
+The induction protocol initially shifts ↓w to a new value 
+w* since ↓MLI. The plasticity protocol then increases PF 
+activity (↑PF) and admits more Ca2 possibly via 
+NMDARs and VGCCs (↑MLI). 
+w ↑PF(↑MLI-w*) > 0 
+— 
+Sun and June Liu, 
+2007 
+In vitro, MLI held at −70 mV during stimulation 
+followed by brief depolarization to 0 mV. GYKI 
+in path (AMPAR blocker). PF 4 stimuli @ 50 Hz, 
+100 sweeps. 
+LTD 
+High frequency PF bursts (↑PF) paired with brief MLI 
+depolarization, leads to spillover activation of NMDARs 
+and limited Ca2 inﬂux via NMDARs. Since CP-AMPARs 
+are blocked and MLI spontaneous activity is prevented 
+via voltage clamp, the overall Ca2 transient is below 
+threshold (↓MLI). 
+w ↑PF(↓MLI-w) < 0 
+IX 
+Kelly et al., 2009 
+In vitro, MLI voltage clamped at −60 mV. 
+D-APV5, bicuculline in bath. Either DHPG 
+(mGluR1 agonist) or baclofen (GABABR 
+agonist) added. 
+LTD 
+Increasing mGluR Group I activity (↑mGluR) can be 
+interpreted as increasing PF activity (↑PF). Additionally, 
+↑mGluR may directly increase the intracellular Ca2 
+threshold required for plasticity (↑w). Increasing 
+GABABR (↑GABABR) enhances mGluR activity, and a 
+similar result holds. 
+w ↑PF(MLI-↑w) < 0 
+X 
+Kelly et al., 2009 
+In vitro, MLI voltage clamped at −60 mV. 
+D-APV5, bicuculline in bath. Either LY367385 
+(mGluR1 antagonist) or CGP62349 (GABABR 
+antagonist) added. 
+LTP 
+Decreasing mGluR activity adjusts the “basal tone” by 
+shifting the intracellular Ca2 threshold for plasticity 
+(↓w). Ambient glutamate allows some Ca2 to still ﬂow 
+into the MLI. Since GABABR enhances mGluR activity, 
+↓GABABR causes ↓mGluR, thus ↓w. 
+w PF(MLI-↓w) > 0 
+of the induction protocol used which held the MLI in voltage 
+clamp at −60 mV while stimulating the PFs at 0.33 Hz for 
+several minutes; this could decrease the synaptic strength and/or 
+the dynamic threshold down during this period. During the 
+experiment, the MLI activity is compared to the threshold for 
+synaptic plasticity—for some synapses, the low activation could 
+be suﬃcient to surpass the threshold (MLI(t) > γ w) and 
+not for others (MLI(t) < γ w). Thus, on average w ∝↑ 
+PF(t) MLI(t) − γ w ≈ 0. In contrast, when repeating this 
+stimulation and pairing it with MLI depolarization at 0 mV more 
+cells underwent LTP, indicating that post-synaptic activity plays 
+a role in plasticity, i.e., w ∝↑ PF(t) ↑ MLI(t) − γ w > 
+0. This form of LTP was independent of cAMP but required 
+NO production. In another experiment stimulating PFs at 8 Hz 
+while holding the MLI in voltage clamp induced a mix of 
+LTP or no change in tested synapses, but part of the LTP was 
+cAMP dependent (Rancillac and Crépel, 2004). This last result 
+in consistent with (Bender et al., 2009) which showed pre- 
+synaptic LTP dependent on cAMP through a similar induction 
+protocol. These results reveal the complexity of synaptic plasticity 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+12 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =11= ***/
+/*** Page =12= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+at the PF-MLI synapse consisting of both pre- and post- 
+synaptic mechanisms induced under artiﬁcial physiological 
+conditions. 
+Kelly et al. (2009) found that activation of both mGluRs 
+and CP-AMPARs is necessary and suﬃcient to drive the CP- 
+to CI-AMPAR subunit switch and that activation of GABABR 
+enhances mGluR activity. Adding mGluR1 agonists to the in 
+vitro preparation results in LTD at the synapse. A similar eﬀect 
+is seen when adding GABABR agonists to the bath. Assuming 
+metabotropic receptors act to directly modulate the post-synaptic 
+cytosolic calcium threshold used for bidirectional changes 
+in plasticity, the eﬀects of up-regulating these metabotropic 
+receptor activities can be seen as increasing γ in the model, i.e., 
+w ∝ PF(t) MLI(t)− ↑ γ w < 0. Similarly, adding mGluR1 
+and GABABR antagonists results in LTP which can be interpreted 
+as↓γ. 
+CONCLUSION 
+In summary, we have shown that a simple mathematical 
+model of plasticity at PF-MLI synapses captures most reported 
+phenomena of plasticity at this synapse. We carried out several 
+numerical simulations of this plasticity rule implemented at PF- 
+MLI synapses using a previously published leaky integrate-and- 
+ﬁre model of MLIs. We showed that this model reproduces 
+the experimental results of several plasticity inducing protocols 
+reported in the literature. Additionally, we simulated several 
+novel protocols that have not been published to serve as 
+predictions for the model. Finally, we speculated on the 
+biophysical mechanisms governing plasticity at this synapse and 
+the implications of this form of plasticity on the network function 
+of the cerebellar cortex. 
+FUNDING 
+The authors thank the Japan Society for the Promotion of Science 
+(#SP13031) and the U.S. National Science Foundation (#OISE- 
+1308822) for making this collaboration possible. WL and RH-N 
+gratefully acknowledge funding from the U.S. Oﬃce of Naval 
+Research (#N00014-12-1-0588). 
+ACKNOWLEDGMENTS 
+The authors would like to thank Professor Nobito Yamamoto, 
+the Japan Society for the Promotion of Science (#SP13031) 
+and the U.S. National Science Foundation (#OISE-1308822) for 
+making this collaboration possible. WL and RH-N gratefully 
+acknowledge funding from the U.S. Oﬃce of Naval Research 
+(#N00014-12-1-0588). WL would like to thank Drs. Kazuhiko 
+Yamaguchi, Mehrdad Yazdani and Geoﬀrey Gamble for helpful 
+discussions. 
+SUPPLEMENTARY MATERIAL 
+The Supplementary Material for this article can be found 
+online at: http://journal.frontiersin.org/article/10.3389/fncom. 
+2015.00150 
+REFERENCES 
+Albus, J. S. (1971). A theory of cerebellar function. Math. Biosci. 10, 25–61. doi: 
+10.1016/0025-5564(71)90051-4 
+Bats, C., Farrant, M., and Cull-Candy, S. G. (2013). A role of TARPs in 
+the expression and plasticity of calcium-permeable AMPARs: evidence 
+from cerebellar neurons and glia. Neuropharmacology 74, 76–85. doi: 
+10.1016/j.neuropharm.2013.03.037 
+Bender, V. A., Pugh, J. R., and Jahr, C. E. (2009). Presynaptically expressed long- 
+term potentiation increases multivesicular release at parallel ﬁber synapses. 
+J. Neurosci. 29, 10974–10978. doi: 10.1523/JNEUROSCI.2123-09.2009 
+Bienenstock, E. L., Cooper, L. N., and Munro, P. W. (1982). Theory for 
+the development of neuron selectivity: orientation speciﬁcity and binocular 
+interaction in visual cortex. J. Neurosci. 2, 32–48. 
+Brunel, N., Hakim, V., Isope, P., Nadal, J. P., and Barbour, B. (2004). Optimal 
+information storage and the distribution of synaptic weights: perceptron 
+versus Purkinje cell. Neuron 43, 745–757. doi: 10.1016/j.neuron.2004. 
+08.023 
+Carter, A. G., and Regehr, W. G. (2000). Prolonged synaptic currents and glutamate 
+spillover at the parallel ﬁber to stellate cell synapse. J. Neurosci. 20, 4423–4434. 
+Carter, A. G., and Regehr, W. G. (2002). Quantal events shape cerebellar 
+interneuron ﬁring. Nat. Neurosci. 5, 1309–1318. doi: 10.1038/nn970 
+Cerminara, N. L., and Rawson, J. A. (2004). Evidence that climbing ﬁbers 
+control an intrinsic spike generator in cerebellar Purkinje cells. J. Neurosci. 24, 
+4510–4517. doi: 10.1523/JNEUROSCI.4530-03.2004 
+Chadderton, P., Margrie, T. W., and Häusser, M. (2004). Integration of quanta in 
+cerebellar granule cells during sensory processing. Nature 428, 856–860. doi: 
+10.1038/nature02442 
+Chen, Z. (2007). Correlative Learning: A Basis for Brain and Adaptive Systems. 
+Hoboken, NJ: Wiley-Interscience. 
+Clark, B. A., and Cull-Candy, S. G. (2002). Activity-dependent recruitment of 
+extrasynaptic NMDA receptor activation at an AMPA receptor-only synapse. 
+J. Neurosci. 22, 4428–4436. 
+Coddington, L. T., Rudolph, S., Vande Lune, P., Overstreet-Wadiche, L., 
+and Wadiche, J. I. (2013). Spillover-mediated feedforward inhibition 
+functionally segregates interneuron activity. Neuron 78, 1050–1062. doi: 
+10.1016/j.neuron.2013.04.019 
+D’Angelo, E. (2014). The organization of plasticity in the cerebellar cortex: from 
+synapses to control. Prog. Brain Res. 210, 31–58. doi: 10.1016/B978-0-444- 
+63356-9.00002-9 
+Dean, P., Porrill, J., Ekerot, C. F., and Jörntell, H. (2010). The cerebellar 
+microcircuit as an adaptive ﬁlter: experimental and computational evidence. 
+Nat. Rev. Neurosci. 11, 30–43. doi: 10.1038/nrn2756 
+Eccles, J. C., Ito, M., and Szentaìgothai, J. N. (1967). The Cerebellum as a Neuronal 
+Machine. Berlin, New York, NY: Springer-Verlag. 
+Franconville, R., Revet, G., Astorga, G., Schwaller, B., and Llano, I. (2011). Somatic 
+calcium level reports integrated spiking activity of cerebellar interneurons 
+in vitro and in vivo. J. Neurophysiol. 106, 1793–1805. doi: 10.1152/jn.00133.2011 
+Gabbiani, F., Midtgaard, J., and Knöpfel, T. (1994). Synaptic integration in a model 
+of cerebellar granule cells. J. Neurophysiol. 72, 999–1009. 
+Gao, Z., van Beugen, B. J., and De Zeeuw, C. I. (2012). Distributed synergistic 
+plasticity and cerebellar learning. Nat. Rev. Neurosci. 13, 619–635. doi: 
+10.1038/nrn3312 
+Gardner, S. M., Takamiya, K., Xia, J., Suh, J. G., Johnson, R., Yu, S., 
+et al. (2005). Calcium-permeable AMPA receptor plasticity is mediated by 
+subunit-speciﬁc interactions with PICK1 and NSF. Neuron 45, 903–915. doi: 
+10.1016/j.neuron.2005.02.026 
+Gerstner, W., and Kistler, W. M. (2002). Spiking Neuron Models: Single Neurons, 
+Populations, Plasticity. Cambridge, UK; New York, NY: Cambridge University 
+Press. 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+13 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =12= ***/
+/*** Page =13= ***/
+Lennon et al. 
+A Model of In vitro Plasticity at the PF-MLI Synapses 
+Goodman, D. F., and Brette, R. (2009). The brian simulator. Front. Neurosci. 3, 
+192–197. doi: 10.3389/neuro.01.026.2009 
+Grossberg, S. (1968). Some nonlinear networks capable of learning a spatial 
+pattern of arbitrary complexity. Proc. Natl. Acad. Sci. U.S.A. 59, 368–372. doi: 
+10.1073/pnas.59.2.368 
+Grossberg, S. (1969). On learning of spatiotemporal patterns by networks with 
+ordered sensory and motor components. 1. Excitatory components of the 
+cerebellum. Stud. Appl. Math. 48, 105–132. doi: 10.1002/sapm1969482105 
+Häusser, M., and Clark, B. A. (1997). Tonic synaptic inhibition modulates neuronal 
+output pattern and spatiotemporal synaptic integration. Neuron 19, 665–678. 
+doi: 10.1016/S0896-6273(00)80379-7 
+Heiney, S. A., Kim, J., Augustine, G. J., and Medina, J. F. (2014). Precise control 
+of movement kinematics by optogenetic inhibition of Purkinje cell activity. 
+J. Neurosci. 34, 2321–2330. doi: 10.1523/JNEUROSCI.4547-13.2014 
+Ito, M. (2006). Cerebellar circuitry as a neuronal machine. Prog. Neurobiol. 78, 
+272–303. doi: 10.1016/j.pneurobio.2006.02.006 
+Ito, M., Yamaguchi, K., Nagao, S., and Yamazaki, T. (2014). Long-term depression 
+as a model of cerebellar plasticity. Prog. Brain Res. 210, 1–30. doi: 10.1016/B978- 
+0-444-63356-9.00001-7 
+Jirenhed, D. A., Bengtsson, F., and Hesslow, G. (2007). Acquisition, extinction, and 
+reacquisition of a cerebellar cortical memory trace. J. Neurosci. 27, 2493–2502. 
+doi: 10.1523/JNEUROSCI.4202-06.2007 
+Jörntell, H., Bengtsson, F., Schonewille, M., and De Zeeuw, C. I. (2010). Cerebellar 
+molecular layer interneurons - computational properties and roles in learning. 
+Trends Neurosci. 33, 524–532. doi: 10.1016/j.tins.2010.08.004 
+Jörntell, H., and Ekerot, C. F. (2002). Reciprocal bidirectional plasticity of parallel 
+ﬁber receptive ﬁelds in cerebellar Purkinje cells and their aﬀerent interneurons. 
+Neuron 34, 797–806. doi: 10.1016/S0896-6273(02)00713-4 
+Jörntell, H., and Ekerot, C. F. (2003). Receptive ﬁeld plasticity profoundly alters 
+the cutaneous parallel ﬁber synaptic input to cerebellar interneurons in vivo. 
+J. Neurosci. 23, 9620–9631. 
+Jörntell, H., and Ekerot, C. F. (2011). Receptive ﬁeld remodeling induced by 
+skin stimulation in cerebellar neurons in vivo. Front. Neural Circuits 5:3. doi: 
+10.3389/fncir.2011.00003 
+Kelly, L., Farrant, M., and Cull-Candy, S. G. (2009). Synaptic mGluR activation 
+drives plasticity of calcium-permeable AMPA receptors. Nat. Neurosci. 12, 
+593–601. doi: 10.1038/nn.2309 
+Kenyon, G. T. (1997). A model of long-term memory storage in the 
+cerebellar cortex: a possible role for plasticity at parallel ﬁber synapses onto 
+stellate/basket interneurons. Proc. Natl. Acad. Sci. U.S.A. 94, 14200–14205. doi: 
+10.1073/pnas.94.25.14200 
+Lachamp, P. M., Liu, Y., and Liu, S. J. (2009). Glutamatergic modulation of 
+cerebellar interneuron activity is mediated by an enhancement of GABA release 
+and requires protein kinase A/RIM1alpha signaling. J. Neurosci. 29, 381–392. 
+doi: 10.1523/JNEUROSCI.2354-08.2009 
+Lennon, W., Hecht-Nielsen, R., and Yamazaki, T. (2014). A spiking network 
+model of cerebellar Purkinje cells and molecular layer interneurons exhibiting 
+irregular ﬁring. Front. Comput. Neurosci. 8:157. doi: 10.3389/fncom.2014.00157 
+Liu, S. J., and Cull-Candy, S. G. (2002). Activity-dependent change in AMPA 
+receptor properties in cerebellar stellate cells. J. Neurosci. 22, 3881–3889. 
+Liu, S. J., and Cull-Candy, S. G. (2005). Subunit interaction with PICK and GRIP 
+controls Ca2 permeability of AMPARs at cerebellar synapses. Nat. Neurosci. 8, 
+768–775. doi: 10.1038/nn1468 
+Liu, S. J., and Savtchouk, I. (2012). Ca(2 ) permeable AMPA receptors switch 
+allegiances: mechanisms and consequences. J. Physiol. 590, 13–20. doi: 
+10.1113/jphysiol.2011.213926 
+Liu, S. Q., and Cull-Candy, S. G. (2000). Synaptic activity at calcium-permeable 
+AMPA receptors induces a switch in receptor subtype. Nature 405, 454–458. 
+doi: 10.1038/35013064 
+Mapelli, L., Pagani, M., Garrido, J. A., and D’Angelo, E. (2015). Integrated plasticity 
+at inhibitory and excitatory synapses in the cerebellar circuit. Front. Cell. 
+Neurosci. 9:169. doi: 10.3389/fncel.2015.00169 
+Marr, D. (1969). A theory of cerebellar cortex. J. Physiol. 202, 437–470. doi: 
+10.1113/jphysiol.1969.sp008820 
+McCormick, D. A., Wang, Z., and Huguenard, J. (1993). Neurotransmitter control 
+of neocortical neuronal activity and excitability. Cereb. Cortex 3, 387–398. doi: 
+10.1093/cercor/3.5.387 
+Midtgaard, J. (1992). Membrane properties and synaptic responses of Golgi cells 
+and stellate cells in the turtle cerebellum in vitro. J. Physiol. 457, 329–354. doi: 
+10.1113/jphysiol.1992.sp019381 
+Miyashita, Y., and Nagao, S. (1984). Contribution of cerebellar intracortical 
+inhibition to Purkinje cell response during vestibulo-ocular reﬂex of alert 
+rabbits. J. Physiol. 351, 251–262. doi: 10.1113/jphysiol.1984.sp015243 
+Myoga, M. H., Beierlein, M., and Regehr, W. G. (2009). Somatic spikes regulate 
+dendritic signaling in small neurons in the absence of backpropagating action 
+potentials. J. Neurosci. 29, 7803–7814. doi: 10.1523/JNEUROSCI.0030-09.2009 
+Nahir, B., and Jahr, C. E. (2013). Activation of extrasynaptic NMDARs at individual 
+parallel ﬁber-molecular layer interneuron synapses in cerebellum. J. Neurosci. 
+33, 16323–16333. doi: 10.1523/JNEUROSCI.1971-13.2013 
+Palay, S. L., and Chan-Palay, V. (1974). Cerebellar Cortex: Cytology and 
+Organization. Berlin; Heidelberg; New York, NY: Springer. 
+Rancillac, A., and Crépel, F. (2004). Synapses between parallel ﬁbres and stellate 
+cells express long-term changes in synaptic eﬃcacy in rat cerebellum. J. Physiol. 
+554, 707–720. doi: 10.1113/jphysiol.2003.055871 
+Satake, S., Inoue, T., and Imoto, K. (2012). Paired-pulse facilitation of 
+multivesicular release and intersynaptic spillover of glutamate at rat 
+cerebellar granule cell-interneurone synapses. J. Physiol. 590, 5653–5675. doi: 
+10.1113/jphysiol.2012.234070 
+Shouval, H. Z., Bear, M. F., and Cooper, L. N. (2002). A uniﬁed model of 
+NMDA receptor-dependent bidirectional synaptic plasticity. Proc. Natl. Acad. 
+Sci. U.S.A. 99, 10831–10836. doi: 10.1073/pnas.152343099 
+Smith, S. L., and Otis, T. S. (2005). Pattern-dependent, simultaneous plasticity 
+diﬀerentially transforms the input-output relationship of a feedforward circuit. 
+Proc. Natl. Acad. Sci. U.S.A. 102, 14901–14906. doi: 10.1073/pnas.0505028102 
+Soler-Llavina, G. J., and Sabatini, B. L. (2006). Synapse-speciﬁc plasticity and 
+compartmentalized signaling in cerebellar stellate cells. Nat. Neurosci. 9, 
+798–806. doi: 10.1038/nn1698 
+Sun, L., and June Liu, S. (2007). Activation of extrasynaptic NMDA 
+receptors induces a PKC-dependent switch in AMPA receptor subtypes 
+in mouse cerebellar stellate cells. J. Physiol. 583, 537–553. doi: 
+10.1113/jphysiol.2007.136788 
+Szapiro, G., and Barbour, B. (2007). Multiple climbing ﬁbers signal to molecular 
+layer interneurons exclusively via glutamate spillover. Nat. Neurosci. 10, 
+735–742. doi: 10.1038/nn1907 
+Turrigiano, G. (2012). Homeostatic synaptic plasticity: local and global 
+mechanisms for stabilizing neuronal function. Cold Spring Harb. Perspect. Biol. 
+4:a005736. doi: 10.1101/cshperspect.a005736 
+van Beugen, B. J., Gao, Z., Boele, H. J., Hoebeek, F., and De Zeeuw, C. I. (2013). 
+High frequency burst ﬁring of granule cells ensures transmission at the parallel 
+ﬁber to purkinje cell synapse at the cost of temporal coding. Front. Neural 
+Circuits 7:95. doi: 10.3389/fncir.2013.00095 
+Wulﬀ, P., Schonewille, M., Renzi, M., Viltono, L., Sassoè-Pognetto, M., Badura, 
+A., et al. (2009). Synaptic inhibition of Purkinje cells mediates consolidation 
+of vestibulo-cerebellar motor learning. Nat. Neurosci. 12, 1042–1049. doi: 
+10.1038/nn.2348 
+Yamazaki, T., Nagao, S., Lennon, W., and Tanaka, S. (2015). Modeling memory 
+consolidation during post-training periods in cerebellovestibular learning. 
+Proc. Natl. Acad. Sci. U.S.A. 112, 3541–3546. doi: 10.1073/pnas.14137 
+98112 
+Yeung, L. C., Shouval, H. Z., Blais, B. S., and Cooper, L. N. (2004). 
+Synaptic homeostasis and input selectivity follow from a calcium-dependent 
+plasticity model. Proc. Natl. Acad. Sci. U.S.A. 101, 14943–14948. doi: 
+10.1073/pnas.0405555101 
+Conﬂict of Interest Statement: The authors declare that the research was 
+conducted in the absence of any commercial or ﬁnancial relationships that could 
+be construed as a potential conﬂict of interest. 
+Copyright © 2015 Lennon, Yamazaki and Hecht-Nielsen. This is an open-access 
+article distributed under the terms of the Creative Commons Attribution License (CC 
+BY). The use, distribution or reproduction in other forums is permitted, provided the 
+original author(s) or licensor are credited and that the original publication in this 
+journal is cited, in accordance with accepted academic practice. No use, distribution 
+or reproduction is permitted which does not comply with these terms. 
+Frontiers in Computational Neuroscience | www.frontiersin.org 
+14 
+December 2015 | Volume 9 | Article 150 
+
+/*** End Page =13= ***/
