@@ -9,4 +9,4 @@ This repository contains the test artifacts and reference data used by the [Djvu
 * **`ErrorFiles.json`**: Tracking file for known parsing errors or unsupported document formats.
 
 ## Releases
-GitHub Releases on this repository are used by the DjvuNet CI/CD pipeline to download immutable snapshots of this test data, alongside compiled assets (`Tools.zip`, `deps.zip`) required to bootstrap the build environment.
+GitHub Releases on this repository are used by the DjvuNet CI/CD pipelines to download immutable snapshots of this test data, alongside compiled assets (`Tools.{zip|tar.gz}`, `deps.{zip|tar.gz}`) required to bootstrap the build environment.
