@@ -1,0 +1,49 @@
+###############################################################################
+# Set default behavior to automatically normalize line endings to LF.
+###############################################################################
+* text eol=lf
+
+###############################################################################
+# Force Windows batch scripts to use CRLF line endings
+###############################################################################
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+###############################################################################
+# behavior for image files
+#
+# image files are treated as binary by default.
+###############################################################################
+*.jpg   binary
+*.png   binary
+*.gif   binary
+*.ico   binary
+*.djvu  binary
+*.pdf   binary
+*.tiff  binary
+*.snk   binary
+
+###############################################################################
+# behavior for chunk files
+#
+# extracted chunk files are treated as binary by default.
+###############################################################################
+*.antz  binary
+*.bg44  binary
+*.bsr   binary
+*.bzz   binary
+*.bz3   binary
+*.cida  binary
+*.fgbz  binary
+*.fg44  binary
+*.djbz  binary
+*.incl  binary
+*.info  binary
+*.lib   binary
+*.navm  binary
+*.obz   binary
+*.pdb   binary
+*.sjbz  binary
+*.th44  binary
+*.txta  binary
+*.txtz  binary
